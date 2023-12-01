@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkTGVjdHVyZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
