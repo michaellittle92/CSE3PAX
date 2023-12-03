@@ -11,6 +11,8 @@ namespace CSE3PAX.Pages
         public void OnGet() {
             try
             {
+
+                //SQL connection string
                 String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
