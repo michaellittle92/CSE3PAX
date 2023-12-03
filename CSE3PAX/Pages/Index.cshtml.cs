@@ -6,6 +6,8 @@ namespace CSE3PAX.Pages
 {
     public class IndexModel : PageModel
     {
+
+        //LecturerInfo list
         public List<LecturerInfo> listLecturers = new List<LecturerInfo>();
 
         public void OnGet() {
@@ -15,19 +17,32 @@ namespace CSE3PAX.Pages
                 //Local SQL express connection string
                 //String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
 
-                //AWS Database connection string test
+                //AWS Database connection string 
                 String connectionString = "Data Source=latrobeschedulesystem.cqdeypb3gbwr.us-east-1.rds.amazonaws.com,1433;Initial Catalog=LaTrobeScheduleSystemDB;Integrated Security=False;User ID=admin;Password=Bghas23fn74!!";
 
+                //SqlConnection connect to SQL DB
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+
+                    //Open SQL connection
                     connection.Open();
+
+                    //sql string variable to read all entries from lecturers sql table
                     String sql = "SELECT * FROM lecturers";
+
+                    //SqlCommand execute command against SQL db
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
+
+                        //SqlDataReader to read db/tables
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+
+                            //While loop to read each entry in lecturer table
                             while (reader.Read())
                             {
+
+                                //Create LecturerInfo object and read attributes
                                 LecturerInfo info = new LecturerInfo();
                                 info.userID = "" + reader.GetInt32(0);
                                 info.LastName = reader.GetString(1);
@@ -39,7 +54,6 @@ namespace CSE3PAX.Pages
                                // info.ExpertiseFeild03 = reader.GetString(8);
                               //  info.ExpertiseFeild04 = reader.GetString(9);
                                // info.ExpertiseFeild05 = reader.GetString(10);
-
 
                                 listLecturers.Add(info);
                             }
