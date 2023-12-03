@@ -12,8 +12,11 @@ namespace CSE3PAX.Pages
             try
             {
 
-                //SQL connection string
-                String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
+                //Local SQL express connection string
+                //String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
+
+                //AWS Database connection string test
+                String connectionString = "Data Source=latrobeschedulesystem.cqdeypb3gbwr.us-east-1.rds.amazonaws.com,1433;Initial Catalog=LaTrobeScheduleSystemDB;Integrated Security=False;User ID=admin;Password=Bghas23fn74!!";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
