@@ -25,11 +25,11 @@ namespace CSE3PAX.Pages
                             {
                                 LecturerInfo info = new LecturerInfo();
                                 info.userID = "" + reader.GetInt32(0);
-                                info.LastName = reader.GetString(1);
-                                info.FirstName = reader.GetString(2);
+                                info.FirstName = reader.GetString(1);
+                                info.LastName = reader.GetString(2);
                                 info.Email = reader.GetString(3);
-                                info.ConcurrentLoadCapacity = "" + (reader.GetInt32(5));
-                                info.ExpertiseFeild01 = reader.GetString(6);
+                               info.ConcurrentLoadCapacity = reader.GetString(5);
+                               info.ExpertiseFeild01 = reader.GetString(6);
                                 //info.ExpertiseFeild02 = reader.GetString(7);
                                // info.ExpertiseFeild03 = reader.GetString(8);
                               //  info.ExpertiseFeild04 = reader.GetString(9);

@@ -17,7 +17,12 @@ namespace CSE3PAX.Pages
         public string ConcurrentLoadCapcity { get; set; } = "";
         public string ExpertiseFeild01 { get; set; } = "";
 
+        public string SuccessMessage { get; set; } = "";
+        public string ErrorMessage { get; set; } = "";
+        //public int IsLecturer = 1;
+
         public void OnPost() {
+
             FirstName = Request.Form["firstname"];
             LastName = Request.Form["lastname"];
             Email = Request.Form["email"];
@@ -25,43 +30,54 @@ namespace CSE3PAX.Pages
             ConcurrentLoadCapcity = Request.Form["concurrentloadcapacity"];
             ExpertiseFeild01 = Request.Form["expertisefeild01"];
 
-         
 
-            try {
+            if (FirstName.Length == 0 || LastName.Length == 0 || Email.Length == 0 || Password.Length == 0 ||
+                ConcurrentLoadCapcity.Length == 0 || ExpertiseFeild01.Length == 0) {
 
-                String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
+                ErrorMessage = "Please fill in all required fields";
+                return;
+            }
+
+            //Add Message to Database 
+            try
+            {
+                string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+                    string sql = "INSERT INTO lecturers(FirstName ,LastName , Email, Pass, ConcurrentLoadCapacity, ExpertiseFeild01, isLecturer)" +
+                        "VALUES (@firstname, @lastname, @email,@password, @concurrentloadcapacity, @expertisefeild01,)";
 
-                    string sql = " INSERT INTO lecturers(LastName, FirstName, Email, Password, ConcurrentLoadCapacity, ExpertiseFeild01, isLecturer)\r\n    VALUES  ('Test', 'Test', 'j.smith@latrobe.com.au','password', 6, 'Networking', 1);";
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
-                        command.ExecuteNonQuery();
-                    }
-                    /*
-                    string sql = "INSERT INTO lecturers(LastName, FirstName, Email, Password, ConcurrentLoadCapacity, ExpertiseFeild01, isLecturer)" +
-                        "(@lastname, @firstname, @email, @password, @concurrentloadcapacity, @expertisefeild01, @islecturer);";
-
-                    using (SqlCommand command = new SqlCommand(sql, connection)) {
-                        command.Parameters.AddWithValue("@lastname", LastName);
                         command.Parameters.AddWithValue("@firstname", FirstName);
+                        command.Parameters.AddWithValue("@lastname", LastName);
                         command.Parameters.AddWithValue("@email", Email);
                         command.Parameters.AddWithValue("@password", Password);
                         command.Parameters.AddWithValue("@concurrentloadcapacity", ConcurrentLoadCapcity);
                         command.Parameters.AddWithValue("@expertisefeild01", ExpertiseFeild01);
-                        command.Parameters.AddWithValue("@islecturer", 1);
+                        //command.Parameters.AddWithValue(@"islecturer", IsLecturer);
 
-                    command.ExecuteNonQuery();
                     }
-                    */
-                
-            }
+
+                }
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
                 return;
             }
+            SuccessMessage = "Lecturer added to Database.";
+
+            FirstName = "";
+            LastName = "";
+            Email = "";
+            Password = "";
+            ConcurrentLoadCapcity = "";
+            ExpertiseFeild01 = "";
+
+
         }
     }
 }
