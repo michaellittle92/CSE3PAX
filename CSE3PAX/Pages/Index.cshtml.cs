@@ -6,23 +6,40 @@ namespace CSE3PAX.Pages
 {
     public class IndexModel : PageModel
     {
+
+        //LecturerInfo list
         public List<LecturerInfo> listLecturers = new List<LecturerInfo>();
 
         public void OnGet() {
             try
             {
-                String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
 
+                //AWS SQL Database connection string 
+                String connectionString = "Data Source=latrobeschedulesystem.cqdeypb3gbwr.us-east-1.rds.amazonaws.com,1433;Initial Catalog=LaTrobeScheduleSystemDB;Integrated Security=False;User ID=admin;Password=Bghas23fn74!!";
+
+                //SqlConnection connect to SQL DB
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+
+                    //Open SQL connection
                     connection.Open();
+
+                    //sql string variable to read all entries from lecturers sql table
                     String sql = "SELECT * FROM lecturers";
+
+                    //SqlCommand execute command against SQL db
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
+
+                        //SqlDataReader to read db/tables
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+
+                            //While loop to read each entry in lecturer table
                             while (reader.Read())
                             {
+
+                                //Create LecturerInfo object and read attributes
                                 LecturerInfo info = new LecturerInfo();
                                 info.userID = "" + reader.GetInt32(0);
                                 info.FirstName = reader.GetString(1);
@@ -43,10 +60,11 @@ namespace CSE3PAX.Pages
                 }
             }
             catch(Exception ex) { 
-            
             }
         }
     }
+
+    //Lecturer info attributes
     public class LecturerInfo {
         public String userID;
         public String LastName;
@@ -54,11 +72,10 @@ namespace CSE3PAX.Pages
         public String Email;
         public String ConcurrentLoadCapacity;
         public String ExpertiseFeild01;
-        //public String ExpertiseFeild02;
-       // public String ExpertiseFeild03;
-        //public String ExpertiseFeild04;
-       // public String ExpertiseFeild05;
-
-
+        public String ExpertiseFeild02;
+        public String ScheduleAssigned;
+        public String Address;
+        public String Phone;
+        public String EmploymentStatus;
     }
 }
