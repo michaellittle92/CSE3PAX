@@ -14,10 +14,7 @@ namespace CSE3PAX.Pages
             try
             {
 
-                //Local SQL express connection string
-                //String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=schedulingDB;Integrated Security=True";
-
-                //AWS Database connection string 
+                //AWS SQL Database connection string 
                 String connectionString = "Data Source=latrobeschedulesystem.cqdeypb3gbwr.us-east-1.rds.amazonaws.com,1433;Initial Catalog=LaTrobeScheduleSystemDB;Integrated Security=False;User ID=admin;Password=Bghas23fn74!!";
 
                 //SqlConnection connect to SQL DB
@@ -50,11 +47,11 @@ namespace CSE3PAX.Pages
                                 info.Email = reader.GetString(3);
                                 info.ConcurrentLoadCapacity = "" + (reader.GetInt32(5));
                                 info.ExpertiseFeild01 = reader.GetString(6);
-                                //info.ExpertiseFeild02 = reader.GetString(7);
-                               // info.ExpertiseFeild03 = reader.GetString(8);
-                              //  info.ExpertiseFeild04 = reader.GetString(9);
-                               // info.ExpertiseFeild05 = reader.GetString(10);
-
+                                info.ExpertiseFeild02 = reader.GetString(7);
+                                info.ScheduleAssigned = reader.GetString(8);
+                                info.Address = reader.GetString(9);
+                                info.Phone = reader.GetString(10);
+                                info.EmploymentStatus = reader.GetString(11);
                                 listLecturers.Add(info);
                             }
                         }
@@ -62,10 +59,11 @@ namespace CSE3PAX.Pages
                 }
             }
             catch(Exception ex) { 
-            
             }
         }
     }
+
+    //Lecturer info attributes
     public class LecturerInfo {
         public String userID;
         public String LastName;
@@ -73,11 +71,10 @@ namespace CSE3PAX.Pages
         public String Email;
         public String ConcurrentLoadCapacity;
         public String ExpertiseFeild01;
-        //public String ExpertiseFeild02;
-       // public String ExpertiseFeild03;
-        //public String ExpertiseFeild04;
-       // public String ExpertiseFeild05;
-
-
+        public String ExpertiseFeild02;
+        public String ScheduleAssigned;
+        public String Address;
+        public String Phone;
+        public String EmploymentStatus;
     }
 }
