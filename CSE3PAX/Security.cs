@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleScheduler
+namespace CSE3PAX
 {
     public class Security
     {
+
         public static string HashSHA256(string plainTextPassword)
         {
             using (SHA256 sha256 = SHA256.Create())
@@ -25,5 +22,6 @@ namespace ConsoleScheduler
 
             }
         }
+
     }
 }

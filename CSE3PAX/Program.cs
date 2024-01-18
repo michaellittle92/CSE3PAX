@@ -1,7 +1,23 @@
+using CSE3PAX;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+//Enable session middleware
+
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(36000);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Register UserDatabaseFunctions class
+builder.Services.AddScoped<UserDatabaseFunctions>();
 
 var app = builder.Build();
 
@@ -19,6 +35,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+//Use Session must be between UseRouting and UserRazorPages
+app.UseSession();
 
 app.MapRazorPages();
 
