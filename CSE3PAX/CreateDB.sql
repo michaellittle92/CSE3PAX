@@ -18,6 +18,7 @@ CREATE TABLE PasswordResets(
 	 CreatedOn datetime NOT NULL DEFAULT GETDATE()
 );
 
+SELECT * FROM USERS;
 
 CREATE TABLE Lecturers (
     LecturerID INT IDENTITY(1,1) NOT NULL,
@@ -40,3 +41,6 @@ SubjectClassification NVARCHAR(255),
 YearLevel INT,
 DevelopmentDifficulty NVARCHAR(255)
 );
+
+INSERT INTO USERS (Email, Password, UserGuid, FirstName, LastName, IsAdmin, IsManager, IsLecturer, IsPasswordResetRequired, CreatedOn)
+VALUES ('admin@mail.com', '8d242d653568af8ea3453c053c706603ba8a627c05da8de23e9c378e0c57687d','70270F25-EA4A-4885-925B-D467B04E29F1', 'Admin', 'Admin', 1, 0, 0, 0, GETDATE());
