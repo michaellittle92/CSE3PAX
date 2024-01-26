@@ -15,10 +15,9 @@
 CREATE TABLE PasswordResets(
 	email VARCHAR(150) NOT NULL PRIMARY KEY,
 	token VARCHAR(150) NOT NULL,
-	 CreatedOn datetime NOT NULL DEFAULT GETDATE()
+	CreatedOn datetime NOT NULL DEFAULT GETDATE()
 );
 
-SELECT * FROM USERS;
 
 CREATE TABLE Lecturers (
     LecturerID INT IDENTITY(1,1) NOT NULL,
@@ -34,13 +33,27 @@ CREATE TABLE Lecturers (
 );
 
 CREATE TABLE Subjects(
-SubjectID INT IDENTITY(1,1) NOT NULL,
-SubjectCode NVARCHAR(255),
-SubjectName NVARCHAR(255),
-SubjectClassification NVARCHAR(255),
-YearLevel INT,
-DevelopmentDifficulty NVARCHAR(255)
+    SubjectID INT IDENTITY(1,1) NOT NULL,
+    SubjectCode NVARCHAR(255),
+    SubjectName NVARCHAR(255),
+    SubjectClassification NVARCHAR(255),
+    YearLevel INT,
+    DevelopmentDifficulty NVARCHAR(255)
+);
+
+CREATE TABLE SubjectInstance(
+    SubjectInstanceID INT IDENTITY(1,1) NOT NULL,
+    FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
+    SubjectInstanceName NVARCHAR(100),
+    SubjectInstanceCode NVARCHAR(100),
+    LecturerID INT,
+    StartDate DATETIME,
+    EndDate DATETIME,
+    SubjectInstanceYear INT,
 );
 
 INSERT INTO USERS (Email, Password, UserGuid, FirstName, LastName, IsAdmin, IsManager, IsLecturer, IsPasswordResetRequired, CreatedOn)
 VALUES ('admin@mail.com', '8d242d653568af8ea3453c053c706603ba8a627c05da8de23e9c378e0c57687d','70270F25-EA4A-4885-925B-D467B04E29F1', 'Admin', 'Admin', 1, 0, 0, 0, GETDATE());
+
+
+SELECT * FROM USERS
