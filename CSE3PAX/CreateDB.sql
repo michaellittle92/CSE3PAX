@@ -39,10 +39,12 @@ CREATE TABLE Subjects(
     SubjectClassification NVARCHAR(255),
     YearLevel INT,
     DevelopmentDifficulty NVARCHAR(255)
+    PRIMARY KEY (SubjectID)
 );
 
 CREATE TABLE SubjectInstance(
     SubjectInstanceID INT IDENTITY(1,1) NOT NULL,
+    SubjectID INT,
     FOREIGN KEY (SubjectID) REFERENCES Subjects(SubjectID),
     SubjectInstanceName NVARCHAR(100),
     SubjectInstanceCode NVARCHAR(100),
