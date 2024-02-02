@@ -1,3 +1,80 @@
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.AssemblyReference.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.AssemblyInfoInputs.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.AssemblyInfo.cs
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.CoreCompileInputs.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.RazorAssemblyInfo.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.RazorAssemblyInfo.cs
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/appsettings.Development.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/appsettings.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.staticwebassets.runtime.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.exe
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.deps.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.runtimeconfig.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.pdb
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/System.Data.SqlClient.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.CSE3PAX.Microsoft.AspNetCore.StaticWebAssets.props
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.build.CSE3PAX.props
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.CSE3PAX.props
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.CSE3PAX.props
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.pack.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.build.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.development.json
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/bundle/CSE3PAX.styles.css
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/projectbundle/CSE3PAX.bundle.scp.css
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.CopyComplete
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/refint/CSE3PAX.dll
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.pdb
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.genruntimeconfig.cache
+C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/obj/Debug/net7.0/ref/CSE3PAX.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/appsettings.Development.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/appsettings.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.staticwebassets.runtime.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.deps.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.runtimeconfig.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/CSE3PAX.pdb
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/System.Data.SqlClient.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-arm64/native/sni.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-x64/native/sni.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win-x86/native/sni.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/unix/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/bin/Debug/net7.0/runtimes/win/lib/netcoreapp2.1/System.Data.SqlClient.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.AssemblyReference.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.GeneratedMSBuildEditorConfig.editorconfig
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.AssemblyInfoInputs.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.AssemblyInfo.cs
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.CoreCompileInputs.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.MvcApplicationPartsAssemblyInfo.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.RazorAssemblyInfo.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.RazorAssemblyInfo.cs
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.sourcelink.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.build.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.development.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.CSE3PAX.Microsoft.AspNetCore.StaticWebAssets.props
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.build.CSE3PAX.props
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.CSE3PAX.props
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.CSE3PAX.props
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.pack.json
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/bundle/CSE3PAX.styles.css
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/projectbundle/CSE3PAX.bundle.scp.css
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.CopyComplete
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/refint/CSE3PAX.dll
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.pdb
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.genruntimeconfig.cache
+/Users/michael/Documents/GitHub/CSE3PAX/CSE3PAX/obj/Debug/net7.0/ref/CSE3PAX.dll
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\bin\Debug\net7.0\appsettings.json
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.staticwebassets.runtime.json
@@ -36,41 +113,3 @@ C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint\CSE3PAX.
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.genruntimeconfig.cache
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\ref\CSE3PAX.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\appsettings.Development.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\appsettings.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.staticwebassets.runtime.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.exe
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.deps.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.runtimeconfig.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\CSE3PAX.pdb
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\System.Data.SqlClient.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\runtimes\win-arm64\native\sni.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\runtimes\win-x64\native\sni.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\runtimes\win-x86\native\sni.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\bin\Debug\net7.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.AssemblyReference.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.GeneratedMSBuildEditorConfig.editorconfig
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.AssemblyInfoInputs.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.AssemblyInfo.cs
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.CoreCompileInputs.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.MvcApplicationPartsAssemblyInfo.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.RazorAssemblyInfo.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.RazorAssemblyInfo.cs
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets\msbuild.CSE3PAX.Microsoft.AspNetCore.StaticWebAssets.props
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets\msbuild.build.CSE3PAX.props
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.CSE3PAX.props
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.CSE3PAX.props
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets.pack.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets.build.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets.development.json
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\bundle\CSE3PAX.styles.css
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\projectbundle\CSE3PAX.bundle.scp.css
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.CopyComplete
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint\CSE3PAX.dll
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.genruntimeconfig.cache
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\ref\CSE3PAX.dll
