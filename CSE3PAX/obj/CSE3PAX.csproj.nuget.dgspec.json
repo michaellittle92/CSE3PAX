@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {}
+    "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {}
   },
   "projects": {
-    "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {
+    "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+        "projectUniqueName": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
         "projectName": "CSE3PAX",
-        "projectPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
-        "packagesPath": "C:\\Users\\Al\\.nuget\\packages\\",
-        "outputPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\obj\\",
+        "projectPath": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+        "packagesPath": "C:\\Users\\61432\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Al\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\61432\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -64,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
