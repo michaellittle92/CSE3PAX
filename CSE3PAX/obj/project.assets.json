@@ -470,23 +470,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\61432\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Al\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "projectUniqueName": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
       "projectName": "CSE3PAX",
-      "projectPath": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
-      "packagesPath": "C:\\Users\\61432\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\obj\\",
+      "projectPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "packagesPath": "C:\\Users\\Al\\.nuget\\packages\\",
+      "outputPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\61432\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Al\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -536,20 +532,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Data.SqlClient' 4.8.5 has a known high severity vulnerability, https://github.com/advisories/GHSA-98g6-xh36-x2p7",
-      "libraryId": "System.Data.SqlClient",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    }
-  ]
+  }
 }
