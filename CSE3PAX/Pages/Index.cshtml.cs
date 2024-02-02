@@ -121,7 +121,18 @@ namespace CSE3PAX.Pages
                                     HttpContext.Session.SetString("createdOn", createdOn);
 
 
-                                    Response.Redirect("/Lecturer/LecturerIndex");
+                                    if (isAdministrator == true)
+                                    {
+                                        Response.Redirect("/Admin/AdminIndex");
+                                    }
+
+                                    else if (isManager == true)
+                                    {
+                                        Response.Redirect("/Manager/ManagerIndex");
+                                    }
+                                    else {
+                                        Response.Redirect("/Lecturer/LecturerIndex");
+                                    }
                                 }
                             }
                         }
