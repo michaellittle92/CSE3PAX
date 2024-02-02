@@ -9,41 +9,49 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CSE3PAX
 build_property.RootNamespace = CSE3PAX
-build_property.ProjectDir = E:\Visual Studio Projects\CSE3PAX\CSE3PAX\
+build_property.ProjectDir = C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = E:\Visual Studio Projects\CSE3PAX\CSE3PAX
+build_property.MSBuildProjectDirectory = C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX
 build_property._RazorSourceGeneratorDebug = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Auth/logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXV0aFxsb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkTGVjdHVyZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Admin/AdminIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nw9te68nih
