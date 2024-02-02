@@ -1,77 +1,8 @@
-﻿@page
-@model LecturerIndexModel
+@page
+@model ErrorModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Error";
 }
 
-<h2> Lecturers </h2>
-<table class="table table-striped">
-    <thead class="tableHead">
-        <tr class="tableRow">
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Employment Status</th>
-            <th>Workload</th>
-            <th>Expertise</th>
-            <th>Schedule Assigned</th>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.listLecturers)
-        {
-            <tr>
-                <td class="tableMain">@item.userID</td>
-                <td>@item.FirstName</td>
-                <td>@item.LastName</td>
-                <td>@item.Email</td>
-                <td>@item.Address</td>
-                <td>@item.Phone</td>
-                <td>@item.EmploymentStatus</td>
-                <td>@item.ConcurrentLoadCapacity</td>
-                <td>@item.ExpertiseFeild01</td>
-                <td>@item.ScheduleAssigned</td>
-                <td>
-                    <button class="btn btn-success">Create Schedule</button>
-                </td>
-                <td>
-                    <button class="btn btn-primary">Edit User</button>
-                </td>
-                <td>
-                    <button class="btn btn-danger">Delete User</button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-<style>
-    table {
-        caption-side: bottom;
-        border-collapse: collapse;
-        text-align: center;
-        white-space: nowrap;
-    }    
-
-    .tableMain{
-        font-weight: bold; 
-    }
-
-    .tableHead{
-
-    }
-
-    .tableRow{
-        font-size: 17px;
-    }
-
-    
-</style>
-
-                    
+<h1 class="text-danger">Lecturer Index.</h1>
+<h2 class="text-danger">In Progress</h2>
