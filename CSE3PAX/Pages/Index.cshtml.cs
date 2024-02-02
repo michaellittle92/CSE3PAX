@@ -10,17 +10,29 @@ namespace CSE3PAX.Pages
 {
     public class IndexModel : PageModel
     {
+        // Object to access application settings
         private readonly IConfiguration _configuration;
+
+        // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
 
+        /*
+         Initialise IndexModel class
+         Configuration object (ConnectionStrings) located in appsettings.json
+         Exception thrown when DefaultConnect string is not found in file
+         */
         public IndexModel(IConfiguration configuration)
         {
-            _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("DefaultConnection");
+            // Check if a valid configuration is provided
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+
+            // Get connection string from configuration
+            _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-        //-----------------------------------------------
-
+        /*
+         Login user error messages
+         */
 
         [BindProperty]
         [Required(ErrorMessage = "Please enter your email address"), EmailAddress]
@@ -55,32 +67,47 @@ namespace CSE3PAX.Pages
 
         public void OnPost() { 
 
+            // Testing console writes
             Console.WriteLine($"Email: {Email}");
             Console.WriteLine($"Password: {Password}");
+
+            // Check if ModelState is valid
             if (!ModelState.IsValid)
             {
-              errorMessage = "Data Validation Failed";
+              errorMessage = "Please enter valid user credentials";
                 return;
             }
 
-            //Successfull data validation
-
-
-            //connection to database and check user credentials 
-
+            // Try/Catch statement to connect to SQL database and check user credentials and access
             try {
+
+                /*
+                 Establish connection to the database
+                 using statements automatically close the connection when it is out of scope
+                 */
                 using (SqlConnection connection = new SqlConnection(_connectionString)) {
+
+                    // Open connection
                     connection.Open();
+
+                    // Get user information based on provided email
                     string sql = "SELECT * FROM [Users] WHERE Email = @Email";
 
+                    // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection)) { 
+
+                        // Add email parameter to command
                         command.Parameters.AddWithValue("@Email", Email);
+
+                        // Execute SQL query and get results
                         using(SqlDataReader reader = command.ExecuteReader())
                         {
+
+                            // Check if there is a matching user in the database
                             if (reader.Read())
                             {
-                                //User Exists
 
+                                // If user exists, get user information from the database
                                 int userID = reader.GetInt32(0);
                                 string email = reader.GetString(1);
                                 string hashedPassword = reader.GetString(2);
@@ -94,10 +121,14 @@ namespace CSE3PAX.Pages
                                 bool isPasswordResetRequired = reader.GetBoolean(9);
                                 string createdOn = reader.GetDateTime(10).ToString("dd/MM/yyyy");
 
-                                //verify password
+                                /*
+                                 Password Verification
+                                 */
 
-                               string CalculatedPassword = Security.HashSHA256(Password + userGuid);
+                                // Hash the input password and the user guid
+                                string CalculatedPassword = Security.HashSHA256(Password + userGuid);
 
+                                // Compare calculated hash with hashed password from database
                                 bool isPasswordCorrect = CalculatedPassword == hashedPassword;
 
                                 // Debugging or logging
@@ -106,10 +137,10 @@ namespace CSE3PAX.Pages
                                 Console.WriteLine($"Calculated password hash: {CalculatedPassword}");
                                 Console.WriteLine($"Password match: {isPasswordCorrect}");
 
-                                //if the password is correct the result of the hash is the same as the one in the database 
-                                if (CalculatedPassword == hashedPassword)
+                                // If the password is correct the result of the hash is the same as the one in the database 
+                                if (isPasswordCorrect)
                                 {
-                                    //successful password verifciation => initialize the session variables
+                                    // Successful password verifciation => initialize the session variables
                                     HttpContext.Session.SetInt32("UserID", userID);
                                     HttpContext.Session.SetString("Email", email);
                                     HttpContext.Session.SetString("FirstName", firstName);
@@ -120,6 +151,9 @@ namespace CSE3PAX.Pages
                                     HttpContext.Session.SetBoolean("isPasswordResetRequired", isPasswordResetRequired);
                                     HttpContext.Session.SetString("createdOn", createdOn);
 
+                                    /*
+                                     Web page redirections - temporary
+                                     */
 
                                     if (isAdministrator == true)
                                     {
@@ -135,28 +169,39 @@ namespace CSE3PAX.Pages
                                     }
                                 }
                             }
+
+                            // Close reader
+                            reader.Close();
                         }
                     }
-
                 }
-
-
-
             }
-            catch(Exception ex)
-            {
-                errorMessage = ex.Message;
+
+            // SQLException
+            catch (SqlException sqlEx){
+                Console.WriteLine($"SQL Error accessing the 'Users' table: {sqlEx.Message}");
+                errorMessage = "An error occurred while accessing the database.";
+            }
+
+            // InvalidOperationException
+            catch (InvalidOperationException invalidOpEx){
+                // Handle InvalidOperationException
+                Console.WriteLine($"Invalid Operation accessing the 'Users' table: {invalidOpEx.Message}");
+                errorMessage = "An error occurred during the operation. Please try again.";
+            }
+
+            // UnauthorisedAccessException
+            catch (UnauthorizedAccessException){
+                errorMessage = "Wrong email or password";
                 return;
             }
 
-            //Wrong email or password
-
+            // Incorrect email and password
+            catch (Exception ex){
+                errorMessage = ex.Message;
+                return;
+            }
             errorMessage = "Wrong email or password";
         }
-
-
-
     }
-
-
 }
