@@ -1,12 +1,13 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace CSE3PAX.Pages.Manager
+namespace CSE3PAX.Pages.Admin
 {
-    public class AdminIndexModel : PageModel
-    {
-        public void OnGet()
-        {
+    [Authorize(Policy = "isAdministrator")]
+
+    public class AdminIndexModel : PageModel {
+        public void OnGet() {
         }
     }
 }

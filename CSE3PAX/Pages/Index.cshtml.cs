@@ -5,9 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace CSE3PAX.Pages
 {
+
+    // Allow anonymous users to view page
+    [AllowAnonymous]
+
     public class IndexModel : PageModel
     {
         // Object to access application settings
@@ -45,20 +52,6 @@ namespace CSE3PAX.Pages
 
         public string errorMessage { get; set; } = "";
         public string successMessage { get; set; } = "";
-
-   
-
-        public override void OnPageHandlerExecuting(PageHandlerExecutingContext context)
-        {
-            base.OnPageHandlerExecuting(context);
-
-            // Check if user is already logged in
-            if (HttpContext.Session.Get("isLecturer") != null)
-            {
-                // Redirect to home page
-                context.Result = new RedirectToPageResult("/Lecturer/LecturerIndex");
-            }
-        }
 
         public void OnGet()
         {
@@ -155,21 +148,35 @@ namespace CSE3PAX.Pages
                                      Web page redirections - temporary
                                      */
 
-                                    if (isAdministrator == true)
-                                    {
-                                        Response.Redirect("/Admin/AdminIndex");
-                                    }
+                                    /*
+                                     Switch statement to check user type
+                                     ConfigureAndSignInUser is called claim type & value are set and the redirect page
+                                     */
 
-                                    else if (isManager == true)
+                                    switch (true)
                                     {
-                                        Response.Redirect("/Manager/ManagerIndex");
-                                    }
-                                    else {
-                                        Response.Redirect("/Lecturer/LecturerIndex");
+                                        case bool isAdmin when isAdministrator:
+                                            // User is an administrator
+                                            ConfigureAndSignInUser("isAdministrator", isAdmin, "/Admin/AdminIndex");
+                                            break;
+
+                                        case bool isMgr when isManager:
+                                            // User is a manager
+                                            ConfigureAndSignInUser("isManager", isMgr, "/Manager/ManagerIndex");
+                                            break;
+
+                                        case bool isLect when isLecturer:
+                                            // User is a lecturer
+                                            ConfigureAndSignInUser("isLecturer", isLect, "/Lecturer/LecturerIndex");
+                                            break;
+
+                                        default:
+                                            // Default case, redirect to the index page
+                                            Response.Redirect("/Shared/AccessDenied");
+                                            break;
                                     }
                                 }
                             }
-
                             // Close reader
                             reader.Close();
                         }
@@ -202,6 +209,25 @@ namespace CSE3PAX.Pages
                 return;
             }
             errorMessage = "Wrong email or password";
+        }
+
+        // Helper method to configure and sign in the user
+        public void ConfigureAndSignInUser(string claimType, bool claimValue, string redirectPath)
+        {
+            // Create a list of claims to be associated with the user
+            var claims = new List<Claim> { new Claim(claimType, claimValue.ToString()) };
+
+            // Create a ClaimsIdentity from the list of claims
+            var userIdentity = new ClaimsIdentity(claims, "login");
+
+            // Create a ClaimsPrincipal from the ClaimsIdentity
+            var userPrincipal = new ClaimsPrincipal(userIdentity);
+
+            // Sign in the user with the created ClaimsPrincipal
+            HttpContext.SignInAsync(userPrincipal);
+
+            // Redirect the user to the specified path
+            Response.Redirect(redirectPath);
         }
     }
 }

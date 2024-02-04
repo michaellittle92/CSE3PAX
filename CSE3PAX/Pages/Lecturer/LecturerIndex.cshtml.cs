@@ -1,13 +1,11 @@
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CSE3PAX; 
-using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Filters;
-using System.Data.SqlClient;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CSE3PAX.Pages
+namespace CSE3PAX.Pages.Lecturer
 {
+    [Authorize(Policy = "isLecturer")]
+
     public class LecturerIndexModel : PageModel
     {
         //get current month and year 

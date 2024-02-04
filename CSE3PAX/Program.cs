@@ -1,23 +1,55 @@
 using CSE3PAX;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-//Enable session middleware
-
+// Enable session middleware
 builder.Services.AddDistributedMemoryCache();
-
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(36000);
+    options.IdleTimeout = TimeSpan.FromMinutes(20);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+
 });
 
 // Register UserDatabaseFunctions class
 builder.Services.AddScoped<UserDatabaseFunctions>();
+
+// Configure authentication with cookies
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+        options.Cookie.HttpOnly = true;
+        options.AccessDeniedPath = "/Shared/AccessDenied";
+        options.LoginPath = "/Index";
+
+    });
+
+// Configure authorization policies
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("isAdministrator", policy =>
+    {
+        policy.RequireClaim("isAdministrator", "True");
+    });
+    options.AddPolicy("isManager", policy =>
+    {
+        policy.RequireClaim("isManager", "True");
+    });
+    options.AddPolicy("isLecturer", policy =>
+    {
+        policy.RequireClaim("isLecturer", "True");
+    });
+});
 
 var app = builder.Build();
 
@@ -34,9 +66,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-//Use Session must be between UseRouting and UserRazorPages
+// Use Session must be between UseRouting and UseRazorPages
 app.UseSession();
 
 app.MapRazorPages();

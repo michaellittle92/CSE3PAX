@@ -1,0 +1,38 @@
+﻿@page
+@model CSE3PAX.Pages.Shared.AccessDeniedModel
+@{
+    <!-- Set layout without main nav bar -->
+    Layout = "_LayoutWithoutNavBar";
+}
+<h3>Access Denied - You will be redirected to the login page</h3>
+
+<!-- Display countdown timer -->
+<div id="countdown">Redirecting in 10 seconds...</div>
+
+
+
+
+
+<!-- JavaScript -->
+<script>
+    var countdown = 10; // Initial countdown value
+
+    // Function to update the countdown display
+    function updateCountdown() {
+        document.getElementById('countdown').innerHTML = 'Redirecting in ' + countdown + ' seconds...';
+    }
+
+    // Function to handle the countdown and redirect
+    function countdownRedirect() {
+        if (countdown > 0) {
+            countdown--;
+            updateCountdown();
+            setTimeout(countdownRedirect, 1000); // Update every second (1000 milliseconds)
+        } else {
+            window.location.href = '@ViewData["RedirectUrl"]'; // Redirect when countdown reaches 0
+        }
+    }
+
+    // Start the countdown
+    countdownRedirect();
+</script>
