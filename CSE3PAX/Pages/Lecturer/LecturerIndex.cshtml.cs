@@ -42,6 +42,14 @@ namespace CSE3PAX.Pages.Lecturer
                 EndDate = "September-2024"
             });
 
+            SubjectInstances.Add(new SubjectInstance
+            {
+                InstanceName = "2024-CSE3PBX",
+                SubjectName = "INDUSTRY PROJECT 3B",
+                StartDate = "Febuary-2024",
+                EndDate = "April-2024"
+            });
+
 
             //SQL Query to pull all subject instances over the next 12 months where lecturer id = lecturer id
             // put each row into the subject instances list
