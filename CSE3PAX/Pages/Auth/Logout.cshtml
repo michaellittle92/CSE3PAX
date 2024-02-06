@@ -1,0 +1,6 @@
+﻿@page
+@model CSE3PAX.Pages.Auth.LogoutModel
+@{
+    HttpContext.Session.Clear();
+    Response.Redirect("/");
+}

@@ -156,24 +156,25 @@ namespace CSE3PAX.Pages
                                     switch (true)
                                     {
                                         case bool isAdmin when isAdministrator:
+                                            Response.Redirect("/Admin/AdminIndex");
                                             // User is an administrator
-                                            ConfigureAndSignInUser("isAdministrator", isAdmin, "/Admin/AdminIndex");
+                                            //ConfigureAndSignInUser("isAdministrator", isAdmin, "/Admin/AdminIndex");
                                             break;
 
                                         case bool isMgr when isManager:
                                             // User is a manager
-                                            ConfigureAndSignInUser("isManager", isMgr, "/Manager/ManagerIndex");
+                                          //  ConfigureAndSignInUser("isManager", isMgr, "/Manager/ManagerIndex");
                                             break;
 
                                         case bool isLect when isLecturer:
                                             // User is a lecturer
-                                            ConfigureAndSignInUser("isLecturer", isLect, "/Lecturer/LecturerIndex");
+                                        //    ConfigureAndSignInUser("isLecturer", isLect, "/Lecturer/LecturerIndex");
                                             break;
 
-                                        default:
+                                       // default:
                                             // Default case, redirect to the index page
-                                            Response.Redirect("/Shared/AccessDenied");
-                                            break;
+                                           // Response.Redirect("/Shared/AccessDenied");
+                                         //   break;
                                     }
                                 }
                             }
@@ -210,7 +211,7 @@ namespace CSE3PAX.Pages
             }
             errorMessage = "Wrong email or password";
         }
-
+        /*
         // Helper method to configure and sign in the user
         public void ConfigureAndSignInUser(string claimType, bool claimValue, string redirectPath)
         {
@@ -229,5 +230,6 @@ namespace CSE3PAX.Pages
             // Redirect the user to the specified path
             Response.Redirect(redirectPath);
         }
+        */
     }
 }
