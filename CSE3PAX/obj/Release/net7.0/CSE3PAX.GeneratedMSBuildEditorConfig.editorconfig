@@ -48,8 +48,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEFjY2Vzc0RlbmllZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEluZGV4TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRXaXRob3V0TmF2QmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]

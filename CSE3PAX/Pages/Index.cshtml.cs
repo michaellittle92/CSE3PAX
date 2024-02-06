@@ -144,37 +144,18 @@ namespace CSE3PAX.Pages
                                     HttpContext.Session.SetBoolean("isPasswordResetRequired", isPasswordResetRequired);
                                     HttpContext.Session.SetString("createdOn", createdOn);
 
-                                    /*
-                                     Web page redirections - temporary
-                                     */
-
-                                    /*
-                                     Switch statement to check user type
-                                     ConfigureAndSignInUser is called claim type & value are set and the redirect page
-                                     */
-
-                                    switch (true)
+                                    // If statement to check user type
+                                    if (isAdministrator)
                                     {
-                                        case bool isAdmin when isAdministrator:
-                                            Response.Redirect("/Admin/AdminIndex");
-                                            // User is an administrator
-                                            //ConfigureAndSignInUser("isAdministrator", isAdmin, "/Admin/AdminIndex");
-                                            break;
-
-                                        case bool isMgr when isManager:
-                                            // User is a manager
-                                          //  ConfigureAndSignInUser("isManager", isMgr, "/Manager/ManagerIndex");
-                                            break;
-
-                                        case bool isLect when isLecturer:
-                                            // User is a lecturer
-                                        //    ConfigureAndSignInUser("isLecturer", isLect, "/Lecturer/LecturerIndex");
-                                            break;
-
-                                       // default:
-                                            // Default case, redirect to the index page
-                                           // Response.Redirect("/Shared/AccessDenied");
-                                         //   break;
+                                        Response.Redirect("/Admin/AdminIndex");
+                                    }
+                                    else if (isManager)
+                                    {
+                                        Response.Redirect("/Manager/ManagerIndex");
+                                    }
+                                    else if (isLecturer)
+                                    {
+                                        Response.Redirect("/Lecturer/LecturerIndex");
                                     }
                                 }
                             }
@@ -211,25 +192,5 @@ namespace CSE3PAX.Pages
             }
             errorMessage = "Wrong email or password";
         }
-        /*
-        // Helper method to configure and sign in the user
-        public void ConfigureAndSignInUser(string claimType, bool claimValue, string redirectPath)
-        {
-            // Create a list of claims to be associated with the user
-            var claims = new List<Claim> { new Claim(claimType, claimValue.ToString()) };
-
-            // Create a ClaimsIdentity from the list of claims
-            var userIdentity = new ClaimsIdentity(claims, "login");
-
-            // Create a ClaimsPrincipal from the ClaimsIdentity
-            var userPrincipal = new ClaimsPrincipal(userIdentity);
-
-            // Sign in the user with the created ClaimsPrincipal
-            HttpContext.SignInAsync(userPrincipal);
-
-            // Redirect the user to the specified path
-            Response.Redirect(redirectPath);
-        }
-        */
     }
 }

@@ -29,27 +29,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.Cookie.HttpOnly = true;
-        options.AccessDeniedPath = "/Shared/AccessDenied";
-        options.LoginPath = "/Index";
 
     });
-
-// Configure authorization policies
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("isAdministrator", policy =>
-    {
-        policy.RequireClaim("isAdministrator", "True");
-    });
-    options.AddPolicy("isManager", policy =>
-    {
-        policy.RequireClaim("isManager", "True");
-    });
-    options.AddPolicy("isLecturer", policy =>
-    {
-        policy.RequireClaim("isLecturer", "True");
-    });
-});
 
 var app = builder.Build();
 

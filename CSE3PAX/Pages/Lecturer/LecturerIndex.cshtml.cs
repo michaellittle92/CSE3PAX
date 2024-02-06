@@ -5,6 +5,8 @@ using CSE3PAX.HelpClasses;
 
 namespace CSE3PAX.Pages.Lecturer
 {
+    //Checking for required Roles
+    [RequireRoles("Lecturer")]
 
     public class LecturerIndexModel : PageModel
     {
