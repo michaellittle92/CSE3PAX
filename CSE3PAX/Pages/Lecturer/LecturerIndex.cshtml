@@ -3,3 +3,35 @@
 @{
 }
 <h2>Lecturer Home Page</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Subject Instance Name</th>
+            <th>Subject Name</th>
+            @foreach (var monthYear in Model.Next12Months)
+            {
+                <th>@monthYear</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var instance in Model.SubjectInstances)
+        {
+            <tr>
+                <td>@instance.InstanceName</td>
+                <td>@instance.SubjectName</td>
+                @foreach (var monthYear in Model.Next12Months)
+                {
+                    <td>
+                        <!--Check if the instance's start or end month matches the current monthYear loop variable-->
+                        @if (monthYear.StartsWith(instance.StartDate) || monthYear.StartsWith(instance.EndDate))
+                        {
+                            <!--Probably should change this to add a class to the cell or something-->
+                            @: X
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
