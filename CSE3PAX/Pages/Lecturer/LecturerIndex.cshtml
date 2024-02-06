@@ -20,14 +20,16 @@
             <tr>
                 <td>@instance.InstanceName</td>
                 <td>@instance.SubjectName</td>
-                @foreach (var monthYear in Model.Next12Months)
+                @{
+                    var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
+                    var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
+                }
+                @for (int i = 0; i < Model.Next12Months.Count; i++)
                 {
                     <td>
-                        <!--Check if the instance's start or end month matches the current monthYear loop variable-->
-                        @if (monthYear.StartsWith(instance.StartDate) || monthYear.StartsWith(instance.EndDate))
+                        @if (i >= startMonthIndex && i <= endMonthIndex)
                         {
-                            <!--Probably should change this to add a class to the cell or something-->
-                            @: X
+                            @:X
                         }
                     </td>
                 }
