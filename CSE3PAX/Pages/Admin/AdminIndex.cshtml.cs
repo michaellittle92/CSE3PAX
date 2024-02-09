@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,18 +13,3 @@ namespace CSE3PAX.Pages.Admin
         }
     }
 }
-=======
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-
-namespace CSE3PAX.Pages.Manager
-{
-    public class AdminIndexModel : PageModel
-    {
-        public void OnGet()
-        {
-        }
-    }
-
-}
->>>>>>> Stashed changes

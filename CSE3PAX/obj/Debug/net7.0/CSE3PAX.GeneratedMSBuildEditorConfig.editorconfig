@@ -9,67 +9,65 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CSE3PAX
 build_property.RootNamespace = CSE3PAX
-build_property.ProjectDir = C:\Users\61432\Documents\GitHub\CSE3PAX\CSE3PAX\
-build_property.EnableComHosting = 
-build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.ProjectDir = E:\Visual Studio Projects\CSE3PAX\CSE3PAX\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\61432\Documents\GitHub\CSE3PAX\CSE3PAX
+build_property.MSBuildProjectDirectory = E:\Visual Studio Projects\CSE3PAX\CSE3PAX
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkTGVjdHVyZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/AdminIndex.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Admin/AdminIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Auth/Logout.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Auth/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Lecturer/LecturerIndex.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Lecturer/LecturerIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJcTGVjdHVyZXJJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Manager/ManagerIndex.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Manager/ManagerIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxNYW5hZ2VySW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEluZGV4TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRXaXRob3V0TmF2QmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/61432/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
+[E:/Visual Studio Projects/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nw9te68nih
