@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5BIvZw3DziIr6/XaM46+UFCPnJ0soLX57GrQoQw4Jrg=",
+  "Hash": "IO86s1bEj6FJHXy9MI7345JhfRhVxudUdTdW7a2uI6Y=",
   "Source": "CSE3PAX",
   "BasePath": "_content/CSE3PAX",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\wwwroot\\images\\login_image.png",
+      "SourceId": "CSE3PAX",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\wwwroot\\",
+      "BasePath": "_content/CSE3PAX",
+      "RelativePath": "images/login_image.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\login_image.png"
     },
     {
       "Identity": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\site.js",

@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\wwwroot\\images\\login_image.png",
+      "PackagePath": "staticwebassets\\images\\login_image.png"
+    },
+    {
       "Id": "C:\\Users\\61432\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
