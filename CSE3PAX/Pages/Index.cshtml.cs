@@ -61,8 +61,8 @@ namespace CSE3PAX.Pages
         public void OnPost() { 
 
             // Testing console writes
-            Console.WriteLine($"Email: {Email}");
-            Console.WriteLine($"Password: {Password}");
+            //Console.WriteLine($"Email: {Email}");
+           // Console.WriteLine($"Password: {Password}");
 
             // Check if ModelState is valid
             if (!ModelState.IsValid)

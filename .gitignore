@@ -50,3 +50,5 @@ CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.AssemblyReference.cache
 CSE3PAX/obj/Debug/net7.0/CSE3PAX.GeneratedMSBuildEditorConfig.editorconfig
 CSE3PAX/obj/project.assets.json
 CSE3PAX/obj/project.nuget.cache
+*.config
+*.v2

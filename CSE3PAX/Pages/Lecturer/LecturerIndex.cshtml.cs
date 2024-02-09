@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using CSE3PAX; 
 using Microsoft.AspNetCore.Authorization;
 using CSE3PAX.HelpClasses;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace CSE3PAX.Pages.Lecturer
 {
@@ -10,6 +13,21 @@ namespace CSE3PAX.Pages.Lecturer
 
     public class LecturerIndexModel : PageModel
     {
+
+        // Object to access application settings
+        private readonly IConfiguration _configuration;
+
+        // String to store DefaultConnection from configuration file
+        private readonly string _connectionString;
+
+        public LecturerIndexModel(IConfiguration configuration)
+        {
+            // Check if a valid configuration is provided
+            _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+
+            // Get connection string from configuration
+            _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
+        }
 
         //Current Table row headers
         public List<string> Next12Months { get; set; } = new List<string>();
@@ -20,51 +38,59 @@ namespace CSE3PAX.Pages.Lecturer
 
         public void OnGet()
         {
-            //get current month and year 
             DateTime now = DateTime.Now;
-
-            //add each month to table row headers.
             for (int i = 0; i < 12; i++)
             {
                 DateTime nextMonth = now.AddMonths(i);
-                string monthYearName = nextMonth.ToString("MMMM-yyyy");
-                //Console.WriteLine(monthYearName);
-                Next12Months.Add(monthYearName);
+                Next12Months.Add(nextMonth.ToString("MMMM-yyyy"));
             }
-            //Will need to connect to DB here.
 
-            //Object SubjectInstance will need to have {instance name, subject name, start date, end date,}
+            var session = HttpContext.Session;
+            var userID = session.GetInt32("UserID");
            
-            // adding a SubjectInstance
-            SubjectInstances.Add(new SubjectInstance
+            if (!userID.HasValue)
             {
-                InstanceName = "2023-MAT2DMX",
-                SubjectName = "DISCRETE MATHEMATICS FOR COMP SCI",
-                StartDate = "June-2024",
-                EndDate = "September-2024"
-            });
+                // Handle case where userID is not set, perhaps redirect to login
+                return;
+            }
 
-            SubjectInstances.Add(new SubjectInstance
+            try
             {
-                InstanceName = "2024-CSE3PBX",
-                SubjectName = "INDUSTRY PROJECT 3B",
-                StartDate = "Febuary-2024",
-                EndDate = "April-2024"
-            });
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
 
+                    // Corrected SQL command to use parameter directly in the WHERE clause
+                    string sql = "SELECT SubjectInstanceCode, SubjectName, StartDate,EndDate FROM SubjectInstance LEFT JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID WHERE LecturerID = (SELECT LecturerID FROM Lecturers WHERE UserID = @UserID)\r\n";
 
-            //SQL Query to pull all subject instances over the next 12 months where lecturer id = lecturer id
-            // put each row into the subject instances list
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Use the parameter directly in your SQL command
+                        command.Parameters.AddWithValue("@UserID", userID.Value);
 
-            //For each subjectinstance in subjectinstances 
-            //reorder by start date, if this cannot be done effectively by sql query
-
-
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                SubjectInstances.Add(new SubjectInstance
+                                {
+                                    // Assuming these are the column names in your SubjectInstance table
+                                    InstanceName = reader["SubjectInstanceCode"].ToString(),
+                                    SubjectName = reader["SubjectName"].ToString(),
+                                    // Correctly handle DateTime data types
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM-yyyy"),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM-yyyy"),
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Consider logging the exception
+                // Handle any errors that might have occurred during database access
+            }
         }
-
-        public void OnPost() { }
-       
-
-    
     }
 }
