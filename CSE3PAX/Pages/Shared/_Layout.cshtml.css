@@ -46,3 +46,30 @@ button.accept-policy {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Interface heading */
+.interface-heading {
+    color: #004AAD;
+    padding: 10px;
+}
+
+/* Side Nav Icon settings */
+.list-group-item i {
+    padding-right: 10px;
+}
+
+/* Add padding between containers */
+div .side-profile-container {
+    margin: 30px 0;
+}
+
+/* Remove link borders */
+.list-group a{
+    border: none;
+}
+
+/* Add padding to links */
+.list-group {
+    padding-left: 10px;
+    padding-right: 10px;
+}

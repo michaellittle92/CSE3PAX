@@ -47,3 +47,30 @@ button.accept-policy[b-nw9te68nih] {
   white-space: nowrap;
   line-height: 60px;
 }
+
+/* Interface heading */
+.interface-heading[b-nw9te68nih] {
+    color: #004AAD;
+    padding: 10px;
+}
+
+/* Side Nav Icon settings */
+.list-group-item i[b-nw9te68nih] {
+    padding-right: 10px;
+}
+
+/* Add padding between containers */
+div .side-profile-container[b-nw9te68nih] {
+    margin: 30px 0;
+}
+
+/* Remove link borders */
+.list-group a[b-nw9te68nih]{
+    border: none;
+}
+
+/* Add padding to links */
+.list-group[b-nw9te68nih] {
+    padding-left: 10px;
+    padding-right: 10px;
+}

@@ -7,46 +7,86 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CSE3PAX.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 </head>
-<body>
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">CSE3PAX</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/AddLecturer">Add a Lecturer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Auth/Logout">Logout</a>
-                        </li>
-                    </ul>
+<body>
+    <!-- Side Nav container -->
+    <div class="container-fluid p-0">
+        <div class="row">
+
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar bg-white collapse">
+                <!-- Heading -->
+                <h3 class="interface-heading">Latrobe Scheduling System</h3>
+                <!-- Link & Icon container -->
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Staff Management</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-book"></i>Subject Management</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Import / Export</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-box-arrow-right"></i>Logout</a>
+                </div>
+
+                <!-- Sidebar profile section - Icons & Links -->
+                <div class="side-profile-container list-group">
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-person-circle"></i>My Profile</a>
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-gear-fill"></i>Settings</a>
+                </div>
+
+                <!-- Help and support section - Icon & Link -->
+                <div class="list-group side-profile-container">
+                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-question-circle-fill"></i>Help & Support</a>
                 </div>
             </div>
-        </nav>
-    </header>
 
-    
+            <!-- Top Nav -->
+            <div class="col-md-9 col-lg-10 ml-sm-auto p-0">
+                <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                    
+                    <div class="container-fluid">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <!-- Heading section -->
+                            <div> 
+                                <h4 class="user-heading me-3 mb-0">Administration</h4>
+                            </div>
 
+                            <!-- Search section - including icon -->
+                            <div class="search-container flex-grow-1" style="max-width: 800px;">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
+                                    <button class="btn btn-secondary" type="button" id="button-addon2">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+                            <!-- Profile section - including icon -->
+                            <div class="profile-container list-group">
+                                <div class="d-flex align-items-center">
+                                    <h6 class="username mb-0" style="white-space: nowrap;">Jane Doe</h6>
+                                    <a href="#" class="list-group-item list-group-item-action">
+                                        <i class="bi bi-person" style="font-size: 1.8rem;"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Main section -->
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Footer section -->
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - CSE3PAX - <a asp-area="" asp-page="/Privacy">Privacy</a>
