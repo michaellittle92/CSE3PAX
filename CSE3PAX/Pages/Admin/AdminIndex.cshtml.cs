@@ -10,6 +10,8 @@ namespace CSE3PAX.Pages.Admin
   
     public class AdminIndexModel : PageModel {
         public void OnGet() {
+
+
         }
     }
 }
