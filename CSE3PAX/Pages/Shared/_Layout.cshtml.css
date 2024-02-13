@@ -73,3 +73,19 @@ div .side-profile-container {
     padding-left: 10px;
     padding-right: 10px;
 }
+
+/* CSS for sidebar height */
+.p-0 {
+    min-height: 100vh; /* Ensure the container has at least the height of the viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Main content area */
+.col-md-9 {
+    flex-grow: 1; /* Allow the main content area to grow and fill the remaining space */
+}
+
+.list-group-item-action.active {
+    background-color: #007bff;
+    color: #fff;
