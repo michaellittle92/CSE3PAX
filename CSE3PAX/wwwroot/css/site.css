@@ -3,6 +3,7 @@
     --sitebackground: #F6F3F3; /* Snowflake - page colour background */
     --textColourGry: #706A6C; /* Bauhaus - dark grey text colour (link/admin heading)*/
     --textColourSmk: #AEAEAE; /*Smoke screen - light text colour (search box)*/
+    --admin-blue: #004AAD; /* Admin welcome box */
 }
 
 html {
@@ -21,12 +22,43 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+/* Body settings */
 body {
-    background: var(--sitebackground);
+    background-color: var(--sitebackground);
     margin-bottom: 60px;
 }
 
-body {
-    background-color: #F6F3F3;
-    margin-bottom: 60px;
+/* Box shadow */
+.box-shw {
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
+}
+
+/* Admin welcome blue background */
+.admin-ble {
+    background-color:var(--admin-blue) ;
+}
+
+/* Admin recently accessed btn txt colour */
+.admin-txt {
+    color: var(--admin-blue);
+}
+
+/* Chevron colour */
+.site-bg {
+    color: var(--sitebackground);
+}
+
+.bd-radius {
+    border-radius: 10px;
+}
+
+.gry-txt {
+    color: var(--textColourGry);
+}
+
+.notification {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
 }

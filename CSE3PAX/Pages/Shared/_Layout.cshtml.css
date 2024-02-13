@@ -40,11 +40,11 @@ button.accept-policy {
 }
 
 .footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Adjust the line-height as needed */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
 }
 
 /* Interface heading */
@@ -72,21 +72,4 @@ div .side-profile-container {
 .list-group {
     padding-left: 10px;
     padding-right: 10px;
-}
-
-/* CSS for sidebar height */
-.p-0 {
-    min-height: 100vh; /* Ensure the container has at least the height of the viewport */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Main content area */
-.col-md-9 {
-    flex-grow: 1; /* Allow the main content area to grow and fill the remaining space */
-}
-
-.list-group-item-action.active {
-    background-color: #007bff;
-    color: #fff;
 }

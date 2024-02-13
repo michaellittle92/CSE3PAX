@@ -40,11 +40,11 @@ button.accept-policy[b-nw9te68nih] {
 }
 
 .footer[b-nw9te68nih] {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Adjust the line-height as needed */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
 }
 
 /* Interface heading */
@@ -72,21 +72,4 @@ div .side-profile-container[b-nw9te68nih] {
 .list-group[b-nw9te68nih] {
     padding-left: 10px;
     padding-right: 10px;
-}
-
-/* CSS for sidebar height */
-.p-0[b-nw9te68nih] {
-    min-height: 100vh; /* Ensure the container has at least the height of the viewport */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Main content area */
-.col-md-9[b-nw9te68nih] {
-    flex-grow: 1; /* Allow the main content area to grow and fill the remaining space */
-}
-
-.list-group-item-action.active[b-nw9te68nih] {
-    background-color: #007bff;
-    color: #fff;
 }

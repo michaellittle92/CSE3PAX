@@ -2,4 +2,97 @@
 @model CSE3PAX.Pages.Admin.AdminIndexModel
 @{
 }
-<h2>Admin Home Page</h2>
+
+
+<body>
+<!-- ---------- MAIN SECTION ---------- -->
+<main >
+    <div class="container-fluid p-0">
+        <div class="row text-white">
+            
+            <!-- Welcome container - for small, medium and large screen sizes -->
+            <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1  mx-1 mx-lg-0 m-3 box-shw admin-ble bd-radius">
+                    
+                    <!-- Headings -->
+                    <div class="p-4">
+                        <h2 class="mb-5" style="text-shadow: 5px 5px 5px rgba(0,0,0,0.53);">Welcome Jane Doe...</h2>
+                        <h5>Recently accessed.</h5>
+
+                        <!-- Recently accessed buttons -->
+                    <div class="col-md-4 d-flex">
+                        <button type="button" class="btn btn-sm bg-white recent-page m-1 box-shw admin-txt rounded-3">
+                            <i class="bi bi-book p-1"></i>Subject Management
+                        </button>
+
+                        <button type="button" class="btn btn-sm bg-white recent-page m-1 box-shw admin-txt rounded-3">
+                            <i class="bi bi-person-circle p-1"></i>Staff Management
+                        </button>
+                 
+                        <!-- Chevron - right -->
+                        <button class="btn"><i class="bi bi-arrow-right-circle-fill site-bg " style="font-size:25px"></i></button>
+                    </div> 
+                </div>
+            </div>
+
+            <!-- Noification Section -->
+            <div class="col-lg mx-lg-3 my-2 col-md-5 col-sm my-2 mx-1 bd-radius box-shw bg-white">
+                <div class="py-3 gry-txt overflow-hidden">
+                        
+                    <!-- Notification Heading -->
+                    <h6 class="mb-3">Notifications / Messages</h6>
+
+                    <!-- Notification item 1 -->
+                    <div class="d-flex align-items-center my-2">
+                        <!-- Image -->
+                        <img src="/images/kitten.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
+                        <!-- Text Content -->
+                        <div class="flex-grow-1 mr-3">
+                            <h6 class="txt-gry text-sm my-0 mx-2"><strong>Andrew Wilson</strong></h6> 
+                            <p class="text-sm my-0 mx-2 overflow-hidden">"Request for update"</p>                                
+                        </div>
+                        <!-- Arrow icon -->
+                        <div>
+                            <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
+                        </div>
+                    </div>
+
+                    <!-- Notification item 2 -->
+                    <div class="d-flex align-items-center">
+                        <!-- Image -->
+                        <img src="/images/dog.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
+                        <!-- Text Content -->
+                        <div class="flex-grow-1 mr-3">
+                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Heather Garcia</strong></h6>
+
+                                <p class="text-sm my-0 mx-2 notification">"Hi Jane, is there a possibility that we can catch up later,to discuss this mornings meeting and workout a timeline for the current project."</p>
+                        </div>
+                        <!-- Arrow icon -->
+                        <div>
+                            <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Separator -->
+        <div class="row">
+            <div class="col">
+                <hr class="underline">
+                <h4 class="availability-status">Staff Scheduling Status</h4>
+                <p>62% availability</p>
+                
+                <div class="scheduling-status">
+                    <!-- Doughnut -->
+                    <canvas id="availabilityChart" class="doughnut"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+    <!-- Bootstrap Scripts -->
+  @*   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> *@
+</body>
