@@ -1,9 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@{
+    // Check user type
+    bool isAdministrator = Context.Session.GetBoolean("isAdministrator");
+    bool isManager = Context.Session.GetBoolean("isManager");
+    bool isLecturer = Context.Session.GetBoolean("isLecturer");
+
+    // Set ViewData
+    ViewData["Title"] = "La Trobe Scheduling System";
+    ViewData["FullName"] = $"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}".Trim();
+    ViewData["UserType"] = isAdministrator ? "Administrator" :
+                           isManager ? "Manager" :
+                           isLecturer ? "Lecturer" : "Unknown";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CSE3PAX</title>
+    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CSE3PAX.styles.css" asp-append-version="true" />
@@ -54,7 +68,7 @@
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <!-- Heading section -->
                             <div> 
-                                <h4 class="user-heading me-3 mb-0">Administration</h4>
+                                <h4 class="user-heading me-3 mb-0">@ViewData["UserType"]</h4>
                             </div>
 
                             <!-- Search section - including icon -->
@@ -70,7 +84,7 @@
                             <!-- Profile section - including icon -->
                             <div class="profile-container list-group">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="username mb-0" style="white-space: nowrap;">Jane Doe</h6>
+                                    <h6 class="username mb-0" style="white-space: nowrap;">@ViewData["FullName"]</h6>
                                     <a href="#" class="list-group-item list-group-item-action">
                                         <i class="bi bi-person" style="font-size: 1.8rem;"></i>
                                     </a>

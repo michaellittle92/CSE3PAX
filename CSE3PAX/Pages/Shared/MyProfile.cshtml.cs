@@ -5,7 +5,6 @@ namespace CSE3PAX.Pages.Shared
 {
     public class MyProfileModel : PageModel
 
-
     {
         public string Email { get; set; }
         public int UserID { get; set; }
