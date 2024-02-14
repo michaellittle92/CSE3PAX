@@ -2,38 +2,40 @@
 @model CSE3PAX.Pages.Lecturer.LecturerIndexModel
 @{
 }
-<h2>Lecturer Home Page</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Subject Instance Name</th>
-            <th>Subject Name</th>
-            @foreach (var monthYear in Model.Next12Months)
-            {
-                <th>@monthYear</th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var instance in Model.SubjectInstances)
-        {
+
+
+To assign a CSS class to the table cell (<td>
+    ) instead of placing an "X" inside it based on the condition, you will need to modify the if statement within the loop that iterates through the months. Here's how you can adjust the code to apply a CSS class to the cell when the condition is met:
+
+    html
+    Copy code
+    <table>
+        <thead>
             <tr>
-                <td>@instance.InstanceName</td>
-                <td>@instance.SubjectName</td>
-                @{
-                    var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
-                    var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
-                }
-                @for (int i = 0; i < Model.Next12Months.Count; i++)
+                <th>Subject Instance Name</th>
+                <th>Subject Name</th>
+                @foreach (var monthYear in Model.Next12Months)
                 {
-                    <td>
-                        @if (i >= startMonthIndex && i <= endMonthIndex)
-                        {
-                            @:X
-                        }
-                    </td>
+                    <th>@monthYear</th>
                 }
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var instance in Model.SubjectInstances)
+            {
+                <tr>
+                    <td>@instance.InstanceName</td>
+                    <td>@instance.SubjectName</td>
+                    @{
+                        var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
+                        var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
+                    }
+                    @for (int i = 0; i < Model.Next12Months.Count; i++)
+                    {
+                        <td class="@(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
