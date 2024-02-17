@@ -26,6 +26,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/ImportExport.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW1wb3J0RXhwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/Overview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cT3ZlcnZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/StaffManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3RhZmZNYW5hZ2VtZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/SubjectManagement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3ViamVjdE1hbmFnZW1lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Auth/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -50,12 +66,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXERhc2hib2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Help.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEhlbHAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEluZGV4TGF5b3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXExvZ291dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/MyProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXE15UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Settings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXFNldHRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
