@@ -470,19 +470,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Al\\.nuget\\packages\\": {}
+    "C:\\Users\\laura\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "projectUniqueName": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
       "projectName": "CSE3PAX",
-      "projectPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
-      "packagesPath": "C:\\Users\\Al\\.nuget\\packages\\",
-      "outputPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\obj\\",
+      "projectPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "packagesPath": "C:\\Users\\laura\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Al\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\laura\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -502,11 +502,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -537,7 +532,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
