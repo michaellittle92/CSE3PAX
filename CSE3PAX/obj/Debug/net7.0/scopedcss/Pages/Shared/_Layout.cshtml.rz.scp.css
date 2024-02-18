@@ -51,11 +51,15 @@ button.accept-policy[b-nw9te68nih] {
 .interface-heading[b-nw9te68nih] {
     color: #004AAD;
     padding: 10px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    text-align: center;
 }
 
 /* Side Nav Icon settings */
 .list-group-item i[b-nw9te68nih] {
     padding-right: 10px;
+    padding-left: 10px;
 }
 
 /* Add padding between containers */
@@ -76,17 +80,63 @@ div .side-profile-container[b-nw9te68nih] {
 
 /* CSS for sidebar height */
 .p-0[b-nw9te68nih] {
-    min-height: 100vh; /* Ensure the container has at least the height of the viewport */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
 /* Main content area */
 .col-md-9[b-nw9te68nih] {
-    flex-grow: 1; /* Allow the main content area to grow and fill the remaining space */
+    flex-grow: 1;
 }
 
 .list-group-item-action.active[b-nw9te68nih] {
+    border-radius: 4px; 
     background-color: #007bff;
     color: #fff;
 }
+
+.username[b-nw9te68nih] {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.list-group-item-action[b-nw9te68nih] {
+    padding: 15px;
+}
+
+.user-heading[b-nw9te68nih] {
+    color: #004AAD;
+}
+
+#profileMenu[b-nw9te68nih] {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 150px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 30px;
+    text-align: right;
+    z-index: 1000;
+}
+
+    /* Additional styles for menu items */
+    #profileMenu a[b-nw9te68nih] {
+        color: #004AAD;
+        text-decoration: none;
+        padding: 10px;
+        display: block;
+    }
+
+        #profileMenu a.active[b-nw9te68nih] {
+            color: #004AAD;
+        }
+
+        #profileMenu a:hover[b-nw9te68nih] {
+            background-color: #f0f0f0;
+            margin: 0px;
+            padding: 10px;
+        }

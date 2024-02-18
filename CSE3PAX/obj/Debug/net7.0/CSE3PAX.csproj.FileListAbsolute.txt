@@ -108,7 +108,6 @@ E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets.devel
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\bundle\CSE3PAX.styles.css
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\projectbundle\CSE3PAX.bundle.scp.css
-E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.CopyComplete
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.dll
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint\CSE3PAX.dll
 E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
@@ -152,3 +151,5 @@ C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint\CSE3PAX.
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.genruntimeconfig.cache
 C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\obj\Debug\net7.0\ref\CSE3PAX.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.sourcelink.json
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.Up2Date

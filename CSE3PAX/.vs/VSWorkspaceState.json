@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\HelpClasses",
     "\\Pages",
-    "\\Pages\\Lecturer"
+    "\\Pages\\Admin",
+    "\\wwwroot",
+    "\\wwwroot\\css"
   ],
-  "SelectedNode": "\\Pages\\Lecturer\\LecturerIndex.cshtml",
+  "SelectedNode": "\\Pages\\Admin\\AdminIndex.cshtml",
   "PreviewInSolutionExplorer": false
 }
