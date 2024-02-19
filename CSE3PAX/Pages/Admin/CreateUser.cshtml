@@ -1,0 +1,66 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.CreateUserModel
+@{
+}
+<form method="post">
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required />
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+    </div>
+    <div>
+        <input asp-for = "IsAdmin" id="IsAdmin" name="IsAdmin" />
+        <label for="IsAdmin">Administrator</label>
+
+        <input asp-for = "IsManager" id="IsManager" name="IsManager" />
+        <label for="IsManager">Manager</label>
+
+        <input asp-for = "IsLecturer" id="IsLecturer" name="IsLecturer" />
+        <label for="IsLecturer">Lecturer</label>
+    </div>
+    <div id="lecturerFieldsDiv">
+        <div>
+            <label for="loadCapacity">Load Capacity:</label>
+            <input type="text" id="loadCapacity" name="loadCapacity"/>
+        </div>
+        <div>
+            <label for="expertise01">Expertise 01:</label>
+            <input type="text" id="expertise01" name="expertise01"/>
+        </div>
+        <div>
+            <label for="expertise02">Expertise 02:</label>
+            <input type="text" id="expertise02" name="expertise02" />
+        </div>
+        <div>
+            <label for="expertise03">Expertise 03:</label>
+            <input type="text" id="expertise03" name="expertise03" />
+        </div>
+        <div>
+            <label for="expertise04">Expertise 04:</label>
+            <input type="text" id="expertise04" name="expertise04" />
+        </div>
+        <div>
+            <label for="expertise05">Expertise 05:</label>
+            <input type="text" id="expertise05" name="expertise05" />
+        </div>
+        <div>
+            <label for="expertise06">Expertise 06:</label>
+            <input type="text" id="expertise06" name="expertise06" />
+        </div>
+  
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<script src="~/js/CreateUser.js"></script>
