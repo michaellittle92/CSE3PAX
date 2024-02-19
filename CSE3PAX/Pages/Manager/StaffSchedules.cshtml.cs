@@ -11,9 +11,6 @@ namespace CSE3PAX.Pages.Manager
     {
         public void OnGet()
         {
-
-
-
         }
     }
 }

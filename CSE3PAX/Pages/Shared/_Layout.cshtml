@@ -32,23 +32,31 @@
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 d-md-block bg-light sidebar bg-white collapse">
                 <!-- Heading -->
-                <h3 class="interface-heading">Latrobe Scheduling System</h3>
+                <h3 class="interface-heading">La Trobe Scheduling System</h3>
                 <!-- Link & Icon container -->
                 <div class="list-group">
-                    <a href="/Shared/Dashboard" class="list-group-item list-group-item-action active"><i class="bi bi-speedometer2"></i>Dashboard</a>
-<<<<<<< HEAD
-                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
+                    <a href="/Shared/Dashboard" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2"></i>Dashboard</a>
+                    
+                    <!-- Page index based on User Type -->
+                    @if (ViewData["UserType"] == "Administrator")
+                    {
+                        <a href="/Admin/Overview" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
+                        <a href="/Admin/StaffManagement" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Staff Management</a>
+                        <a href="/Admin/SubjectManagement" class="list-group-item list-group-item-action"><i class="bi bi-book"></i>Subject Management</a>
+                        <a href="/Admin/ImportExport" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Import / Export</a>
+                    }
 
-                    <!--Temporarily linked the create user page to staff management because i am too lazy to type it in every time im testing-->
-                    <a href="/Admin/CreateUser" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Staff Management</a>
-                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-book"></i>Subject Management</a>
-                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Import / Export</a>
-=======
-                    <a href="/Admin/Overview" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
-                    <a href="/Admin/StaffManagement" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Staff Management</a>
-                    <a href="/Admin/SubjectManagement" class="list-group-item list-group-item-action"><i class="bi bi-book"></i>Subject Management</a>
-                    <a href="/Admin/ImportExport" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Import / Export</a>
->>>>>>> parent of 79c2725 (Sidebar and topbar changes)
+                    @if (ViewData["UserType"] == "Manager")
+                    {
+                        <a href="/Manager/Overview" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
+                        <a href="/Manager/GenerateReports" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Generate Reports</a>
+                        <a href="/Manager/StaffSchedules" class="list-group-item list-group-item-action"><i class="bi bi-person-workspace"></i>Staff Schedules</a>
+                    }
+
+                    @if (ViewData["UserType"] == "Lecturer")
+                    {
+                        <a href="/Lecturer/Schedule" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Schedule</a>
+                    }
 
                     <!--Logout button functionality-->
                     <a id="logoutButton" href="/Shared/Logout" class="list-group-item list-group-item-action">
@@ -60,7 +68,7 @@
                 <!-- Sidebar profile section - Icons & Links -->
                 <div class="side-profile-container list-group">
                     <a href="/Shared/MyProfile" class="list-group-item list-group-item-action"><i class="bi bi-person-circle"></i>My Profile</a>
-                    <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-gear-fill"></i>Settings</a>
+                    <a href="/Shared/Settings" class="list-group-item list-group-item-action"><i class="bi bi-gear-fill"></i>Settings</a>
                 </div>
 
                 <!-- Help and support section - Icon & Link -->
@@ -94,10 +102,15 @@
                             <div class="profile-container list-group">
                                 <div class="d-flex align-items-center">
                                     <h6 class="username mb-0" style="white-space: nowrap;">@ViewData["FullName"]</h6>
-                                    <a href="#" class="list-group-item list-group-item-action">
+                                    <a href="#" class="list-group-item list-group-item-action list-group-my-profile" id="profileMenuButton">
                                         <i class="bi bi-person" style="font-size: 1.8rem;"></i>
                                     </a>
                                 </div>
+                            </div>
+
+                            <div id="profileMenu" class="list-group" style="display: none;">
+                                <a href="/Shared/MyProfile" class="list-group-item list-group-item-action"><i class="bi bi-person-circle"></i>My Profile</a>
+                                <a id="logoutButton" href="/Shared/Logout" class="list-group-item list-group-item-action"><i class="bi bi-box-arrow-right"></i>Logout</a>
                             </div>
                         </div>
                     </div>
@@ -123,7 +136,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/layout.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
