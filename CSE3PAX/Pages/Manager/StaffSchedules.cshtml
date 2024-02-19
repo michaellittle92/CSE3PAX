@@ -2,4 +2,92 @@
 @model CSE3PAX.Pages.Manager.StaffSchedulesModel
 @{
 }
-<h2>Staff Schedules</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>"Staff Schedules"</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <div class="container-fluid py-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <h5 class="my-3">Manage Lecturers</h5>
+                        <div class="container d-flex justify-content-center">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="lecturerDropdownButton" aria-haspopup="true" aria-expanded="false">
+                                    Select a lecturer
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="lecturerDropdownButton">
+                                    <a class="dropdown-item" href="#">Lecturer 1</a>
+                                    <a class="dropdown-item" href="#">Lecturer 2</a>
+                                    <a class="dropdown-item" href="#">Lecturer 3</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">User ID</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">"Test"</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">"Test"</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">"Test"</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">User Type</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">"Test"</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Other info</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">Other required information</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="~/js/manager.js" asp-append-version="true"></script>

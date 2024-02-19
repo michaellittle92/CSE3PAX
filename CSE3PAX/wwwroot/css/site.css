@@ -67,3 +67,18 @@ body {
     border: 1px solid black;
     background-color: blue;
 }
+
+/* Manager Staff Schedules page styling*/
+.staff-schedule-heading {
+    color: #004AAD;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dropdown-menu {
+    margin-top: 3px;
+}
+
+.dropdown {
+    margin: 10px;
+}
