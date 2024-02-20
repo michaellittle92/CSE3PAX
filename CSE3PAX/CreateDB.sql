@@ -29,7 +29,7 @@ CREATE TABLE Lecturers (
     Expertise04 NVARCHAR(255),
     Expertise05 NVARCHAR(255),
     Expertise06 NVARCHAR(255),
-    ConncurrentLoadCapactiy DECIMAL(5,3)
+    ConcurrentLoadCapacity DECIMAL(5,3)
 );
 
 CREATE TABLE Subjects(

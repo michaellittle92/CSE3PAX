@@ -70,7 +70,7 @@ namespace CSE3PAX.Pages.Admin
         public string Expertise06 { get; set; }
 
         [BindProperty]
-        public int ConncurrentLoadCapactiy { get; set; }
+        public int ConcurrentLoadCapacity { get; set; }
 
         public void OnGet()
         {
@@ -106,7 +106,7 @@ namespace CSE3PAX.Pages.Admin
                         //
                         string getUserIDFromEmail = "Select userID FROM [Users] WHERE Email = @Email";
 
-                        string insertIntoLecturersTable = "INSERT INTO [Lecturers](UserID, Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06, ConncurrentLoadCapactiy) VALUES (@UserID, @Expertise01, @Expertise02, @Expertise03, @Expertise04, @Expertise05, @Expertise06, @ConncurrentLoadCapactiy)";
+                        string insertIntoLecturersTable = "INSERT INTO [Lecturers](UserID, Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06, ConcurrentLoadCapacity) VALUES (@UserID, @Expertise01, @Expertise02, @Expertise03, @Expertise04, @Expertise05, @Expertise06, @ConcurrentLoadCapacity)";
 
                         // SQL command object with query and connection
                         using (SqlCommand command = new SqlCommand(insertIntoUsersTable, connection))
@@ -148,7 +148,7 @@ namespace CSE3PAX.Pages.Admin
                             command.Parameters.AddWithValue("@Expertise04", Expertise04);
                             command.Parameters.AddWithValue("@Expertise05", Expertise05);
                             command.Parameters.AddWithValue("@Expertise06", Expertise06);
-                            command.Parameters.AddWithValue("@ConncurrentLoadCapactiy", ConncurrentLoadCapactiy);
+                            command.Parameters.AddWithValue("@ConcurrentLoadCapacity", ConcurrentLoadCapacity);
                             // Execute SQL query 
                             command.ExecuteNonQuery();
                         }
