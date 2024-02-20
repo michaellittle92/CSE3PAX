@@ -1,6 +1,7 @@
 using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Data;
 using System.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 
@@ -18,6 +19,7 @@ namespace CSE3PAX.Pages.Admin
         // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
 
+
         public CreateUserModel(IConfiguration configuration)
         {
             // Check if a valid configuration is provided
@@ -26,6 +28,7 @@ namespace CSE3PAX.Pages.Admin
             // Get connection string from configuration
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
+
 
         [BindProperty]
         public string FirstName { get; set; }
@@ -70,17 +73,54 @@ namespace CSE3PAX.Pages.Admin
         public string Expertise06 { get; set; }
 
         [BindProperty]
-        public int ConcurrentLoadCapacity { get; set; }
+        public int workHours { get; set; }
+
+        public List<string> SubjectClassifications { get; set; } = new List<string>();
+
 
         public void OnGet()
         {
+
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL query to get distinct Subject Classifications
+                    string populateDDLs = "SELECT DISTINCT SubjectClassification FROM Subjects";
+
+                    // Execute the query
+                    using (SqlCommand command = new SqlCommand(populateDDLs, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Loop through the results
+                            while (reader.Read())
+                            {
+
+                                string classification = reader.GetString(0); // Get the first column value in each row
+                                SubjectClassifications.Add(classification);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void OnPost()
         {
+            
             int userID = 0;
            string userGuid = GenerateGUID.CreateNewGuid();
            string CalculatedPassword = Security.HashSHA256(Password + userGuid);
+           
             /*
             Console.WriteLine($"First Name: {FirstName}");
             Console.WriteLine($"Last Name: {LastName}");
@@ -89,12 +129,16 @@ namespace CSE3PAX.Pages.Admin
             Console.WriteLine($"Is Administrator: {IsAdmin}");
             Console.WriteLine($"Is Manager: {IsManager}");
             Console.WriteLine($"Is Lecturer: {IsLecturer}");
-            Console.WriteLine($"TestCheck: {TestCheck}");
+            Console.WriteLine($"WorkHours: {CalculatedLoadCapacity}");
+            Console.WriteLine($"Expertise01: {Expertise01}");
+            Console.WriteLine($"Expertise02: {Expertise02}");
             */
 
             if (IsLecturer)
             {
                 try {
+                    double CalculatedLoadCapacity = CalculateLoadCapacity(workHours);
+
                     using (SqlConnection connection = new SqlConnection(_connectionString))
                     {
 
@@ -141,15 +185,25 @@ namespace CSE3PAX.Pages.Admin
 
                         using (SqlCommand command = new SqlCommand(insertIntoLecturersTable, connection))
                         {
+                            List<string> expertiseFields = new List<string>{Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06};
                             command.Parameters.AddWithValue("@UserID", userID);
-                            command.Parameters.AddWithValue("@Expertise01", Expertise01);
-                            command.Parameters.AddWithValue("@Expertise02", Expertise02);
-                            command.Parameters.AddWithValue("@Expertise03", Expertise03);
-                            command.Parameters.AddWithValue("@Expertise04", Expertise04);
-                            command.Parameters.AddWithValue("@Expertise05", Expertise05);
-                            command.Parameters.AddWithValue("@Expertise06", Expertise06);
-                            command.Parameters.AddWithValue("@ConcurrentLoadCapacity", ConcurrentLoadCapacity);
-                            // Execute SQL query 
+                            
+
+                            // Loop through each expertise field
+                            for (int i = 0; i < expertiseFields.Count; i++)
+                            {
+                                string parameterName = $"@Expertise0{i + 1}"; // Construct parameter name dynamically
+                                command.Parameters.Add(parameterName, SqlDbType.VarChar);
+
+                                if (string.IsNullOrEmpty(expertiseFields[i]))
+                                    command.Parameters[parameterName].Value = DBNull.Value;
+                                else
+                                    command.Parameters[parameterName].Value = expertiseFields[i];
+                            }
+
+                            command.Parameters.AddWithValue("@ConcurrentLoadCapacity", CalculatedLoadCapacity);
+
+                            // Execute SQL query
                             command.ExecuteNonQuery();
                         }
 
@@ -201,6 +255,17 @@ namespace CSE3PAX.Pages.Admin
             }
          
 
+        }
+
+        private double CalculateLoadCapacity(double hours)
+        {
+            double loadCapacity = (6.0 / 38.0) * hours;
+
+            //rounds to the nearest 10th place.
+            loadCapacity = Math.Round(loadCapacity, 1, MidpointRounding.AwayFromZero);
+
+            //Returns the smaller value
+            return Math.Min(loadCapacity, 6);
         }
     }
 }

@@ -31,34 +31,69 @@
     </div>
     <div id="lecturerFieldsDiv">
         <div>
-            <label for="loadCapacity">Load Capacity:</label>
-            <input type="text" id="loadCapacity" name="loadCapacity"/>
+            <label for="workHours">Work Hours:</label>
+            <input type="text" id="workHours" name="workHours" />
         </div>
         <div>
             <label for="expertise01">Expertise 01:</label>
-            <input type="text" id="expertise01" name="expertise01"/>
+            <select id="expertise01" name="expertise01">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
         <div>
             <label for="expertise02">Expertise 02:</label>
-            <input type="text" id="expertise02" name="expertise02" />
+            <select id="expertise02" name="expertise02">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
         <div>
             <label for="expertise03">Expertise 03:</label>
-            <input type="text" id="expertise03" name="expertise03" />
+            <select id="expertise03" name="expertise03">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
         <div>
             <label for="expertise04">Expertise 04:</label>
-            <input type="text" id="expertise04" name="expertise04" />
+            <select id="expertise04" name="expertise04">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
         <div>
             <label for="expertise05">Expertise 05:</label>
-            <input type="text" id="expertise05" name="expertise05" />
+            <select id="expertise05" name="expertise05">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
         <div>
             <label for="expertise06">Expertise 06:</label>
-            <input type="text" id="expertise06" name="expertise06" />
+            <select id="expertise06" name="expertise06">
+                <option value=""></option>
+                @foreach (var classification in Model.SubjectClassifications)
+                {
+                    <option value="@classification">@classification</option>
+                }
+            </select>
         </div>
-  
     </div>
     <button type="submit">Submit</button>
 </form>
