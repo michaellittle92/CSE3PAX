@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Xb0m+vKQDj4qFOwDGuduHKk46652FckqPWtIcAdXRSY=",
+  "Hash": "xeuuCunLU/UOU/ODkvBx6v0K8c+YVicliJsYqaFSvfw=",
   "Source": "CSE3PAX",
   "BasePath": "_content/CSE3PAX",
   "Mode": "Default",
@@ -168,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\CreateUser.js"
+    },
+    {
+      "Identity": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\CreateUserTest.js",
+      "SourceId": "CSE3PAX",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\",
+      "BasePath": "_content/CSE3PAX",
+      "RelativePath": "js/CreateUserTest.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\CreateUserTest.js"
     },
     {
       "Identity": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\layout.js",

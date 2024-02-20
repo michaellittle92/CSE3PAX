@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\js\\CreateUser.js"
     },
     {
+      "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\CreateUserTest.js",
+      "PackagePath": "staticwebassets\\js\\CreateUserTest.js"
+    },
+    {
       "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\adminIndex.js",
       "PackagePath": "staticwebassets\\js\\adminIndex.js"
     },
