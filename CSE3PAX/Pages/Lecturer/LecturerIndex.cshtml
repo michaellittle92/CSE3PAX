@@ -4,26 +4,92 @@
 }
 
 
-To assign a CSS class to the table cell (<td>
+<!-- ---------- MAIN SECTION ---------- -->
+<main>
+    <div class="container-fluid p-0">
+        <div class="row text-white">
+
+            <!-- Welcome container - for small, medium and large screen sizes -->
+            <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1  mx-1 mx-lg-0  box-shw lecturerBx bd-radius d-flex align-items-center">
+
+                <!-- Headings -->
+                <h2 class="ms-3" style="text-shadow: 5px 5px 5px rgba(0,0,0,0.53);">Welcome David Jones...</h2>
+            </div>
+
+            <!-- Noification Section -->
+            <div class="col-lg mx-lg-3 my-2 col-md-5 col-sm my-2 mx-1 bd-radius box-shw bg-white">
+                <div class="py-3 gry-txt overflow-hidden">
+
+                    <!-- Notification Heading -->
+                    <h6 class="mb-3">Notifications / Messages</h6>
+
+                    <!-- Notification item 1 -->
+                    <div class="d-flex align-items-center my-2">
+                        <!-- Image -->
+                        <img src="/images/kitten.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
+                        <!-- Text Content -->
+                        <div class="flex-grow-1 mr-3">
+                            <h6 class="txt-gry text-sm my-0 mx-2"><strong>Andrew Wilson</strong></h6>
+                            <p class="text-sm my-0 mx-2 overflow-hidden">"Request for update"</p>
+                        </div>
+                        <!-- Arrow icon -->
+                        <div>
+                            <i class="bi bi-arrow-right-circle-fill admin-txt" style="color:var(--lecturerBx)"></i>
+                        </div>
+                    </div>
+
+                    <!-- Notification item 2 -->
+                    <div class="d-flex align-items-center">
+                        <!-- Image -->
+                        <img src="/images/dog.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
+                        <!-- Text Content -->
+                        <div class="flex-grow-1 mr-3">
+                            <h6 class="txt-gry text-sm my-0 mx-2"><strong>Heather Garcia</strong></h6>
+
+                            <p class="text-sm my-0 mx-2 notification">"Hi Jane, is there a possibility that we can catch up later,to discuss this mornings meeting and workout a timeline for the current project."</p>
+                        </div>
+                        <!-- Arrow icon -->
+                        <div>
+                            <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Line Separator -->
+        <div class="row">
+            <div class="col">
+                <hr class="underline">
+                <h4 class="availability-status gry-txt">Schedule</h4>
+            </div>
+        </div>
+    </div>
+
+
+@* To assign a CSS class to the table cell (<td>
     ) instead of placing an "X" inside it based on the condition, you will need to modify the if statement within the loop that iterates through the months. Here's how you can adjust the code to apply a CSS class to the cell when the condition is met:
 
     html
-    Copy code
-    <table>
-        <thead>
-            <tr>
-                <th>Subject Instance Name</th>
-                <th>Subject Name</th>
+    Copy code *@
+
+    <table class="table table-bordered box-shw mt-3 bdr">
+            
+
+        <thead class="text-center">
+            <tr class="align-middle lecturerBx box-shw">
+                <th class="col-lg-3">Subject Code</th>
+                <th class="col-lg-5">Subject Name</th>
                 @foreach (var monthYear in Model.Next12Months)
                 {
-                    <th>@monthYear</th>
+                    <th class="col">@monthYear</th>
                 }
             </tr>
         </thead>
         <tbody>
             @foreach (var instance in Model.SubjectInstances)
             {
-                <tr>
+                <tr class="text-center align-middle">
                     <td>@instance.InstanceName</td>
                     <td>@instance.SubjectName</td>
                     @{
@@ -39,3 +105,4 @@ To assign a CSS class to the table cell (<td>
             }
         </tbody>
     </table>
+</main>

@@ -4,6 +4,8 @@
     --textColourGry: #706A6C; /* Bauhaus - dark grey text colour (link/admin heading)*/
     --textColourSmk: #AEAEAE; /*Smoke screen - light text colour (search box)*/
     --admin-blue: #004AAD; /* Admin welcome box */
+
+    --lecturerBx: #48CFAE /* Lecturer welcome box */
 }
 
 html {
@@ -63,12 +65,13 @@ body {
     width: 150px;
 }
 
-.cellHighlighter {
-    border: 1px solid black;
-    background-color: blue;
+.table .cellHighlighter {
+    background-color: #95ABC6;
 }
 
-/* Manager Staff Schedules page styling*/
+
+
+/* Manager Staff Schedules page styling */
 .staff-schedule-heading {
     color: #004AAD;
     text-align: center;
@@ -82,3 +85,10 @@ body {
 .dropdown {
     margin: 10px;
 }
+
+/* Lecturer welcome box colour */
+.lecturerBx {
+    background-color: var(--lecturerBx);
+}
+
+
