@@ -1,19 +1,18 @@
-using CSE3PAX.HelpClasses;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace CSE3PAX.Pages.Manager
 {
-
-    //Checking for required Roles
-    [RequireRoles("Manager")]
     public class StaffSchedulesModel : PageModel
     {
+
+
         public void OnGet()
         {
-
-
-
+            
         }
     }
 }
