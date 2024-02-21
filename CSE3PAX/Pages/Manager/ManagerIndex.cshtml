@@ -2,4 +2,101 @@
 @model CSE3PAX.Pages.Manager.ManagerIndexModel
 @{
 }
-<h2>Manager</h2>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<body>
+    <!-- ---------- MAIN SECTION ---------- -->
+    <main>
+        <div class="container-fluid p-0">
+            <div class="row text-white">
+
+                <!-- Welcome container - for small, medium and large screen sizes -->
+                <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1 mx-1 mx-lg-0 m-3 admin-ble bd-radius" style="background-color: mediumaquamarine;">
+                    <!-- Admin Box with modified class name -->
+                    <!-- Headings -->
+                    <div class="p-4">
+                        <h2 class="mb-5">Welcome Bob Ross..</h2> 
+                        <h5>Recently accessed.</h5>
+
+                        <!-- Recently accessed buttons -->
+                        <div class="col-md-12 d-flex justify-content-start">
+                            <!-- Made the button container wider -->
+                            <button type="button" class="btn btn-sm bg-white recent-page m-1 admin-txt rounded-3">
+                                <i class="bi bi-book p-1"></i>Edit Schedule 
+                            </button>
+
+                            <button type="button" class="btn btn-sm bg-white recent-page m-1 admin-txt rounded-3">
+                                <i class="bi bi-gear p-1"></i>Settings 
+                            </button>
+
+                            <!-- Chevron - right -->
+                            <button class="btn"><i class="bi bi-arrow-right-circle-fill site-bg " style="font-size:25px"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Section -->
+                <div class="col-lg mx-lg-3 my-2 col-md-5 col-sm my-2 mx-1 bd-radius box-shw" style="background-color: transparent;">
+                    <div class="py-3 gry-txt overflow-hidden">
+
+                        <!-- Notification Heading -->
+                        <h6 class="mb-3">Notifications</h6> 
+                        <!-- Notification item 1 -->
+                        <div class="d-flex align-items-center my-2">
+                            <!-- Notification Icon 1 -->
+                            <i class="bi bi-bell-fill" style="color: red; font-size: 2rem;"></i>
+                            <!-- Text Content -->
+                            <div class="flex-grow-1 mr-3">
+                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Outstanding</strong></h6> 
+                                <p class="text-sm my-0 mx-2 overflow-hidden">"Finalize schedu.."</p> 
+                            </div>
+                            <!-- Arrow icon -->
+                            <div>
+                                <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
+                            </div>
+                        </div>
+
+                        <!-- Notification item 2 -->
+                        <div class="d-flex align-items-center">
+                            <!-- Notification Icon 2 -->
+                            <i class="bi bi-bell-fill" style="color: darkorange; font-size: 2rem;"></i>
+                            <!-- Text Content -->
+                            <div class="flex-grow-1 mr-3">
+                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Pending</strong></h6> 
+
+                                <p class="text-sm my-0 mx-2 notification">"Confirm Holida.."</p> 
+                            </div>
+                            <!-- Arrow icon -->
+                            <div>
+                                <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Line Separator -->
+            <div class="row">
+                <div class="col">
+                    <hr class="underline">
+                    <h4 class="availability-status">Staff Scheduling Status</h4>
+                    <p>62% availability</p>
+
+                    <div class="doughnut-chart-container">
+                        <!-- Doughnut -->
+                        <canvas id="availabilityChart" class="doughnut" style="height: 500px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Javascript file and doughnut chart links -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/adminIndex.js"></script>
+</body>

@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {}
+    "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {}
   },
   "projects": {
-    "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {
+    "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+        "projectUniqueName": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
         "projectName": "CSE3PAX",
-        "projectPath": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
-        "packagesPath": "C:\\Users\\61432\\.nuget\\packages\\",
-        "outputPath": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\obj\\",
+        "projectPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+        "packagesPath": "C:\\Users\\laura\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\61432\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\laura\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
