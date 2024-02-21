@@ -166,7 +166,7 @@ namespace CSE3PAX.Pages.Manager
                                 SelectedEmail = reader.GetString(reader.GetOrdinal("Email"));
                                 SelectedFirstName = reader.GetString(reader.GetOrdinal("FirstName"));
                                 SelectedLastName = reader.GetString(reader.GetOrdinal("LastName"));
-                                SelectedConcurrentLoadCapacity = reader.GetDecimal(reader.GetOrdinal("ConcurrentLoadCapacity"));
+                                SelectedConcurrentLoadCapacity = reader.IsDBNull(reader.GetOrdinal("ConcurrentLoadCapacity")) ? 0 : reader.GetDecimal(reader.GetOrdinal("ConcurrentLoadCapacity"));
                                 SelectedExpertise01 = !reader.IsDBNull(reader.GetOrdinal("Expertise01")) ? reader.GetString(reader.GetOrdinal("Expertise01")) : "No Expertise";
                                 SelectedExpertise02 = !reader.IsDBNull(reader.GetOrdinal("Expertise02")) ? reader.GetString(reader.GetOrdinal("Expertise02")) : "No Expertise";
                                 SelectedExpertise03 = !reader.IsDBNull(reader.GetOrdinal("Expertise03")) ? reader.GetString(reader.GetOrdinal("Expertise03")) : "No Expertise";

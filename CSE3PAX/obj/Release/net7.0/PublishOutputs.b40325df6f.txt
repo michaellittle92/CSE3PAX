@@ -1,0 +1,13 @@
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\CSE3PAX.exe
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\appsettings.Development.json
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\appsettings.json
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\CSE3PAX.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\CSE3PAX.deps.json
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\CSE3PAX.runtimeconfig.json
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\CSE3PAX.pdb
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\System.Data.SqlClient.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+E:\Visual Studio Projects\CSE3PAX\CSE3PAX\obj\Release\net7.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

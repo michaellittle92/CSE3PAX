@@ -18,13 +18,10 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <h4 class="my-3">Schedule Management</h4>
+                        <h4 class="my-3">Select a Lecturer</h4>
                         <div class="container d-flex justify-content-center">
                             <form method="post">
-                                <div class="mb-3">
-                                    <div class ="mb-3">
-                                        <label for="lecturer" class="form-label">Select a Lecturer:</label>
-                                    </div>
+                                <div class="mb-3">    
                                     <select name="selectedUserId" id="lecturer" class="form-select">
                                         <option value="">@((Model.SelectedUserId == 0) ? "Select a Lecturer" : $"{Model.SelectedFirstName} {Model.SelectedLastName}")</option>
                                         @foreach (var lecturer in Model.Lecturers)

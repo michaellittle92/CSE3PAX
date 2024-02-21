@@ -1,0 +1,92 @@
+/*--------------------- Variables ---------------------*/
+:root {
+    --sitebackground: #F6F3F3; /* Snowflake - page colour background */
+    --textColourGry: #706A6C; /* Bauhaus - dark grey text colour (link/admin heading)*/
+    --textColourSmk: #AEAEAE; /*Smoke screen - light text colour (search box)*/
+    --admin-blue: #004AAD; /* Admin welcome box */
+
+    --lecturerBx: #48CFAE /* Lecturer welcome box */
+}
+
+html {
+    font-size: 14px;
+    min-height: 100%;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Body settings */
+body {
+    background-color: var(--sitebackground);
+    margin-bottom: 60px;
+}
+
+/* Box shadow */
+.box-shw {
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
+}
+
+/* Admin welcome blue background */
+.admin-ble {
+    background-color:var(--admin-blue) ;
+}
+
+/* Admin recently accessed btn txt colour */
+.admin-txt {
+    color: var(--admin-blue);
+}
+
+/* Chevron colour */
+.site-bg {
+    color: var(--sitebackground);
+}
+
+.bd-radius {
+    border-radius: 10px;
+}
+
+.gry-txt {
+    color: var(--textColourGry);
+}
+
+.notification {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
+}
+
+.table .cellHighlighter {
+    background-color: #95ABC6;
+}
+
+
+
+/* Manager Staff Schedules page styling */
+.staff-schedule-heading {
+    color: #004AAD;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dropdown-menu {
+    margin-top: 3px;
+}
+
+.dropdown {
+    margin: 10px;
+}
+
+/* Lecturer welcome box colour */
+.lecturerBx {
+    background-color: var(--lecturerBx);
+}
