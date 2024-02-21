@@ -3,36 +3,16 @@
   "WorkspaceRootPath": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\admin\\createuser.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\createuser.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:wwwroot\\js\\layout.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\manager\\overview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\overview.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\manager\\overview.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\overview.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\wwwroot\\js\\manager.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:wwwroot\\js\\manager.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\manager\\staffschedules.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\staffschedules.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\manager\\staffschedules.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\staffschedules.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\pages\\manager\\staffschedules.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\staffschedules.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|e:\\visual studio projects\\cse3pax\\cse3pax\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,109 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateUser.cshtml.cs",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Admin\\CreateUser.cshtml.cs",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml.cs",
-              "RelativeToolTip": "Pages\\Admin\\CreateUser.cshtml.cs",
-              "ViewState": "AQIAALoAAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T21:47:14.463Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CreateUser.cshtml",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Admin\\CreateUser.cshtml",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml",
-              "RelativeToolTip": "Pages\\Admin\\CreateUser.cshtml",
-              "ViewState": "AQIAAFQAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-02-20T21:47:12.579Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "layout.js",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\layout.js",
-              "RelativeDocumentMoniker": "wwwroot\\js\\layout.js",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\layout.js",
-              "RelativeToolTip": "wwwroot\\js\\layout.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAD4AAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-02-20T21:46:23.143Z",
+              "Title": "site.css",
+              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFsAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-02-20T21:52:58.589Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Overview.cshtml.cs",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\Overview.cshtml.cs",
-              "RelativeDocumentMoniker": "Pages\\Manager\\Overview.cshtml.cs",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\Overview.cshtml.cs",
-              "RelativeToolTip": "Pages\\Manager\\Overview.cshtml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-20T21:46:04.632Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Overview.cshtml",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\Overview.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Manager\\Overview.cshtml",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\Overview.cshtml",
-              "RelativeToolTip": "Pages\\Manager\\Overview.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-02-20T21:46:00.592Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "manager.js",
-              "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\manager.js",
-              "RelativeDocumentMoniker": "wwwroot\\js\\manager.js",
-              "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\manager.js",
-              "RelativeToolTip": "wwwroot\\js\\manager.js",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAgwBcAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-02-19T09:35:01.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "StaffSchedules.cshtml",
               "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\StaffSchedules.cshtml",
               "RelativeDocumentMoniker": "Pages\\Manager\\StaffSchedules.cshtml",
               "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\StaffSchedules.cshtml",
               "RelativeToolTip": "Pages\\Manager\\StaffSchedules.cshtml",
-              "ViewState": "AQIAABcAAAAAAAAAAADwvyAAAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-02-19T07:59:48.828Z"
+              "WhenOpened": "2024-02-19T07:59:48.828Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "StaffSchedules.cshtml.cs",
               "DocumentMoniker": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\StaffSchedules.cshtml.cs",
               "RelativeDocumentMoniker": "Pages\\Manager\\StaffSchedules.cshtml.cs",
               "ToolTip": "E:\\Visual Studio Projects\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\StaffSchedules.cshtml.cs",
               "RelativeToolTip": "Pages\\Manager\\StaffSchedules.cshtml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-02-19T07:59:50.539Z"
+              "WhenOpened": "2024-02-21T01:09:46.384Z",
+              "EditorCaption": ""
             }
           ]
         }

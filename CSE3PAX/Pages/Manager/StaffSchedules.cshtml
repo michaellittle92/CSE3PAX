@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 </head>
 <body>
-
     <div class="container-fluid py-5">
         <div class="row">
             <div class="col-lg-4">
@@ -21,16 +20,23 @@
                     <div class="card-body text-center">
                         <h4 class="my-3">Schedule Management</h4>
                         <div class="container d-flex justify-content-center">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle btn-lg" type="button" id="lecturerDropdownButton" aria-haspopup="true" aria-expanded="false">
-                                    Select a lecturer
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="lecturerDropdownButton">
-                                    <a class="dropdown-item" href="#">Lecturer 1</a>
-                                    <a class="dropdown-item" href="#">Lecturer 2</a>
-                                    <a class="dropdown-item" href="#">Lecturer 3</a>
+                            <form method="post">
+                                <div class="mb-3">
+                                    <div class ="mb-3">
+                                        <label for="lecturer" class="form-label">Select a Lecturer:</label>
+                                    </div>
+                                    <select name="selectedUserId" id="lecturer" class="form-select">
+                                        <option value="">@((Model.SelectedUserId == 0) ? "Select a Lecturer" : $"{Model.SelectedFirstName} {Model.SelectedLastName}")</option>
+                                        @foreach (var lecturer in Model.Lecturers)
+                                        {
+                                            <option value="@lecturer.UserId">@($"{lecturer.FirstName} {lecturer.LastName}")</option>
+                                        }
+                                    </select>
                                 </div>
-                            </div>
+                                <div class="mb-3">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -43,7 +49,7 @@
                                 <p class="mb-0">User ID</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">"Test"</p>
+                                <p class="text-muted mb-0">@Model.SelectedUserId</p>
                             </div>
                         </div>
                         <hr>
@@ -52,7 +58,7 @@
                                 <p class="mb-0">Full Name</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">"Test"</p>
+                                <p class="text-muted mb-0">@Model.SelectedFirstName @Model.SelectedLastName</p>
                             </div>
                         </div>
                         <hr>
@@ -61,25 +67,70 @@
                                 <p class="mb-0">Email</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">"Test"</p>
+                                <p class="text-muted mb-0">@Model.SelectedEmail</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">User Type</p>
+                                <p class="mb-0">Current Workload</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">"Test"</p>
+                                <p class="text-muted mb-0">@Model.SelectedConcurrentLoadCapacity</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Other info</p>
+                                <p class="mb-0">Expertise 01</p>
                             </div>
                             <div class="col-sm-9">
-                                <p class="text-muted mb-0">Other required information</p>
+                                <p class="text-muted mb-0">@Model.SelectedExpertise01</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Expertise 02</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SelectedExpertise02</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Expertise 03</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SelectedExpertise03</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Expertise 04</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SelectedExpertise04</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Expertise 05</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SelectedExpertise05</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <p class="mb-0">Expertise 06</p>
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">@Model.SelectedExpertise06</p>
                             </div>
                         </div>
                     </div>
@@ -106,5 +157,3 @@
     </div>
 </body>
 </html>
-
-<script src="~/js/manager.js" asp-append-version="true"></script>
