@@ -7,6 +7,7 @@
     // Set ViewData
     ViewData["Title"] = "La Trobe Scheduling System";
     ViewData["FullName"] = $"{Context.Session.GetString("FirstName")} {Context.Session.GetString("LastName")}".Trim();
+    ViewData["Email"] = Context.Session.GetString("Email");
     ViewData["UserType"] = isAdministrator ? "Administrator" :
                            isManager ? "Manager" :
                            isLecturer ? "Lecturer" : "Unknown";
@@ -101,7 +102,12 @@
                             <!-- Profile section - including icon -->
                             <div class="profile-container list-group">
                                 <div class="d-flex align-items-center">
-                                    <h6 class="username mb-0" style="white-space: nowrap;">@ViewData["FullName"]</h6>
+
+                                    <div>
+                                        <h6 class="username mb-0" style="white-space: nowrap;">@ViewData["FullName"]</h6>
+                                        <p class="text-muted mb-0">@ViewData["Email"]</p>
+                                    </div>                                    
+
                                     <a href="#" class="list-group-item list-group-item-action list-group-my-profile" id="profileMenuButton">
                                         <i class="bi bi-person" style="font-size: 1.8rem;"></i>
                                     </a>
