@@ -61,7 +61,6 @@ INSERT INTO USERS (Email, Password, UserGuid, FirstName, LastName, IsAdmin, IsMa
 VALUES ('manager@mail.com', 'ac702a3275058e40843881baf4c445a466d0988fb8c27d7471dae343b83bf8ac','c2a446b6-7b13-432b-8518-924babd3d0c5', 'Manager', 'Manager', 0, 1, 0, 0, GETDATE());
 
 INSERT INTO USERS (Email, Password, UserGuid, FirstName, LastName, IsAdmin, IsManager, IsLecturer, IsPasswordResetRequired, CreatedOn)
-VALUES ('lecturer@mail.com', 'ac702a3275058e40843881baf4c445a466d0988fb8c27d7471dae343b83bf8ac','4ad859b9-b3dd-4cc8-a2a9-d9f21fcad28f', 'Lecturer', 'Lecturer', 0, 0, 1, 0, GETDATE());
-
+VALUES ('lecturer@mail.com', '3bfb23b01a75a256451aecedd63ecbf3b22a45bb7c13be4b744dc8b698d2d302','4ad859b9-b3dd-4cc8-a2a9-d9f21fcad28f', 'Lecturer', 'Lecturer', 0, 0, 1, 0, GETDATE());
 
 SELECT * FROM USERS

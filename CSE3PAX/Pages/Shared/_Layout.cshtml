@@ -41,22 +41,15 @@
                     <!-- Page index based on User Type -->
                     @if (ViewData["UserType"] == "Administrator")
                     {
-                        <a href="/Admin/Overview" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
                         <a href="/Admin/StaffManagement" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Staff Management</a>
                         <a href="/Admin/SubjectManagement" class="list-group-item list-group-item-action"><i class="bi bi-book"></i>Subject Management</a>
-                        <a href="/Admin/ImportExport" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Import / Export</a>
+                        <a href="/Admin/GenerateReports" class="list-group-item list-group-item-action"><i class="bi bi-arrow-left-right"></i>Generate Reports</a>
                     }
 
                     @if (ViewData["UserType"] == "Manager")
                     {
-                        <a href="/Manager/Overview" class="list-group-item list-group-item-action"><i class="bi bi-clipboard-check"></i>Overview</a>
                         <a href="/Manager/GenerateReports" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Generate Reports</a>
                         <a href="/Manager/StaffSchedules" class="list-group-item list-group-item-action"><i class="bi bi-person-workspace"></i>Staff Schedules</a>
-                    }
-
-                    @if (ViewData["UserType"] == "Lecturer")
-                    {
-                        <a href="/Lecturer/Schedule" class="list-group-item list-group-item-action"><i class="bi bi-people"></i>Schedule</a>
                     }
 
                     <!--Logout button functionality-->
@@ -87,16 +80,6 @@
                             <!-- Heading section -->
                             <div> 
                                 <h4 class="user-heading me-3 mb-0">@ViewData["UserType"]</h4>
-                            </div>
-
-                            <!-- Search section - including icon -->
-                            <div class="search-container flex-grow-1" style="max-width: 800px;">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search..." aria-label="Search" aria-describedby="button-addon2">
-                                    <button class="btn btn-secondary" type="button" id="button-addon2">
-                                        <i class="bi bi-search"></i>
-                                    </button>
-                                </div>
                             </div>
 
                             <!-- Profile section - including icon -->

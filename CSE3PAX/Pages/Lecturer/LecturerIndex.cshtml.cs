@@ -13,6 +13,8 @@ namespace CSE3PAX.Pages.Lecturer
 
     public class LecturerIndexModel : PageModel
     {
+        // String to store full name (session)
+        public string FullName { get; set; }
 
         // Object to access application settings
         private readonly IConfiguration _configuration;
@@ -38,6 +40,10 @@ namespace CSE3PAX.Pages.Lecturer
 
         public void OnGet()
         {
+
+            // Session data
+            FullName = HttpContext.Session.GetString("FirstName") + " " + HttpContext.Session.GetString("LastName");
+
             DateTime now = DateTime.Now;
             for (int i = 0; i < 12; i++)
             {

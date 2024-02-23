@@ -9,7 +9,16 @@ namespace CSE3PAX.Pages.Admin
     [RequireRoles("Admin")]
   
     public class AdminIndexModel : PageModel {
+
+        // String to store full name (session)
+        public string FullName { get; set; }
+
         public void OnGet() {
+
+            // Session data
+            FullName = HttpContext.Session.GetString("FirstName") + " " + HttpContext.Session.GetString("LastName");
+
+
         }
     }
 }
