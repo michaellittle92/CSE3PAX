@@ -2,10 +2,111 @@
 @model CSE3PAX.Pages.Manager.GenerateReportsModel
 @{
 }
-<h2>Generate Reports</h2>
 
-<p>Lecturers</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>"Generate Reports"</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="container-fluid py-5">
+        
+        <form method="post">
+            <div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="text-center">
+                    <h4 class="my-3">Lecturers</h4>
+                </div>
+                <div class="mb-3">
+                    <form method="post">
+                        <button type="submit" name="buttonType" value="lecturers" class="btn btn-primary">Generate Lecturers</button>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    @if (Model.Lecturers.Any())
+                    {
+                        <table class="table table-striped col-12"> <!-- Added col-12 class here -->
+                            <thead>
+                                <tr>
+                                    <th scope="col">User ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Expertise 01</th>
+                                    <th scope="col">Expertise 02</th>
+                                    <th scope="col">Expertise 03</th>
+                                    <th scope="col">Expertise 04</th>
+                                    <th scope="col">Expertise 05</th>
+                                    <th scope="col">Expertise 06</th>
+                                    <th scope="col">Current Load</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var lecturer in Model.Lecturers)
+                                {
+                                    <tr>
+                                        <td>@lecturer.UserId</td>
+                                        <td>@lecturer.FirstName</td>
+                                        <td>@lecturer.LastName</td>
+                                        <td>@lecturer.Email</td>
+                                        <td>@lecturer.Expertise01</td>
+                                        <td>@lecturer.Expertise02</td>
+                                        <td>@lecturer.Expertise03</td>
+                                        <td>@lecturer.Expertise04</td>
+                                        <td>@lecturer.Expertise05</td>
+                                        <td>@lecturer.Expertise06</td>
+                                        <td>@lecturer.ConcurrentLoadCapacity</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<p>Subject Instances</p>
 
-<p>Schedules</p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h4 class="my-3">Subject Instances</h4>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h4 class="my-3">Schedules</h4>
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" name="buttonType" value="schedules" class="btn btn-primary">Generate Schedules</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+</body>
+</html>

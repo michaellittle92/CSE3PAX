@@ -89,7 +89,6 @@ namespace CSE3PAX.Pages.Manager
         private void LoadLecturers()
         {
             // Retrieve the list of lecturers from the database
-
             try
             {
                 Lecturers = new List<Lecturer>();
