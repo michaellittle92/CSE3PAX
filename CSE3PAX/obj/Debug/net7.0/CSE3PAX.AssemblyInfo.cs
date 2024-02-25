@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSE3PAX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5d9e6cc01fd55659082973d0362d4d9680d1b74")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSE3PAX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSE3PAX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
