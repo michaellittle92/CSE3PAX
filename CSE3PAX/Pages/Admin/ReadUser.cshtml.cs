@@ -44,7 +44,7 @@ namespace CSE3PAX.Pages.Admin
                                 };
                                 ListUsers.Add(user);
                                 //For testing
-                                Console.WriteLine($"Email: {user.Email}, FirstName: {user.FirstName}, LastName: {user.LastName}, Role: {user.Role}");
+                                //Console.WriteLine($"Email: {user.Email}, FirstName: {user.FirstName}, LastName: {user.LastName}, Role: {user.Role}");
 
                             }
                         }
