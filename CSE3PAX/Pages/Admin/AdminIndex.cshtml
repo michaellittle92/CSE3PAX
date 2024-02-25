@@ -13,12 +13,11 @@
         <div class="row text-white">
             
             <!-- Welcome container - for small, medium and large screen sizes -->
-            <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1  mx-1 mx-lg-0 m-3 box-shw admin-ble bd-radius">
+            <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1  mx-1 mx-lg-0 m-3 box-shw admin-ble bd-radius d-flex">
                     
-                    <!-- Headings -->
-                    <div class="p-4">
-                        <h2 class="mb-5" style="text-shadow: 5px 5px 5px rgba(0,0,0,0.53);">Welcome @Model.FullName</h2>
-                        
+                <!-- Headings -->
+                <div class="p-4 d-flex align-items-center">
+                    <h2 style="text-shadow: 5px 5px 5px rgba(0,0,0,0.53);">Welcome @Model.FullName</h2>
                 </div>
             </div>
 
@@ -70,6 +69,7 @@
                 <h4 class="availability-status">Staff Scheduling Status</h4>
                 <p>62% availability</p>
                 
+                <!-- Dougnut container -->
                 <div class="doughnut-chart-container">
                     <!-- Doughnut -->
                     <canvas id="availabilityChart" class="doughnut" style="height: 500px;"></canvas>
