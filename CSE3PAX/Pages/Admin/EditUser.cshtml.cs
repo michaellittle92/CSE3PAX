@@ -88,15 +88,15 @@ namespace CSE3PAX.Pages.Admin
 
                         int result = command.ExecuteNonQuery();
 
-                        // You can check the result to see if one row was affected (indicating a successful update)
+                        //Check to see if update is successful
                         if (result == 1)
                         {
-                            // Optionally, redirect to a confirmation page or back to a list
-                            return RedirectToPage("/Admin/ReadUser"); // Adjust the redirect as necessary for your application
+                           
+                            return RedirectToPage("/Admin/ReadUser"); 
                         }
                         else
                         {
-                            // Handle the case where the user wasn't found or the update did not execute as expected
+                           
                             Console.WriteLine("", "User could not be updated.");
                             return Page();
                         }
