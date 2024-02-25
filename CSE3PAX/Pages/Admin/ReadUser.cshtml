@@ -2,3 +2,44 @@
 @model CSE3PAX.Pages.Admin.ReadUserModel
 @{
 }
+
+<a href="/Admin/CreateUser">Create User</a>
+
+@if (Model.ListUsers != null && Model.ListUsers.Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.ListUsers)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Role</td>
+                    <td>
+                        <a class= href="/Admin/EditUser?id=@user.Email">Edit</a> 
+                    <td>
+                        <form method="post" action="/Admin/DeleteUser" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                            <input type="hidden" name="id" value="@user.Email" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No users found.</p>
+}
