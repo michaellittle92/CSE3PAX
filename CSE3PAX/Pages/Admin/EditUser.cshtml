@@ -2,30 +2,40 @@
 @model CSE3PAX.Pages.Admin.EditUserModel
 @{
 }
-
-<form method="post">
-    <div class="form-group">
-        <label asp-for="UserId">User ID</label>
-        <input asp-for="UserId" class="form-control" readonly />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <!-- Edit User Title -->
+            <h1 class="mb-5" style="color: #3163bc">
+                <i class="bi bi-people-fill" style="color: #3163bc"></i> Edit User
+            </h1>
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="UserId" class="form-label">User ID</label>
+                    <input asp-for="UserId" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" /> 
+                </div>
+                <!--
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" class="form-control" />
+                </div>
+                -->
+                <div class="form-group">
+                    <label asp-for="FirstName" class="form-label">First Name</label>
+                    <input asp-for="FirstName" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName" class="form-label">Last Name</label>
+                    <input asp-for="LastName" class="form-control" />
+                </div>
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="Email">Email</label>
-        <input asp-for="Email" class="form-control" /> 
-    </div>
-    <!--
-    <div class="form-group">
-        <label asp-for="Password">Password</label>
-        <input asp-for="Password" class="form-control" />
-    </div>
-    -->
-    <div class="form-group">
-        <label asp-for="FirstName">First Name</label>
-        <input asp-for="FirstName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="LastName">Last Name</label>
-        <input asp-for="LastName" class="form-control" />
-    </div>
-    
-    <button type="submit">Submit</button>
-</form>
+</div>
