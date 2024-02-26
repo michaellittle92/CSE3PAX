@@ -4,3 +4,7 @@
 // Write your JavaScript code.
 
 // Variables
+
+function goBack() {
+    history.back();
+}

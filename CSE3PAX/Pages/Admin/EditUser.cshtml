@@ -32,10 +32,12 @@
                     <label asp-for="LastName" class="form-label">Last Name</label>
                     <input asp-for="LastName" class="form-control" />
                 </div>
-                <div class="d-grid mt-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="d-flex p-3 justify-content-between">
+                    <button type="submit" class="btn btn-primary btn-lg mx-3" style="width:250px;">Submit</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="goBack()" style="width:250px;">Cancel</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<script src="~/js/site.js"></script>
