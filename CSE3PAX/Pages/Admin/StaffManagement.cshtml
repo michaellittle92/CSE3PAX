@@ -3,12 +3,96 @@
 @{
 }
 
-<h2>Staff Management</h2>
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>"Generate Reports"</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+</head>
 
 <body>
 
-    <p>list of all staff. edit and delete next to each user</p>
-    <p>Add button linked to michaels create user page</p>
-    
+    <!-- Page Heading-->
+    <h2>Staff Management</h2>
+
+    <!-- Add User - heading & button -->
+    <div class="mx-4">
+        <h4 class="admin-txt">Add User</h4>
+        <a href="/Admin/CreateUser" class="btn btn-success box-shw"><i class="bi bi-person-plus-fill mx-2"></i>Add User</a>
+    </div>
+
+
+    <div class="container-fluid py-5">
+        <form method="post">
+            <div class="row">
+                <div class="col-lg-14">
+                    <div class="card mb-4">
+                        <div class="card-body box-shw">
+                            <div class="text-center">
+                                <h4 class="my-3">Users</h4>
+                            </div>
+
+                            <div class="mb-3">
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="users" class="btn btn-primary">Generate Users</button>
+                                </form>
+                            </div>
+
+                            <div class="table-responsive">
+                                @if (Model.Users.Any())
+                                {
+                                    <table class="table table-striped col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">User ID</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">User Type</th>
+                                                <th scope="col">Expertise 01</th>
+                                                <th scope="col">Expertise 02</th>
+                                                <th scope="col">Expertise 03</th>
+                                                <th scope="col">Expertise 04</th>
+                                                <th scope="col">Expertise 05</th>
+                                                <th scope="col">Expertise 06</th>
+                                                <th scope="col">Current Load</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var user in Model.Users)
+                                            {
+                                                <tr>
+                                                    <td>@user.UserId</td>
+                                                    <td>@user.FirstName</td>
+                                                    <td>@user.LastName</td>
+                                                    <td>@user.Email</td>
+                                                    <td>@user.UserType</td>
+                                                    <td>@user.Expertise01</td>
+                                                    <td>@user.Expertise02</td>
+                                                    <td>@user.Expertise03</td>
+                                                    <td>@user.Expertise04</td>
+                                                    <td>@user.Expertise05</td>
+                                                    <td>@user.Expertise06</td>
+                                                    <td>@user.ConcurrentLoadCapacity</td>
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a href="/Admin/EditUser" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
