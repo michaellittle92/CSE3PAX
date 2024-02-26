@@ -81,6 +81,7 @@ namespace CSE3PAX.Pages.Manager
             return Page();
         }
 
+        // Method to get lecturer information from db
         private void LoadLecturers()
         {
 
@@ -143,6 +144,7 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        // Method to get subejct instance information from db
         private void LoadSubjectInstances()
         {
 
@@ -150,6 +152,7 @@ namespace CSE3PAX.Pages.Manager
 
         }
 
+        // Method to get scheduling information from db
         private void LoadSchedules()
         {
 

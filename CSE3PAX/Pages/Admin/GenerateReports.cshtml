@@ -82,7 +82,39 @@
                                 <h4 class="my-3">Subjects</h4>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subjects</button>
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subjects</button>
+                                </form>
+                            </div>
+                            <div class="table-responsive">
+                                @if (Model.Subjects.Any())
+                                {
+                                    <table class="table table-striped col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Subject ID</th>
+                                                <th scope="col">Subject Code</th>
+                                                <th scope="col">Subject Name</th>
+                                                <th scope="col">Subject Classification</th>
+                                                <th scope="col">Year Level</th>
+                                                <th scope="col">Development Difficulty</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var subject in Model.Subjects)
+                                            {
+                                                <tr>
+                                                    <td>@subject.SubjectId</td>
+                                                    <td>@subject.SubjectCode</td>
+                                                    <td>@subject.SubjectName</td>
+                                                    <td>@subject.SubjectClassification</td>
+                                                    <td>@subject.YearLevel</td>
+                                                    <td>@subject.DevelopmentDifficulty</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
                             </div>
                         </div>
                     </div>
@@ -97,7 +129,9 @@
                                 <h4 class="my-3">Subject Instances</h4>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
+                                </form>
                             </div>
                         </div>
                     </div>

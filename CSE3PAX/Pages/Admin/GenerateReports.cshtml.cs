@@ -21,6 +21,9 @@ namespace CSE3PAX.Pages.Admin
         // List to store User information
         public List<User> Users { get; set; } = new List<User>();
 
+        // List to store Subject information
+        public List<Subject> Subjects { get; set; } = new List<Subject>();
+
         // User class to store User variable information
         public class User
         {
@@ -36,6 +39,18 @@ namespace CSE3PAX.Pages.Admin
             public string Expertise05 { get; set; }
             public string Expertise06 { get; set; }
             public decimal? ConcurrentLoadCapacity { get; set; }
+        }
+
+        // Subject class to sture Subject variable information
+        public class Subject 
+        {
+            public int SubjectId { get; set; }
+            public string SubjectCode { get; set; }
+            public string SubjectName { get; set; }
+            public string SubjectClassification { get; set; }
+            public int YearLevel { get; set; }
+            public string DevelopmentDifficulty { get; set; }
+
         }
 
         /*
@@ -54,6 +69,7 @@ namespace CSE3PAX.Pages.Admin
 
         public void OnGet()
         {
+
         }
 
         /*
@@ -80,11 +96,9 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
+        // Method to get all user information from database
         private void LoadUsers()
         {
-
-            // console write for testing
-            Console.WriteLine("Generate Users");
 
             // Retrieve the list of users from the database
             try
@@ -153,13 +167,68 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
+        // Method to get all subject information from database
         private void LoadSubjects()
         {
+            // Retrieve the list of subjects from the database
+            try
+            {
+                // Clear the existing list of subjects
+                Subjects.Clear();
 
-            Console.WriteLine("Generate Subjects");
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
 
+                    // SQL query to select all subjects
+                    string sql = "SELECT SubjectID, SubjectCode, SubjectName, SubjectClassification, YearLevel, DevelopmentDifficulty FROM Subjects";
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Execute SQL query and get results
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Iterate through the results and add subjects to the list
+                            while (reader.Read())
+                            {
+                                // Save subject information to Subject object
+                                var subject = new Subject
+                                {
+                                    SubjectId = reader.GetInt32(0),
+                                    SubjectCode = reader.GetString(1),
+                                    SubjectName = reader.GetString(2),
+                                    SubjectClassification = reader.GetString(3),
+                                    YearLevel = reader.GetInt32(4),
+                                    DevelopmentDifficulty = reader.IsDBNull(5) ? null : reader.GetString(5),
+                                };
+                                // Add subjects
+                                Subjects.Add(subject);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine("Error retrieving subjects: " + ex.Message);
+            }
+
+            foreach (Subject subject in Subjects)
+            {
+                Console.WriteLine($"SubjectID: {subject.SubjectId}, " +
+                                  $"SubjectCode: {subject.SubjectCode}, " +
+                                  $"SubjectName: {subject.SubjectName}, " +
+                                  $"SubjectClassification: {subject.SubjectClassification}, " +
+                                  $"YearLevel: {subject.YearLevel}, " +
+                                  $"DevelopmentDifficulty: {subject.DevelopmentDifficulty}");
+            }
         }
 
+        // Method to get all subject instance information from database
         private void LoadSubjectInstances()
         {
 

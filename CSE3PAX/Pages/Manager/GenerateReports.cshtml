@@ -37,7 +37,7 @@
                             <div class="table-responsive">
                                 @if (Model.Lecturers.Any())
                                 {
-                                    <table class="table table-striped col-12"> <!-- Added col-12 class here -->
+                                    <table class="table table-striped col-12">
                                         <thead>
                                             <tr>
                                                 <th scope="col">User ID</th>
@@ -87,9 +87,9 @@
                             <div class="text-center">
                                 <h4 class="my-3">Subject Instances</h4>
                             </div>
-                            <div class="mb-3">
+                            <form method="post">
                                 <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -102,9 +102,9 @@
                             <div class="text-center">
                                 <h4 class="my-3">Schedules</h4>
                             </div>
-                            <div class="mb-3">
+                            <form method="post">
                                 <button type="submit" name="buttonType" value="schedules" class="btn btn-primary">Generate Schedules</button>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
