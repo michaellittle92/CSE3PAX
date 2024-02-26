@@ -57,6 +57,9 @@
             </div>
         </div>
 
+        <div class="welcome-message-container mt-3 text-dark text-left ps-5 pt-2">
+            <p class="fs-6">You're all set! Your schedule for the upcoming months is available below. Take a moment to review your upcoming classes.</p>
+        </div>
         <!-- Line Separator -->
         <div class="row">
             <div class="col">
@@ -74,7 +77,7 @@
     Copy code *@
 
     <table class="table table-bordered box-shw mt-3 bdr">
-            
+
 
         <thead class="text-center">
             <tr class="align-middle lecturerBx box-shw">
@@ -82,7 +85,9 @@
                 <th class="col-lg-5">Subject Name</th>
                 @foreach (var monthYear in Model.Next12Months)
                 {
-                    <th class="col">@monthYear</th>
+                    <th class="col">
+                        @monthYear
+                    </th>
                 }
             </tr>
         </thead>
@@ -90,15 +95,15 @@
             @foreach (var instance in Model.SubjectInstances)
             {
                 <tr class="text-center align-middle">
-                    <td>@instance.InstanceName</td>
-                    <td>@instance.SubjectName</td>
+                    <td class="col">@instance.InstanceName</td>
+                    <td class="col">@instance.SubjectName</td>
                     @{
                         var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
                         var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
                     }
                     @for (int i = 0; i < Model.Next12Months.Count; i++)
                     {
-                        <td class="@(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
+                        <td class="col @(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
                         </td>
                     }
                 </tr>
