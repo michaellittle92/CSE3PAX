@@ -2,10 +2,152 @@
 @model CSE3PAX.Pages.Admin.SubjectManagementModel
 @{
 }
-<h2>Subject Management</h2>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Reports</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
+</head>
 
-<p>List of subjects. edit and delete</p>
-<p>create subjects</p>
+<body>
+    <!-- Page Heading-->
+    <h2>Subject Management</h2>
+    <p>This page allows users the ability to oversee, modify, and maintain the list of subjects available,<br />
+       providing a platform for managing subjects within the system</p>
 
-<p>List of subjects instances. edit and delete</p>
-<p>create subjects instances</p>
+    <!-- Add Subject - heading & button -->
+    <div class="mx-4">
+        <h4 class="admin-txt">Add Subject</h4>
+        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-book-plus-fill mx-2"></i>Add Subject</a>
+    </div>
+
+
+    <div class="container-fluid py-5">
+        <form method="post">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body box-shw">
+                            <div class="text-center">
+                                <h4 class="my-3">Subjects</h4>
+                            </div>
+
+                            <div class="mb-4">
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subjects</button>
+                                </form>
+                            </div>
+
+                            <div class="table-responsive">
+                                @if (Model.Subjects.Any())
+                                {
+                                    <table class="table table-striped col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Subject ID</th>
+                                                <th scope="col">Subject Name</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var subject in Model.Subjects)
+                                            {
+                                                <tr>
+                                                    <td>@subject.SubjectId</td>
+                                                    <td>@subject.SubjectName</td>
+                                                    <td>@subject.YearLevel</td>
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Page Heading-->
+    <h2>Subject Instance Management</h2>
+    <p>Thi section allows users the ability to oversee, manage, and maintain<br />
+        the list of subject instances for each subject</p>
+
+    <!-- Add Subject Instance - heading & button -->
+    <div class="mx-4">
+        <h4 class="admin-txt">Add Subject Instance</h4>
+        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-book-plus-fill mx-2"></i>Add Instance</a>
+    </div>
+    <div class="container-fluid py-5">
+        <form method="post">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card mb-4">
+                        <div class="card-body box-shw">
+                            <div class="text-center">
+                                <h4 class="my-3">Subject Instances</h4>
+                            </div>
+
+                            <div class="mb-4">
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subject Instances</button>
+                                </form>
+                            </div>
+
+                            <div class="table-responsive">
+                                @if (Model.SubjectInstances.Any())
+                                {
+                                    <table class="table table-striped col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Subject Instance ID</th>
+                                                <th scope="col">Subject ID</th>
+                                                <th scope="col">Instance Name</th>
+                                                <th scope="col">Instance Code</th>
+                                                <th scope="col">Lecturer ID</th>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+                                                <th scope="col">Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var subject in Model.SubjectInstances)
+                                            {
+                                                <tr>
+                                                    <td>@subject.SubjectInstanceId</td>
+                                                    <td>@subject.SubjectId</td>
+                                                    <td>@subject.SubjectInstanceName</td>
+                                                    <td>@subject.SubjectInstanceCode</td>
+                                                    <td>@subject.LectureId</td>
+                                                    <td>@subject.StartDate</td>
+                                                    <td>@subject.EndDate</td>
+                                                    <td>@subject.SubjectInstanceYear</td>
+                                                    <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
