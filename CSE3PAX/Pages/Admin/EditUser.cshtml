@@ -1,43 +1,48 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.EditUserModel
-@{
-}
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <!-- Edit User Title -->
-            <h1 class="mb-5" style="color: #3163bc">
-                <i class="bi bi-people-fill" style="color: #3163bc"></i> Edit User
-            </h1>
+
+<div>
+    <div>
+        <div>
+            <h1>Edit User</h1>
             <form method="post">
-                <div class="form-group">
-                    <label asp-for="UserId" class="form-label">User ID</label>
-                    <input asp-for="UserId" class="form-control" readonly />
+                <div>
+                    <label asp-for="UserId">User ID</label>
+                    <input asp-for="UserId" readonly />
                 </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="form-label">Email</label>
-                    <input asp-for="Email" class="form-control" /> 
+                <div>
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" />
                 </div>
-                <!--
-                <div class="form-group">
-                    <label asp-for="Password">Password</label>
-                    <input asp-for="Password" class="form-control" />
+                <div>
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" />
                 </div>
-                -->
-                <div class="form-group">
-                    <label asp-for="FirstName" class="form-label">First Name</label>
-                    <input asp-for="FirstName" class="form-control" />
+                <div>
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" />
                 </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="form-label">Last Name</label>
-                    <input asp-for="LastName" class="form-control" />
+
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="button" onclick="goBack()">Cancel</button>
                 </div>
-                <div class="d-flex p-3 justify-content-between">
-                    <button type="submit" class="btn btn-primary btn-lg mx-3" style="width:250px;">Submit</button>
-                    <button type="button" class="btn btn-outline-danger" onclick="goBack()" style="width:250px;">Cancel</button>
+            </form>
+            <!-- New form for Delete action -->
+            <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                <input type="hidden" asp-for="Email" />
+                <button type="submit">Delete User</button>
+            </form>
+            <!-- New form for Reset Password action -->
+            <form method="post" asp-page-handler="ResetPassword">
+                <!-- New password input field (visible by default) -->
+                <div>
+                    <label asp-for="Password">New Password</label>
+                    <input asp-for="Password" type="password" />
                 </div>
+                <input type="hidden" asp-for="UserId" />
+                <button type="submit">Reset Password</button>
             </form>
         </div>
     </div>
 </div>
-<script src="~/js/site.js"></script>

@@ -91,12 +91,12 @@ namespace CSE3PAX.Pages.Admin
                         //Check to see if update is successful
                         if (result == 1)
                         {
-                           
-                            return RedirectToPage("/Admin/ReadUser"); 
+
+                            return RedirectToPage("/Admin/ReadUser");
                         }
                         else
                         {
-                           
+
                             Console.WriteLine("", "User could not be updated.");
                             return Page();
                         }
@@ -105,10 +105,103 @@ namespace CSE3PAX.Pages.Admin
             }
             catch (Exception ex)
             {
-              Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.ToString());
                 return null;
             }
         }
+        public async Task<IActionResult> OnPostDeleteAsync()
+        {
+            System.Diagnostics.Debug.WriteLine($"Email: {Email}");
+            try
+            {
+                // SQL script with parameterized email
+                var sql = @"
+            DECLARE @Email VARCHAR(255);
+            DECLARE @UserID INT;
+            DECLARE @IsLecturer BIT;
+
+            SET @Email = @EmailParam; -- Use parameterized value here
+
+            -- Retrieve UserID and IsLecturer status based on the email
+            SELECT @UserID = UserID, @IsLecturer = IsLecturer FROM Users WHERE Email = @Email;
+
+            -- Check if the user is a lecturer
+            IF @IsLecturer = 1
+            BEGIN
+                -- Delete the lecturer-specific entry first to maintain referential integrity
+                DELETE FROM Lecturers WHERE UserID = @UserID;
+
+                -- Then delete the user from the Users table
+                DELETE FROM Users WHERE UserID = @UserID;
+            END
+            ELSE
+            BEGIN
+                -- If not a lecturer, delete the user directly
+                DELETE FROM Users WHERE UserID = @UserID;
+            END";
+
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Parameterize the email address to avoid SQL injection
+                        command.Parameters.AddWithValue("@EmailParam", Email);
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+                return RedirectToPage("/Admin/ReadUser");
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the error as needed
+                return Page();
+            }
+        }
+
+        public async Task<IActionResult> OnPostResetPasswordAsync()
+        {
+            try
+            {
+                // Generate a new GUID
+                string userGuid = Guid.NewGuid().ToString();
+
+                string newPasswordHash = Security.HashSHA256(Password + userGuid);
+
+                // Update the password and userGuid in the database for the specified user
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+                    var sql = @"
+                UPDATE Users 
+                SET Password = @NewPasswordHash,
+                    UserGuid = @UserGuid
+                WHERE UserId = @UserId";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@NewPasswordHash", newPasswordHash);
+                        command.Parameters.AddWithValue("@UserId", UserId);
+                        command.Parameters.AddWithValue("@UserGuid", userGuid);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+
+                // Optionally, add a success message or log the password reset event
+                TempData["Message"] = "Password has been reset successfully.";
+
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                // Log the error or handle it as needed
+                ModelState.AddModelError("", "An error occurred while resetting the password.");
+                return Page();
+            }
+        }
+
+
     }
 }
         

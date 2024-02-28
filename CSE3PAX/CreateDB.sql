@@ -12,12 +12,13 @@
     CreatedOn datetime NOT NULL DEFAULT GETDATE()
 );
 
+/*
 CREATE TABLE PasswordResets(
 	email VARCHAR(150) NOT NULL PRIMARY KEY,
 	token VARCHAR(150) NOT NULL,
 	CreatedOn datetime NOT NULL DEFAULT GETDATE()
 );
-
+*/
 
 CREATE TABLE Lecturers (
     LecturerID INT IDENTITY(1,1) NOT NULL,
