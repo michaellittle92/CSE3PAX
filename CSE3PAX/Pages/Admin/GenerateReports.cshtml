@@ -133,6 +133,40 @@
                                     <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
                                 </form>
                             </div>
+                            <div class="table-responsive">
+                                @if (Model.SubjectInstances.Any())
+                                {
+                                    <table class="table table-striped col-12">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Subject Instance ID</th>
+                                                <th scope="col">Subject ID</th>
+                                                <th scope="col">Subject Instance Name</th>
+                                                <th scope="col">Subject Instance Code</th>
+                                                <th scope="col">Lecturer ID</th>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+                                                <th scope="col">Subject Instance Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var subjectInstance in Model.SubjectInstances)
+                                            {
+                                                <tr>
+                                                    <td>@subjectInstance.SubjectInstanceId</td>
+                                                    <td>@subjectInstance.SubjectId</td>
+                                                    <td>@subjectInstance.SubjectInstanceName</td>
+                                                    <td>@subjectInstance.SubjectInstanceCode</td>
+                                                    <td>@subjectInstance.LecturerId</td>
+                                                    <td>@subjectInstance.StartDate</td>
+                                                    <td>@subjectInstance.EndDate</td>
+                                                    <td>@subjectInstance.SubjectInstanceYear</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>

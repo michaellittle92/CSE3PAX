@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using static CSE3PAX.Pages.Manager.StaffSchedulesModel;
 using System.Data.SqlClient;
 using static CSE3PAX.Pages.Manager.GenerateReportsModel;
+using System.Data;
 
 namespace CSE3PAX.Pages.Manager
 {
@@ -23,6 +24,9 @@ namespace CSE3PAX.Pages.Manager
         // List to store Lecturer information
         public List<Lecturer> Lecturers { get; set; } = new List<Lecturer>();
 
+        // List to store Lecturer information
+        public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
+
         // Lecturer class to store Lecturer variable information
         public class Lecturer
         {
@@ -37,6 +41,18 @@ namespace CSE3PAX.Pages.Manager
             public string Expertise05 { get; set; }
             public string Expertise06 { get; set; }
             public decimal? ConcurrentLoadCapacity { get; set; }
+        }
+
+        public class SubjectInstance 
+        {
+            public int SubjectInstanceId { get; set; }
+            public int SubjectId { get; set; }
+            public string SubjectInstanceName { get; set; }
+            public string SubjectInstanceCode { get; set; }
+            public int LecturerId { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public int SubjectInstanceYear { get; set; }
         }
 
         /*
@@ -144,12 +160,57 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
-        // Method to get subejct instance information from db
+        // Method to get subject instance information from the database
         private void LoadSubjectInstances()
         {
 
-            Console.WriteLine("Generate subject instances");
+            try
+            {
+                // Clear the existing list of subject instances
+                SubjectInstances.Clear();
 
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL query to select all subject instances
+                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Execute SQL query and get results
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Iterate through the results and add subject instances to the list
+                            while (reader.Read())
+                            {
+                                // Create a new SubjectInstance object and add it to the list
+                                var subjectInstance = new SubjectInstance
+                                {
+                                    SubjectInstanceId = reader.GetInt32(0),
+                                    SubjectId = reader.GetInt32(1),
+                                    SubjectInstanceName = reader.GetString(2),
+                                    SubjectInstanceCode = reader.GetString(3),
+                                    StartDate = reader.GetDateTime(4),
+                                    EndDate = reader.GetDateTime(5),
+                                    LecturerId = reader.GetInt32(6),
+                                    SubjectInstanceYear = reader.GetInt32(7),
+                                };
+                                // Add subject instance to the list
+                                SubjectInstances.Add(subjectInstance);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine("Error retrieving subject instances: " + ex.Message);
+            }
         }
 
         // Method to get scheduling information from db
@@ -157,6 +218,7 @@ namespace CSE3PAX.Pages.Manager
         {
 
             Console.WriteLine("Generate Schedules");
+
 
         }
 

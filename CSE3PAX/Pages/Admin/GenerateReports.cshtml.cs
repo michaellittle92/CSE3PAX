@@ -8,7 +8,6 @@ namespace CSE3PAX.Pages.Admin
     //Checking for required Roles
     [RequireRoles("Admin")]
 
-
     public class GenerateReportsModel : PageModel
     {
 
@@ -23,6 +22,8 @@ namespace CSE3PAX.Pages.Admin
 
         // List to store Subject information
         public List<Subject> Subjects { get; set; } = new List<Subject>();
+        // List to store Lecturer information
+        public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
         // User class to store User variable information
         public class User
@@ -41,7 +42,7 @@ namespace CSE3PAX.Pages.Admin
             public decimal? ConcurrentLoadCapacity { get; set; }
         }
 
-        // Subject class to sture Subject variable information
+        // Subject class to store Subject variable information
         public class Subject 
         {
             public int SubjectId { get; set; }
@@ -51,6 +52,19 @@ namespace CSE3PAX.Pages.Admin
             public int YearLevel { get; set; }
             public string DevelopmentDifficulty { get; set; }
 
+        }
+
+        // Subject instance class to store instance information
+        public class SubjectInstance
+        {
+            public int SubjectInstanceId { get; set; }
+            public int SubjectId { get; set; }
+            public string SubjectInstanceName { get; set; }
+            public string SubjectInstanceCode { get; set; }
+            public int LecturerId { get; set; }
+            public DateTime StartDate { get; set; }
+            public DateTime EndDate { get; set; }
+            public int SubjectInstanceYear { get; set; }
         }
 
         /*
@@ -69,7 +83,6 @@ namespace CSE3PAX.Pages.Admin
 
         public void OnGet()
         {
-
         }
 
         /*
@@ -216,24 +229,59 @@ namespace CSE3PAX.Pages.Admin
                 // Handle exceptions
                 Console.WriteLine("Error retrieving subjects: " + ex.Message);
             }
-
-            foreach (Subject subject in Subjects)
-            {
-                Console.WriteLine($"SubjectID: {subject.SubjectId}, " +
-                                  $"SubjectCode: {subject.SubjectCode}, " +
-                                  $"SubjectName: {subject.SubjectName}, " +
-                                  $"SubjectClassification: {subject.SubjectClassification}, " +
-                                  $"YearLevel: {subject.YearLevel}, " +
-                                  $"DevelopmentDifficulty: {subject.DevelopmentDifficulty}");
-            }
         }
 
-        // Method to get all subject instance information from database
+        // Method to get subject instance information from the database
         private void LoadSubjectInstances()
         {
 
-            Console.WriteLine("Generate subject instances");
+            try
+            {
+                // Clear the existing list of subject instances
+                SubjectInstances.Clear();
 
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL query to select all subject instances
+                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Execute SQL query and get results
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Iterate through the results and add subject instances to the list
+                            while (reader.Read())
+                            {
+                                // Create a new SubjectInstance object and add it to the list
+                                var subjectInstance = new SubjectInstance
+                                {
+                                    SubjectInstanceId = reader.GetInt32(0),
+                                    SubjectId = reader.GetInt32(1),
+                                    SubjectInstanceName = reader.GetString(2),
+                                    SubjectInstanceCode = reader.GetString(3),
+                                    StartDate = reader.GetDateTime(4),
+                                    EndDate = reader.GetDateTime(5),
+                                    LecturerId = reader.GetInt32(6),
+                                    SubjectInstanceYear = reader.GetInt32(7),
+                                };
+                                // Add subject instance to the list
+                                SubjectInstances.Add(subjectInstance);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine("Error retrieving subject instances: " + ex.Message);
+            }
         }
 
         // Method to sort lecturers by UserID
