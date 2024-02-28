@@ -2,28 +2,31 @@
 @model CSE3PAX.Pages.Admin.SubjectManagementModel
 @{
 }
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generate Reports</title>
+    <title>"Subject Management"</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 </head>
 
+
+
 <body>
     <!-- Page Heading-->
-    <h2>Subject Management</h2>
+    <h1 class="admin-txt my-4">Subject Management</h1>
     <p>This page allows users the ability to oversee, modify, and maintain the list of subjects available,<br />
        providing a platform for managing subjects within the system</p>
 
     <!-- Add Subject - heading & button -->
     <div class="mx-4">
-        <h4 class="admin-txt">Add Subject</h4>
-        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-book-plus-fill mx-2"></i>Add Subject</a>
+        <h4 class="admin-txt mt-4">Add Subject</h4>
+        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-journal-plus  me-1 pe-1"></i>Add Subject</a>
     </div>
 
-
+    <!-- Subject container -->
     <div class="container-fluid py-5">
         <form method="post">
             <div class="row">
@@ -31,12 +34,12 @@
                     <div class="card mb-4">
                         <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Subjects</h4>
+                                <h4 class="my-3 listHeading">Subjects</h4>
                             </div>
 
                             <div class="mb-4">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subjects</button>
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary box-shw">View Subjects</button>
                                 </form>
                             </div>
 
@@ -79,14 +82,14 @@
     </div>
     
     <!-- Page Heading-->
-    <h2>Subject Instance Management</h2>
-    <p>Thi section allows users the ability to oversee, manage, and maintain<br />
+    <h1 class="admin-txt my-4">Subject Instance Management</h1>
+    <p>This section allows users the ability to oversee, manage, and maintain<br />
         the list of subject instances for each subject</p>
 
     <!-- Add Subject Instance - heading & button -->
     <div class="mx-4">
         <h4 class="admin-txt">Add Subject Instance</h4>
-        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-book-plus-fill mx-2"></i>Add Instance</a>
+        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-plus-circle mx-1 pe-1"></i>Add Instance</a>
     </div>
     <div class="container-fluid py-5">
         <form method="post">
@@ -95,12 +98,12 @@
                     <div class="card mb-4">
                         <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Subject Instances</h4>
+                                <h4 class="my-3 listHeading">Subject Instances</h4>
                             </div>
 
                             <div class="mb-4">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subject Instances</button>
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary box-shw">View Instances</button>
                                 </form>
                             </div>
 

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>"Generate Reports"</title>
+    <title>"Staff Management"</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
@@ -15,15 +15,16 @@
 <body>
 
     <!-- Page Heading-->
-    <h2>Staff Management</h2>
+    <h1 class="admin-txt my-4">Staff Management</h1>
+    <p>Administrators are responsible for managing and maintaining current system users. The Staff Management section provides the functionality to complete essential tasks including adding new users, updating existing staff details and removing previous staff members from the system.</p>
 
     <!-- Add User - heading & button -->
-    <div class="mx-4">
-        <h4 class="admin-txt">Add User</h4>
-        <a href="/Admin/CreateUser" class="btn btn-success box-shw"><i class="bi bi-person-plus-fill mx-2"></i>Add User</a>
+    <div class="mx-4">   
+        <h4 class="admin-txt mt-4">Add User</h4>
+        <a href="/Admin/CreateUser" class="btn btn-success box-shw"><i class="bi bi-person-plus-fill mx-1 pe-1"></i>Add User</a>
     </div>
 
-
+    <!-- Users List Container -->
     <div class="container-fluid py-5">
         <form method="post">
             <div class="row">
@@ -31,15 +32,17 @@
                     <div class="card mb-4">
                         <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Users</h4>
+                                <h4 class="my-3 listHeading">Users List</h4>
                             </div>
 
+                            <!-- View Users List -->
                             <div class="mb-4">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="users" class="btn btn-primary">Generate Users</button>
+                                    <button type="submit" name="buttonType" value="users" class="btn btn-primary box-shw">View Users</button>
                                 </form>
                             </div>
 
+                            <!-- Users Table -->
                             <div class="table-responsive">
                                 @if (Model.Users.Any())
                                 {

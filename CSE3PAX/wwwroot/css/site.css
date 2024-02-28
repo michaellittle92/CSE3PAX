@@ -3,8 +3,7 @@
     --sitebackground: #F6F3F3; /* Snowflake - page colour background */
     --textColourGry: #706A6C; /* Bauhaus - dark grey text colour (link/admin heading)*/
     --textColourSmk: #AEAEAE; /*Smoke screen - light text colour (search box)*/
-    --admin-blue: #004AAD; /* Admin welcome box */
-
+    --admin-blue: #3163bc; /* Admin welcome box */
     --lecturerBx: #48CFAE /* Lecturer welcome box */
 }
 
@@ -50,6 +49,12 @@ body {
     color: var(--sitebackground);
 }
 
+.listHeading {
+    color: #C11B52;
+    font-style: italic;
+    text-decoration: underline;
+}
+
 .bd-radius {
     border-radius: 10px;
 }
@@ -68,8 +73,6 @@ body {
 .table .cellHighlighter {
     background-color: #95ABC6;
 }
-
-
 
 /* Manager Staff Schedules page styling */
 .staff-schedule-heading {
