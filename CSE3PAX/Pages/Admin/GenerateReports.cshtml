@@ -12,19 +12,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.7.2/font/bootstrap-icons.min.css">
 </head>
 <body>
+    <!-- Heading and paragraph -->
+    <h1 class="admin-txt my-4">Generate Reports</h1>
+    <p>Administrators can obtain an overview and sight from the Generate Report section which includes information regarding active users, ongoing subjects and the status of currently running subject instances.</p>
 
+    <!-- Container -->
     <div class="container-fluid py-5">
         <form method="post">
             <div class="row">
                 <div class="col-lg-14">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Users</h4>
+                                <h4 class="my-3 listHeading">Users</h4>
                             </div>
                             <div class="mb-3">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="users" class="btn btn-primary">Generate Users</button>
+                                    <button type="submit" name="buttonType" value="users" class="btn btn-primary box-shw">View Users</button>
                                 </form>
                             </div>
                             <div class="table-responsive">
@@ -77,13 +81,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Subjects</h4>
+                                <h4 class="my-3 listHeading">Subjects</h4>
                             </div>
                             <div class="mb-3">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary">Generate Subjects</button>
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-primary box-shw">View Subjects</button>
                                 </form>
                             </div>
                             <div class="table-responsive">
@@ -124,13 +128,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Subject Instances</h4>
+                                <h4 class="my-3 listHeading">Subject Instances</h4>
                             </div>
                             <div class="mb-3">
                                 <form method="post">
-                                    <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
+                                    <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary box-shw">View Instances</button>
                                 </form>
                             </div>
                             <div class="table-responsive">
