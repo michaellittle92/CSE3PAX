@@ -2,7 +2,7 @@
 @model CSE3PAX.Pages.Admin.EditSubjectModel
 @{
 }
-<form>
+<form method="post">
 <div class="form-group">
         <label class="form-label" asp-for="SubjectCode">Subject Code</label>
         <input class="form-control" asp-for="SubjectCode" readonly />
@@ -21,4 +21,6 @@
         <input class="form-control" asp-for="YearLevel" />
        </div>
 </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a class="btn btn-secondary" asp-page="/Admin/Subjects">Cancel</a>
 </form>

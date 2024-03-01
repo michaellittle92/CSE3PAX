@@ -60,5 +60,24 @@ namespace CSE3PAX.Pages.Admin
 
             catch (Exception ex) { }
         }
+
+        public void OnPost()
+        {
+            try {
+                using (SqlConnection connection = new SqlConnection(_connectionString)) { 
+                  connection.Open();
+                                   string updateSubjectDataSQLQuery = "UPDATE Subjects SET SubjectName = @SubjectName, SubjectClassification = @SubjectClassification, YearLevel = @YearLevel WHERE SubjectCode = @SubjectCode";
+                                   using (SqlCommand command = new SqlCommand(updateSubjectDataSQLQuery, connection)){
+                                           command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                                           command.Parameters.AddWithValue("@SubjectName", SubjectName);
+                                           command.Parameters.AddWithValue("@SubjectClassification", SubjectClassification);
+                                           command.Parameters.AddWithValue("@YearLevel", YearLevel);
+                    
+                                           command.ExecuteNonQuery();
+                                       }
+                               }
+            }
+            catch (Exception ex) { }
+        }
     }
 }
