@@ -2,19 +2,25 @@
 @model CSE3PAX.Pages.Admin.ReadUserModel
 @{
 }
+
+<!-- Page heading -->
+<h1 class="my-5 admin-txt text-center"><i class="bi bi-people-fill admin-txt"></i> Users</h1>
+<p>A user list is provided below blah blah blah...</p>
+
 <!-- Link to create user page -->
-<a href="/Admin/CreateUser" class="btn btn-primary mb-3">Create User</a>
+<a href="/Admin/CreateUser" class="btn btn-primary mb-3 box-shw">Create User</a>
 
 @if (Model.ListUsers != null && Model.ListUsers.Count > 0)
 {
-    <div class="table-responsive">
+    <div class="table-responsive card">
         <table class="table table-hover table-bordered border-2">
             <thead class="thead-light">
                 <tr class="table-primary">
-                    <th>Email</th>
+                    
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Role</th>
+                    <th>Email</th>
                     <th>Edit</th>
 
                 </tr>
@@ -23,10 +29,11 @@
                 @foreach (var user in Model.ListUsers)
                 {
                     <tr>
-                        <td>@user.Email</td>
+                        
                         <td>@user.FirstName</td>
                         <td>@user.LastName</td>
                         <td>@user.Role</td>
+                        <td>@user.Email</td>
                         <td><a href="/Admin/EditUser?email=@user.Email" class="btn btn-outline-primary btn-sm">Edit</a>
                         
                     </tr>
