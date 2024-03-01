@@ -1,9 +1,12 @@
+using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
 namespace CSE3PAX.Pages.Admin
 {
+    //Checking for required Roles
+    [RequireRoles("Admin")]
     public class EditSubjectModel : PageModel
     {
         private readonly IConfiguration _configuration;
@@ -78,6 +81,28 @@ namespace CSE3PAX.Pages.Admin
                                }
             }
             catch (Exception ex) { }
+        }
+
+        public IActionResult OnPostDelete()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string deleteSubjectDataSQLQuery = "DELETE FROM Subjects WHERE SubjectCode = @SubjectCode";
+                    using (SqlCommand command = new SqlCommand(deleteSubjectDataSQLQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                        command.ExecuteNonQuery();
+                        return RedirectToPage("/Admin/ReadSubject");
+                    }
+                }
+            }
+            catch (Exception ex) {
+                return null;
+            }
+            
         }
     }
 }

@@ -1,9 +1,12 @@
+using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 
 namespace CSE3PAX.Pages.Admin
 {
+    //Checking for required Roles
+    [RequireRoles("Admin")]
     public class EditUserModel : PageModel
     {
         private readonly IConfiguration _configuration;
