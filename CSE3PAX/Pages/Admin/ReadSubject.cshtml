@@ -1,0 +1,28 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.ReadSubjectModel
+@{
+}
+<table>
+    <thead>
+       <tr>
+            <th>Subject Code</th>
+            <th>Subject Name</th>
+            <th>Subject Classifcation</th>
+            <th>Year Level</th>
+            <th>Edit</th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var subject in Model.ListSubjects)
+        {
+            <tr>
+                <td>@subject.SubjectCode</td>
+                <td>@subject.SubjectName</td>
+                <td>@subject.SubjectClassification</td>
+                <td>@subject.YearLevel</td>
+                <td><a href="/Admin/EditSubject?email=@subject.SubjectCode" class="btn btn-outline-primary btn-sm">Edit</a>
+            </tr>
+        }
+    </tbody>
+</table>
