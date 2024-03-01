@@ -1,0 +1,24 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.EditSubjectModel
+@{
+}
+<form>
+<div class="form-group">
+        <label class="form-label" asp-for="SubjectCode">Subject Code</label>
+        <input class="form-control" asp-for="SubjectCode" readonly />
+    </div>
+    <div class="form-group">
+<label class="form-label" asp-for="SubjectName">Subject Name</label>
+        <input class="form-control" asp-for="SubjectName" />
+       </div>
+<div class="form-group">
+<label class="form-label" asp-for="SubjectClassification">Subject Classification</label>
+        <input class="form-control" asp-for="SubjectClassification" />
+       </div>
+
+<div class="form-group">
+<label class="form-label" asp-for="YearLevel">Year Level</label>
+        <input class="form-control" asp-for="YearLevel" />
+       </div>
+</div>
+</form>
