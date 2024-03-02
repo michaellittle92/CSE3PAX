@@ -27,7 +27,7 @@ namespace CSE3PAX.Pages.Admin
             public int SubjectId { get; set; }
             public string SubjectName { get; set; }
             public int YearLevel { get; set; }
-            public int DevelopmentDifficulty { get; set; }
+            public string DevelopmentDifficulty { get; set; }
         }
 
         //List to store Subject Instance information
@@ -60,6 +60,7 @@ namespace CSE3PAX.Pages.Admin
         }
         public void OnGet()
         {
+         
         }
 
         /*
@@ -100,7 +101,7 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subjects
-                    string sql = "SELECT SubjectId, Name, Description, Credits FROM Subjects";
+                    string sql = "SELECT SubjectId, SubjectName, YearLevel FROM [Subjects]";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -117,7 +118,7 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectId = reader.GetInt32(0),
                                     SubjectName = reader.GetString(1),
                                     YearLevel = reader.GetInt32(2),
-                                    DevelopmentDifficulty = reader.GetInt32(3)
+                                   // DevelopmentDifficulty = reader.GetString(3)
                                 };
 
                                 // Add subjects
