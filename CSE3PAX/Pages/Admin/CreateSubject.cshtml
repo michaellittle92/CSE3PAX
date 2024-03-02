@@ -2,7 +2,12 @@
 @model CSE3PAX.Pages.Admin.CreateSubjectModel
 @{
 }
-<form method="post">
+
+<form method="post" class="container">
+    <!-- Create Subject Title -->
+    <h1 class="mb-5" style="color: #3163bc"><i class="bi bi-pencil-fill" style="color: #3163bc"></i> Create Subject</h1>
+    <div class="my-4">
+
     <div class="form-group">
         <label class="form-label" asp-for="SubjectCode">Subject Code</label>
         <input class="form-control" asp-for="SubjectCode" />
@@ -21,6 +26,6 @@
         <input class="form-control" asp-for="YearLevel" />
     </div>
     </div>
-    <button type="submit">Save</button>
-    <a asp-page="/Admin/Subjects">Cancel</a>
+    <button type="submit" class="btn btn-primary" style="width:250px;">Save</button>
+    <a asp-page="/Admin/Subjects" class="btn btn-outline-danger box-shw" onclick="goBack()" style="width:250px">Cancel</a>
 </form>
