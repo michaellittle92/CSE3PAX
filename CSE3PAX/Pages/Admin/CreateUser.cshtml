@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <!-- Settings Title -->
-            <h1 class="my-5 admin-txt">
+            <h1 class="my-5 admin-txt text-center">
                 <i class="bi bi-people-fill admin-txt"></i> Create User
             </h1>
 
@@ -115,12 +115,15 @@
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <div class="d-flex p-3 justify-content-between">
-                    <button type="submit" class="btn btn-primary btn-lg mx-3 box-shw" style="width:250px;">Submit</button>
-                    
-                    <button type="button" class="btn btn-outline-danger box-shw" onclick="goBack()" style="width:250px;">Cancel</button>
+                <!-- Button container  -->
+                <div class="d-flex p-3 justify-content-center">
+                    <!-- Save / Cancel Buttons -->
+                    <div class="d-flex flex-wrap align-items-center">
+                        <button type="submit" class="btn btn-success mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Save</button>
+                        <button type="button" class="btn btn-outline-danger box-shw mx-5 my-2" onclick="goBack()" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                    </div>
                 </div>
+                
             </form>
         </div>
     </div>

@@ -22,6 +22,7 @@ namespace CSE3PAX.Pages.Admin
             // Get connection string from configuration
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
+
         [BindProperty(SupportsGet = true)]
         public string Email { get; set; }
 
@@ -112,6 +113,7 @@ namespace CSE3PAX.Pages.Admin
                 return null;
             }
         }
+
         public async Task<IActionResult> OnPostDeleteAsync()
         {
             System.Diagnostics.Debug.WriteLine($"Email: {Email}");
