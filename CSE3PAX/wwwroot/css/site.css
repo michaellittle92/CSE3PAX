@@ -93,3 +93,18 @@ body {
 .lecturerBx {
     background-color: var(--lecturerBx);
 }
+
+.doughnut-chart-container {
+    float: left; /* Float the container to the left */
+    width: 50%; /* Set the container width to occupy half of the row */
+}
+
+    .doughnut-chart-container canvas {
+        width: 100%; /* Make the canvas fill the entire container */
+    }
+/* Adjust the layout of the lecturer list */
+.lecturer-list {
+    float: left; /* Float the list to the left */
+    width: 50%; /* Set the width to occupy the other half of the row */
+    padding-left: 20px; /* Add some padding to separate the chart and list */
+}
