@@ -50,7 +50,6 @@ namespace CSE3PAX.Pages.Admin
             public string SubjectName { get; set; }
             public string SubjectClassification { get; set; }
             public int YearLevel { get; set; }
-            public string DevelopmentDifficulty { get; set; }
 
         }
 
@@ -196,7 +195,7 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subjects
-                    string sql = "SELECT SubjectID, SubjectCode, SubjectName, SubjectClassification, YearLevel, DevelopmentDifficulty FROM Subjects";
+                    string sql = "SELECT SubjectID, SubjectCode, SubjectName, SubjectClassification, YearLevel FROM Subjects";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -215,7 +214,6 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectName = reader.GetString(2),
                                     SubjectClassification = reader.GetString(3),
                                     YearLevel = reader.GetInt32(4),
-                                    DevelopmentDifficulty = reader.IsDBNull(5) ? null : reader.GetString(5),
                                 };
                                 // Add subjects
                                 Subjects.Add(subject);
