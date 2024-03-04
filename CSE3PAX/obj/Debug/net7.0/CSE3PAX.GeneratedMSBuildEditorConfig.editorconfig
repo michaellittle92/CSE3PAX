@@ -9,135 +9,135 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CSE3PAX
 build_property.RootNamespace = CSE3PAX
-build_property.ProjectDir = C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX\
+build_property.ProjectDir = D:\LatrobeSchedule2\CSE3PAX\CSE3PAX\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX
+build_property.MSBuildProjectDirectory = D:\LatrobeSchedule2\CSE3PAX\CSE3PAX
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/AddLecturer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRkTGVjdHVyZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/AdminIndex.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/AdminIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQWRtaW5JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/CreateSubject.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/CreateSubject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlU3ViamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/CreateUser.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/CreateUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/EditSubject.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/EditSubject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdFN1YmplY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/EditUser.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/GenerateReports.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/GenerateReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cR2VuZXJhdGVSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/ImportExport.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/ImportExport.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW1wb3J0RXhwb3J0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/ReadSubject.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/ReadSubject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVhZFN1YmplY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/ReadUser.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/ReadUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVhZFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/StaffManagement.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/StaffManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3RhZmZNYW5hZ2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Admin/SubjectManagement.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Admin/SubjectManagement.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cU3ViamVjdE1hbmFnZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Auth/Logout.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Auth/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Lecturer/LecturerIndex.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Lecturer/LecturerIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJcTGVjdHVyZXJJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Manager/GenerateReports.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Manager/GenerateReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxHZW5lcmF0ZVJlcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Manager/ManagerIndex.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Manager/ManagerIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxNYW5hZ2VySW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Manager/StaffSchedules.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Manager/StaffSchedules.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxTdGFmZlNjaGVkdWxlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Dashboard.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXERhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Help.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/Help.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEhlbHAuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/IndexLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXEluZGV4TGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Logout.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXExvZ291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/MyProfile.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/MyProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXE15UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/Settings.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/Settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXFNldHRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/_LayoutWithoutNavBar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRXaXRob3V0TmF2QmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/laura/OneDrive/Documents/GitHub/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
+[D:/LatrobeSchedule2/CSE3PAX/CSE3PAX/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nw9te68nih

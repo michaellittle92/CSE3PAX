@@ -34,34 +34,64 @@
                     <input class="form-control" asp-for="LastName" />
                 </div>
 
+
                 <!-- Submit / Cancel / Delete Button -->
-                <div class="d-flex p-3 justify-content-between">
-                    <button type="submit" class="btn btn-primary btn-lg mx-3 box-shw" style="width:250px;"><i class="bi bi-floppy-fill"></i>Submit</button>
-                    <button type="button" class="btn btn-outline-danger box-shw" style="width:250px;" onclick=" goBack()"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                <div class="d-flex py-3 justify-content-center">
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Save</button>
+                        <button type="button" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px;" onclick="goBack()"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                    </div>
                 </div>
             </form>
 
+            <!-- Delete Button -->
+            <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete this user?')">
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="UserId" />
+                <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-trash pe-3"></i>Delete</button>
+            </form>
 
-            <!-- New form for Delete action -->
-            <div class="bg-black">
-                <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete this user?');">
-                    <input type="hidden" asp-for="Email" />
-                    <button type="submit">Delete User</button>
-                </form>
 
+            <div class="container">
+                <div class="row justify-content-center">
+                   
+                    <!-- New form for Reset Password action -->
+                    <form method="post" asp-page-handler="ResetPassword">
+                        <div class="mb-3 my-3">
+                            <label asp-for="Password">New Password</label>
+                            <input asp-for="Password" type="password" class="form-control "style="width: 100%;" />
+                        </div>
+
+                        <input type="hidden" asp-for="UserId" />
+                        <button type="submit" class="btn btn-secondary box-shw">Reset Password</button>
+                    </form>
+                </div>
             </div>
            
 
+
+
+@* 
             <!-- New form for Reset Password action -->
             <form method="post" asp-page-handler="ResetPassword">
+
                 <!-- New password input field (visible by default) -->
-                <div>
+                <div class="mb-3">
                     <label asp-for="Password">New Password</label>
                     <input asp-for="Password" type="password" />
                 </div>
+
                 <input type="hidden" asp-for="UserId" />
                 <button type="submit">Reset Password</button>
             </form>
+        </div>
+    </div> *@
+
+
+
+
+
+
         </div>
     </div>
 </div>

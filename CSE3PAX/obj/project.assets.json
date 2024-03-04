@@ -470,19 +470,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\laura\\.nuget\\packages\\": {}
+    "C:\\Users\\61432\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "projectUniqueName": "D:\\LatrobeSchedule2\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
       "projectName": "CSE3PAX",
-      "projectPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
-      "packagesPath": "C:\\Users\\laura\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\laura\\OneDrive\\Documents\\GitHub\\CSE3PAX\\CSE3PAX\\obj\\",
+      "projectPath": "D:\\LatrobeSchedule2\\CSE3PAX\\CSE3PAX\\CSE3PAX.csproj",
+      "packagesPath": "C:\\Users\\61432\\.nuget\\packages\\",
+      "outputPath": "D:\\LatrobeSchedule2\\CSE3PAX\\CSE3PAX\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\laura\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\61432\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

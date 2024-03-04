@@ -4,24 +4,24 @@
 }
 
 <!-- Container -->
-    <div class="mx-3">
-        <!-- Page Heading-->
-        <h1 class="admin-txt my-4 mx-3">Staff Management</h1>
-        <p>Administrators are responsible for managing and maintaining current system users. The Staff Management section provides the functionality to complete essential tasks including adding new users, updating existing user details and removing previous users from the system.</p>
+<div class="mx-3">
+    <!-- Page Heading-->
+    <h1 class="admin-txt my-4 mx-3"><i class="bi bi-people pe-3"></i>Staff Management</h1>
+    <p>Administrators are responsible for managing and maintaining current system users. The Staff Management section provides the functionality to complete essential tasks including adding new users, updating existing user details and removing previous users from the system.</p>
  
-        <!-- Add User - heading & button -->
-        <div class="mx-2 my-5">   
-            <h4 class="admin-txt mt-4">Add User</h4>
-        <a href="/Admin/CreateUser" class="btn btn-success box-shw my-1" style="width:130px;"><i class="bi bi-person-plus-fill mx-1 pe-1"></i>Add User</a>
+    <!-- Add User - heading & button -->
+    <div class="mx-2 my-5">   
+        <h4 class="admin-txt mt-4">Add User</h4>
+    <a href="/Admin/CreateUser" class="btn btn-success box-shw my-1" style="width:130px;"><i class="bi bi-person-plus-fill mx-1 pe-1"></i>Add User</a>
+    </div>
+
+    <!-- Users Table Container -->
+    <div class="table-responsive card box-shw">
+
+            <!-- Heading -->
+        <div class="text-center">
+            <h4 class="my-4 listHeading">Users List</h4>
         </div>
-
-        <!-- Users Table Container -->
-        <div class="table-responsive card box-shw">
-
-                <!-- Heading -->
-            <div class="text-center">
-                <h4 class="my-3 listHeading">Users List</h4>
-            </div>
 
         <!-- Link to view users list -->
         <div class="mb-4 mx-3">
@@ -68,7 +68,7 @@
                             <td class="text-center">@user.ConcurrentLoadCapacity</td>
                             <td>
                                 <div class="text-center">
-                                    <a href="/Admin/EditUser?email=@user.Email" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                    <a href="/Admin/EditUser?email=@user.Email" class="btn btn-info btn-sm box-shw"><i class="bi bi-pencil-fill"></i></a>
                                 </div>
                             </td>
                         </tr>

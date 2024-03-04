@@ -15,47 +15,44 @@
 </head>
 <body>
     <div class="container-fluid py-5">
-        <h1 class="mb-3" style="color: #3163bc"><i class="bi bi-file-earmark-bar-graph-fill" style="color: #3163bc"></i> Generate Reports</h1>
-        <div class="welcome-message-container mt-3 text-dark text-left ps-5 pb-5">
-            <p class="fs-6">Looking to gain deeper insights?<br />
-                Generate your comprehensive reports for Lecturers, Subject instances, and subjects here
-            </p>
-        </div>
+        <h1 class="mb-3" style="color: #3163bc"><i class="bi bi-file-earmark-bar-graph-fill pe-3"></i> Generate Reports</h1>
+        <p class="my-4">Looking to gain deeper insights? Generate your comprehensive reports for Lecturers, Subject instances, and subjects here</p>
+        
         <form method="post">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card mb-4">
-                        <div class="card-body">
+                        <div class="card-body box-shw">
                             <div class="text-center">
-                                <h4 class="my-3">Lecturers</h4>
+                                <h4 class="my-3 listHeading">Lecturers</h4>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="buttonType" value="lecturers" class="btn btn-primary">Generate Lecturers</button>
+                                <button type="submit" name="buttonType" value="lecturers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Lecturers</button>
                             </div>
                             <div class="table-responsive">
                                 @if (Model.Lecturers.Any())
                                 {
-                                        <table class="table table-striped col-12">
+                                    <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">User ID</th>
+                                            <tr class="text-center align-middle bg-secondary box-shw text-light">
+                                                    <th scope="col" class="text-center">User ID</th>
                                                     <th scope="col">First Name</th>
                                                     <th scope="col">Last Name</th>
                                                     <th scope="col">Email</th>
-                                                    <th scope="col">Expertise 01</th>
-                                                    <th scope="col">Expertise 02</th>
-                                                    <th scope="col">Expertise 03</th>
-                                                    <th scope="col">Expertise 04</th>
-                                                    <th scope="col">Expertise 05</th>
-                                                    <th scope="col">Expertise 06</th>
-                                                    <th scope="col">Current Load</th>
+                                                    <th scope="col">Expertise 1</th>
+                                                    <th scope="col">Expertise 2</th>
+                                                    <th scope="col">Expertise 3</th>
+                                                    <th scope="col">Expertise 4</th>
+                                                    <th scope="col">Expertise 5</th>
+                                                    <th scope="col">Expertise 6</th>
+                                                    <th scope="col" class="text-center">Current Load</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach (var lecturer in Model.Lecturers)
                                             {
-                                                        <tr>
-                                                            <td>@lecturer.UserId</td>
+                                                <tr class="text-center">
+                                                            <td >@lecturer.UserId</td>
                                                             <td>@lecturer.FirstName</td>
                                                             <td>@lecturer.LastName</td>
                                                             <td>@lecturer.Email</td>
@@ -82,31 +79,31 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="text-center">
-                                <h4 class="my-3">Subject Instances</h4>
+                                <h4 class="my-3 listHeading">Subject Instances</h4>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-primary">Generate Subject Instances</button>
+                                <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Instances</button>
                             </div>
                             <div class="table-responsive">
                                 @if (Model.SubjectInstances.Any())
                                 {
-                                        <table class="table table-striped col-12">
+                                    <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
                                             <thead>
-                                                <tr>
-                                                    <th scope="col">Subject Instance ID</th>
+                                            <tr class="text-center align-middle bg-secondary box-shw text-light">
+                                                    <th scope="col">Instance ID</th>
                                                     <th scope="col">Subject ID</th>
-                                                    <th scope="col">Subject Instance Name</th>
-                                                    <th scope="col">Subject Instance Code</th>
+                                                    <th scope="col">Instance Name</th>
+                                                    <th scope="col">Instance Code</th>
                                                     <th scope="col">Lecturer ID</th>
                                                     <th scope="col">Start Date</th>
                                                     <th scope="col">End Date</th>
-                                                    <th scope="col">Subject Instance Year</th>
+                                                    <th scope="col">Instance Year</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             @foreach (var subjectInstance in Model.SubjectInstances)
                                             {
-                                                        <tr>
+                                                        <tr class="text-center">
                                                             <td>@subjectInstance.SubjectInstanceId</td>
                                                             <td>@subjectInstance.SubjectId</td>
                                                             <td>@subjectInstance.SubjectInstanceName</td>
@@ -131,9 +128,9 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <div class="text-center">
-                                <h4 class="my-3">Schedules</h4>
+                                <h4 class="my-3 listHeading">Schedules</h4>
                             </div>
-                            <button type="submit" name="buttonType" value="schedules" class="btn btn-primary">Generate Schedules</button>
+                            <button type="submit" name="buttonType" value="schedules" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Schedules</button>
                         </div>
                     </div>
                 </div>
