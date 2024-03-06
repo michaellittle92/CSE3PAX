@@ -96,9 +96,13 @@ namespace CSE3PAX.Pages.Admin
                     LoadUsers();
                     SortUsersByUserId();
                     break;
+                case "userManagement":
+                    return RedirectToPage("/Admin/StaffManagement");
                 case "subjects":
                     LoadSubjects();
                     break;
+                case "subjectManagement":
+                    return RedirectToPage("/Admin/SubjectManagement");
                 case "subjectInstances":
                     LoadSubjectInstances();
                     break;

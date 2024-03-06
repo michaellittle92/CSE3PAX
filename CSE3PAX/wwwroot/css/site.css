@@ -114,3 +114,12 @@ body {
         font-size: 18px; 
         color: #333; 
     }
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+    .button-container .mb-3 {
+        margin-right: 10px; /* Adjust margin as needed */
+    }
