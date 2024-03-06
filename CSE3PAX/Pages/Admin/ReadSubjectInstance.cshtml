@@ -1,0 +1,32 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.ReadSubjectInstanceModel
+@{
+}
+<table>
+    <thead>
+        <tr>
+            <th>Subject Instance Name</th>
+            <th> Subject Instance Code</th>
+            <th>Subject Name</th>
+            <th>Lecturer First Name</th>
+            <th>Lecturer Last Name</th>
+            <th>Lecturer Email</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+        </tr>
+    </thead>
+<tbody>
+        @foreach (var subjectInstance in Model.ListSubjectInstances)
+        {
+            <tr>
+                <td>@subjectInstance.SubjectInstanceName</td>
+                <td>@subjectInstance.SubjectInstanceCode</td>
+                <td>@subjectInstance.SubjectName</td>
+                <td>@subjectInstance.LecturerFirstName</td>
+                <td>@subjectInstance.LecturerLastName</td>
+                <td>@subjectInstance.LecturerEmail</td>
+                <td>@subjectInstance.StartDate</td>
+                <td>@subjectInstance.EndDate</td>
+            </tr>
+        }
+</table>

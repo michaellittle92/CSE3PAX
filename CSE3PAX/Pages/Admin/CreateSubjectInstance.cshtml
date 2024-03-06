@@ -1,0 +1,41 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.CreateSubjectInstanceModel
+@{
+}
+<form>
+    <div class="form-group">
+        <label for="SelectedSubject">Subject</label>
+        <select asp-for="SelectedSubject">
+            <option value="">Select a Subject...</option>
+            @foreach (var subject in Model.SelectedSubject)
+            {
+                <option value="@subject.SubjectID">@subject.SubjectName</option>
+            }
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="SubjectInstanceName">Subject Instance Name</label>
+        <input asp-for="SubjectInstanceName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="SubjectInstanceCode">Subject Instance Code</label>
+        <input asp-for="SubjectInstanceCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="LecturerLastName">Lecturer</label>
+        <input asp-for="LecturerID" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="StartDate">Start Date</label>
+        <input asp-for="StartDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date</label>
+        <input asp-for="EndDate" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="ReadSubjectInstance" class="btn btn-primary">Back</a>
+</form>
