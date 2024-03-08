@@ -98,7 +98,7 @@
 
                             <div class="mb-4">
                                 <form method="post">
-                                        <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw">View Instances</button>
+                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-dark box-shw">View Instances</button>
                                 </form>
                             </div>
 
@@ -126,10 +126,16 @@
                                                     <td>@subject.SubjectId</td>
                                                     <td>@subject.SubjectInstanceName</td>
                                                     <td>@subject.SubjectInstanceCode</td>
-                                                    <td>@subject.LecturerId</td>
+                                                    <td>@subject.LectureId</td>
                                                     <td>@subject.StartDate</td>
                                                     <td>@subject.EndDate</td>
                                                     <td>@subject.SubjectInstanceYear</td>
+                                                    @* <td>
+                                                        <div class="d-flex gap-2">
+                                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
+                                                        </div>
+                                                    </td> *@
                                                 </tr>
                                             }
                                         </tbody>

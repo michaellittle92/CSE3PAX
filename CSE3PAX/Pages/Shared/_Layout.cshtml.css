@@ -74,7 +74,8 @@ div .side-profile-container {
 
 /* Add padding to links */
 .list-group {
-    padding: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* CSS for sidebar height */
@@ -93,6 +94,11 @@ div .side-profile-container {
     border-radius: 4px; 
     background-color: #007bff;
     color: #fff;
+}
+
+.username {
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .list-group-item-action {
@@ -138,6 +144,5 @@ div .side-profile-container {
         #profileMenu a:hover {
             background-color: #f0f0f0;
             margin: 0px;
-
             padding: 10px;
         }

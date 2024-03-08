@@ -39,7 +39,7 @@ namespace CSE3PAX.Pages.Admin
             public int SubjectId { get; set; }
             public string SubjectInstanceName { get; set; }
             public string SubjectInstanceCode { get; set; }
-            public int LecturerId { get; set; }
+            public int LectureId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
             public int SubjectInstanceYear { get; set; }
@@ -77,7 +77,6 @@ namespace CSE3PAX.Pages.Admin
                     SortSubjectsById();
                     break;
                 case "subjectInstances":
-                    Console.WriteLine("Subject instances generating");
                     LoadSubjectInstances();
                     SortSubjectInstancesById();
                     break;
@@ -143,10 +142,8 @@ namespace CSE3PAX.Pages.Admin
         }
 
         private void LoadSubjectInstances() {
-
             // Console write for testing
             Console.WriteLine("Generating Subject Instances");
-
             // Retrieve the list of subject instances from the database
             try
             {
@@ -161,7 +158,7 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subject instances
-                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
+                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, LectureId, StartDate, EndDate, SubjectInstanceYear FROM SubjectInstances";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -182,10 +179,10 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectId = reader.GetInt32(1),
                                     SubjectInstanceName = reader.GetString(2),
                                     SubjectInstanceCode = reader.GetString(3),
-                                    StartDate = reader.GetDateTime(4),
-                                    EndDate = reader.GetDateTime(5),
-                                    LecturerId = reader.GetInt32(6),
-                                    SubjectInstanceYear = reader.GetInt32(7),
+                                    LectureId = reader.GetInt32(4),
+                                    StartDate = reader.GetDateTime(5),
+                                    EndDate = reader.GetDateTime(6),
+                                    SubjectInstanceYear = reader.GetInt32(7)
                                 };
 
                                 // Add subject instances

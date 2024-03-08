@@ -95,31 +95,16 @@ body {
 }
 
 .doughnut-chart-container {
-    float: left; 
-    width: 50%; 
+    float: left; /* Float the container to the left */
+    width: 50%; /* Set the container width to occupy half of the row */
 }
 
     .doughnut-chart-container canvas {
-        width: 100%; 
+        width: 100%; /* Make the canvas fill the entire container */
     }
 /* Adjust the layout of the lecturer list */
 .lecturer-list {
-    float: left; 
-    width: 40%; 
-    padding-left: 10px; 
-    padding-right: 100px;
+    float: left; /* Float the list to the left */
+    width: 50%; /* Set the width to occupy the other half of the row */
+    padding-left: 20px; /* Add some padding to separate the chart and list */
 }
-    .lecturer-list li {
-        margin-bottom: 10px; 
-        font-size: 18px; 
-        color: #333; 
-    }
-
-.button-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-    .button-container .mb-3 {
-        margin-right: 10px; /* Adjust margin as needed */
-    }
