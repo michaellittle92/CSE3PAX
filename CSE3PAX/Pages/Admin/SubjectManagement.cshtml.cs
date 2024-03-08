@@ -23,7 +23,8 @@ namespace CSE3PAX.Pages.Admin
         public List<Subject> Subjects { get; set; } = new List<Subject>();
 
         //Subject class to store Subject variable information
-        public class Subject { 
+        public class Subject
+        {
             public int SubjectId { get; set; }
             public string SubjectName { get; set; }
             public int YearLevel { get; set; }
@@ -34,12 +35,13 @@ namespace CSE3PAX.Pages.Admin
         public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
         //SubjectInstance class to store SubjectInstance variable information
-        public class SubjectInstance {
+        public class SubjectInstance
+        {
             public int SubjectInstanceId { get; set; }
             public int SubjectId { get; set; }
             public string SubjectInstanceName { get; set; }
             public string SubjectInstanceCode { get; set; }
-            public int LectureId { get; set; }
+            public int LecturerId { get; set; }
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
             public int SubjectInstanceYear { get; set; }
@@ -51,7 +53,8 @@ namespace CSE3PAX.Pages.Admin
          Exception thrown when DefaultConnect string is not found in file
          */
 
-        public SubjectManagementModel(IConfiguration configuration) { 
+        public SubjectManagementModel(IConfiguration configuration)
+        {
             //Check if a valid configuration is provided
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
@@ -60,7 +63,7 @@ namespace CSE3PAX.Pages.Admin
         }
         public void OnGet()
         {
-         
+
         }
 
         /*
@@ -77,6 +80,7 @@ namespace CSE3PAX.Pages.Admin
                     SortSubjectsById();
                     break;
                 case "subjectInstances":
+                    Console.WriteLine("Subject instances generating");
                     LoadSubjectInstances();
                     SortSubjectInstancesById();
                     break;
@@ -118,7 +122,7 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectId = reader.GetInt32(0),
                                     SubjectName = reader.GetString(1),
                                     YearLevel = reader.GetInt32(2),
-                                   // DevelopmentDifficulty = reader.GetString(3)
+                                    // DevelopmentDifficulty = reader.GetString(3)
                                 };
 
                                 // Add subjects
@@ -141,9 +145,12 @@ namespace CSE3PAX.Pages.Admin
             Subjects = Subjects.OrderBy(subject => subject.SubjectId).ToList();
         }
 
-        private void LoadSubjectInstances() {
+        private void LoadSubjectInstances()
+        {
+
             // Console write for testing
             Console.WriteLine("Generating Subject Instances");
+
             // Retrieve the list of subject instances from the database
             try
             {
@@ -158,7 +165,7 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subject instances
-                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, LectureId, StartDate, EndDate, SubjectInstanceYear FROM SubjectInstances";
+                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -179,10 +186,10 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectId = reader.GetInt32(1),
                                     SubjectInstanceName = reader.GetString(2),
                                     SubjectInstanceCode = reader.GetString(3),
-                                    LectureId = reader.GetInt32(4),
-                                    StartDate = reader.GetDateTime(5),
-                                    EndDate = reader.GetDateTime(6),
-                                    SubjectInstanceYear = reader.GetInt32(7)
+                                    StartDate = reader.GetDateTime(4),
+                                    EndDate = reader.GetDateTime(5),
+                                    LecturerId = reader.GetInt32(6),
+                                    SubjectInstanceYear = reader.GetInt32(7),
                                 };
 
                                 // Add subject instances
@@ -192,7 +199,8 @@ namespace CSE3PAX.Pages.Admin
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
                 // Handle exceptions
                 Console.WriteLine("Error retrieving subject instances: " + ex.Message);

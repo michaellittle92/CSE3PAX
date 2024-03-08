@@ -14,7 +14,7 @@
 <body>
     <!-- Heading and paragraph -->
     <h1 class="admin-txt my-4 mx-3"><i class="bi bi-file-earmark-bar-graph-fill pe-3"></i>Generate Reports</h1>
-    <p >Administrators can obtain an overview and sight from the Generate Report section which includes information regarding active users, ongoing subjects and the status of currently running subject instances.</p>
+    <p>Administrators can obtain an overview and sight from the Generate Report section which includes information regarding active users, ongoing subjects and the status of currently running subject instances.</p>
 
     <!-- Container -->
     <div class="container-fluid py-5">
@@ -27,10 +27,18 @@
                                 <h4 class="my-3 listHeading">Users</h4>
                             </div>
                             <!-- View Users Button -->
-                            <div class="mb-3">
-                                <form method="post">
-                                    <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View </button>
-                                </form>
+                            <div class="button-container">
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Users</button>
+                                    </form>
+                                </div>
+                                <!-- User Management Button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="userManagement" class="btn btn-success box-shw"><i class="bi bi-person-plus-fill mx-1 pe-1"></i>User Management</button>
+                                    </form>
+                                </div>
                             </div>
                             <!-- Users Table -->
                             <div class="table-responsive">
@@ -88,10 +96,18 @@
                                 <h4 class="my-3 listHeading">Subjects</h4>
                             </div>
                             <!-- View Subjects Button -->
-                            <div class="mb-3">
-                                <form method="post">
-                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View</button>
-                                </form>
+                            <div class="button-container">
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="subjects" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Subjects</button>
+                                    </form>
+                                </div>
+                                <!-- Subject Management Button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="subjectManagement" class="btn btn-success box-shw"><i class="bi bi-journal-plus mx-1 pe-1"></i>Subject Management</button>
+                                    </form>
+                                </div>
                             </div>
                             <!-- Subjects Table -->
                             <div class="table-responsive">
@@ -135,10 +151,18 @@
                                 <h4 class="my-3 listHeading">Subject Instances</h4>
                             </div>
                             <!-- View Subject Instances Button -->
-                            <div class="mb-3">
-                                <form method="post">
-                                    <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View</button>
-                                </form>
+                            <div class="button-container">
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Instances</button>
+                                    </form>
+                                </div>
+                                <!-- Subject Management Button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="subjectManagement" class="btn btn-success box-shw"><i class="bi bi-journal-plus mx-1 pe-1"></i>Subject Management</button>
+                                    </form>
+                                </div>
                             </div>
                             <!-- Subject Instances Table -->
                             <div class="table-responsive">

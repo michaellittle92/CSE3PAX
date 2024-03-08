@@ -37,7 +37,7 @@
                 <!-- Link & Icon container -->
                 <div class="list-group">
                     <a href="/Shared/Dashboard" class="list-group-item list-group-item-action"><i class="bi bi-speedometer2"></i>Dashboard</a>
-                    
+
                     <!-- Page index based on User Type -->
                     @if (ViewData["UserType"] == "Administrator")
                     {
@@ -74,11 +74,11 @@
             <!-- Top Nav -->
             <div class="col-md-9 col-lg-10 ml-sm-auto p-0">
                 <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                    
+
                     <div class="container-fluid">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             <!-- Heading section -->
-                            <div> 
+                            <div>
                                 <h4 class="user-heading me-3 mb-0">@ViewData["UserType"]</h4>
                             </div>
 
@@ -86,10 +86,10 @@
                             <div class="profile-container list-group">
                                 <div class="d-flex align-items-center">
 
-                                    <div>
+                                    <div class"topnavStyle">
                                         <h6 class="username mb-0" style="white-space: nowrap;">@ViewData["FullName"]</h6>
                                         <p class="text-muted mb-0">@ViewData["Email"]</p>
-                                    </div>                                    
+                                    </div>
 
                                     <a href="#" class="list-group-item list-group-item-action list-group-my-profile" id="profileMenuButton">
                                         <i class="bi bi-person" style="font-size: 1.8rem;"></i>

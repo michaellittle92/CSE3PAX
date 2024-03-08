@@ -21,7 +21,7 @@
         <!-- Add Subject - heading & button -->
         <div class="mx-2 my-3">
             <h4 class="admin-txt mt-4">Add Subject</h4>
-            <a href="/Admin/CreateSubject" class="btn btn-success box-shw my-1" ><i class="bi bi-journal-plus mx-1 pe-1"></i>Add Subject</a>
+            <a href="/Admin/CreateSubject" class="btn btn-success box-shw my-1"><i class="bi bi-journal-plus mx-1 pe-1"></i>Add Subject</a>
         </div>
 
         <!-- Subject Section -->
@@ -77,76 +77,70 @@
             </form>
         </div>
 
-    <!-- Subject Instance Section-->
-    <h1 class="admin-txt my-4 mx-3"><i class="bi bi-journal-text pe-3"></i>Subject Instance Management</h1>
-    <p class="mx-3">This section allows users the ability to oversee, manage, and maintain the list of subject instances for each subject</p>
+        <!-- Subject Instance Section-->
+        <h1 class="admin-txt my-4 mx-3"><i class="bi bi-journal-text pe-3"></i>Subject Instance Management</h1>
+        <p class="mx-3">This section allows users the ability to oversee, manage, and maintain the list of subject instances for each subject</p>
 
-    <!-- Add Subject Instance - heading & button -->
-    <div class="mx-4">
-        <h4 class="admin-txt mt-4">Add Subject Instance</h4>
-        <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-plus-circle mx-1 pe-1"></i>Add Instance</a>
-    </div>
-    <div class="container-fluid py-5">
-        <form method="post">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mb-4">
-                        <div class="card-body box-shw">
-                            <div class="text-center">
-                                <h4 class="my-3 listHeading">Subject Instances</h4>
-                            </div>
+        <!-- Add Subject Instance - heading & button -->
+        <div class="mx-4">
+            <h4 class="admin-txt mt-4">Add Subject Instance</h4>
+            <a href="/Admin/CreateSubject" class="btn btn-success box-shw"><i class="bi bi-plus-circle mx-1 pe-1"></i>Add Instance</a>
+        </div>
+        <div class="container-fluid py-5">
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card mb-4">
+                            <div class="card-body box-shw">
+                                <div class="text-center">
+                                    <h4 class="my-3 listHeading">Subject Instances</h4>
+                                </div>
 
-                            <div class="mb-4">
-                                <form method="post">
-                                    <button type="submit" name="buttonType" value="subjects" class="btn btn-dark box-shw">View Instances</button>
-                                </form>
-                            </div>
+                                <div class="mb-4">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw">View Instances</button>
+                                    </form>
+                                </div>
 
-                            <div class="table-responsive">
-                                @if (Model.SubjectInstances.Any())
-                                {
-                                    <table class="table table-striped col-12">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Subject Instance ID</th>
-                                                <th scope="col">Subject ID</th>
-                                                <th scope="col">Instance Name</th>
-                                                <th scope="col">Instance Code</th>
-                                                <th scope="col">Lecturer ID</th>
-                                                <th scope="col">Start Date</th>
-                                                <th scope="col">End Date</th>
-                                                <th scope="col">Year</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var subject in Model.SubjectInstances)
-                                            {
+                                <div class="table-responsive">
+                                    @if (Model.SubjectInstances.Any())
+                                    {
+                                        <table class="table table-striped col-12">
+                                            <thead>
                                                 <tr>
-                                                    <td>@subject.SubjectInstanceId</td>
-                                                    <td>@subject.SubjectId</td>
-                                                    <td>@subject.SubjectInstanceName</td>
-                                                    <td>@subject.SubjectInstanceCode</td>
-                                                    <td>@subject.LectureId</td>
-                                                    <td>@subject.StartDate</td>
-                                                    <td>@subject.EndDate</td>
-                                                    <td>@subject.SubjectInstanceYear</td>
-                                                    @* <td>
-                                                        <div class="d-flex gap-2">
-                                                            <a href="#" class="btn btn-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
-                                                            <a href="#" class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i></a>
-                                                        </div>
-                                                    </td> *@
+                                                    <th scope="col">Subject Instance ID</th>
+                                                    <th scope="col">Subject ID</th>
+                                                    <th scope="col">Instance Name</th>
+                                                    <th scope="col">Instance Code</th>
+                                                    <th scope="col">Lecturer ID</th>
+                                                    <th scope="col">Start Date</th>
+                                                    <th scope="col">End Date</th>
+                                                    <th scope="col">Year</th>
                                                 </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                }
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var subject in Model.SubjectInstances)
+                                                {
+                                                    <tr>
+                                                        <td>@subject.SubjectInstanceId</td>
+                                                        <td>@subject.SubjectId</td>
+                                                        <td>@subject.SubjectInstanceName</td>
+                                                        <td>@subject.SubjectInstanceCode</td>
+                                                        <td>@subject.LecturerId</td>
+                                                        <td>@subject.StartDate</td>
+                                                        <td>@subject.EndDate</td>
+                                                        <td>@subject.SubjectInstanceYear</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
     </div>
 </body>
