@@ -22,16 +22,14 @@ managerCheckBox.addEventListener('change', function () {
         lecturerCheckBox.checked = false;
         adminCheckBox.checked = false;
         lecturerFieldsDiv.style.display = "none";
-
-
     }
 });
+
 adminCheckBox.addEventListener('change', function () {
     if (this.checked) {
         // If managerCheckBox is checked, uncheck lecturerCheckBox
         managerCheckBox.checked = false;
         lecturerCheckBox.checked = false;
         lecturerFieldsDiv.style.display = "none";
-
     }
 });

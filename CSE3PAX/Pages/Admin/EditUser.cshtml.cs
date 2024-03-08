@@ -66,11 +66,6 @@ namespace CSE3PAX.Pages.Admin
         }
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
-            {
-                // If the model state is not valid, return to the page to display validation errors
-                return Page();
-            }
 
             try
             {
@@ -92,11 +87,13 @@ namespace CSE3PAX.Pages.Admin
 
                         int result = command.ExecuteNonQuery();
 
+                        Console.WriteLine(FirstName);
+
                         //Check to see if update is successful
                         if (result == 1)
                         {
 
-                            return RedirectToPage("/Admin/ReadUser");
+                            return RedirectToPage("/Admin/StaffManagement");
                         }
                         else
                         {
@@ -104,8 +101,11 @@ namespace CSE3PAX.Pages.Admin
                             Console.WriteLine("", "User could not be updated.");
                             return Page();
                         }
+
                     }
+
                 }
+                
             }
             catch (Exception ex)
             {
@@ -155,7 +155,7 @@ namespace CSE3PAX.Pages.Admin
                         await command.ExecuteNonQueryAsync();
                     }
                 }
-                return RedirectToPage("/Admin/ReadUser");
+                return RedirectToPage("/Admin/StaffManagement");
             }
             catch (Exception ex)
             {
