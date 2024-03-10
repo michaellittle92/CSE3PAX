@@ -3,29 +3,53 @@
 @{
 }
 
-<form method="post" class="container">
-    <!-- Create Subject Title -->
-    <h1 class="mb-5" style="color: #3163bc"><i class="bi bi-pencil-fill" style="color: #3163bc"></i> Create Subject</h1>
-    <div class="my-4">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
 
-    <div class="form-group">
-        <label class="form-label" asp-for="SubjectCode">Subject Code</label>
-        <input class="form-control" asp-for="SubjectCode" />
-    </div>
-    <div class="form-group">
-        <label class="form-label" asp-for="SubjectName">Subject Name</label>
-        <input class="form-control" asp-for="SubjectName" />
-    </div>
-    <div class="form-group">
-        <label class="form-label" asp-for="SubjectClassification">Subject Classification</label>
-        <input class="form-control" asp-for="SubjectClassification" />
-    </div>
+            <!-- Create Subject Title -->
+            <h1 class="my-5 admin-txt text-center"><i class="bi bi-book"></i> Create Subject</h1>
+            
+            <!-- Create User Form -->
+            <form method="post">
+                
+                    <!-- Subject Code -->
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="SubjectCode">Subject Code</label>
+                        <input class="form-control" asp-for="SubjectCode" />
+                    </div>
+                    <!-- Subject Name -->
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="SubjectName">Subject Name</label>
+                        <input class="form-control" asp-for="SubjectName" />
+                    </div>
+                    <!-- Subject Classification -->
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="SubjectClassification">Subject Classification</label>
+                        <input class="form-control" asp-for="SubjectClassification" />
+                    </div>
+                    <!-- Year Level -->
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="YearLevel">Year Level</label>
+                        <input class="form-control" asp-for="YearLevel" />
+                    </div>
+                
+                   
+                    <!-- Button container -->
+                    <div class="d-flex justify-content-center p-3 flex-wrap">
+                        <!-- Save / Cancel Buttons -->
+                        <button type="submit" class="btn btn-primary mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Submit</button>
+                        <button type="button" class="btn btn-outline-danger mx-5 box-shw my-2" onclick="goBack()" style="width:130px"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                    </div>
 
-    <div class="form-group">
-        <label class="form-label" asp-for="YearLevel">Year Level</label>
-        <input class="form-control" asp-for="YearLevel" />
+                    @* <button type="submit" class="btn btn-primary" style="width:250px;">Save</button>
+                    <a asp-page="/Admin/Subjects" class="btn btn-outline-danger box-shw" onclick="goBack()" style="width:250px">Cancel</a> *@
+            </form>
+        </div>
     </div>
-    </div>
-    <button type="submit" class="btn btn-primary" style="width:250px;">Save</button>
-    <a asp-page="/Admin/Subjects" class="btn btn-outline-danger box-shw" onclick="goBack()" style="width:250px">Cancel</a>
-</form>
+</div>
+
+<!-- JS Scripts -->
+<script src="~/js/site.js"></script>
+
+

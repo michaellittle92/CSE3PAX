@@ -2,31 +2,58 @@
 @model CSE3PAX.Pages.Admin.EditSubjectModel
 @{
 }
-<form method="post">
-<div class="form-group">
-        <label class="form-label" asp-for="SubjectCode">Subject Code</label>
-        <input class="form-control" asp-for="SubjectCode" readonly />
+
+<!-- Edit Subject Container -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Edit Subject Title -->
+            <h1 class="my-5 admin-txt text-center"> <i class="bi bi-pencil-fill admin-txt pe-3"></i>Edit Subject</h1>
+
+            <!-- Edit Subject Form -->
+            <form method="post">
+                <div class="mb-3">
+                    <label class="form-label" asp-for="SubjectCode">Subject Code</label>
+                    <input class="form-control" asp-for="SubjectCode" readonly />
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label" asp-for="SubjectName">Subject Name</label>
+                    <input class="form-control" asp-for="SubjectName" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="SubjectClassification">Subject Classification</label>
+                    <input class="form-control" asp-for="SubjectClassification" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" asp-for="YearLevel">Year Level</label>
+                    <input class="form-control" asp-for="YearLevel" />
+                </div>
+            </form>
+
+            <!-- Submit / Cancel / Delete Button -->
+            <div class="d-flex py-3 justify-content-center align-items-center">
+
+               <!-- Save Button -->
+                <form method="post">
+                    <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px"><i class="bi bi-save2 me-2"></i>Save</button>
+                </form>
+
+                <!-- Cancel Button -->
+                <div class="d-flex justify-content-center align-items-center">
+                    <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px; height: 38px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
+                </div>
+               
+
+                <!-- Separate form for delete action -->
+                <form method="post" asp-page-handler="Delete">
+                    <input type="hidden" asp-for="SubjectCode" />
+                    <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;" onclick="return confirm('Are you sure you want to delete this subject?');"><i class="bi bi-trash pe-3"></i>Delete</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-<label class="form-label" asp-for="SubjectName">Subject Name</label>
-        <input class="form-control" asp-for="SubjectName" />
-       </div>
-<div class="form-group">
-<label class="form-label" asp-for="SubjectClassification">Subject Classification</label>
-        <input class="form-control" asp-for="SubjectClassification" />
-       </div>
-
-<div class="form-group">
-<label class="form-label" asp-for="YearLevel">Year Level</label>
-        <input class="form-control" asp-for="YearLevel" />
-       </div>
 </div>
-    <button type="submit">Save</button>
-    <a asp-page="/Admin/ReadSubject">Cancel</a>
-</form>
-
-<!-- Separate form for delete action -->
-<form method="post" asp-page-handler="Delete" style="margin-top: 20px;">
-    <input type="hidden" asp-for="SubjectCode" />
-    <button type="submit"  onclick="return confirm('Are you sure you want to delete this subject?');">Delete</button>
-</form>

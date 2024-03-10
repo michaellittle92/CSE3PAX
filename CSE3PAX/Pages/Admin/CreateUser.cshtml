@@ -3,13 +3,13 @@
 @{
 }
 
+<!-- Create User Container -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <!-- Settings Title -->
-            <h1 class="my-5 admin-txt text-center">
-                <i class="bi bi-people-fill admin-txt"></i> Create User
-            </h1>
+            
+            <!-- Create User Title -->
+            <h1 class="my-5 admin-txt text-center"><i class="bi bi-pencil-fill admin-txt pe-3"></i>Create User</h1>
 
             <!-- Create User Form -->
             <form method="post">
@@ -120,7 +120,7 @@
                     <!-- Save / Cancel Buttons -->
                     <div class="d-flex flex-wrap align-items-center">
                         <button type="submit" class="btn btn-primary mx-5 box-shw my-2" onclick="createUserSubmit()" style="width:130px;"><i class="bi bi-save2 me-2"></i>Submit</button>
-                        <button type="button" class="btn btn-outline-danger box-shw mx-5 my-2" onclick="goBack()" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                        <a asp-page="/Admin/StaffManagement" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
                     </div>
                 </div>
             </form>
@@ -129,4 +129,3 @@
 </div>
 
 <script src="~/js/CreateUser.js"></script>
-<script src="~/js/site.js"></script>
