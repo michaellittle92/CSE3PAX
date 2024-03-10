@@ -33,6 +33,12 @@
                                         <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Users</button>
                                     </form>
                                 </div>
+                                <!-- Hide users button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="hideUsers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Users</button>
+                                    </form>
+                                </div>
                                 <!-- User Management Button -->
                                 <div class="mb-3">
                                     <form method="post">
@@ -102,6 +108,12 @@
                                         <button type="submit" name="buttonType" value="subjects" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Subjects</button>
                                     </form>
                                 </div>
+                                <!-- Hide Subjects button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="hideSubjects" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Subjects</button>
+                                    </form>
+                                </div>
                                 <!-- Subject Management Button -->
                                 <div class="mb-3">
                                     <form method="post">
@@ -157,6 +169,12 @@
                                         <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Instances</button>
                                     </form>
                                 </div>
+                                <!-- Hide subject instances button -->
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <button type="submit" name="buttonType" value="hideSubjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Instances</button>
+                                    </form>
+                                </div>
                                 <!-- Subject Management Button -->
                                 <div class="mb-3">
                                     <form method="post">
@@ -172,7 +190,7 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Subject Instance ID</th>
-                                                <th scope="col">Subject ID</th>
+                                                <th scope="col">Subject</th>
                                                 <th scope="col">Subject Instance Name</th>
                                                 <th scope="col">Subject Instance Code</th>
                                                 <th scope="col">Lecturer ID</th>
@@ -186,7 +204,7 @@
                                             {
                                                 <tr>
                                                     <td>@subjectInstance.SubjectInstanceId</td>
-                                                    <td>@subjectInstance.SubjectId</td>
+                                                    <td>@subjectInstance.SubjectCode</td>
                                                     <td>@subjectInstance.SubjectInstanceName</td>
                                                     <td>@subjectInstance.SubjectInstanceCode</td>
                                                     <td>@subjectInstance.LecturerId</td>

@@ -28,51 +28,53 @@
                             </div>
                             <div class="mb-3">
                                 <button type="submit" name="buttonType" value="lecturers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Lecturers</button>
+                                <button type="submit" name="buttonType" value="hideLecturers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Lecturers</button>
                             </div>
                             <div class="table-responsive">
                                 @if (Model.Lecturers.Any())
                                 {
                                     <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
-                                            <thead>
+                                        <thead>
                                             <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                                    <th scope="col" class="text-center">User ID</th>
-                                                    <th scope="col">First Name</th>
-                                                    <th scope="col">Last Name</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Expertise 1</th>
-                                                    <th scope="col">Expertise 2</th>
-                                                    <th scope="col">Expertise 3</th>
-                                                    <th scope="col">Expertise 4</th>
-                                                    <th scope="col">Expertise 5</th>
-                                                    <th scope="col">Expertise 6</th>
-                                                    <th scope="col" class="text-center">Current Load</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                                <th scope="col" class="text-center">User ID</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Expertise 1</th>
+                                                <th scope="col">Expertise 2</th>
+                                                <th scope="col">Expertise 3</th>
+                                                <th scope="col">Expertise 4</th>
+                                                <th scope="col">Expertise 5</th>
+                                                <th scope="col">Expertise 6</th>
+                                                <th scope="col" class="text-center">Current Load</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             @foreach (var lecturer in Model.Lecturers)
                                             {
                                                 <tr class="text-center">
-                                                            <td >@lecturer.UserId</td>
-                                                            <td>@lecturer.FirstName</td>
-                                                            <td>@lecturer.LastName</td>
-                                                            <td>@lecturer.Email</td>
-                                                            <td>@lecturer.Expertise01</td>
-                                                            <td>@lecturer.Expertise02</td>
-                                                            <td>@lecturer.Expertise03</td>
-                                                            <td>@lecturer.Expertise04</td>
-                                                            <td>@lecturer.Expertise05</td>
-                                                            <td>@lecturer.Expertise06</td>
-                                                            <td>@lecturer.ConcurrentLoadCapacity</td>
-                                                        </tr>
+                                                    <td>@lecturer.UserId</td>
+                                                    <td>@lecturer.FirstName</td>
+                                                    <td>@lecturer.LastName</td>
+                                                    <td>@lecturer.Email</td>
+                                                    <td>@lecturer.Expertise01</td>
+                                                    <td>@lecturer.Expertise02</td>
+                                                    <td>@lecturer.Expertise03</td>
+                                                    <td>@lecturer.Expertise04</td>
+                                                    <td>@lecturer.Expertise05</td>
+                                                    <td>@lecturer.Expertise06</td>
+                                                    <td>@lecturer.ConcurrentLoadCapacity</td>
+                                                </tr>
                                             }
-                                            </tbody>
-                                        </table>
+                                        </tbody>
+                                    </table>
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-lg-12">
@@ -83,45 +85,48 @@
                             </div>
                             <div class="mb-3">
                                 <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Instances</button>
+                                <!-- New button added -->
+                                <button type="submit" name="buttonType" value="hideSubjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Instances</button>
                             </div>
                             <div class="table-responsive">
                                 @if (Model.SubjectInstances.Any())
                                 {
                                     <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
-                                            <thead>
+                                        <thead>
                                             <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                                    <th scope="col">Instance ID</th>
-                                                    <th scope="col">Subject ID</th>
-                                                    <th scope="col">Instance Name</th>
-                                                    <th scope="col">Instance Code</th>
-                                                    <th scope="col">Lecturer ID</th>
-                                                    <th scope="col">Start Date</th>
-                                                    <th scope="col">End Date</th>
-                                                    <th scope="col">Instance Year</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                                <th scope="col">Instance ID</th>
+                                                <th scope="col">Subject</th>
+                                                <th scope="col">Instance Name</th>
+                                                <th scope="col">Instance Code</th>
+                                                <th scope="col">Lecturer ID</th>
+                                                <th scope="col">Start Date</th>
+                                                <th scope="col">End Date</th>
+                                                <th scope="col">Instance Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             @foreach (var subjectInstance in Model.SubjectInstances)
                                             {
-                                                        <tr class="text-center">
-                                                            <td>@subjectInstance.SubjectInstanceId</td>
-                                                            <td>@subjectInstance.SubjectId</td>
-                                                            <td>@subjectInstance.SubjectInstanceName</td>
-                                                            <td>@subjectInstance.SubjectInstanceCode</td>
-                                                            <td>@subjectInstance.LecturerId</td>
-                                                            <td>@subjectInstance.StartDate</td>
-                                                            <td>@subjectInstance.EndDate</td>
-                                                            <td>@subjectInstance.SubjectInstanceYear</td>
-                                                        </tr>
+                                                <tr class="text-center">
+                                                    <td>@subjectInstance.SubjectInstanceId</td>
+                                                    <td>@subjectInstance.SubjectCode</td>
+                                                    <td>@subjectInstance.SubjectInstanceName</td>
+                                                    <td>@subjectInstance.SubjectInstanceCode</td>
+                                                    <td>@subjectInstance.LecturerId</td>
+                                                    <td>@subjectInstance.StartDate</td>
+                                                    <td>@subjectInstance.EndDate</td>
+                                                    <td>@subjectInstance.SubjectInstanceYear</td>
+                                                </tr>
                                             }
-                                            </tbody>
-                                        </table>
+                                        </tbody>
+                                    </table>
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <div class="row">
                 <div class="col-lg-12">
@@ -130,11 +135,18 @@
                             <div class="text-center">
                                 <h4 class="my-3 listHeading">Schedules</h4>
                             </div>
-                            <button type="submit" name="buttonType" value="schedules" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Schedules</button>
+                            <div class="mb-3">
+                                <button type="submit" name="buttonType" value="schedules" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Schedules</button>
+                                <button type="submit" name="buttonType" value="hideSchedules" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Schedules</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
         </form>
     </div>
 </body>
