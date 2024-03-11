@@ -53,6 +53,7 @@ namespace CSE3PAX.Pages.Manager
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
             public int SubjectInstanceYear { get; set; }
+            public string SubjectCode { get; set; }
         }
 
         /*
@@ -91,10 +92,36 @@ namespace CSE3PAX.Pages.Manager
                 case "schedules":
                     LoadSchedules();
                     break;
+                case "hideLecturers":
+                    HideLecturers();
+                    break;
+                case "hideSubjectInstances":
+                    HideSubjectInstances();
+                    break;
+                case "hideSchedules":
+                    HideSchedules();
+                    break;
                 default:
                     break;
             }
             return Page();
+        }
+
+        // Method to hide lecturers
+        private void HideLecturers() {
+            Lecturers.Clear();
+        }
+
+        // Method to hide subject instances
+        private void HideSubjectInstances()
+        {
+            SubjectInstances.Clear();
+        }
+
+        // Method to hide schedules
+        private void HideSchedules()
+        {
+            // schedule to be hidden
         }
 
         // Method to get lecturer information from db
@@ -176,7 +203,9 @@ namespace CSE3PAX.Pages.Manager
                     connection.Open();
 
                     // SQL query to select all subject instances
-                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
+                    string sql = "SELECT si.SubjectInstanceId, si.SubjectId, si.SubjectInstanceName, si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, si.SubjectInstanceYear, s.SubjectCode " +
+                        "FROM [SubjectInstance] si " +
+                        "INNER JOIN [Subjects] s ON si.SubjectId = s.SubjectId";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -198,6 +227,7 @@ namespace CSE3PAX.Pages.Manager
                                     EndDate = reader.GetDateTime(5),
                                     LecturerId = reader.GetInt32(6),
                                     SubjectInstanceYear = reader.GetInt32(7),
+                                    SubjectCode = reader.GetString(8)
                                 };
                                 // Add subject instance to the list
                                 SubjectInstances.Add(subjectInstance);
@@ -205,6 +235,8 @@ namespace CSE3PAX.Pages.Manager
                         }
                     }
                 }
+                // Sort subjects by YearLevel
+                SubjectInstances = SubjectInstances.OrderBy(s => s.SubjectCode).ToList();
             }
             catch (Exception ex)
             {
