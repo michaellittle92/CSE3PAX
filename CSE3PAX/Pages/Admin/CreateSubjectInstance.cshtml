@@ -1,0 +1,72 @@
+﻿@page
+@model CSE3PAX.Pages.Admin.CreateSubjectInstanceModel
+@{
+}
+<form method="post">
+    <!-- Ensure the action attribute points to your form handling endpoint -->
+    <select id="subjectDropdownList" name="SubjectNameInput">
+        <option value="">Select Subject</option>
+        @foreach (var subject in Model.ListSubjects)
+        {
+            <option value="@subject.SubjectName">@subject.SubjectName</option>
+        }
+    </select>
+
+
+    <!-- Read-only fields for selected lecturer information -->
+    <div>
+        <label for="lecturerFirstName">First Name:</label>
+        <input type="text" id="lecturerFirstName" name="lecturerFirstName" readonly>
+    </div>
+    <div>
+        <label for="lecturerLastName">Last Name:</label>
+        <input type="text" id="lecturerLastName" name="lecturerLastName" readonly>
+    </div>
+    <div>
+        <label for="lecturerEmail">Email:</label>
+        <input type="text" id="lecturerEmail" name="LecturerEmail" readonly value="@Model.LecturerEmail">
+
+    </div>
+    <button type="button" id="selectLecturerBtn">Select Lecturer</button> <!-- Button to show the table -->
+    <!-- Lecturer Table, initially hidden -->
+    <table id="lecturerTable" style="display:none;">
+        <thead>
+            <tr>
+                <th>Lecturer First Name</th>
+                <th>Lecturer Last Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lecturer in Model.ListLecturers)
+            {
+                <tr>
+                    <td>@lecturer.FirstName</td>
+                    <td>@lecturer.LastName</td>
+                    <td>@lecturer.Email</td>
+                    <td><button type="button" class="selectLecturer">Select</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <!-- Start Date Picker -->
+    <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="StartDateInput">
+
+    </div>
+
+    <!-- End Date Picker -->
+    <div>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="EndDateInput">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+</form>
+
+<script src="/js/CreateSubjectInstance.js"></script>
