@@ -103,35 +103,35 @@ namespace CSE3PAX.Pages.Admin
                         command.CommandText = @"
                 --Declared Variables 
 
-DECLARE @UserID INT;
-DECLARE @LecturerID INT;
-DECLARE @SubjectID INT;
-DECLARE @SubjectCode NVARCHAR(100);
-DECLARE @Year NVARCHAR(100);
-DECLARE @Month NVARCHAR(100);
-DECLARE @SubjectInstanceCode NVARCHAR(100);
-DECLARE @SubjectInstanceName NVARCHAR(100);
-DECLARE @RandomAlphaNumeric NVARCHAR(4); -- Variable for the 4-digit alphanumeric string
+                DECLARE @UserID INT;
+                DECLARE @LecturerID INT;
+                DECLARE @SubjectID INT;
+                DECLARE @SubjectCode NVARCHAR(100);
+                DECLARE @Year NVARCHAR(100);
+                DECLARE @Month NVARCHAR(100);
+                DECLARE @SubjectInstanceCode NVARCHAR(100);
+                DECLARE @SubjectInstanceName NVARCHAR(100);
+                DECLARE @RandomAlphaNumeric NVARCHAR(4); -- Variable for the 4-digit alphanumeric string
 
---Calculated values in the DB 
-SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
-SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
-SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-SET @Month = DATENAME(MONTH, @EndDateInput);
+                --Calculated values in the DB 
+                SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
+                SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
+                SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                SET @Month = DATENAME(MONTH, @EndDateInput);
 
--- Generate a 4-digit alphanumeric string from a NEWID()
-SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                -- Generate a 4-digit alphanumeric string from a NEWID()
+                SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
 
-SET @SubjectInstanceCode = @Year + '-' + @SubjectCode; -- Concatenate year and SubjectCode
-SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')'; 
+                SET @SubjectInstanceCode = @Year + '-' + @SubjectCode; -- Concatenate year and SubjectCode
+                SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')'; 
 
---Insert data into SubjectInstances Table (assuming the table and columns as before)
-INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear)
-VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year);
+                --Insert data into SubjectInstances Table (assuming the table and columns as before)
+                INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear)
+                VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year);
 
-SELECT * FROM SubjectInstance";
+                SELECT * FROM SubjectInstance";
 
 
                         command.Parameters.AddWithValue("@UserEmailInput", LecturerEmail);
@@ -145,7 +145,7 @@ SELECT * FROM SubjectInstance";
                 }
 
                 // Redirect or return a success message/page
-                return RedirectToPage("./AdminIndex"); // Adjust the redirection to your needs
+                return RedirectToPage("./AdminIndex"); 
             }
             catch (SqlException ex)
             {

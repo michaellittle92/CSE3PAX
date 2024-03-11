@@ -9,10 +9,10 @@
         // Check if the clicked element is a "Select" button
         if (e.target && e.target.nodeName == "BUTTON" && e.target.classList.contains('selectLecturer')) {
             const row = e.target.closest('tr');
-            const email = row.cells[2].textContent; // Assuming the email is in the third column
+            const email = row.cells[2].textContent; 
 
             // Update the read-only input field for lecturer's email
-            document.getElementById('lecturerEmail').value = email; // Ensure this ID matches your input field for LecturerEmail
+            document.getElementById('lecturerEmail').value = email;
 
             document.getElementById('lecturerFirstName').value = row.cells[0].textContent; 
             document.getElementById('lecturerLastName').value = row.cells[1].textContent; 
