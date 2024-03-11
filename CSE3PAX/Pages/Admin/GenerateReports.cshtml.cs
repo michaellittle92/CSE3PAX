@@ -10,7 +10,6 @@ namespace CSE3PAX.Pages.Admin
 
     public class GenerateReportsModel : PageModel
     {
-
         // Object to access application settings
         private readonly IConfiguration _configuration;
 
@@ -131,6 +130,9 @@ namespace CSE3PAX.Pages.Admin
         private void HideSubjects()
         {
             Subjects.Clear();
+
+            
+
         }
 
         // Method to hide subject instances

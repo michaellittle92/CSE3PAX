@@ -12,6 +12,8 @@ namespace CSE3PAX.Pages.Admin
 
     public class CreateUserModel : PageModel
     {
+        // Alert message variable
+        public string SuccessMessage { get; set; }
 
         // Object to access application settings
         private readonly IConfiguration _configuration;
@@ -166,6 +168,9 @@ namespace CSE3PAX.Pages.Admin
                             command.Parameters.AddWithValue("@IsManager", IsManager);
                             command.Parameters.AddWithValue("@IsLecturer", IsLecturer);
                             command.Parameters.AddWithValue("@IsPasswordResetRequired", false);
+
+                            // Set the success message
+                            SuccessMessage = "User created successfully.";
 
                             // Execute SQL query 
                             command.ExecuteNonQuery();
