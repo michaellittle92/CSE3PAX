@@ -32,28 +32,24 @@
                     <label class="form-label" asp-for="YearLevel">Year Level</label>
                     <input class="form-control" asp-for="YearLevel" />
                 </div>
+            
+
+
+            <!-- Buttons Flex Container -->
+            <div class="d-flex justify-content-center mt-4">
+
+                <!-- Save Button -->
+                <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px"><i class="bi bi-save2 me-2"></i>Save</button>
             </form>
 
-            <!-- Submit / Cancel / Delete Button -->
-            <div class="d-flex py-3 justify-content-center align-items-center">
-
-               <!-- Save Button -->
-                <form method="post">
-                    <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px"><i class="bi bi-save2 me-2"></i>Save</button>
-                </form>
-
-                <!-- Cancel Button -->
-                <div class="d-flex justify-content-center align-items-center">
-                    <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px; height: 38px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
-                </div>
-               
-
-                <!-- Separate form for delete action -->
-                <form method="post" asp-page-handler="Delete">
-                    <input type="hidden" asp-for="SubjectCode" />
-                    <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;" onclick="return confirm('Are you sure you want to delete this subject?');"><i class="bi bi-trash pe-3"></i>Delete</button>
-                </form>
-            </div>
+            <!-- Cancel Button -->
+            <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px; height: 38px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
+           
+            <!-- Separate form for delete action -->
+            <form method="post" asp-page-handler="Delete">
+                <input type="hidden" asp-for="SubjectCode" />
+                <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;" onclick="return confirm('Are you sure you want to delete this subject?');"><i class="bi bi-trash pe-3"></i>Delete</button>
+            </form>
         </div>
     </div>
 </div>

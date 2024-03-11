@@ -66,8 +66,9 @@ namespace CSE3PAX.Pages.Admin
         }
         public IActionResult OnPost()
         {
-
-            try
+            
+               
+                try
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
