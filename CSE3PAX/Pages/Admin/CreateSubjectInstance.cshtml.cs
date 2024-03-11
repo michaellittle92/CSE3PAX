@@ -36,6 +36,9 @@ namespace CSE3PAX.Pages.Admin
         [BindProperty]
         public DateTime EndDateInput { get; set; }
 
+        [BindProperty]
+        public int StudentCount { get; set; }
+
 
         public void OnGet()
         {
@@ -92,6 +95,9 @@ namespace CSE3PAX.Pages.Admin
 
             try
             {
+                // Calculate the instance load based on the StudentCount property
+                double load = CalculateInstanceLoad(StudentCount);
+
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
@@ -99,53 +105,45 @@ namespace CSE3PAX.Pages.Admin
                     {
                         command.CommandType = System.Data.CommandType.Text;
 
-
                         command.CommandText = @"
-                --Declared Variables 
+                    DECLARE @UserID INT;
+                    DECLARE @LecturerID INT;
+                    DECLARE @SubjectID INT;
+                    DECLARE @SubjectCode NVARCHAR(100);
+                    DECLARE @Year NVARCHAR(100);
+                    DECLARE @Month NVARCHAR(100);
+                    DECLARE @SubjectInstanceCode NVARCHAR(100);
+                    DECLARE @SubjectInstanceName NVARCHAR(100);
+                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
 
-                DECLARE @UserID INT;
-                DECLARE @LecturerID INT;
-                DECLARE @SubjectID INT;
-                DECLARE @SubjectCode NVARCHAR(100);
-                DECLARE @Year NVARCHAR(100);
-                DECLARE @Month NVARCHAR(100);
-                DECLARE @SubjectInstanceCode NVARCHAR(100);
-                DECLARE @SubjectInstanceName NVARCHAR(100);
-                DECLARE @RandomAlphaNumeric NVARCHAR(4); -- Variable for the 4-digit alphanumeric string
+                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
+                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                    SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
+                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                    SET @Month = DATENAME(MONTH, @EndDateInput);
 
-                --Calculated values in the DB 
-                SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
-                SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
-                SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                SET @Month = DATENAME(MONTH, @EndDateInput);
+                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
 
-                -- Generate a 4-digit alphanumeric string from a NEWID()
-                SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                    SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
+                    SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
 
-                SET @SubjectInstanceCode = @Year + '-' + @SubjectCode; -- Concatenate year and SubjectCode
-                SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')'; 
-
-                --Insert data into SubjectInstances Table (assuming the table and columns as before)
-                INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear)
-                VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year);
-
-                SELECT * FROM SubjectInstance";
-
+                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
 
                         command.Parameters.AddWithValue("@UserEmailInput", LecturerEmail);
                         command.Parameters.AddWithValue("@SubjectNameInput", SubjectNameInput);
                         command.Parameters.AddWithValue("@StartDateInput", StartDateInput);
                         command.Parameters.AddWithValue("@EndDateInput", EndDateInput);
+                        // Add the Load value as a parameter
+                        command.Parameters.AddWithValue("@Load", load);
 
-                    
                         await command.ExecuteNonQueryAsync();
                     }
                 }
 
                 // Redirect or return a success message/page
-                return RedirectToPage("./AdminIndex"); 
+                return RedirectToPage("./AdminIndex");
             }
             catch (SqlException ex)
             {
@@ -155,7 +153,18 @@ namespace CSE3PAX.Pages.Admin
             }
             return Page(); 
             }
+        public double CalculateInstanceLoad(int studentCount)
+        {
+            double baseNumber = 20; // Base number of students for 1 instance load
+            double instanceLoad = (double)studentCount / baseNumber;
+
+            // Round to 1 decimal place
+            instanceLoad = Math.Round(instanceLoad, 1, MidpointRounding.AwayFromZero);
+
+            return instanceLoad;
         }
 
+    }
+   
 
     }
