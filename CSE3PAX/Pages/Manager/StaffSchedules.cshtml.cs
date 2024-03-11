@@ -1,8 +1,10 @@
+using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CSE3PAX.Pages.Manager
@@ -17,6 +19,12 @@ namespace CSE3PAX.Pages.Manager
 
         // Properties to store user information
         public List<Lecturer> Lecturers { get; set; }
+
+        //Current Table row headers
+        public List<string> Next12Months { get; set; } = new List<string>();
+
+        //SubjectInstance class in HelpClasses -> SubjectInstance.cs
+        public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
         public class Lecturer
         {
@@ -54,8 +62,14 @@ namespace CSE3PAX.Pages.Manager
 
         public void OnGet()
         {
+
+            
+
             // Display a list of lecturers
             LoadLecturers();
+
+            
+
         }
 
         public IActionResult OnPost(int selectedUserId)
@@ -86,6 +100,7 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        // Method to load all lectures
         private void LoadLecturers()
         {
             // Retrieve the list of lecturers from the database
@@ -120,6 +135,12 @@ namespace CSE3PAX.Pages.Manager
                                     LastName = reader.GetString(reader.GetOrdinal("LastName"))
                                 });
                             }
+                            DateTime now = DateTime.Now;
+                            for (int i = 0; i < 12; i++)
+                            {
+                                DateTime nextMonth = now.AddMonths(i);
+                                Next12Months.Add(nextMonth.ToString("MMMM-yyyy"));
+                            }
                         }
                     }
                 }
@@ -134,9 +155,11 @@ namespace CSE3PAX.Pages.Manager
         private void FetchLecturerDetails(int userId)
         {
             // Get the details of the lecturer with the specified UserID
-
             try
             {
+
+                SubjectInstances = new List<SubjectInstance>();
+
                 // Establish connection to the database
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
@@ -144,10 +167,32 @@ namespace CSE3PAX.Pages.Manager
                     connection.Open();
 
                     // SQL select statement to get user details from the Users and Lecturers table
-                    string sql = "SELECT u.Email, u.FirstName, u.LastName, l.Expertise01, l.Expertise02, l.Expertise03, l.Expertise04, l.Expertise05, l.Expertise06, l.ConcurrentLoadCapacity " +
-                                 "FROM [Users] u " +
-                                 "LEFT JOIN [Lecturers] l ON u.UserID = l.UserID " +
-                                 "WHERE u.UserID = @UserId";
+                    string sql = @"
+                    SELECT 
+                        u.Email, 
+                        u.FirstName, 
+                        u.LastName, 
+                        l.Expertise01, 
+                        l.Expertise02, 
+                        l.Expertise03, 
+                        l.Expertise04, 
+                        l.Expertise05, 
+                        l.Expertise06, 
+                        l.ConcurrentLoadCapacity,
+                        s.SubjectInstanceId,
+                        s.SubjectInstanceName,
+                        s.SubjectInstanceCode,
+                        s.StartDate,
+                        s.EndDate
+                    FROM 
+                        [Users] u
+                    LEFT JOIN 
+                        [Lecturers] l ON u.UserID = l.UserID
+                    LEFT JOIN 
+                        [SubjectInstance] s ON l.LecturerID = s.LecturerID
+                    WHERE 
+                        u.UserID = @UserId";
+
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -159,9 +204,9 @@ namespace CSE3PAX.Pages.Manager
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             // Check if there are matching users in the database
-                            if (reader.Read())
+                            while (reader.Read())
                             {
-                                // Assign values to properties
+                                // Fetch lecturer details
                                 SelectedUserId = userId;
                                 SelectedEmail = reader.GetString(reader.GetOrdinal("Email"));
                                 SelectedFirstName = reader.GetString(reader.GetOrdinal("FirstName"));
@@ -173,11 +218,28 @@ namespace CSE3PAX.Pages.Manager
                                 SelectedExpertise04 = !reader.IsDBNull(reader.GetOrdinal("Expertise04")) ? reader.GetString(reader.GetOrdinal("Expertise04")) : "No Expertise";
                                 SelectedExpertise05 = !reader.IsDBNull(reader.GetOrdinal("Expertise05")) ? reader.GetString(reader.GetOrdinal("Expertise05")) : "No Expertise";
                                 SelectedExpertise06 = !reader.IsDBNull(reader.GetOrdinal("Expertise06")) ? reader.GetString(reader.GetOrdinal("Expertise06")) : "No Expertise";
+
+                                // Add subject instance to the list
+                                SubjectInstances.Add(new SubjectInstance
+                                {
+                                    // Assuming these are the column names in your SubjectInstance table
+                                    InstanceName = reader["SubjectInstanceCode"].ToString(),
+                                    SubjectName = reader["SubjectInstanceName"].ToString(),
+                                    // Correctly handle DateTime data types
+                                    StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM-yyyy"),
+                                    EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM-yyyy"),
+                                });
                             }
                             // Close reader
                             reader.Close();
                         }
                     }
+                }
+                // Print the full list of subject instances to the console
+                Console.WriteLine("Full List of Subject Instances:");
+                foreach (var subjectInstance in SubjectInstances)
+                {
+                    Console.WriteLine($"Subject Instance Name: {subjectInstance.SubjectName}, Subject Instance ID: {subjectInstance.InstanceName}");
                 }
             }
             catch (Exception ex)

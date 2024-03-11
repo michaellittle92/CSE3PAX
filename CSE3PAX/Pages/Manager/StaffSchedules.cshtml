@@ -158,28 +158,51 @@
                 </div>
             </div>
         </div>
-
-
-
+        <!-- Schedule -->
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-4">
                     <div class="card-body box-shw">
                         <h4 class="my-3">Schedule</h4>
-                        <br>
-                        <br>
-                        <br>
-                        <p>Schedule information to be added</p>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+                        <div class="mb-3">
+                            <a href="/LINK" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Schedule Management</a>
+                        </div>
+                        <table class="table table-bordered box-shw mt-3 bdr">
+                            <thead class="text-center">
+                                <tr class="align-middle lecturerBx box-shw">
+                                    <th class="col-lg-3">Subject Code</th>
+                                    <th class="col-lg-5">Subject Name</th>
+                                    @foreach (var monthYear in Model.Next12Months)
+                                    {
+                                        <th class="col">
+                                            @monthYear
+                                        </th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var instance in Model.SubjectInstances)
+                                {
+                                    <tr class="text-center align-middle">
+                                        <td class="col">@instance.InstanceName</td>
+                                        <td class="col">@instance.SubjectName</td>
+                                        @{
+                                            var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
+                                            var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
+                                        }
+                                        @for (int i = 0; i < Model.Next12Months.Count; i++)
+                                        {
+                                            <td class="col @(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <p>Add edit functions</p>
 </body>
 </html>
