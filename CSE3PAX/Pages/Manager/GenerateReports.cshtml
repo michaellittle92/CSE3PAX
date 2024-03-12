@@ -36,24 +36,24 @@
                                     <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
                                         <thead>
                                             <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                                <th scope="col" class="text-center">User ID</th>
+                                                <th scope="col">User ID</th>
                                                 <th scope="col">First Name</th>
                                                 <th scope="col">Last Name</th>
                                                 <th scope="col">Email</th>
-                                                <th scope="col">Expertise 1</th>
-                                                <th scope="col">Expertise 2</th>
-                                                <th scope="col">Expertise 3</th>
-                                                <th scope="col">Expertise 4</th>
-                                                <th scope="col">Expertise 5</th>
-                                                <th scope="col">Expertise 6</th>
-                                                <th scope="col" class="text-center">Current Load</th>
+                                                <th scope="col">Exp 1</th>
+                                                <th scope="col">Exp 2</th>
+                                                <th scope="col">Exp 3</th>
+                                                <th scope="col">Exp 4</th>
+                                                <th scope="col">Exp 5</th>
+                                                <th scope="col">Exp 6</th>
+                                                <th scope="col">Current Load</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach (var lecturer in Model.Lecturers)
                                             {
-                                                <tr class="text-center">
-                                                    <td>@lecturer.UserId</td>
+                                                <tr>
+                                                    <td class="text-center">@lecturer.UserId</td>
                                                     <td>@lecturer.FirstName</td>
                                                     <td>@lecturer.LastName</td>
                                                     <td>@lecturer.Email</td>
@@ -63,7 +63,7 @@
                                                     <td>@lecturer.Expertise04</td>
                                                     <td>@lecturer.Expertise05</td>
                                                     <td>@lecturer.Expertise06</td>
-                                                    <td>@lecturer.ConcurrentLoadCapacity</td>
+                                                    <td class="text-center">@lecturer.ConcurrentLoadCapacity</td>
                                                 </tr>
                                             }
                                         </tbody>
@@ -110,7 +110,7 @@
                                                 <tr class="text-center">
                                                     <td>@subjectInstance.SubjectInstanceId</td>
                                                     <td>@subjectInstance.SubjectCode</td>
-                                                    <td>@subjectInstance.SubjectInstanceName</td>
+                                                    <td class="text-start">@subjectInstance.SubjectInstanceName</td>
                                                     <td>@subjectInstance.SubjectInstanceCode</td>
                                                     <td>@subjectInstance.LecturerId</td>
                                                     <td>@subjectInstance.StartDate</td>
@@ -141,12 +141,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
             </div>
-
-
-
-
         </form>
     </div>
 </body>
