@@ -78,7 +78,6 @@
             <div class="col">
                 <hr class="underline">
                 <h4 class="availability-status">Staff Scheduling Status</h4>
-                <p>62% availability</p>
              </div>
         </div>
 
@@ -108,13 +107,13 @@
                         <!--Display data from sql database -->
                     @if (Model.Users.Any())
                     {
-                        <table class="table table-striped table-hover table-bordered border-2 align-middle m-1">
+                        <table id="lecturerWorkloadsTable" class="table table-striped table-hover table-bordered border-2 align-middle m-1">
                             <thead>
                                 <tr class="text-center align-middle bg-secondary box-shw text-light">
                                     <th scope="col">User ID</th>
-                                        <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Current Load</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Current Load</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -136,12 +135,16 @@
     </div>
 </main>
 
-    <!-- Scripts -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    
-    <!-- Javascript file and doughnut chart links -->
+    <!-- Bootstrap CSS and other imports -->
+    <!-- Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- custom JavaScript file -->
     <script src="/js/adminIndex.js"></script>
 
 </body>
