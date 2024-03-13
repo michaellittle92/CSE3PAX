@@ -62,14 +62,8 @@ namespace CSE3PAX.Pages.Manager
 
         public void OnGet()
         {
-
-            
-
             // Display a list of lecturers
             LoadLecturers();
-
-            
-
         }
 
         public IActionResult OnPost(int selectedUserId)
