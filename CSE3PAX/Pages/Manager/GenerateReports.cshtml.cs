@@ -89,17 +89,11 @@ namespace CSE3PAX.Pages.Manager
                 case "subjectInstances":
                     LoadSubjectInstances();
                     break;
-                case "schedules":
-                    LoadSchedules();
-                    break;
                 case "hideLecturers":
                     HideLecturers();
                     break;
                 case "hideSubjectInstances":
                     HideSubjectInstances();
-                    break;
-                case "hideSchedules":
-                    HideSchedules();
                     break;
                 default:
                     break;
@@ -116,12 +110,6 @@ namespace CSE3PAX.Pages.Manager
         private void HideSubjectInstances()
         {
             SubjectInstances.Clear();
-        }
-
-        // Method to hide schedules
-        private void HideSchedules()
-        {
-            // schedule to be hidden
         }
 
         // Method to get lecturer information from db
@@ -244,16 +232,6 @@ namespace CSE3PAX.Pages.Manager
                 Console.WriteLine("Error retrieving subject instances: " + ex.Message);
             }
         }
-
-        // Method to get scheduling information from db
-        private void LoadSchedules()
-        {
-
-            Console.WriteLine("Generate Schedules");
-
-
-        }
-
 
         // Method to sort lecturers by UserID
         private void SortLecturersByUserId()

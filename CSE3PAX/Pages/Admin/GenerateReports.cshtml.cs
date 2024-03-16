@@ -103,6 +103,8 @@ namespace CSE3PAX.Pages.Admin
                     break;
                 case "subjectManagement":
                     return RedirectToPage("/Admin/SubjectManagement");
+                case "instanceManagement":
+                    return RedirectToPage("/Admin/CreateSubjectInstance");
                 case "subjectInstances":
                     LoadSubjectInstances();
                     break;
@@ -130,9 +132,6 @@ namespace CSE3PAX.Pages.Admin
         private void HideSubjects()
         {
             Subjects.Clear();
-
-            
-
         }
 
         // Method to hide subject instances
@@ -213,7 +212,6 @@ namespace CSE3PAX.Pages.Admin
                 Console.WriteLine("Error retrieving users: " + ex.Message);
             }
         }
-
 
         // Method to load all subjects
         private void LoadSubjects()
