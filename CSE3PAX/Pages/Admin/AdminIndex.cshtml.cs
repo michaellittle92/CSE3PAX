@@ -77,15 +77,12 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
-
-
-        // Load Users Methods
         private void LoadUsers()
         {
-            //console write for testing
+            // Console write for testing
             Console.WriteLine("Generate Users");
 
-            //Retrieve the list of users from the database
+            // Retrieve the list of users from the database
             try
             {
                 // Clear the existing list of users
@@ -94,7 +91,7 @@ namespace CSE3PAX.Pages.Admin
                 // Establish connection to the database
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
-                    //Open connection
+                    // Open connection
                     connection.Open();
 
                     // SQL query to select all users who are lecturers
@@ -103,7 +100,8 @@ namespace CSE3PAX.Pages.Admin
                          "l.Expertise04, l.Expertise05, l.Expertise06, " +
                          "l.ConcurrentLoadCapacity, u.isAdmin, u.isManager, u.isLecturer " +
                          "FROM [Users] u " +
-                         "LEFT JOIN [Lecturers] l ON u.UserId = l.UserId ";
+                         "LEFT JOIN [Lecturers] l ON u.UserId = l.UserId " +
+                         "WHERE u.isLecturer = 1";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -111,7 +109,7 @@ namespace CSE3PAX.Pages.Admin
                         // Execute SQL query and get results
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            //Iterate through the results and add users to the list
+                            // Iterate through the results and add users to the list
                             while (reader.Read())
                             {
                                 // Save user information to User object
@@ -130,7 +128,7 @@ namespace CSE3PAX.Pages.Admin
                                     ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10)
                                 };
 
-                                // Determine UserType based on isAdmin, isManager, and isLecturer 
+                                // Determine UserType based on isAdmin, isManager, and isLecturer
                                 if (reader.GetBoolean(11))
                                     user.UserType = "Administrator";
                                 else if (reader.GetBoolean(12))
@@ -151,6 +149,7 @@ namespace CSE3PAX.Pages.Admin
                 Console.WriteLine("Error retrieving users: " + ex.Message);
             }
         }
+
 
         //Method to sort lecturers by UserID
         private void SortUsersByUserId()

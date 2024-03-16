@@ -2,6 +2,8 @@ using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
+using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CSE3PAX.Pages.Admin
 {
@@ -64,24 +66,33 @@ namespace CSE3PAX.Pages.Admin
             catch (Exception ex) { }
         }
 
-        public void OnPost()
+
+        public IActionResult OnPost()
+           
         {
-            try {
-                using (SqlConnection connection = new SqlConnection(_connectionString)) { 
-                  connection.Open();
-                                   string updateSubjectDataSQLQuery = "UPDATE Subjects SET SubjectName = @SubjectName, SubjectClassification = @SubjectClassification, YearLevel = @YearLevel WHERE SubjectCode = @SubjectCode";
-                                   using (SqlCommand command = new SqlCommand(updateSubjectDataSQLQuery, connection)){
-                                           command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
-                                           command.Parameters.AddWithValue("@SubjectName", SubjectName);
-                                           command.Parameters.AddWithValue("@SubjectClassification", SubjectClassification);
-                                           command.Parameters.AddWithValue("@YearLevel", YearLevel);
-                    
-                                           command.ExecuteNonQuery();
-                                       }
-                               }
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    string updateSubjectDataSQLQuery = "UPDATE Subjects SET SubjectName = @SubjectName, SubjectClassification = @SubjectClassification, YearLevel = @YearLevel WHERE SubjectCode = @SubjectCode";
+                    using (SqlCommand command = new SqlCommand(updateSubjectDataSQLQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                        command.Parameters.AddWithValue("@SubjectName", SubjectName);
+                        command.Parameters.AddWithValue("@SubjectClassification", SubjectClassification);
+                        command.Parameters.AddWithValue("@YearLevel", YearLevel);
+
+                        command.ExecuteNonQuery();
+                    }
+                    return RedirectToPage("/Admin/SubjectManagement");
+                }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) { 
+                return null; 
+            }
         }
+    
 
         public IActionResult OnPostDelete()
         {
@@ -95,7 +106,7 @@ namespace CSE3PAX.Pages.Admin
                     {
                         command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
                         command.ExecuteNonQuery();
-                        return RedirectToPage("/Admin/ReadSubject");
+                        return RedirectToPage("/Admin/SubjectManagement");
                     }
                 }
             }

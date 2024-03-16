@@ -5,27 +5,33 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+            
             <!-- Settings Title -->
             <h1 class="mb-5" style="color: #3163bc"><i class="bi bi-gear" style="color: #3163bc"></i> Settings</h1>
             <div class="my-4">
+                
                 <!-- Display Settings Section -->
                 <div class="mb-5 pb-5 border-bottom border-gray">
                     <h5 class="mb-0 mt-5" style="color: black">Display Settings</h5> 
                     <p>Customize how the interface is displayed.</p>
+                    
                     <div class="list-group mb-5 shadow">
                         <!-- Theme Option -->
                         <div class="list-group-item">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-2">Theme</strong>
+                                                                      
                                     <!-- Light Theme Radio Button -->
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="theme" id="lightTheme" value="light" checked>
                                         <label class="form-check-label" for="lightTheme">Light</label>
                                     </div>
+
                                     <!-- Dark Theme Radio Button -->
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="theme" id="darkTheme" value="dark">
@@ -96,3 +102,29 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    // Checks the radio button state and apply selected themes
+    function applyTheme() {
+        var darkThemeRadio = document.getElementById('darkTheme'); // Access dark radio button
+        var lightThemeRadio = document.getElementById('lightTheme'); // Access light radio button
+
+        // If statement - checks if dark theme radio is selected
+        if (darkThemeRadio.checked) {
+            document.body.classList.add('dark-theme'); // Applies dark theme
+            document.body.classList.remove('light-theme'); // Removes light theme
+        } 
+        // Else If - when light theme radio button is selected, do the opposite
+        else if (lightThemeRadio.checked) {
+            document.body.classList.add('light-theme');
+            document.body.classList.remove('dark-theme');
+        }
+    }
+
+    // Set radio button event listeners to trigger theme change on selection
+    document.getElementById('lightTheme').addEventListener('change', applyTheme);
+    document.getElementById('darkTheme').addEventListener('change', applyTheme);
+
+    applyTheme(); // Apply initial theme based on the radio button that is checked by default
+</script>
