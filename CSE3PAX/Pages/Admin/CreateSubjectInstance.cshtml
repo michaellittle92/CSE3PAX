@@ -12,21 +12,22 @@
         }
     </select>
 
-
-    <!-- Read-only fields for selected lecturer information -->
+    <!-- Start Date Picker -->
     <div>
-        <label for="lecturerFirstName">First Name:</label>
-        <input type="text" id="lecturerFirstName" name="lecturerFirstName" readonly>
-    </div>
-    <div>
-        <label for="lecturerLastName">Last Name:</label>
-        <input type="text" id="lecturerLastName" name="lecturerLastName" readonly>
-    </div>
-    <div>
-        <label for="lecturerEmail">Email:</label>
-        <input type="text" id="lecturerEmail" name="LecturerEmail" readonly value="@Model.LecturerEmail">
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="StartDateInput">
 
     </div>
+
+    <!-- End Date Picker -->
+    <div>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="EndDateInput">
+    </div>
+
+
+    </div>
+
     <button type="button" id="selectLecturerBtn">Select Lecturer</button> <!-- Button to show the table -->
     <!-- Lecturer Table, initially hidden -->
     <table id="lecturerTable" style="display:none;">
@@ -51,25 +52,32 @@
         </tbody>
     </table>
 
+    <!-- Read-only fields for selected lecturer information -->
 
-    <!-- Start Date Picker -->
     <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" name="StartDateInput">
-
+        <label for="lecturerFirstName">First Name:</label>
+        <input type="text" id="lecturerFirstName" name="lecturerFirstName" readonly>
     </div>
-
-    <!-- End Date Picker -->
     <div>
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" name="EndDateInput">
+        <label for="lecturerLastName">Last Name:</label>
+        <input type="text" id="lecturerLastName" name="lecturerLastName" readonly>
     </div>
+    <div>
+        <label for="lecturerEmail">Email:</label>
+        <input type="text" id="lecturerEmail" name="LecturerEmail" readonly value="@Model.LecturerEmail">
+
 
     <div>
         <label for="StudentCount">Number of Students:</label>
         <input type="number" id="StudentCount" name="StudentCount">
     </div>
 
+        <!-- Development Required Checkbox -->
+        <div>
+            <label for="developmentRequired">Is Development Required?</label>
+            <input type="checkbox" id="developmentRequired" name="DevelopmentRequired">
+        </div>
+  
 
     <!-- Submit Button -->
     <button type="submit">Submit</button>
