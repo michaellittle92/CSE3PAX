@@ -22,6 +22,8 @@
     <!-- Submission Button -->
     <button type="submit">Select Lecturer</button>
 </form>
+
+
 <table>
     <tr>
         <th>Email</th>
@@ -38,6 +40,45 @@
             <td>@lecturer.LastName</td>
             <td>@lecturer.AdjustedRating</td>
             <td>@lecturer.LoadCapacityPercentage</td>
+            <td>
+                <button type="button" class="select-lecturer" data-email="@lecturer.Email" data-firstname="@lecturer.FirstName" data-lastname="@lecturer.LastName">Select</button>
+            </td>
         </tr>
     }
 </table>
+
+<form method="post">
+<div>
+    <label for="selectedFirstName">First Name:</label>
+    <input type="text" id="selectedFirstName" value="@Model.SelectedFirstName" readonly>
+</div>
+<div>
+    <label for="selectedLastName">Last Name:</label>
+    <input type="text" id="selectedLastName" value="@Model.SelectedLastName" readonly>
+</div>
+<div>
+    <label for="selectedEmail">Email:</label>
+    <input type="text" id="selectedEmail" value="@Model.SelectedEmail" readonly>
+</div>
+
+    <input type="hidden" name="SelectedEmail" value="@Model.SelectedEmail" />
+    <input type="hidden" name="SelectedSubject" value="@Model.SelectedSubject" />
+    <input type="hidden" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+
+
+
+<div>
+    <label for="numberOfStudents">Number of Students:</label>
+    <input type="number" id="numberOfStudents" name="NumberOfStudents" value="@Model.NumberOfStudents" min="1" />
+</div>
+
+<div>
+    <input type="checkbox" id="isDevelopmentRequired" name="IsDevelopmentRequired" checked="@Model.IsDevelopmentRequired" />
+    <label for="isDevelopmentRequired">Is Development Required?</label>
+</div>
+
+<button type="submit" asp-page-handler="SubmitData">Submit Subject Instance</button>
+</form>
+
+<script src = "~/js/CreateSubjectInstance.js"></script>

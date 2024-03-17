@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using CSE3PAX.HelpClasses; // Adjust this namespace based on your actual namespace
 using System.Reflection.PortableExecutable;
+using System.Diagnostics;
 
 namespace CSE3PAX.Pages.Manager
 {
@@ -28,6 +29,21 @@ namespace CSE3PAX.Pages.Manager
 
         [BindProperty(SupportsGet = true)]
         public DateTime? EndDate { get; set; }
+
+        [BindProperty]
+        public string SelectedFirstName { get; set; }
+
+        [BindProperty]
+        public string SelectedLastName { get; set; }
+
+        [BindProperty]
+        public string SelectedEmail { get; set; }
+
+        [BindProperty]
+        public int NumberOfStudents { get; set; }
+
+        [BindProperty]
+        public bool IsDevelopmentRequired { get; set; }
 
         public List<CSE3PAX.HelpClasses.LecturerInfo> Lecturers { get; set; } = new List<CSE3PAX.HelpClasses.LecturerInfo>();
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
@@ -160,6 +176,152 @@ ORDER BY
             }
 
             return Page(); // Return the current page with the bound property values
+        }
+
+        public async Task<IActionResult> OnPostSubmitDataAsync()
+        {
+            if (string.IsNullOrEmpty(SelectedEmail))
+            {
+                // Handle the case where SelectedEmail is null or empty.
+                // This could involve setting a default value, returning an error message, or skipping the database operation.
+                Console.WriteLine("SelectedEmail is null or empty.");
+                return Page();
+            }
+
+
+            Console.WriteLine("Submitted");
+            bool developmentRequired = IsDevelopmentRequired;
+            double load = CalculateInstanceLoad(NumberOfStudents);
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+                    using (SqlCommand command = connection.CreateCommand())
+                    {
+                        command.CommandType = System.Data.CommandType.Text;
+
+                        command.CommandText = @"
+                    DECLARE @UserID INT;
+                    DECLARE @LecturerID INT;
+                    DECLARE @SubjectID INT;
+                    DECLARE @SubjectCode NVARCHAR(100);
+                    DECLARE @Year NVARCHAR(100);
+                    DECLARE @Month NVARCHAR(100);
+                    DECLARE @SubjectInstanceCode NVARCHAR(100);
+                    DECLARE @SubjectInstanceName NVARCHAR(100);
+                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
+
+                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
+                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                    SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
+                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                    SET @Month = DATENAME(MONTH, @EndDateInput);
+
+                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+
+                    SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
+                    SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+
+                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
+
+                        command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail); 
+                        command.Parameters.AddWithValue("@SubjectNameInput", SelectedSubject);
+                        command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
+                        command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
+
+                        // Add the Load value as a parameter
+                        command.Parameters.AddWithValue("@Load", load);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+
+                if (developmentRequired)
+                {
+                    using (SqlConnection connection = new SqlConnection(_connectionString))
+                    {
+                        await connection.OpenAsync();
+                        using (SqlCommand command = connection.CreateCommand())
+                        {
+                            command.CommandType = System.Data.CommandType.Text;
+
+                            command.CommandText = @"
+                    DECLARE @UserID INT;
+                    DECLARE @LecturerID INT;
+                    DECLARE @SubjectID INT;
+                    DECLARE @SubjectCode NVARCHAR(100);
+                    DECLARE @Year NVARCHAR(100);
+                    DECLARE @Month NVARCHAR(100);
+                    DECLARE @SubjectInstanceCode NVARCHAR(100);
+                    DECLARE @SubjectInstanceName NVARCHAR(100);
+                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
+
+                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectName = @SubjectNameInput;
+                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                    SELECT @SubjectCode = SubjectCode FROM Subjects WHERE SubjectID = @SubjectID;
+                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                    SET @Month = DATENAME(MONTH, @EndDateInput);
+
+                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+
+                    SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
+                    SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
+
+                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
+
+                            command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
+                            command.Parameters.AddWithValue("@SubjectNameInput", SelectedSubject);
+                            command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
+                            command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
+
+                            // Add the Load value as a parameter
+                            command.Parameters.AddWithValue("@Load", load);
+
+                            await command.ExecuteNonQueryAsync();
+                        }
+                    }
+                }
+
+            
+
+           
+
+            // Redirect or return a success message/page
+            return RedirectToPage("./ManagerIndex");
+        }
+            catch (SqlException ex)
+            {
+
+                Debug.WriteLine($"SQL Error: {ex.Message}");
+     
+            }
+            return Page();
+}
+        
+
+        public double CalculateInstanceLoad(int studentCount)
+        {
+            double instanceLoad = 1; // Base load for up to 100 students
+
+            if (studentCount > 100)
+            {
+                // Calculate the number of students over 100
+                int extraStudents = studentCount - 100;
+
+                // Calculate the increase in load. Each set of 20 students over 100 increases the load by 0.1
+                double loadIncrease = (extraStudents / 20.0) * 0.1;
+
+                // Update the instance load with the calculated increase
+                instanceLoad += loadIncrease;
+            }
+
+            return instanceLoad;
         }
     }
 }
