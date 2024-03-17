@@ -22,7 +22,7 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
-        public List<Lecturers> ListLecturers { get; set; } = new List<Lecturers>();
+        public List<HelpClasses.LecturerInfo> ListLecturers { get; set; } = new List<HelpClasses.LecturerInfo>();
 
         [BindProperty]
         public string LecturerEmail { get; set; }
@@ -76,7 +76,7 @@ namespace CSE3PAX.Pages.Admin
                         {
                             while (reader.Read())
                             {
-                                var lecturer = new Lecturers
+                                var lecturer = new HelpClasses.LecturerInfo
                                 {
                                     Email = reader["Email"].ToString(),
                                     FirstName = reader["FirstName"].ToString(),

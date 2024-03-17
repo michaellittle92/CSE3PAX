@@ -1,0 +1,43 @@
+﻿@page
+@model CSE3PAX.Pages.Manager.SITestingModel
+
+<form method="post" id="reloadForm">
+    <!-- Subject Dropdown -->
+    <select asp-for="SelectedSubject" asp-items="@(new SelectList(Model.ListSubjects, "SubjectCode", "SubjectName"))">
+        <option value="">Select a Subject</option>
+    </select>
+
+    <!-- Start Date Picker -->
+    <div>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")">
+    </div>
+
+    <!-- End Date Picker -->
+    <div>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")">
+    </div>
+
+    <!-- Submission Button -->
+    <button type="submit">Select Lecturer</button>
+</form>
+<table>
+    <tr>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Adjusted Rating</th>
+        <th>Load Capacity Percentage</th>
+    </tr>
+    @foreach (var lecturer in Model.Lecturers) // Adjust based on how you've named your collection
+    {
+        <tr>
+            <td>@lecturer.Email</td>
+            <td>@lecturer.FirstName</td>
+            <td>@lecturer.LastName</td>
+            <td>@lecturer.AdjustedRating</td>
+            <td>@lecturer.LoadCapacityPercentage</td>
+        </tr>
+    }
+</table>
