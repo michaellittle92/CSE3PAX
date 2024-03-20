@@ -154,8 +154,8 @@ ORDER BY
                                 Email = reader["Email"].ToString(),
                                 FirstName = reader["FirstName"].ToString(),
                                 LastName = reader["LastName"].ToString(),
-                                AdjustedRating = Convert.ToInt32(reader["AdjustedRating"]), // Make sure the SQL alias matches
-                                LoadCapacityPercentage = Convert.ToInt32(reader["LoadCapacityPercentage"]) // Ditto
+                                AdjustedRating = Convert.ToInt32(reader["AdjustedRating"]),
+                                LoadCapacityPercentage = Convert.ToInt32(reader["LoadCapacityPercentage"]) 
                             };
                             Lecturers.Add(lecturerInfo);
                         }
@@ -183,7 +183,7 @@ ORDER BY
             if (string.IsNullOrEmpty(SelectedEmail))
             {
                 // Handle the case where SelectedEmail is null or empty.
-                // This could involve setting a default value, returning an error message, or skipping the database operation.
+                
                 Console.WriteLine("SelectedEmail is null or empty.");
                 return Page();
             }
