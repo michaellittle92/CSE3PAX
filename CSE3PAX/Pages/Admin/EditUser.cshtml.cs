@@ -9,6 +9,10 @@ namespace CSE3PAX.Pages.Admin
     [RequireRoles("Admin")]
     public class EditUserModel : PageModel
     {
+
+        // Alert message variable
+        public string SuccessMessage { get; set; }
+
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
@@ -88,13 +92,17 @@ namespace CSE3PAX.Pages.Admin
 
                         int result = command.ExecuteNonQuery();
 
+                        // Set the success message
+                        SuccessMessage = "User edited successfully.";
+
                         Console.WriteLine(FirstName);
 
                         //Check to see if update is successful
                         if (result == 1)
                         {
 
-                            return RedirectToPage("/Admin/StaffManagement");
+                            return Page();
+                            //return RedirectToPage("/Admin/StaffManagement");
                         }
                         else
                         {

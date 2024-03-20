@@ -11,6 +11,10 @@ namespace CSE3PAX.Pages.Admin
     [RequireRoles("Admin")]
     public class EditSubjectModel : PageModel
     {
+
+        // Alert message variable
+        public string SuccessMessage { get; set; }
+
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
@@ -84,8 +88,11 @@ namespace CSE3PAX.Pages.Admin
                         command.Parameters.AddWithValue("@YearLevel", YearLevel);
 
                         command.ExecuteNonQuery();
+
+                        // Set the success message
+                        SuccessMessage = "Subject edited successfully.";
                     }
-                    return RedirectToPage("/Admin/SubjectManagement");
+                    return Page();
                 }
             }
             catch (Exception ex) { 

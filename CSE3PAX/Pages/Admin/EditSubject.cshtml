@@ -1,6 +1,12 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.EditSubjectModel
 @{
+    if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.SuccessMessage
+        </div>
+    }
 }
 
 <!-- Edit Subject Container -->

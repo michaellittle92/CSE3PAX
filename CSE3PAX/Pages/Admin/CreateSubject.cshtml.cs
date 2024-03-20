@@ -10,6 +10,10 @@ namespace CSE3PAX.Pages.Admin
 
     public class CreateSubjectModel : PageModel
     {
+
+        // Alert message variable
+        public string SuccessMessage { get; set; }
+
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
@@ -39,7 +43,7 @@ namespace CSE3PAX.Pages.Admin
         {
         }
 
-        public IActionResult OnPost()
+        public void OnPost()
         {
             try {
                 using (SqlConnection connection = new SqlConnection(_connectionString)) { 
@@ -52,16 +56,16 @@ namespace CSE3PAX.Pages.Admin
                         command.Parameters.AddWithValue("@SubjectClassification", SubjectClassification);
                         command.Parameters.AddWithValue("@YearLevel", YearLevel);
                         command.ExecuteNonQuery();
+
+                        // Set the success message
+                        SuccessMessage = "Subject created successfully.";
                     }
-                    return RedirectToPage("/Admin/ReadSubject");
                 }
                 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-
-                return null;
             }
         }
     }
