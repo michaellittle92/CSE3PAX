@@ -70,65 +70,69 @@
         </div>
 
             <div class="welcome-message-container my-4 gry-txt mx-lg-5 flex-wrap">
-            <p class="fs-6">Step into Latrobe's comprehensive platform, tailored to managing subjects, staff, and schedules. Utilise insightful tools to navigate the academic administration with confidence.</p>
-        </div>
+                <p class="fs-6">Step into Latrobe's comprehensive platform, tailored to managing subjects, staff, and schedules. Utilise insightful tools to navigate the academic administration with confidence.</p>
+            </div>
 
         <!-- Line Separator -->
-        <div class="row">
-            <div class="col">
-                <hr class="underline">
-                <h4 class="availability-status">Staff Scheduling Status</h4>
-             </div>
-        </div>
+            <div class="row justify-content-center">
+                <!-- Centering content -->
+                <div class="col text-center">
+                    <!-- Centering content horizontally -->
+                    <hr class="underline">
+                    <h4 class="availability-status">Staff Scheduling Status</h4>
+                    <br>
+                </div>
+            </div>
 
-
-            <!-- Dougnut container -->
             <div class="row align-items-start">
-                <div class="col-md-6">
+                <div class="col-md-6 d-flex justify-content-center">
                     <div class="doughnut-chart-container">
                         <!-- Doughnut -->
                         <canvas id="availabilityChart" class="doughnut" style="width:500px"></canvas>
                     </div>
-            </div>
-
-            <!-- Table & View button -->
-            <div class="col-md-6">
-                <div class="mb-4 mx-3">
-                    <form method="post">
-                        <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;"><i class="bi bi-eye mx-1 pe-1"></i>View</button>
-                    </form>
                 </div>
 
-
+                <div class="col-md-6 text-center">
                     <div class="col card me-5 box-shw p-3">
-                        
-                        <h4 class="my-3 listHeading text-center">Lecturer Workloads</h4>
+                        <h4 class="my-3 listHeading">Lecturer Workloads</h4>
 
-                        <!--Display data from sql database -->
-                    @if (Model.Users.Any())
-                    {
-                        <table id="lecturerWorkloadsTable" class="table table-striped table-hover table-bordered border-2 align-middle m-1">
-                            <thead>
-                                <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                    <th scope="col">User ID</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Current Load</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var user in Model.Users)
-                                {
-                                    <tr>
-                                        <td class="text-center">@user.UserId</td>
-                                            <td>@user.FirstName</td>
-                                <td>@user.LastName</td>
-                                <td class="text-center">@user.ConcurrentLoadCapacity</td>
+                        <div class="mb-4 mx-3">
+                            <form method="post">
+                                <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
+                                    <i class="bi bi-eye mx-1 pe-1"></i>View
+                                </button>
+
+                                <button type="submit" name="buttonType" value="hideUsers" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
+                                    <i class="bi bi-eye mx-1 pe-1"></i>Hide
+                                </button>
+                            </form>
+                        </div>
+
+                        @if (Model.Users.Any())
+                        {
+                            <table id="lecturerWorkloadsTable" class="table table-striped table-hover table-bordered border-2 align-middle m-1">
+                                <thead>
+                                    <tr class="text-center align-middle bg-secondary box-shw text-light">
+                                        <th scope="col">User ID</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Current Load</th>
                                     </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in Model.Users)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@user.UserId</td>
+                                            <td>@user.FirstName</td>
+                                            <td>@user.LastName</td>
+                                            <td class="text-center">@user.ConcurrentLoadCapacity</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

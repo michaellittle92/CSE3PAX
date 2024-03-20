@@ -70,8 +70,12 @@ namespace CSE3PAX.Pages.Admin
             switch (buttonType)
             {
                 case "users":
+                    OnGet();
                     LoadUsers();
                     SortUsersByUserId();
+                    break;
+                case "hideUsers":
+                    OnGet();
                     break;
             }
             return Page();

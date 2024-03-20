@@ -45,6 +45,7 @@ namespace CSE3PAX.Pages.Manager
         public string SelectedExpertise04 { get; set; }
         public string SelectedExpertise05 { get; set; }
         public string SelectedExpertise06 { get; set; }
+        public int SelectedSubjectInstanceCount { get; set; } = 0;
 
         /*
          Initialise IndexModel class
@@ -223,6 +224,8 @@ namespace CSE3PAX.Pages.Manager
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM-yyyy"),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM-yyyy"),
                                 });
+
+                                SelectedSubjectInstanceCount++;
                             }
                             // Close reader
                             reader.Close();
