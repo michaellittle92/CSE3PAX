@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8sYoV92XnzntjSYQQmX+EKNLRXCKO2fJW7eKtu+mhrY=",
+  "Hash": "nd1xOKfg06NSeqAoqqSKkYSkHu8YI0DLJgH1dWT8esk=",
   "Source": "CSE3PAX",
   "BasePath": "_content/CSE3PAX",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\login_image.png"
+    },
+    {
+      "Identity": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\images\\login_imageold.png",
+      "SourceId": "CSE3PAX",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\",
+      "BasePath": "_content/CSE3PAX",
+      "RelativePath": "images/login_imageold.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\login_imageold.png"
     },
     {
       "Identity": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\adminIndex.js",

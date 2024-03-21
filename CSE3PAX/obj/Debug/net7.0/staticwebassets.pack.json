@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\images\\login_image.png"
     },
     {
+      "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\images\\login_imageold.png",
+      "PackagePath": "staticwebassets\\images\\login_imageold.png"
+    },
+    {
       "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\CreateSubjectInstance.js",
       "PackagePath": "staticwebassets\\js\\CreateSubjectInstance.js"
     },
