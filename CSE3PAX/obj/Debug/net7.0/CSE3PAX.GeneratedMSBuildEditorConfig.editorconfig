@@ -28,10 +28,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlU3ViamVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Admin/CreateSubjectInstance.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlU3ViamVjdEluc3RhbmNlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Admin/CreateUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3JlYXRlVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,16 +80,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGVjdHVyZXJcTGVjdHVyZXJJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Manager/CreateSubjectInstance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxDcmVhdGVTdWJqZWN0SW5zdGFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Manager/GenerateReports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxHZW5lcmF0ZVJlcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Manager/ManagerIndex.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxNYW5hZ2VySW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Manager/SITesting.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFuYWdlclxTSVRlc3RpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Michael/Desktop/CSharp/CSE3PAX/CSE3PAX/Pages/Manager/StaffSchedules.cshtml]
