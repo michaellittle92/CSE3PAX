@@ -39,6 +39,11 @@ body {
     background-color: var(--admin-blue);
 }
 
+/* Admin welcome blue background */
+.manager-background {
+    background-color: #00719c;
+}
+
 /* Admin recently accessed btn txt colour */
 .admin-txt {
     color: var(--admin-blue);

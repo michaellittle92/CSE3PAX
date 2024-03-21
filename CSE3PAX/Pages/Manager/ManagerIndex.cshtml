@@ -12,57 +12,19 @@
             <div class="row text-white">
 
                 <!-- Welcome container - for small, medium and large screen sizes -->
-                <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1 mx-1 mx-lg-0 m-3 admin-ble bd-radius d-flex box-shw" style="background-color: #00719c;">
-                    <!-- Admin Box with modified class name -->
+                <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1 mx-1 mx-lg-0 m-3 box-shw manager-background bd-radius d-flex flex-column">
                     <!-- Headings -->
-                    <div class="p-4 d-flex align-items-center">
-                        <h2>Welcome @Model.FullName</h2>                       
+                    <div class="p-5 d-flex align-items-center">
+                        <!-- Increased padding to increase height -->
+                        <h2 style="text-shadow: 2px 2px 2px rgba(0,0,0,0.53);">Welcome, @Model.FullName.</h2>
                     </div>
-                </div>
-
-                <!-- Notification Section -->
-                <div class="col-lg mx-lg-3 my-2 col-md-5 col-sm my-2 mx-1 bd-radius box-shw" style="background-color: transparent;">
-                    <div class="py-3 gry-txt overflow-hidden">
-
-                        <!-- Notification Heading -->
-                        <h6 class="mb-3">Notifications</h6> 
-                        <!-- Notification item 1 -->
-                        <div class="d-flex align-items-center my-2">
-                            <!-- Notification Icon 1 -->
-                            <i class="bi bi-bell-fill" style="color: red; font-size: 2rem;"></i>
-                            <!-- Text Content -->
-                            <div class="flex-grow-1 mr-3">
-                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Outstanding</strong></h6> 
-                                <p class="text-sm my-0 mx-2 overflow-hidden">"Finalize schedu.."</p> 
-                            </div>
-                            <!-- Arrow icon -->
-                            <div>
-                                <i class="bi bi-arrow-right-circle-fill admin-txt" style="color:#635D5C;"></i>
-                            </div>
-                        </div>
-
-                        <!-- Notification item 2 -->
-                        <div class="d-flex align-items-center">
-                            <!-- Notification Icon 2 -->
-                            <i class="bi bi-bell-fill" style="color: darkorange; font-size: 2rem;"></i>
-                            <!-- Text Content -->
-                            <div class="flex-grow-1 mr-3">
-                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Pending</strong></h6> 
-
-                                <p class="text-sm my-0 mx-2 notification">"Confirm Holida.."</p> 
-                            </div>
-                            <!-- Arrow icon -->
-                            <div>
-                                <i class="bi bi-arrow-right-circle-fill admin-txt" style="color:#635D5C;"></i>
-                            </div>
-                        </div>
+                    <!-- Paragraph -->
+                    <div class="welcome-message-container my-1 whte-txt mx-lg-5 flex-wrap">
+                        <!-- Adjusted margin here -->
+                        <p class="fs-6">Utilise this platform to organise lecturer schedules and generate detailed reports for enhanced operations.</p>
                     </div>
-                </div>
+                </div> 
             </div>
-            <div class="welcome-message-container mt-3 text-dark text-left ps-5 pt-2">
-                <p class="fs-6">Utilise this platform to organise lecturer schedules and generate detailed reports for enhanced operations</p>
-            </div>
-            
             <!-- Line Separator -->
             <div class="row justify-content-center">
                 <!-- Centering content -->

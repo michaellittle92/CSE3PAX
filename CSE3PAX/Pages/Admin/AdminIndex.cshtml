@@ -12,67 +12,23 @@
     <div class="container-fluid p-0">
         <div class="row text-white">
 
-            <!-- Welcome container - for small, medium and large screen sizes -->
-            <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1  mx-1 mx-lg-0 m-3 box-shw admin-ble bd-radius d-flex">
-                    
-                <!-- Headings -->
-                <div class="p-4 d-flex align-items-center">
-                    <h2 style="text-shadow: 5px 5px 5px rgba(0,0,0,0.53);">Welcome @Model.FullName</h2>
-                </div>
-
-            </div>
-
-            <!-- Noification Section -->
-            <div class="col-lg mx-lg-3 my-2 col-md-5 col-sm my-2 mx-1 bd-radius box-shw bg-white">
-                <div class="py-3 gry-txt overflow-hidden">
-                        
-                    <!-- Notification Heading -->
-                    <h6 class="mb-3">Notifications / Messages</h6>
-
-                    <!-- Notification item 1 -->
-                    <div class="d-flex align-items-center my-2">
-                        
-                        <!-- Image -->
-                        <img src="/images/kitten.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
-                        
-                        <!-- Text Content -->
-                        <div class="flex-grow-1 mr-3">
-                            <h6 class="txt-gry text-sm my-0 mx-2"><strong>Andrew Wilson</strong></h6> 
-                            <p class="text-sm my-0 mx-2 overflow-hidden">"Request for update"</p>                                
-                        </div>
-                       
-                        <!-- Arrow icon -->
-                        <div>
-                            <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
-                        </div>
+                <!-- Welcome container - for small, medium and large screen sizes -->
+                <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1 mx-1 mx-lg-0 m-3 box-shw admin-ble bd-radius d-flex flex-column">
+                    <!-- Headings -->
+                    <div class="p-5 d-flex align-items-center">
+                        <!-- Increased padding to increase height -->
+                        <h2 style="text-shadow: 2px 2px 2px rgba(0,0,0,0.53);">Welcome, @Model.FullName.</h2>
                     </div>
-
-                    <!-- Notification item 2 -->
-                    <div class="d-flex align-items-center">
-                        
-                        <!-- Image -->
-                        <img src="/images/dog.png" alt="Profile Image" class="profile-img rounded-circle img-fluid" style="width: 50px; height: 50px;" />
-                        
-                        <!-- Text Content -->
-                        <div class="flex-grow-1 mr-3">
-                                <h6 class="txt-gry text-sm my-0 mx-2"><strong>Heather Garcia</strong></h6>
-
-                                <p class="text-sm my-0 mx-2 notification">"Hi Jane, is there a possibility that we can catch up later,to discuss this mornings meeting and workout a timeline for the current project."</p>
-                        </div>
-                        
-                        <!-- Arrow icon -->
-                        <div>
-                            <i class="bi bi-arrow-right-circle-fill admin-txt"></i>
-                        </div>
+                    <!-- Paragraph -->
+                    <div class="welcome-message-container my-1 whte-txt mx-lg-5 flex-wrap">
+                        <!-- Adjusted margin here -->
+                        <p class="fs-6">Step into Latrobe's comprehensive platform, tailored to managing subjects, staff, and schedules. Utilise insightful tools to navigate the academic administration with confidence.</p>
                     </div>
                 </div>
-            </div>
-        </div>
 
-            <div class="welcome-message-container my-4 gry-txt mx-lg-5 flex-wrap">
-                <p class="fs-6">Step into Latrobe's comprehensive platform, tailored to managing subjects, staff, and schedules. Utilise insightful tools to navigate the academic administration with confidence.</p>
-            </div>
 
+
+            </div>
         <!-- Line Separator -->
             <div class="row justify-content-center">
                 <!-- Centering content -->
