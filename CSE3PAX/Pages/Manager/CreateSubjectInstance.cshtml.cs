@@ -94,9 +94,14 @@ namespace CSE3PAX.Pages.Manager
                 connection.Open();
                 var query = @"
                 DECLARE @rating INT = 5;
-                DECLARE @selectedSubject NVARCHAR(255) = @selectedSubjectParam; -- Parameterized
-                DECLARE @startDate DATETIME = @startDateParam; -- Parameterized
-                DECLARE @endDate DATETIME = @endDateParam; -- Parameterized
+               
+				DECLARE @SelectedSubjectClassifcation NVARCHAR(100);
+			
+
+				
+				SELECT @SelectedSubjectClassifcation = Subjects.SubjectClassification 
+				FROM Subjects 
+				WHERE Subjects.SubjectCode = @selectedSubject;
 
               SELECT 
     Users.Email, 
@@ -113,7 +118,8 @@ namespace CSE3PAX.Pages.Manager
         ) THEN 0 ELSE -2 END 
     +
     CASE 
-        WHEN Subjects.SubjectClassification IN (Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06)
+
+        WHEN @SelectedSubjectClassifcation IN (Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06)
         THEN 0 ELSE -2 END AS AdjustedRating,
     CAST(
         ROUND(ISNULL(SUM(SubjectInstance.Load), 0) / NULLIF(Lecturers.ConcurrentLoadCapacity, 0) * 100, 0) 
@@ -144,9 +150,9 @@ ORDER BY
 
                 using (var command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@selectedSubjectParam", SelectedSubject);
-                    command.Parameters.AddWithValue("@startDateParam", StartDate.HasValue ? StartDate.Value : (object)DBNull.Value);
-                    command.Parameters.AddWithValue("@endDateParam", EndDate.HasValue ? EndDate.Value : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@selectedSubject", SelectedSubject);
+                    command.Parameters.AddWithValue("@startDate", StartDate.HasValue ? StartDate.Value : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@endDate", EndDate.HasValue ? EndDate.Value : (object)DBNull.Value);
 
                     using (var reader = command.ExecuteReader())
                     {
