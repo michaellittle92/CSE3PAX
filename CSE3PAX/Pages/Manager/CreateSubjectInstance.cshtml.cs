@@ -299,7 +299,7 @@ Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
            
 
             // Redirect or return a success message/page
-            return RedirectToPage("./ManagerIndex");
+            return RedirectToPage("/Manager/CreateSubjectInstance");
         }
             catch (SqlException ex)
             {
