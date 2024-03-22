@@ -109,7 +109,7 @@ namespace CSE3PAX.Pages.Manager
             INNER JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID
             WHERE 
                 SubjectInstance.LecturerID = Lecturers.LecturerID 
-                AND Subjects.SubjectName = @selectedSubject
+                AND Subjects.SubjectCode = @selectedSubject
         ) THEN 0 ELSE -2 END 
     +
     CASE 
