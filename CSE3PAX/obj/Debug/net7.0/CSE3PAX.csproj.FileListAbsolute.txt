@@ -186,7 +186,6 @@ D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/staticwebassets.pack.json
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/bundle/CSE3PAX.styles.css
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/scopedcss/projectbundle/CSE3PAX.bundle.scp.css
-D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.csproj.CopyComplete
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.dll
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/refint/CSE3PAX.dll
 D:/LatrobeSchedule/CSE3PAX/CSE3PAX/obj/Debug/net7.0/CSE3PAX.pdb
@@ -302,7 +301,6 @@ D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\staticwebassets.pack.json
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\bundle\CSE3PAX.styles.css
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\scopedcss\projectbundle\CSE3PAX.bundle.scp.css
-D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.CopyComplete
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.dll
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint\CSE3PAX.dll
 D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
@@ -385,3 +383,4 @@ C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX\obj\Debug\net7.0\refint
 C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.pdb
 C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.genruntimeconfig.cache
 C:\Users\laura\OneDrive\Documents\GitHub\CSE3PAX\CSE3PAX\obj\Debug\net7.0\ref\CSE3PAX.dll
+D:\LatrobeSchedule\CSE3PAX\CSE3PAX\obj\Debug\net7.0\CSE3PAX.csproj.Up2Date

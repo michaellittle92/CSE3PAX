@@ -4,28 +4,30 @@
 }
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link href="~/css/site.css" rel="stylesheet" />
 
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+<div class="container d-flex justify-content-center">
+    <div class="row">
+        <div class="col mx-auto">
             
             <!-- Settings Title -->
-            <h1 class="mb-5" style="color: #3163bc"><i class="bi bi-gear" style="color: #3163bc"></i> Settings</h1>
+            <h1 class="mb-5 admin-txt text-center"><i class="bi bi-gear admin-text"></i> Settings</h1>
+
             <div class="my-4">
                 
                 <!-- Display Settings Section -->
                 <div class="mb-5 pb-5 border-bottom border-gray">
-                    <h5 class="mb-0 mt-5" style="color: black">Display Settings</h5> 
+                    <h5 class="my-2 mt-5">Display Settings</h5> 
                     <p>Customize how the interface is displayed.</p>
                     
-                    <div class="list-group mb-5 shadow">
+                    <div class="list-group mb-5 box-shw">
                         <!-- Theme Option -->
-                        <div class="list-group-item">
+                        <div class="card card-body">
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-2">Theme</strong>
-                                                                      
+
                                     <!-- Light Theme Radio Button -->
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" name="theme" id="lightTheme" value="light" checked>
@@ -67,7 +69,7 @@
                 </div>
                 <!-- Security Settings Section -->
                 <div class="mb-5 pb-5 border-bottom border-gray">
-                    <h5 class="mb-0 mt-5" style="color: black">Security Settings</h5> 
+                    <h5 class="mb-0 mt-5">Security Settings</h5> 
                     <p>Configure security-related options.</p>
                     <div class="list-group mb-5 shadow">
                         <!-- Change Password Option -->
@@ -97,34 +99,31 @@
                     </div>
                 </div>
                 <!-- Save Changes Button -->
-                <button class="btn btn-primary">Save Changes</button>
+                <button class="btn btn-primary" id="saveBtn">Save Changes</button>
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Javascript -->
 <script>
-    // Checks the radio button state and apply selected themes
-    function applyTheme() {
-        var darkThemeRadio = document.getElementById('darkTheme'); // Access dark radio button
-        var lightThemeRadio = document.getElementById('lightTheme'); // Access light radio button
-
-        // If statement - checks if dark theme radio is selected
-        if (darkThemeRadio.checked) {
-            document.body.classList.add('dark-theme'); // Applies dark theme
-            document.body.classList.remove('light-theme'); // Removes light theme
-        } 
-        // Else If - when light theme radio button is selected, do the opposite
-        else if (lightThemeRadio.checked) {
-            document.body.classList.add('light-theme');
-            document.body.classList.remove('dark-theme');
-        }
-    }
-
-    // Set radio button event listeners to trigger theme change on selection
-    document.getElementById('lightTheme').addEventListener('change', applyTheme);
-    document.getElementById('darkTheme').addEventListener('change', applyTheme);
-
-    applyTheme(); // Apply initial theme based on the radio button that is checked by default
+    const themeRadios = document.querySelectorAll('input[name="theme"]');
+    themeRadios.forEach(radio => {
+        radio.addEventListener('change', function () {
+            if (this.value === 'light') {
+                document.body.classList.remove('dark');
+                document.body.classList.add('light');
+            } else if (this.value === 'dark') {
+                document.body.classList.remove('light');
+                document.body.classList.add('dark');
+            }
+        });
+    });
 </script>
+
+
+<!-- Still need to save for entire site.
+     add in different sized text for small, medium and large.
+     Add functionality to save button
+-->

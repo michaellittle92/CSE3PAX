@@ -131,4 +131,22 @@ body {
     }
 
 
+/* Settings page - light / dark themes */
+body.light {
+    background-color: var(sitebackground);
+    color: #333;
+}
+
+body.dark {
+    background-color: #333;
+    color: black;
+}
+
+    body.dark p {
+        color: white;
+    }
+
+    body.dark h5 {
+        color: orange;
+    }
 
