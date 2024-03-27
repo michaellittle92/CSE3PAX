@@ -89,66 +89,85 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 01</p>
+                                        @if (!string.IsNullOrEmpty(Model.Expertise01))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 01</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise01</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise01</p>
+                                            <hr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Expertise02))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 02</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise02</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 02</p>
+                                            <hr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Expertise03))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 03</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise03</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise02</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 03</p>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise03</p>
-                                            </div>
-                                        </div>
+                                        }
                                     </div>
                                     <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 04</p>
+                                        @if (!string.IsNullOrEmpty(Model.Expertise04))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 04</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise04</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise04</p>
+                                            <hr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Expertise05))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 05</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise05</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 05</p>
+                                            <hr>
+                                        }
+                                        @if (!string.IsNullOrEmpty(Model.Expertise06))
+                                        {
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <p class="mb-0">Expertise 06</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p class="text-muted mb-0">@Model.Expertise06</p>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise05</p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-3">
-                                                <p class="mb-0">Expertise 06</p>
-                                            </div>
-                                            <div class="col-sm-9">
-                                                <p class="text-muted mb-0">@Model.Expertise06</p>
-                                            </div>
-                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             }
         </div>
     </div>

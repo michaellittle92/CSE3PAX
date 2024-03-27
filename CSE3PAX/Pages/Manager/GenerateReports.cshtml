@@ -93,7 +93,6 @@
                                     <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
                                         <thead>
                                             <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                                <th scope="col">Instance ID</th>
                                                 <th scope="col">Subject</th>
                                                 <th scope="col">Instance Name</th>
                                                 <th scope="col">Instance Code</th>
@@ -107,7 +106,6 @@
                                             @foreach (var subjectInstance in Model.SubjectInstances)
                                             {
                                                 <tr class="text-center">
-                                                    <td>@subjectInstance.SubjectInstanceId</td>
                                                     <td>@subjectInstance.SubjectCode</td>
                                                     <td class="text-start">@subjectInstance.SubjectInstanceName</td>
                                                     <td>@subjectInstance.SubjectInstanceCode</td>

@@ -15,6 +15,21 @@ namespace CSE3PAX.Pages.Lecturer
     {
         // String to store full name (session)
         public string FullName { get; set; }
+        public string Email { get; set; }
+        public int UserID { get; set; }
+        public int LecturerID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string UserType { get; set; }
+        public string UserImage { get; set; }
+        public string Expertise01 { get; set; }
+        public string Expertise02 { get; set; }
+        public string Expertise03 { get; set; }
+        public string Expertise04 { get; set; }
+        public string Expertise05 { get; set; }
+        public string Expertise06 { get; set; }
+        public decimal? ConcurrentLoadCapacity { get; set; }
+        public int InstanceCount = 0;
 
         // Object to access application settings
         private readonly IConfiguration _configuration;
@@ -37,6 +52,9 @@ namespace CSE3PAX.Pages.Lecturer
         //SubjectInstance class in HelpClasses -> SubjectInstance.cs
         public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
+        // Initialize a list to store SubjectNames
+        public HashSet<string> subjectNames = new HashSet<string>();
+
 
         public void OnGet()
         {
@@ -53,7 +71,10 @@ namespace CSE3PAX.Pages.Lecturer
 
             var session = HttpContext.Session;
             var userID = session.GetInt32("UserID");
-           
+            UserID = (int)userID;
+
+            GetLecturerDetails();
+
             if (!userID.HasValue)
             {
                 // Handle case where userID is not set, perhaps redirect to login
@@ -87,6 +108,7 @@ namespace CSE3PAX.Pages.Lecturer
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM-yyyy"),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM-yyyy"),
                                 });
+                                InstanceCount++;
                             }
                         }
                     }
@@ -96,6 +118,83 @@ namespace CSE3PAX.Pages.Lecturer
             {
                 // Consider logging the exception
                 // Handle any errors that might have occurred during database access
+            }
+        }
+
+        private void GetLecturerDetails()
+        {
+
+            try
+            {
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL query to select the lecturer details for the given UserID
+                    string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, l.LecturerID, " +
+                                 "l.Expertise01, l.Expertise02, l.Expertise03, " +
+                                 "l.Expertise04, l.Expertise05, l.Expertise06, " +
+                                 "l.ConcurrentLoadCapacity " +
+                                 "FROM [Users] u " +
+                                 "INNER JOIN [Lecturers] l ON u.UserId = l.UserId " +
+                                 "WHERE u.UserId = @UserID";  // Filtering by UserID
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Add parameter for UserID
+                        command.Parameters.AddWithValue("@UserID", UserID);
+
+                        // Execute SQL query and get results
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Check if there is a result
+                            if (reader.Read())
+                            {
+                                // Save lecturer information to Lecturer object
+                                Email = reader.IsDBNull(3) ? null : reader.GetString(3);
+                                LecturerID = reader.GetInt32(4);
+                                Expertise01 = reader.IsDBNull(5) ? null : reader.GetString(5);
+                                Expertise02 = reader.IsDBNull(6) ? null : reader.GetString(6);
+                                Expertise03 = reader.IsDBNull(7) ? null : reader.GetString(7);
+                                Expertise04 = reader.IsDBNull(8) ? null : reader.GetString(8);
+                                Expertise05 = reader.IsDBNull(9) ? null : reader.GetString(9);
+                                Expertise06 = reader.IsDBNull(10) ? null : reader.GetString(10);
+                                ConcurrentLoadCapacity = reader.IsDBNull(11) ? null : (decimal?)reader.GetDecimal(11);
+                            }
+                            else
+                            {
+                                // No lecturer found with the given UserID
+                                Console.WriteLine("No lecturer found with UserID: " + UserID);
+                            }
+                        }
+                    }
+
+                    // Retrieve the SubjectNames associated with the lecturer
+                    string subjectNamesQuery = "SELECT SubjectName FROM SubjectInstance " +
+                                               "LEFT JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID " +
+                                               "WHERE LecturerID = (SELECT LecturerID FROM Lecturers WHERE UserID = @UserID)";
+                    using (SqlCommand subjectNamesCommand = new SqlCommand(subjectNamesQuery, connection))
+                    {
+                        subjectNamesCommand.Parameters.AddWithValue("@UserID", UserID);
+
+                        using (SqlDataReader subjectNamesReader = subjectNamesCommand.ExecuteReader())
+                        {
+                            while (subjectNamesReader.Read())
+                            {
+                                // Add SubjectName to the list
+                                subjectNames.Add(subjectNamesReader["SubjectName"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                Console.WriteLine("Error retrieving lecturer details: " + ex.Message);
             }
         }
     }

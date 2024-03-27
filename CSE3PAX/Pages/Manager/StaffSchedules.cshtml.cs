@@ -35,6 +35,7 @@ namespace CSE3PAX.Pages.Manager
 
         // Properties to store selected lecturer's details
         public int SelectedUserId { get; set; }
+        public int SelectedLecturerId { get; set; }
         public string SelectedEmail { get; set; }
         public string SelectedFirstName { get; set; }
         public string SelectedLastName { get; set; }
@@ -167,6 +168,8 @@ namespace CSE3PAX.Pages.Manager
                         u.Email, 
                         u.FirstName, 
                         u.LastName, 
+                        u.UserID, -- Add UserID to fetch it
+                        l.LecturerID, -- Add LecturerID to fetch it
                         l.Expertise01, 
                         l.Expertise02, 
                         l.Expertise03, 
@@ -174,7 +177,7 @@ namespace CSE3PAX.Pages.Manager
                         l.Expertise05, 
                         l.Expertise06, 
                         l.ConcurrentLoadCapacity,
-                        s.SubjectInstanceId,
+                        s.SubjectInstanceID, -- Corrected column name
                         s.SubjectInstanceName,
                         s.SubjectInstanceCode,
                         s.StartDate,
@@ -203,16 +206,17 @@ namespace CSE3PAX.Pages.Manager
                             {
                                 // Fetch lecturer details
                                 SelectedUserId = userId;
+                                SelectedLecturerId = reader.GetInt32(reader.GetOrdinal("LecturerID"));
                                 SelectedEmail = reader.GetString(reader.GetOrdinal("Email"));
                                 SelectedFirstName = reader.GetString(reader.GetOrdinal("FirstName"));
                                 SelectedLastName = reader.GetString(reader.GetOrdinal("LastName"));
                                 SelectedConcurrentLoadCapacity = reader.IsDBNull(reader.GetOrdinal("ConcurrentLoadCapacity")) ? 0 : reader.GetDecimal(reader.GetOrdinal("ConcurrentLoadCapacity"));
-                                SelectedExpertise01 = !reader.IsDBNull(reader.GetOrdinal("Expertise01")) ? reader.GetString(reader.GetOrdinal("Expertise01")) : "No Expertise";
-                                SelectedExpertise02 = !reader.IsDBNull(reader.GetOrdinal("Expertise02")) ? reader.GetString(reader.GetOrdinal("Expertise02")) : "No Expertise";
-                                SelectedExpertise03 = !reader.IsDBNull(reader.GetOrdinal("Expertise03")) ? reader.GetString(reader.GetOrdinal("Expertise03")) : "No Expertise";
-                                SelectedExpertise04 = !reader.IsDBNull(reader.GetOrdinal("Expertise04")) ? reader.GetString(reader.GetOrdinal("Expertise04")) : "No Expertise";
-                                SelectedExpertise05 = !reader.IsDBNull(reader.GetOrdinal("Expertise05")) ? reader.GetString(reader.GetOrdinal("Expertise05")) : "No Expertise";
-                                SelectedExpertise06 = !reader.IsDBNull(reader.GetOrdinal("Expertise06")) ? reader.GetString(reader.GetOrdinal("Expertise06")) : "No Expertise";
+                                SelectedExpertise01 = !reader.IsDBNull(reader.GetOrdinal("Expertise01")) ? reader.GetString(reader.GetOrdinal("Expertise01")) : "";
+                                SelectedExpertise02 = !reader.IsDBNull(reader.GetOrdinal("Expertise02")) ? reader.GetString(reader.GetOrdinal("Expertise02")) : "";
+                                SelectedExpertise03 = !reader.IsDBNull(reader.GetOrdinal("Expertise03")) ? reader.GetString(reader.GetOrdinal("Expertise03")) : "";
+                                SelectedExpertise04 = !reader.IsDBNull(reader.GetOrdinal("Expertise04")) ? reader.GetString(reader.GetOrdinal("Expertise04")) : "";
+                                SelectedExpertise05 = !reader.IsDBNull(reader.GetOrdinal("Expertise05")) ? reader.GetString(reader.GetOrdinal("Expertise05")) : "";
+                                SelectedExpertise06 = !reader.IsDBNull(reader.GetOrdinal("Expertise06")) ? reader.GetString(reader.GetOrdinal("Expertise06")) : "";
 
                                 // Add subject instance to the list
                                 SubjectInstances.Add(new SubjectInstance
