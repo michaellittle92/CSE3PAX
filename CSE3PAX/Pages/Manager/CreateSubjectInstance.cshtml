@@ -1,84 +1,113 @@
 ﻿@page
 @model CSE3PAX.Pages.Manager.SITestingModel
 
-<form method="post" id="reloadForm">
-    <!-- Subject Dropdown -->
-    <select asp-for="SelectedSubject" asp-items="@(new SelectList(Model.ListSubjects, "SubjectCode", "SubjectName"))">
-        <option value="">Select a Subject</option>
-    </select>
 
-    <!-- Start Date Picker -->
-    <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <!-- Subject Instance Title -->
+            <h1 class="my-5 admin-txt text-center"><i class="bi bi-book admin-text"></i> Create Instance</h1>
+
+            <form method="post" id="reloadForm">
+                
+                <!-- Subject Dropdown -->
+                <select asp-for="SelectedSubject" class="form-select" asp-items="@(new SelectList(Model.ListSubjects, "SubjectCode", "SubjectName"))">
+                    <option value="">Select a Subject</option>
+                </select>
+
+                <!-- Start Date Picker -->
+                <div class="my-3">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="StartDate" class="form-control" value="@Model.StartDate?.ToString("yyyy-MM-dd")">
+                </div>
+
+                <!-- End Date Picker -->
+                <div class="my-3">
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="EndDate" class="form-control" value="@Model.EndDate?.ToString("yyyy-MM-dd")">
+                </div>
+
+                <!-- Submission Button -->
+                <button type="submit" class="btn btn-outline-success box-shw mt-5 my-3">Select Lecturer</button>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered border-2 align-middle m-1 box-shw">
+                    <tr class="text-center align-middle bg-secondary box-shw text-light">
+                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Adjusted Rating</th>
+                        <th>Load Capacity Percentage</th>
+                        <th>Action</th>
+                    </tr>
+
+                    @foreach (var lecturer in Model.Lecturers) // Adjust based on how you've named your collection
+                    {
+                        <tr>
+                            <td>@lecturer.Email</td>
+                            <td>@lecturer.FirstName</td>
+                            <td>@lecturer.LastName</td>
+                            <td class="text-center">@lecturer.AdjustedRating /5</td>
+                            <td class="text-center">@lecturer.LoadCapacityPercentage %</td>
+                            <td>
+                                <button type="button" class="select-lecturer btn-outline-success" data-email="@lecturer.Email" data-firstname="@lecturer.FirstName" data-lastname="@lecturer.LastName">Select</button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <form method="post">
+
+                <!-- First Name read only -->
+                <div class="mt-5">
+                    <label for="selectedFirstName">First Name:</label>
+                    <input type="text" id="selectedFirstName" class="form-control" value="@Model.SelectedFirstName" readonly>
+                </div>
+
+                <!-- Last Name read only -->
+                <div class="my-3">
+                    <label for="selectedLastName">Last Name:</label>
+                    <input type="text" id="selectedLastName" class="form-control" value="@Model.SelectedLastName" readonly>
+                </div>
+
+                <!-- Email read only -->
+                <div class="my-3">
+                    <label for="selectedEmail">Email:</label>
+                    <input type="text" id="selectedEmail" class="form-control" value="@Model.SelectedEmail" readonly>
+                </div>
+
+                <input type="hidden" name="SelectedEmail" value="@Model.SelectedEmail" />
+                <input type="hidden" name="SelectedSubjectHidden" value="@Model.SelectedSubject" />
+                <input type="hidden" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
+                <input type="hidden" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
+
+                <!-- Number of students -->
+                <div class="my-3">
+                    <label for="numberOfStudents" class="me-5">Number of Students:</label>
+                    <input type="number" id="numberOfStudents" name="NumberOfStudents" value="@Model.NumberOfStudents" min="1" />
+                </div>
+
+                <!-- Development required -->
+                <div class="my-3">
+                    <label for="isDevelopmentRequired" class="me-2">Is Development Required?</label>
+                    <input type="checkbox" id="isDevelopmentRequired" name="IsDevelopmentRequired" class="form-check-input larger-checkbox" checked="@Model.IsDevelopmentRequired" />
+                </div>
+
+                <div class="d-flex p-3 justify-content-center">
+
+                    <div class="d-flex flex-wrap align-items-center">
+                         <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary mx-5 box-shw my-2" style="width:130px;" asp-page-handler="SubmitData"><i class="bi bi-save2 me-2"></i>Submit</button>
+
+                        <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
+                    </div>  
+                </div>
+            </form>
+        </div>
     </div>
-
-    <!-- End Date Picker -->
-    <div>
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")">
-    </div>
-
-    <!-- Submission Button -->
-    <button type="submit">Select Lecturer</button>
-</form>
-
-
-<table>
-    <tr>
-        <th>Email</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Adjusted Rating</th>
-        <th>Load Capacity Percentage</th>
-    </tr>
-    @foreach (var lecturer in Model.Lecturers) // Adjust based on how you've named your collection
-    {
-        <tr>
-            <td>@lecturer.Email</td>
-            <td>@lecturer.FirstName</td>
-            <td>@lecturer.LastName</td>
-            <td>@lecturer.AdjustedRating /5</td>
-            <td>@lecturer.LoadCapacityPercentage %</td>
-            <td>
-                <button type="button" class="select-lecturer" data-email="@lecturer.Email" data-firstname="@lecturer.FirstName" data-lastname="@lecturer.LastName">Select</button>
-            </td>
-        </tr>
-    }
-</table>
-
-<form method="post">
-<div>
-    <label for="selectedFirstName">First Name:</label>
-    <input type="text" id="selectedFirstName" value="@Model.SelectedFirstName" readonly>
 </div>
-<div>
-    <label for="selectedLastName">Last Name:</label>
-    <input type="text" id="selectedLastName" value="@Model.SelectedLastName" readonly>
-</div>
-<div>
-    <label for="selectedEmail">Email:</label>
-    <input type="text" id="selectedEmail" value="@Model.SelectedEmail" readonly>
-</div>
-
-    <input type="hidden" name="SelectedEmail" value="@Model.SelectedEmail" />
-    <input type="hidden" name="SelectedSubjectHidden" value="@Model.SelectedSubject" />
-    <input type="hidden" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
-    <input type="hidden" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
-
-
-
-<div>
-    <label for="numberOfStudents">Number of Students:</label>
-    <input type="number" id="numberOfStudents" name="NumberOfStudents" value="@Model.NumberOfStudents" min="1" />
-</div>
-
-<div>
-    <input type="checkbox" id="isDevelopmentRequired" name="IsDevelopmentRequired" checked="@Model.IsDevelopmentRequired" />
-    <label for="isDevelopmentRequired">Is Development Required?</label>
-</div>
-
-<button type="submit" asp-page-handler="SubmitData">Submit Subject Instance</button>
-</form>
 
 <script src = "~/js/CreateSubjectInstance.js"></script>

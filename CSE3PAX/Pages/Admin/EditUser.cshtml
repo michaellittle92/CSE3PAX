@@ -45,7 +45,7 @@
                 </div>
           
              <!-- Buttons Flex Container -->
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex flex-wrap justify-content-center mt-4">
                 
                 <!-- Save Button - User Details -->
                     <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Save</button>
@@ -83,22 +83,3 @@
 
 
 @* <script src="~/js/site.js"></script> *@
-
-
-
-<!-- WORKING -->
-@*     <!-- Submit / Cancel / Delete Button -->
-                <div class="d-flex py-3 justify-content-center">
-                    <div class="d-flex flex-wrap justify-content-center">
-                        <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Save</button>
-                        <button type="button" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px;" onclick="goBack()"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
-                    </div>
-                </div>
-            </form>
-
-            <!-- Delete Button -->
-            <form method="post" asp-page-handler="Delete" onsubmit="return confirm('Are you sure you want to delete this user?')">
-                <input type="hidden" asp-for="Email" />
-                <input type="hidden" asp-for="UserId" />
-                <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-trash pe-3"></i>Delete</button>
-            </form> *@

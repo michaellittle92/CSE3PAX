@@ -218,13 +218,3 @@ namespace CSE3PAX.Pages.Admin
         }
     }
 }
-
-
-
-
-
-
-
-
-
-//RedirectToPage("/Admin/ReadSubject");
