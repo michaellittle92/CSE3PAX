@@ -20,6 +20,10 @@
             
             <!-- Edit User Form -->
             <form method="post">
+
+                <!-- Hidden field for IsLecturer -->
+                <input type="hidden" asp-for="IsLecturer" />
+
                 <!-- User ID -->
                 <div class="mb-3">
                     <label class="form-label" asp-for="UserId">User ID</label>
@@ -43,9 +47,38 @@
                     <label class="form-label" asp-for="LastName">Last Name</label>
                     <input class="form-control" asp-for="LastName" />
                 </div>
+
+                @if(@Model.IsLecturer){
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise01">Expertise 01</label>
+                    <input class="form-control" asp-for="Expertise01" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise02">Expertise 02</label>
+                    <input class="form-control" asp-for="Expertise02" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise03">Expertise 03</label>
+                    <input class="form-control" asp-for="Expertise03" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise04">Expertise 04</label>
+                    <input class="form-control" asp-for="Expertise04" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise05">Expertise 05</label>
+                    <input class="form-control" asp-for="Expertise05" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" asp-for="Expertise06">Expertise 06</label>
+                    <input class="form-control" asp-for="Expertise06" />
+                </div>
+                }
           
              <!-- Buttons Flex Container -->
             <div class="d-flex flex-wrap justify-content-center mt-4">
+
+                    
                 
                 <!-- Save Button - User Details -->
                     <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Save</button>
@@ -61,6 +94,9 @@
                 <button type="submit" class="btn btn-danger mx-4 box-shw my-2" style="width:130px;"><i class="bi bi-trash pe-3"></i>Delete</button>
             </form>
         </div>
+
+    
+        
 
         <!-- Reset Password Section -->
         <div class="container">

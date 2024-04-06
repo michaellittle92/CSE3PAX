@@ -2,6 +2,7 @@ using CSE3PAX.HelpClasses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace CSE3PAX.Pages.Admin
 {
@@ -39,6 +40,22 @@ namespace CSE3PAX.Pages.Admin
         [BindProperty]
         public string Password { get; set; }
 
+        [BindProperty]
+        public bool IsLecturer { get; set; }
+
+        [BindProperty]
+        public string Expertise01 { get; set; }
+        [BindProperty]
+        public string Expertise02 { get; set; }
+        [BindProperty]
+        public string Expertise03 { get; set; }
+        [BindProperty]
+        public string Expertise04 { get; set; }
+        [BindProperty]
+        public string Expertise05 { get; set; }
+        [BindProperty]
+        public string Expertise06 { get; set; }
+
         public void OnGet()
         {
             try
@@ -46,7 +63,7 @@ namespace CSE3PAX.Pages.Admin
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    string getUserDataSQLQuery = "SELECT UserId, FirstName, LastName FROM Users WHERE Email = @Email";
+                    string getUserDataSQLQuery = "SELECT UserId, FirstName, LastName, IsLecturer FROM Users WHERE Email = @Email";
                     using (SqlCommand command = new SqlCommand(getUserDataSQLQuery, connection))
                     {
                         command.Parameters.AddWithValue("@Email", Email);
@@ -59,32 +76,76 @@ namespace CSE3PAX.Pages.Admin
                                 UserId = reader["UserId"].ToString();
                                 FirstName = reader["FirstName"].ToString();
                                 LastName = reader["LastName"].ToString();
+                                IsLecturer = Convert.ToBoolean(reader["IsLecturer"]);
 
-                                Console.WriteLine($"{UserId}, {Email}, {FirstName}, {LastName}");
+                                reader.Close();
+                                if (IsLecturer) { 
+                                
+                                    string getExpertiseSQLQuery = "SELECT Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06 FROM Lecturers WHERE UserID = @UserID";
+                                    using (SqlCommand expertiseCommand = new SqlCommand(getExpertiseSQLQuery, connection))
+                                    {
+                                        expertiseCommand.Parameters.AddWithValue("@UserID", UserId);
+
+                                        using (SqlDataReader expertiseReader = expertiseCommand.ExecuteReader())
+                                        {
+                                            if (expertiseReader.Read())
+                                            {
+                                                Expertise01 = expertiseReader["Expertise01"].ToString();
+                                                Expertise02 = expertiseReader["Expertise02"].ToString();
+                                                Expertise03 = expertiseReader["Expertise03"].ToString();
+                                                Expertise04 = expertiseReader["Expertise04"].ToString();
+                                                Expertise05 = expertiseReader["Expertise05"].ToString();
+                                                Expertise06 = expertiseReader["Expertise06"].ToString();
+
+                                                Debug.WriteLine(Expertise06);
+                                                expertiseReader.Close();
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+
+                Debug.WriteLine(ex);
+            }
         }
+
         public IActionResult OnPost()
         {
-            
-               
-                try
+            string logMessage = $"UserId: {UserId}, " +
+                        $"Email: {Email}, " +
+                        $"FirstName: {FirstName}, " +
+                        $"LastName: {LastName}, " +
+                        $"IsLecturer: {IsLecturer}";
+
+            if (IsLecturer)
+            {
+                logMessage += $", Expertise01: {Expertise01}, " +
+                              $"Expertise02: {Expertise02}, " +
+                              $"Expertise03: {Expertise03}, " +
+                              $"Expertise04: {Expertise04}, " +
+                              $"Expertise05: {Expertise05}, " +
+                              $"Expertise06: {Expertise06}";
+            }
+
+            Debug.WriteLine(logMessage);
+
+            try
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
                     string updateUserDataSQLQuery = @"
-                UPDATE Users 
-                SET FirstName = @FirstName, LastName = @LastName, Email = @Email 
-                WHERE UserId = @UserId";
+            UPDATE Users 
+            SET FirstName = @FirstName, LastName = @LastName, Email = @Email 
+            WHERE UserId = @UserId";
 
                     using (SqlCommand command = new SqlCommand(updateUserDataSQLQuery, connection))
                     {
-                        // Add SQL parameters for the query
                         command.Parameters.AddWithValue("@FirstName", FirstName);
                         command.Parameters.AddWithValue("@LastName", LastName);
                         command.Parameters.AddWithValue("@Email", Email);
@@ -94,33 +155,41 @@ namespace CSE3PAX.Pages.Admin
 
                         // Set the success message
                         SuccessMessage = "User edited successfully.";
+                        Debug.WriteLine(FirstName);
 
-                        Console.WriteLine(FirstName);
-
-                        //Check to see if update is successful
-                        if (result == 1)
+                        if (result >= 1 && IsLecturer)
                         {
+                            string updateExpertiseSQLQuery = @"
+                    UPDATE Lecturers
+                    SET Expertise01 = @Expertise01, Expertise02 = @Expertise02, 
+                        Expertise03 = @Expertise03, Expertise04 = @Expertise04, 
+                        Expertise05 = @Expertise05, Expertise06 = @Expertise06
+                    WHERE UserId = @UserId";
 
-                            return Page();
-                            //return RedirectToPage("/Admin/StaffManagement");
+                            using (SqlCommand expertiseCommand = new SqlCommand(updateExpertiseSQLQuery, connection))
+                            {
+                                expertiseCommand.Parameters.AddWithValue("@Expertise01", Expertise01 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@Expertise02", Expertise02 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@Expertise03", Expertise03 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@Expertise04", Expertise04 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@Expertise05", Expertise05 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@Expertise06", Expertise06 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@UserId", UserId);
+
+                                expertiseCommand.ExecuteNonQuery();
+                            }
                         }
-                        else
-                        {
-
-                            Console.WriteLine("", "User could not be updated.");
-                            return Page();
-                        }
-
                     }
-
                 }
-                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                return null;
+
+                ModelState.AddModelError("", "An error occurred while processing your request.");
             }
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostDeleteAsync()
