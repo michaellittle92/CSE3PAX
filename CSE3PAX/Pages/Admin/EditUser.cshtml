@@ -95,27 +95,24 @@
             </form>
         </div>
 
-    
-        
+
+
 
         <!-- Reset Password Section -->
         <div class="container">
             <div class="row justify-content-center">
-
                 <!-- New form for Reset Password action -->
-                <form method="post" asp-page-handler="ResetPassword">
-                    <div class="mb-3 my-3">
-                        <label asp-for="Password">New Password</label>
-                        <input asp-for="Password" type="password" class="form-control " style="width: 100%;" />
+                <form method="post" asp-page-handler="ResetPassword" id="resetPasswordForm">
+                    <div class="mb-3">
+                        <label for="Password">Password</label>
+                        <input type="password" class="form-control" id="Password" name="Password">
+                        <div id="passwordHelp" class="form-text text-danger"></div>
                     </div>
-
-                    <input type="hidden" asp-for="UserId" />
-                    <button type="submit" class="btn btn-secondary box-shw">Reset Password</button>
+                    <button type="submit" class="btn btn-secondary">Reset Password</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-
-@* <script src="~/js/site.js"></script> *@
+<script src="~/js/password.js"></script>

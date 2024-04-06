@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace CSE3PAX.Pages.Admin
 {
@@ -56,6 +57,9 @@ namespace CSE3PAX.Pages.Admin
         [BindProperty]
         public string Expertise06 { get; set; }
 
+        [BindProperty]
+        public string ResetPasswordEmail { get; set; }
+
         public void OnGet()
         {
             try
@@ -77,6 +81,8 @@ namespace CSE3PAX.Pages.Admin
                                 FirstName = reader["FirstName"].ToString();
                                 LastName = reader["LastName"].ToString();
                                 IsLecturer = Convert.ToBoolean(reader["IsLecturer"]);
+
+                                ResetPasswordEmail = Email;
 
                                 reader.Close();
                                 if (IsLecturer) { 
@@ -116,23 +122,7 @@ namespace CSE3PAX.Pages.Admin
 
         public IActionResult OnPost()
         {
-            string logMessage = $"UserId: {UserId}, " +
-                        $"Email: {Email}, " +
-                        $"FirstName: {FirstName}, " +
-                        $"LastName: {LastName}, " +
-                        $"IsLecturer: {IsLecturer}";
 
-            if (IsLecturer)
-            {
-                logMessage += $", Expertise01: {Expertise01}, " +
-                              $"Expertise02: {Expertise02}, " +
-                              $"Expertise03: {Expertise03}, " +
-                              $"Expertise04: {Expertise04}, " +
-                              $"Expertise05: {Expertise05}, " +
-                              $"Expertise06: {Expertise06}";
-            }
-
-            Debug.WriteLine(logMessage);
 
             try
             {
@@ -192,74 +182,45 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
-        public async Task<IActionResult> OnPostDeleteAsync()
-        {
-            System.Diagnostics.Debug.WriteLine($"Email: {Email}");
-            try
-            {
-                // SQL script with parameterized email
-                var sql = @"
-            DECLARE @Email VARCHAR(255);
-            DECLARE @UserID INT;
-            DECLARE @IsLecturer BIT;
-
-            SET @Email = @EmailParam; -- Use parameterized value here
-
-            -- Retrieve UserID and IsLecturer status based on the email
-            SELECT @UserID = UserID, @IsLecturer = IsLecturer FROM Users WHERE Email = @Email;
-
-            -- Check if the user is a lecturer
-            IF @IsLecturer = 1
-            BEGIN
-                -- Delete the lecturer-specific entry first to maintain referential integrity
-                DELETE FROM Lecturers WHERE UserID = @UserID;
-
-                -- Then delete the user from the Users table
-                DELETE FROM Users WHERE UserID = @UserID;
-            END
-            ELSE
-            BEGIN
-                -- If not a lecturer, delete the user directly
-                DELETE FROM Users WHERE UserID = @UserID;
-            END";
-
-                using (SqlConnection connection = new SqlConnection(_connectionString))
-                {
-                    await connection.OpenAsync();
-                    using (SqlCommand command = new SqlCommand(sql, connection))
-                    {
-                        // Parameterize the email address to avoid SQL injection
-                        command.Parameters.AddWithValue("@EmailParam", Email);
-                        await command.ExecuteNonQueryAsync();
-                    }
-                }
-                return RedirectToPage("/Admin/StaffManagement");
-            }
-            catch (Exception ex)
-            {
-                // Log or handle the error as needed
-                return Page();
-            }
-        }
-
         public async Task<IActionResult> OnPostResetPasswordAsync()
         {
+            if (string.IsNullOrEmpty(ResetPasswordEmail))
+            {
+                ModelState.AddModelError("", "Email address is required.");
+                return Page();
+            }
+
+            if (string.IsNullOrEmpty(Password))
+            {
+                ModelState.AddModelError("Password", "Password cannot be empty.");
+                return RedirectToPage(new { email = ResetPasswordEmail });
+            }
+
+            // Password complexity requirements: Minimum 8 characters, at least one number, and one special character
+            var passwordPattern = new Regex(@"^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$");
+            if (!passwordPattern.IsMatch(Password))
+            {
+                ModelState.AddModelError("Password", "Password must be at least 8 characters long and include at least one number and one special character.");
+                return RedirectToPage(new { email = ResetPasswordEmail });
+            }
+
             try
             {
-                // Generate a new GUID
                 string userGuid = Guid.NewGuid().ToString();
-
                 string newPasswordHash = Security.HashSHA256(Password + userGuid);
 
-                // Update the password and userGuid in the database for the specified user
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     await connection.OpenAsync();
                     var sql = @"
-                UPDATE Users 
-                SET Password = @NewPasswordHash,
-                    UserGuid = @UserGuid
-                WHERE UserId = @UserId";
+                BEGIN TRANSACTION;
+                IF EXISTS (SELECT 1 FROM Users WHERE UserId = @UserId)
+                BEGIN
+                    UPDATE Users 
+                    SET Password = @NewPasswordHash, UserGuid = @UserGuid
+                    WHERE UserId = @UserId;
+                END
+                COMMIT TRANSACTION;";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
@@ -267,22 +228,29 @@ namespace CSE3PAX.Pages.Admin
                         command.Parameters.AddWithValue("@UserId", UserId);
                         command.Parameters.AddWithValue("@UserGuid", userGuid);
 
-                        await command.ExecuteNonQueryAsync();
+                        int affectedRows = await command.ExecuteNonQueryAsync();
+                        if (affectedRows == 0)
+                        {
+                            ModelState.AddModelError("", "User not found or password could not be updated.");
+                            return RedirectToPage(new { email = this.Email });
+                        }
                     }
                 }
 
-                // Optionally, add a success message or log the password reset event
                 TempData["Message"] = "Password has been reset successfully.";
-
-                return RedirectToPage();
+                return RedirectToPage(new { email = this.Email });
             }
             catch (Exception ex)
             {
-                // Log the error or handle it as needed
                 ModelState.AddModelError("", "An error occurred while resetting the password.");
-                return Page();
+                return RedirectToPage(new { email = this.Email });
             }
         }
+
+
+
+
+
 
 
     }

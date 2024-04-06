@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\js\\manager.js"
     },
     {
+      "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\password.js",
+      "PackagePath": "staticwebassets\\js\\password.js"
+    },
+    {
       "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
