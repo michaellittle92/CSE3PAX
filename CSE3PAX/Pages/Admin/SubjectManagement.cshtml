@@ -62,8 +62,8 @@
                                                 {
                                                     <tr>
                                                         <td class="text-center">@subject.SubjectCode</td>
-                                                        <td>@subject.SubjectName</td>
-                                                        <td>@subject.SubjectClassification</td>
+                                                        <td class="text-center">@subject.SubjectName</td>
+                                                        <td class="text-center">@subject.SubjectClassification</td>
                                                         <td class="text-center">@subject.YearLevel</td>
                                                         <td>
                                                             <div class="text-center">
@@ -126,7 +126,7 @@
                                                 @foreach (var subject in Model.SubjectInstances)
                                                 {
                                                     <tr>
-                                                        <td>@subject.SubjectInstanceName</td>
+                                                        <td class="text-center">@subject.SubjectInstanceName</td>
                                                         <td class="text-center">@subject.SubjectInstanceCode</td>
                                                         <td class="text-center">@subject.LecturerId</td>
                                                         <td class="text-center">@subject.StartDate</td>

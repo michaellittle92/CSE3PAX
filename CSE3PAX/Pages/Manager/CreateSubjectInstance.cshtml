@@ -1,6 +1,13 @@
 ﻿@page
 @model CSE3PAX.Pages.Manager.SITestingModel
-
+@{
+    if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success" role="alert">
+            @Model.SuccessMessage
+        </div>
+    }
+}
 
 <div class="container">
     <div class="row justify-content-center">

@@ -30,6 +30,7 @@ namespace CSE3PAX.Pages.Lecturer
         public string Expertise06 { get; set; }
         public decimal? ConcurrentLoadCapacity { get; set; }
         public int InstanceCount = 0;
+        public decimal? WorkHours { get; set; }
 
         // Object to access application settings
         private readonly IConfiguration _configuration;
@@ -107,6 +108,9 @@ namespace CSE3PAX.Pages.Lecturer
                                     // Correctly handle DateTime data types
                                     StartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM-yyyy"),
                                     EndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM-yyyy"),
+                                    FullStartDate = reader.GetDateTime(reader.GetOrdinal("StartDate")).ToString("MMMM dd, yyyy"),
+                                    FullEndDate = reader.GetDateTime(reader.GetOrdinal("EndDate")).ToString("MMMM dd, yyyy"),
+
                                 });
                                 InstanceCount++;
                             }
@@ -163,6 +167,7 @@ namespace CSE3PAX.Pages.Lecturer
                                 Expertise05 = reader.IsDBNull(9) ? null : reader.GetString(9);
                                 Expertise06 = reader.IsDBNull(10) ? null : reader.GetString(10);
                                 ConcurrentLoadCapacity = reader.IsDBNull(11) ? null : (decimal?)reader.GetDecimal(11);
+                                WorkHours = (decimal?)ConvertToHoursPerWeek((decimal)(reader.IsDBNull(11) ? 6 : (decimal?)reader.GetDecimal(11)));
                             }
                             else
                             {
@@ -197,5 +202,27 @@ namespace CSE3PAX.Pages.Lecturer
                 Console.WriteLine("Error retrieving lecturer details: " + ex.Message);
             }
         }
+
+        // Convert workload to hours per week
+        private double? ConvertToHoursPerWeek(decimal? loadCapacity)
+        {
+            if (loadCapacity == null)
+            {
+                return null;
+            }
+
+            // full-time load capacity of 6 corresponds to 38 hours per week
+            const double fullTimeLoadCapacity = 6;
+            const double fullTimeHoursPerWeek = 38;
+
+            // Convert load capacity to a fraction of a full-time workload
+            double loadFractionOfFullTime = (double)loadCapacity / fullTimeLoadCapacity;
+
+            // Convert fraction of a full-time workload to hours per week and round up
+            double hoursPerWeek = Math.Ceiling(loadFractionOfFullTime * fullTimeHoursPerWeek);
+
+            return hoursPerWeek;
+        }
+
     }
 }

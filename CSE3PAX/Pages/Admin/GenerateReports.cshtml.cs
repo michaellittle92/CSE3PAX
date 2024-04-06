@@ -39,6 +39,7 @@ namespace CSE3PAX.Pages.Admin
             public string Expertise05 { get; set; }
             public string Expertise06 { get; set; }
             public decimal? ConcurrentLoadCapacity { get; set; }
+            public decimal? WorkHours { get; set; }
         }
 
         // Subject class to store Subject variable information
@@ -64,6 +65,8 @@ namespace CSE3PAX.Pages.Admin
             public DateTime EndDate { get; set; }
             public int SubjectInstanceYear { get; set; }
             public string SubjectCode { get; set; }
+            public string LecturerFirstName { get; internal set; }
+            public string LecturerLastName { get; internal set; }
         }
 
         /*
@@ -179,8 +182,9 @@ namespace CSE3PAX.Pages.Admin
                                     Expertise04 = reader.IsDBNull(7) ? null : reader.GetString(7),
                                     Expertise05 = reader.IsDBNull(8) ? null : reader.GetString(8),
                                     Expertise06 = reader.IsDBNull(9) ? null : reader.GetString(9),
-                                    ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10)
-                                };
+                                    ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10),
+                                    WorkHours = (decimal?)ConvertToHoursPerWeek((decimal)(reader.IsDBNull(10) ? 6 : (decimal?)reader.GetDecimal(10))),
+                            };
 
                                 // Determine UserType based on isAdmin, isManager, and isLecturer 
                                 if (reader.GetBoolean(11))
@@ -277,9 +281,12 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subject instances
-                    string sql = "SELECT si.SubjectInstanceId, si.SubjectId, si.SubjectInstanceName, si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, si.SubjectInstanceYear, s.SubjectCode " +
-                        "FROM [SubjectInstance] si " +
-                        "INNER JOIN [Subjects] s ON si.SubjectId = s.SubjectId";
+                    string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
+                      si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
+                      si.SubjectInstanceYear, s.SubjectCode, u.FirstName, u.LastName
+                       FROM [SubjectInstance] si 
+                       INNER JOIN [Subjects] s ON si.SubjectId = s.SubjectId
+                       INNER JOIN [Users] u ON si.LecturerId = u.UserId";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -301,7 +308,9 @@ namespace CSE3PAX.Pages.Admin
                                     EndDate = reader.GetDateTime(5),
                                     LecturerId = reader.GetInt32(6),
                                     SubjectInstanceYear = reader.GetInt32(7),
-                                    SubjectCode = reader.GetString(8)
+                                    SubjectCode = reader.GetString(8),
+                                    LecturerFirstName = reader.GetString(9),
+                                    LecturerLastName = reader.GetString(10)
                                 };
                                 // Add subject instance to the list
                                 SubjectInstances.Add(subjectInstance);
@@ -324,5 +333,27 @@ namespace CSE3PAX.Pages.Admin
         {
             Users = Users.OrderBy(user => user.UserId).ToList();
         }
+
+        // Convert workload to hours per week
+        private double? ConvertToHoursPerWeek(decimal? loadCapacity)
+        {
+            if (loadCapacity == null)
+            {
+                return null;
+            }
+
+            // full-time load capacity of 6 corresponds to 38 hours per week
+            const double fullTimeLoadCapacity = 6;
+            const double fullTimeHoursPerWeek = 38;
+
+            // Convert load capacity to a fraction of a full-time workload
+            double loadFractionOfFullTime = (double)loadCapacity / fullTimeLoadCapacity;
+
+            // Convert fraction of a full-time workload to hours per week and round up
+            double hoursPerWeek = Math.Ceiling(loadFractionOfFullTime * fullTimeHoursPerWeek);
+
+            return hoursPerWeek;
+        }
+
     }
 }

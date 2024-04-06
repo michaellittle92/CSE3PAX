@@ -13,6 +13,7 @@ namespace CSE3PAX.Pages.Admin
 
         // Alert message variable
         public string SuccessMessage { get; set; }
+        public string ErrorMessage { get; set; }
 
         private readonly IConfiguration _configuration;
 
@@ -45,9 +46,27 @@ namespace CSE3PAX.Pages.Admin
 
         public void OnPost()
         {
-            try {
-                using (SqlConnection connection = new SqlConnection(_connectionString)) { 
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
                     connection.Open();
+
+                    // Check if subject code already exists
+                    string checkDuplicateQuery = "SELECT COUNT(*) FROM Subjects WHERE SubjectCode = @SubjectCode";
+                    using (SqlCommand checkCommand = new SqlCommand(checkDuplicateQuery, connection))
+                    {
+                        checkCommand.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                        int count = (int)checkCommand.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            ErrorMessage = "A subject with the provided Subject Code already exists!";
+                            return; // Exit the method
+                        }
+                    }
+
+                    // If subject code is unique, proceed with insertion
                     string insertSubjectSQLQuery = "INSERT INTO Subjects (SubjectCode, SubjectName, SubjectClassification, YearLevel) VALUES (@SubjectCode, @SubjectName, @SubjectClassification, @YearLevel)";
                     using (SqlCommand command = new SqlCommand(insertSubjectSQLQuery, connection))
                     {
@@ -61,12 +80,12 @@ namespace CSE3PAX.Pages.Admin
                         SuccessMessage = "Subject created successfully.";
                     }
                 }
-                
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
         }
+
     }
 }

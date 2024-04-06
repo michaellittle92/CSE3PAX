@@ -13,60 +13,7 @@
             
             <!-- Settings Title -->
             <h1 class="mb-5 admin-txt text-center"><i class="bi bi-gear admin-text"></i> Settings</h1>
-
             <div class="my-4">
-                
-                <!-- Display Settings Section -->
-                <div class="mb-5 pb-5 border-bottom border-gray">
-                    <h5 class="my-2 mt-5">Display Settings</h5> 
-                    <p>Customize how the interface is displayed.</p>
-                    
-                    <div class="list-group mb-5 box-shw">
-                        <!-- Theme Option -->
-                        <div class="card card-body">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <strong class="mb-2">Theme</strong>
-
-                                    <!-- Light Theme Radio Button -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="theme" id="lightTheme" value="light" checked>
-                                        <label class="form-check-label" for="lightTheme">Light</label>
-                                    </div>
-
-                                    <!-- Dark Theme Radio Button -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="theme" id="darkTheme" value="dark">
-                                        <label class="form-check-label" for="darkTheme">Dark</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Font Size Option -->
-                        <div class="list-group-item">
-                            <div class="row align-items-center">
-                                <div class="col">
-                                    <strong class="mb-2">Font Size</strong>
-                                    <!-- Small Font Size Radio Button -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="fontSize" id="small" value="small">
-                                        <label class="form-check-label" for="small">Small</label>
-                                    </div>
-                                    <!-- Medium Font Size Radio Button -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="fontSize" id="medium" value="medium" checked>
-                                        <label class="form-check-label" for="medium">Medium</label>
-                                    </div>
-                                    <!-- Large Font Size Radio Button -->
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="fontSize" id="large" value="large">
-                                        <label class="form-check-label" for="large">Large</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Security Settings Section -->
                 <div class="mb-5 pb-5 border-bottom border-gray">
                     <h5 class="mb-0 mt-5">Security Settings</h5> 
@@ -104,26 +51,3 @@
         </div>
     </div>
 </div>
-
-    
-<!-- Javascript -->
-<script>
-    const themeRadios = document.querySelectorAll('input[name="theme"]');
-    themeRadios.forEach(radio => {
-        radio.addEventListener('change', function () {
-            if (this.value === 'light') {
-                document.body.classList.remove('dark');
-                document.body.classList.add('light');
-            } else if (this.value === 'dark') {
-                document.body.classList.remove('light');
-                document.body.classList.add('dark');
-            }
-        });
-    });
-</script>
-
-
-<!-- Still need to save for entire site.
-     add in different sized text for small, medium and large.
-     Add functionality to save button
--->

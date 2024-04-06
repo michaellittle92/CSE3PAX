@@ -7,6 +7,12 @@
             @Model.SuccessMessage
         </div>
     }
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
 }
 
 <!-- Create User Container -->
@@ -32,12 +38,15 @@
                 <!-- Email -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email:</label>
-                    <input type="text" id="email" name="email" required class="form-control" />
+                    <input type="text" id="email" name="email" required class="form-control" placeholder="example@latrobe.edu.au" />
                 </div>
                 <!-- Password -->
                 <div class="mb-3">
                     <label for="password" class="form-label">Password:</label>
                     <input type="password" id="password" name="password" required class="form-control" />
+                    <div id="passwordRequirements" class="text-muted">
+                        Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.
+                    </div>
                 </div>
                 <!-- Radio buttons for user selection -->
                 <div>

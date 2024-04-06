@@ -7,6 +7,12 @@
             @Model.SuccessMessage
         </div>
     }
+    if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
 }
 
 <div class="container">

@@ -24,6 +24,8 @@ namespace CSE3PAX.Pages.Manager
         [BindProperty(SupportsGet = true)]
         public string SelectedSubject { get; set; }
 
+        public string SuccessMessage { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public DateTime? StartDate { get; set; }
 
@@ -54,6 +56,12 @@ namespace CSE3PAX.Pages.Manager
 
         public void OnGet()
         {
+            // Check if TempData is not null, then set SuccessMessage
+            if (TempData["SuccessMessage"] != null)
+            {
+                SuccessMessage = "Subject instance created successfully!";
+            }
+
             LoadSubjects();
 
             if (!string.IsNullOrWhiteSpace(SelectedSubject) && StartDate.HasValue && EndDate.HasValue)
@@ -103,50 +111,50 @@ namespace CSE3PAX.Pages.Manager
 				FROM Subjects 
 				WHERE Subjects.SubjectCode = @selectedSubject;
 
-              SELECT 
-    Users.Email, 
-    Users.FirstName, 
-    Users.LastName,
-    @rating + CASE 
-        WHEN EXISTS (
-            SELECT 1 
-            FROM SubjectInstance
-            INNER JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID
-            WHERE 
-                SubjectInstance.LecturerID = Lecturers.LecturerID 
-                AND Subjects.SubjectCode = @selectedSubject
-        ) THEN 0 ELSE -2 END 
-    +
-    CASE 
+                  SELECT 
+                    Users.Email, 
+                    Users.FirstName, 
+                    Users.LastName,
+                    @rating + CASE 
+                        WHEN EXISTS (
+                            SELECT 1 
+                            FROM SubjectInstance
+                            INNER JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID
+                            WHERE 
+                                SubjectInstance.LecturerID = Lecturers.LecturerID 
+                                AND Subjects.SubjectCode = @selectedSubject
+                        ) THEN 0 ELSE -2 END 
+                    +
+                    CASE 
 
-        WHEN @SelectedSubjectClassifcation IN (Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06)
-        THEN 0 ELSE -2 END AS AdjustedRating,
-    CAST(
-        ROUND(ISNULL(SUM(SubjectInstance.Load), 0) / NULLIF(Lecturers.ConcurrentLoadCapacity, 0) * 100, 0) 
-    AS INT) AS LoadCapacityPercentage
-FROM 
-    Users 
-LEFT JOIN Lecturers ON Users.UserID = Lecturers.UserID
-LEFT JOIN SubjectInstance ON Lecturers.LecturerID = SubjectInstance.LecturerID
-LEFT JOIN Subjects ON Subjects.SubjectName = @selectedSubject
-WHERE 
-    Users.IsLecturer = 1
-    AND (
-        (SubjectInstance.StartDate <= @endDate AND SubjectInstance.EndDate >= @startDate)
-        OR SubjectInstance.LecturerID IS NULL
-    )
-GROUP BY 
-    Users.Email, 
-    Users.FirstName, 
-    Users.LastName, 
-    Lecturers.ConcurrentLoadCapacity, 
-    Lecturers.LecturerID,
-    Subjects.SubjectClassification,
-    Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, 
-    Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06
-ORDER BY 
-    AdjustedRating DESC, 
-    LoadCapacityPercentage;";
+                        WHEN @SelectedSubjectClassifcation IN (Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06)
+                        THEN 0 ELSE -2 END AS AdjustedRating,
+                    CAST(
+                        ROUND(ISNULL(SUM(SubjectInstance.Load), 0) / NULLIF(Lecturers.ConcurrentLoadCapacity, 0) * 100, 0) 
+                    AS INT) AS LoadCapacityPercentage
+                        FROM 
+                            Users 
+                        LEFT JOIN Lecturers ON Users.UserID = Lecturers.UserID
+                        LEFT JOIN SubjectInstance ON Lecturers.LecturerID = SubjectInstance.LecturerID
+                        LEFT JOIN Subjects ON Subjects.SubjectName = @selectedSubject
+                        WHERE 
+                            Users.IsLecturer = 1
+                            AND (
+                                (SubjectInstance.StartDate <= @endDate AND SubjectInstance.EndDate >= @startDate)
+                                OR SubjectInstance.LecturerID IS NULL
+                            )
+                        GROUP BY 
+                            Users.Email, 
+                            Users.FirstName, 
+                            Users.LastName, 
+                            Lecturers.ConcurrentLoadCapacity, 
+                            Lecturers.LecturerID,
+                            Subjects.SubjectClassification,
+                            Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, 
+                            Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06
+                        ORDER BY 
+                            AdjustedRating DESC, 
+                            LoadCapacityPercentage;";
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -176,7 +184,7 @@ ORDER BY
 
         public IActionResult OnPost()
         {
-Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
+            Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
             LoadSubjects(); // Reload subjects to ensure dropdown is populated
 
             if (!string.IsNullOrWhiteSpace(SelectedSubject) && StartDate.HasValue && EndDate.HasValue)
@@ -215,7 +223,7 @@ Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
                         command.CommandType = System.Data.CommandType.Text;
 
                         command.CommandText = @"
-                   DECLARE @UserID INT;
+                    DECLARE @UserID INT;
                     DECLARE @LecturerID INT;
                     DECLARE @SubjectID INT;
                     DECLARE @SubjectName NVARCHAR(100);
@@ -262,30 +270,30 @@ Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
                             command.CommandType = System.Data.CommandType.Text;
 
                             command.CommandText = @"
-                   DECLARE @UserID INT;
-                    DECLARE @LecturerID INT;
-                    DECLARE @SubjectID INT;
-                    DECLARE @SubjectName NVARCHAR(100);
-                    DECLARE @Year NVARCHAR(100);
-                    DECLARE @Month NVARCHAR(100);
-                    DECLARE @SubjectInstanceCode NVARCHAR(100);
-                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
-                    DECLARE @SubjectInstanceName NVARCHAR(200);
+                            DECLARE @UserID INT;
+                            DECLARE @LecturerID INT;
+                            DECLARE @SubjectID INT;
+                            DECLARE @SubjectName NVARCHAR(100);
+                            DECLARE @Year NVARCHAR(100);
+                            DECLARE @Month NVARCHAR(100);
+                            DECLARE @SubjectInstanceCode NVARCHAR(100);
+                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
+                            DECLARE @SubjectInstanceName NVARCHAR(200);
 
-                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                    SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                    SET @Month = DATENAME(MONTH, @EndDateInput);
+                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                            SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                            SET @Month = DATENAME(MONTH, @EndDateInput);
 
-                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
 
-                    SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
-                    SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
+                            SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
+                            SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
 
-                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
+                            INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                            VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
 
                             command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
                             command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
@@ -300,13 +308,12 @@ Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
                     }
                 }
 
-            
+                TempData["SuccessMessage"] = "Instance Created";
 
-           
+                // Page redirect
+                return RedirectToPage("/Manager/CreateSubjectInstance");
 
-            // Redirect or return a success message/page
-            return RedirectToPage("/Manager/CreateSubjectInstance");
-        }
+            }
             catch (SqlException ex)
             {
 
@@ -332,7 +339,6 @@ Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
                 // Update the instance load with the calculated increase
                 instanceLoad += loadIncrease;
             }
-
             return instanceLoad;
         }
     }
