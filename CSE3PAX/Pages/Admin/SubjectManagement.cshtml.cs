@@ -47,6 +47,9 @@ namespace CSE3PAX.Pages.Admin
             public DateTime StartDate { get; set; }
             public DateTime EndDate { get; set; }
             public int SubjectInstanceYear { get; set; }
+            public string SubjectCode { get; set; }
+            public string LecturerFirstName { get; internal set; }
+            public string LecturerLastName { get; internal set; }
         }
 
 
@@ -169,7 +172,12 @@ namespace CSE3PAX.Pages.Admin
                     connection.Open();
 
                     // SQL query to select all subject instances
-                    string sql = "SELECT SubjectInstanceId, SubjectId, SubjectInstanceName, SubjectInstanceCode, StartDate, EndDate, LecturerId, SubjectInstanceYear FROM [SubjectInstance]";
+                    string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
+                      si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
+                      si.SubjectInstanceYear, s.SubjectCode, u.FirstName, u.LastName
+                       FROM [SubjectInstance] si 
+                       INNER JOIN [Subjects] s ON si.SubjectId = s.SubjectId
+                       INNER JOIN [Users] u ON si.LecturerId = u.UserId";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -194,6 +202,9 @@ namespace CSE3PAX.Pages.Admin
                                     EndDate = reader.GetDateTime(5),
                                     LecturerId = reader.GetInt32(6),
                                     SubjectInstanceYear = reader.GetInt32(7),
+                                    SubjectCode = reader.GetString(8),
+                                    LecturerFirstName = reader.GetString(9),
+                                    LecturerLastName = reader.GetString(10)
                                 };
 
                                 // Add subject instances
@@ -216,5 +227,8 @@ namespace CSE3PAX.Pages.Admin
         {
             SubjectInstances = SubjectInstances.OrderBy(instance => instance.SubjectInstanceId).ToList();
         }
+
+
+
     }
 }
