@@ -3,18 +3,6 @@
   "WorkspaceRootPath": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\admin\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\manager\\createsubjectinstance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\manager\\createsubjectinstance.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\admin\\subjectmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\subjectmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -26,58 +14,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CreateUser.cshtml",
-              "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Admin\\CreateUser.cshtml",
-              "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\CreateUser.cshtml",
-              "RelativeToolTip": "Pages\\Admin\\CreateUser.cshtml",
-              "ViewState": "AQIAAG0AAAAAMjMzMzMLwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T02:03:16.024Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "EditUser.cshtml",
-              "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\EditUser.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Admin\\EditUser.cshtml",
-              "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\EditUser.cshtml",
-              "RelativeToolTip": "Pages\\Admin\\EditUser.cshtml",
-              "ViewState": "AQIAACUAAABAMzMzMzMrwC8AAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T02:02:49.136Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CreateSubjectInstance.cshtml",
-              "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\CreateSubjectInstance.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Manager\\CreateSubjectInstance.cshtml",
-              "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Manager\\CreateSubjectInstance.cshtml",
-              "RelativeToolTip": "Pages\\Manager\\CreateSubjectInstance.cshtml",
-              "ViewState": "AQIAAAwAAACAZ2ZmZmYkwBUAAACNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T00:15:49.236Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "SubjectManagement.cshtml",
               "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\SubjectManagement.cshtml",
               "RelativeDocumentMoniker": "Pages\\Admin\\SubjectManagement.cshtml",
               "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\SubjectManagement.cshtml",
               "RelativeToolTip": "Pages\\Admin\\SubjectManagement.cshtml",
-              "ViewState": "AQIAAGkAAAAABQAAAEAlwHkAAABCAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-02T00:00:38.201Z",
+              "WhenOpened": "2024-04-06T22:22:30.104Z",
               "EditorCaption": ""
             }
           ]

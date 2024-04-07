@@ -91,6 +91,8 @@ namespace CSE3PAX.Pages.Admin
 
                         // Set the success message
                         SuccessMessage = "Subject edited successfully.";
+                        // Redirect
+                        return RedirectToPage("/Admin/SubjectManagement");
                     }
                     return Page();
                 }

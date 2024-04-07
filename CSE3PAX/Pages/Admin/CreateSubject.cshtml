@@ -51,11 +51,8 @@
                     <div class="d-flex justify-content-center p-3 flex-wrap">
                         <!-- Save / Cancel Buttons -->
                         <button type="submit" class="btn btn-primary mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-save2 me-2"></i>Submit</button>
-                        <button type="button" class="btn btn-outline-danger mx-5 box-shw my-2" onclick="goBack()" style="width:130px"><i class="bi bi-x-circle-fill me-3"></i>Cancel</button>
+                        <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
                     </div>
-
-                    @* <button type="submit" class="btn btn-primary" style="width:250px;">Save</button>
-                    <a asp-page="/Admin/Subjects" class="btn btn-outline-danger box-shw" onclick="goBack()" style="width:250px">Cancel</a> *@
             </form>
         </div>
     </div>

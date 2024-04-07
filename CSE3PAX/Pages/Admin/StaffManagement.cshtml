@@ -46,23 +46,23 @@
                         <th scope="col">Exp 4</th>
                         <th scope="col">Exp 5</th>
                         <th scope="col">Exp 6</th>
-                        <th scope="col">Current Load</th>
+                        <th scope="col">Work Hours</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var user in Model.Users) {
-                        <tr>
-                            <td class="text-center">@user.FirstName</td>
-                            <td class="text-center">@user.LastName</td>
-                            <td class="text-center">@user.Email</td>
-                            <td class="text-center">@user.UserType</td>
-                            <td class="text-center">@user.Expertise01</td>
-                            <td class="text-center">@user.Expertise02</td>
-                            <td class="text-center">@user.Expertise03</td>
-                            <td class="text-center">@user.Expertise04</td>
-                            <td class="text-center">@user.Expertise05</td>
-                            <td class="text-center">@user.Expertise06</td>
+                        <tr class="ps-3">
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>@user.UserType</td>
+                            <td>@user.Expertise01</td>
+                            <td>@user.Expertise02</td>
+                            <td>@user.Expertise03</td>
+                            <td>@user.Expertise04</td>
+                            <td>@user.Expertise05</td>
+                            <td>@user.Expertise06</td>
                             <td class="text-center">@user.WorkHours</td>
                             <td>
                                 <div class="text-center">

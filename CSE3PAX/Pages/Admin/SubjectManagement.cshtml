@@ -27,10 +27,10 @@
         <!-- Subject Section -->
         <div class="container-fluid py-5">
             <form method="post">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-lg-12">
-                        <div class="card mb-4">
-                            <div class="card-body box-shw p-3">
+                        <div class="card mb-4 box-shw m-auto">
+                            <div class="card-body">
                                 <div class="text-center">
                                     <h4 class="my-3 listHeading">Subjects</h4>
                                 </div>
@@ -44,7 +44,7 @@
 
                                 <!-- WIP -->
                                 <!-- View Subjects List -->
-                                <div class="table-responsive">
+                                <div class="table-responsive m-auto p-5">
                                     @if (Model.Subjects.Any())
                                     { 
                                         <table class="table table-striped table-hover table-bordered border-2 align-middle m-1">
@@ -61,12 +61,12 @@
                                                 @foreach (var subject in Model.Subjects)
                                                 {
                                                     <tr>
-                                                        <td class="text-center">@subject.SubjectCode</td>
-                                                        <td class="text-center">@subject.SubjectName</td>
-                                                        <td class="text-center">@subject.SubjectClassification</td>
-                                                        <td class="text-center">@subject.YearLevel</td>
-                                                        <td>
-                                                            <div class="text-center">
+                                                        <td class="text-center col-1">@subject.SubjectCode</td>
+                                                        <td class="ps-5">@subject.SubjectName</td>
+                                                        <td class="ps-5">@subject.SubjectClassification</td>
+                                                        <td class="text-center col-1">@subject.YearLevel</td>
+                                                        <td class="text-center col-1">
+                                                            <div>
                                                                 <a href="/Admin/EditSubject?SubjectCode=@subject.SubjectCode" class="btn btn-info btn-sm box-shw"><i class="bi bi-pencil-fill"></i></a>
                                                             </div>
                                                         </td>
@@ -96,8 +96,8 @@
             <form method="post">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="card mb-4">
-                            <div class="card-body box-shw">
+                        <div class="card mb-4 box-shw m-auto">
+                            <div class="card-body">
                                 <div class="text-center">
                                     <h4 class="my-3 listHeading">Subject Instances</h4>
                                 </div>
@@ -108,7 +108,7 @@
                                     </form>
                                 </div>
 
-                                <div class="table-responsive">
+                                <div class="table-responsive p-5">
                                     @if (Model.SubjectInstances.Any())
                                     {
                                         <table class="table table-striped table-hover table-bordered border-2 align-middle m-1">
@@ -126,11 +126,11 @@
                                                 @foreach (var subject in Model.SubjectInstances)
                                                 {
                                                     <tr>
-                                                        <td class="text-center">@subject.SubjectInstanceName</td>
+                                                        <td class="ps-5">@subject.SubjectInstanceName</td>
                                                         <td class="text-center">@subject.SubjectInstanceCode</td>
                                                         <td class="text-center">@subject.LecturerId</td>
-                                                        <td class="text-center">@subject.StartDate</td>
-                                                        <td class="text-center">@subject.EndDate</td>
+                                                        <td class="text-center">@subject.StartDate.ToString("MMM dd")</td>
+                                                        <td class="text-center">@subject.EndDate.ToString("MMM dd")</td>
                                                         <td class="text-center">@subject.SubjectInstanceYear</td>
                                                     </tr>
                                                 }

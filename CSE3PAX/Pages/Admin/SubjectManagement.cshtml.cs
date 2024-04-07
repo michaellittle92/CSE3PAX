@@ -49,6 +49,7 @@ namespace CSE3PAX.Pages.Admin
             public int SubjectInstanceYear { get; set; }
         }
 
+
         /*
          Initialise SubjectManagementModel class
          Configuration object (ConnectionStrings) located in appsettings.json
@@ -126,7 +127,6 @@ namespace CSE3PAX.Pages.Admin
                                     SubjectName = reader.GetString(2),
                                     SubjectClassification = reader.GetString(3),
                                     YearLevel = reader.GetInt32(4),
-                                    // DevelopmentDifficulty = reader.GetString(3)
                                 };
 
                                 // Add subjects
