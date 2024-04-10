@@ -49,6 +49,8 @@ namespace CSE3PAX.Pages.Admin
             public string Expertise05 { get; set; }
             public string Expertise06 { get; set; }
             public decimal? ConcurrentLoadCapacity { get; set; }
+            public decimal? WorkHours { get; set; }
+            public decimal? LoadCapacityPercentage { get; set; }
         }
 
         // String to store full name (session)
@@ -129,7 +131,8 @@ namespace CSE3PAX.Pages.Admin
                                     Expertise04 = reader.IsDBNull(7) ? null : reader.GetString(7),
                                     Expertise05 = reader.IsDBNull(8) ? null : reader.GetString(8),
                                     Expertise06 = reader.IsDBNull(9) ? null : reader.GetString(9),
-                                    ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10)
+                                    ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10),
+                                    WorkHours = (decimal?)ConvertToHoursPerWeek((decimal)(reader.IsDBNull(10) ? 6 : (decimal?)reader.GetDecimal(10)))
                                 };
 
                                 // Determine UserType based on isAdmin, isManager, and isLecturer
@@ -160,5 +163,27 @@ namespace CSE3PAX.Pages.Admin
         {
             Users = Users.OrderBy(user => user.UserId).ToList();
         }
+
+        // Convert workload to hours per week
+        private double? ConvertToHoursPerWeek(decimal? loadCapacity)
+        {
+            if (loadCapacity == null)
+            {
+                return null;
+            }
+
+            // full-time load capacity of 6 corresponds to 38 hours per week
+            const double fullTimeLoadCapacity = 6;
+            const double fullTimeHoursPerWeek = 38;
+
+            // Convert load capacity to a fraction of a full-time workload
+            double loadFractionOfFullTime = (double)loadCapacity / fullTimeLoadCapacity;
+
+            // Convert fraction of a full-time workload to hours per week and round up
+            double hoursPerWeek = Math.Ceiling(loadFractionOfFullTime * fullTimeHoursPerWeek);
+
+            return hoursPerWeek;
+        }
+
     }
 }

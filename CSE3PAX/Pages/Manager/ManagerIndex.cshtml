@@ -2,15 +2,16 @@
 @model CSE3PAX.Pages.Manager.ManagerIndexModel
 @{
 }
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Index</title>
+</head>
 <body>
     <!-- ---------- MAIN SECTION ---------- -->
     <main>
         <div class="container-fluid p-0">
             <div class="row text-white">
-
                 <!-- Welcome container - for small, medium and large screen sizes -->
                 <div class="col-lg-5 mx-lg-5 col-md col-sm my-2 flex-grow-1 mx-1 mx-lg-0 m-3 box-shw manager-background bd-radius d-flex flex-column">
                     <!-- Headings -->
@@ -23,7 +24,7 @@
                         <!-- Adjusted margin here -->
                         <p class="fs-6">Utilise this platform to organise lecturer schedules and generate detailed reports for enhanced operations.</p>
                     </div>
-                </div> 
+                </div>
             </div>
             <!-- Line Separator -->
             <div class="row justify-content-center">
@@ -31,73 +32,60 @@
                 <div class="col text-center">
                     <!-- Centering content horizontally -->
                     <hr class="underline">
-                    <h4 class="availability-status">Staff Scheduling Status</h4>
                     <br>
                 </div>
             </div>
-
-            <div class="row align-items-start">
-                <div class="col-md-6 d-flex justify-content-center">
-                    <div class="doughnut-chart-container">
-                        <!-- Doughnut -->
-                        <canvas id="availabilityChart" class="doughnut" style="width:500px"></canvas>
-                    </div>
-                </div>
-
-                <div class="col-md-6 text-center">
-                    <div class="col card me-5 box-shw p-3">
-                        <h4 class="my-3 listHeading">Lecturer Workloads</h4>
-
-                        <div class="mb-4 mx-3">
-                            <form method="post">
-                                <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
-                                    <i class="bi bi-eye mx-1 pe-1"></i>View
-                                </button>
-
-                                <button type="submit" name="buttonType" value="hideUsers" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
-                                    <i class="bi bi-eye mx-1 pe-1"></i>Hide
-                                </button>
-                            </form>
+            <!-- Lecturer Workloads section -->
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <div class="col card me-5 box-shw p-5">
+                            <h4 class="my-3 listHeading">Lecturer Workloads</h4>
+                            <div class="mb-4 mx-3">
+                                <form method="post">
+                                    <button type="submit" name="buttonType" value="users" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
+                                        <i class="bi bi-eye mx-1 pe-1"></i>View
+                                    </button>
+                                    <button type="submit" name="buttonType" value="hideUsers" class="btn btn-dark box-shw my-1 pe-3" style="width:130px;">
+                                        <i class="bi bi-eye mx-1 pe-1"></i>Hide
+                                    </button>
+                                </form>
+                            </div>
+                            @if (Model.Users.Any())
+                            {
+                                <div style="max-height: 500px; overflow-y: auto; overflow-x: hidden;">
+                                    <table id="lecturerWorkloadsTable" class="table table-striped table-hover table-bordered border-2 align-middle m-1">
+                                        <colgroup>
+                                            <col style="width: 30%;">
+                                            <col style="width: 30%;">
+                                            <col style="width: 30%;">
+                                        </colgroup>
+                                        <thead>
+                                            <tr class="bg-secondary box-shw text-light">
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
+                                                <th scope="col" class="text-center">Work Hours</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var user in Model.Users)
+                                            {
+                                                <tr>
+                                                    <td class="text-center">@user.FirstName</td>
+                                                    <td class="text-center">@user.LastName</td>
+                                                    <td class="text-center">@user.WorkHours</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            }
                         </div>
-
-                        @if (Model.Users.Any())
-                        {
-                            <table id="lecturerWorkloadsTable" class="table table-striped table-hover table-bordered border-2 align-middle m-1">
-                                <thead>
-                                    <tr class="text-center align-middle bg-secondary box-shw text-light">
-                                        <th scope="col">User ID</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Current Load</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var user in Model.Users)
-                                    {
-                                        <tr>
-                                            <td class="text-center">@user.UserId</td>
-                                            <td>@user.FirstName</td>
-                                            <td>@user.LastName</td>
-                                            <td class="text-center">@user.ConcurrentLoadCapacity</td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        }
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </main>
-
-    <!-- Scripts -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Javascript file and doughnut chart links -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/js/adminIndex.js"></script>
 </body>
+</html>
+

@@ -104,6 +104,7 @@ namespace CSE3PAX.Pages.Admin
                     break;
                 case "subjectInstances":
                     LoadSubjectInstances();
+                    SortSubjectInstancesById();
                     break;
                 case "hideUsers":
                     HideUsers();
@@ -282,11 +283,12 @@ namespace CSE3PAX.Pages.Admin
 
                     // SQL query to select all subject instances
                     string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
-                      si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
-                      si.SubjectInstanceYear, s.SubjectCode, u.FirstName, u.LastName
-                       FROM [SubjectInstance] si 
-                       INNER JOIN [Subjects] s ON si.SubjectId = s.SubjectId
-                       INNER JOIN [Users] u ON si.LecturerId = u.UserId";
+                                    si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
+                                    si.SubjectInstanceYear, s.SubjectCode, u.FirstName AS LecturerFirstName, u.LastName AS LecturerLastName
+                                    FROM [SubjectInstance] si 
+                                    JOIN [Subjects] s ON si.SubjectId = s.SubjectId
+                                    JOIN [Lecturers] l ON si.LecturerId = l.LecturerId
+                                    JOIN [Users] u ON l.UserId = u.UserId";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -332,6 +334,12 @@ namespace CSE3PAX.Pages.Admin
         private void SortUsersByUserId()
         {
             Users = Users.OrderBy(user => user.UserId).ToList();
+        }
+
+        //Method to sort subject instances by ID
+        private void SortSubjectInstancesById()
+        {
+            SubjectInstances = SubjectInstances.OrderBy(instance => instance.SubjectInstanceId).ToList();
         }
 
         // Convert workload to hours per week

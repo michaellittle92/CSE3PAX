@@ -101,7 +101,7 @@ namespace CSE3PAX.Pages.Admin
                 return null; 
             }
         }
-    
+
 
         public IActionResult OnPostDelete()
         {
@@ -110,19 +110,33 @@ namespace CSE3PAX.Pages.Admin
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-                    string deleteSubjectDataSQLQuery = "DELETE FROM Subjects WHERE SubjectCode = @SubjectCode";
-                    using (SqlCommand command = new SqlCommand(deleteSubjectDataSQLQuery, connection))
+
+                    // Delete associated instances in the SubjectInstance table
+                    string deleteInstancesQuery = "DELETE FROM SubjectInstance WHERE SubjectID IN (SELECT SubjectID FROM Subjects WHERE SubjectCode = @SubjectCode)";
+                    using (SqlCommand deleteInstancesCommand = new SqlCommand(deleteInstancesQuery, connection))
                     {
-                        command.Parameters.AddWithValue("@SubjectCode", SubjectCode);
-                        command.ExecuteNonQuery();
-                        return RedirectToPage("/Admin/SubjectManagement");
+                        deleteInstancesCommand.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                        deleteInstancesCommand.ExecuteNonQuery();
                     }
+
+                    // Delete the subject
+                    string deleteSubjectDataSQLQuery = "DELETE FROM Subjects WHERE SubjectCode = @SubjectCode";
+                    using (SqlCommand deleteSubjectCommand = new SqlCommand(deleteSubjectDataSQLQuery, connection))
+                    {
+                        deleteSubjectCommand.Parameters.AddWithValue("@SubjectCode", SubjectCode);
+                        deleteSubjectCommand.ExecuteNonQuery();
+                    }
+
+                    return RedirectToPage("/Admin/SubjectManagement");
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
+                // Handle exception appropriately
                 return null;
             }
-            
         }
+
+
     }
 }

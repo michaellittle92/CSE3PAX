@@ -16,9 +16,9 @@
     </div>
 
     <!-- Users Table Container -->
-    <div class="table-responsive card box-shw p-3">
+    <div class="table-responsive card box-shw p-3" style="max-height: 900px; overflow-y: auto;">
 
-            <!-- Heading -->
+        <!-- Heading -->
         <div class="text-center">
             <h4 class="my-4 listHeading">Users List</h4>
         </div>
@@ -33,46 +33,50 @@
         <!--Display data from sql database -->
         @if (Model.Users.Any())
         {
-            <table class="table table-striped table-hover table-bordered border-2 align-middle m-1">
-                <thead>
-                    <tr class="text-center align-middle bg-secondary box-shw text-light">
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">User Type</th>
-                        <th scope="col">Exp 1</th>
-                        <th scope="col">Exp 2</th>
-                        <th scope="col">Exp 3</th>
-                        <th scope="col">Exp 4</th>
-                        <th scope="col">Exp 5</th>
-                        <th scope="col">Exp 6</th>
-                        <th scope="col">Work Hours</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var user in Model.Users) {
-                        <tr class="ps-3">
-                            <td>@user.FirstName</td>
-                            <td>@user.LastName</td>
-                            <td>@user.Email</td>
-                            <td>@user.UserType</td>
-                            <td>@user.Expertise01</td>
-                            <td>@user.Expertise02</td>
-                            <td>@user.Expertise03</td>
-                            <td>@user.Expertise04</td>
-                            <td>@user.Expertise05</td>
-                            <td>@user.Expertise06</td>
-                            <td class="text-center">@user.WorkHours</td>
-                            <td>
-                                <div class="text-center">
-                                    <a href="/Admin/EditUser?email=@user.Email" class="btn btn-info btn-sm box-shw"><i class="bi bi-pencil-fill"></i></a>
-                                </div>
-                            </td>
+            <div style="overflow-y: auto;">
+                <table class="table table-striped table-hover table-bordered border-2 align-middle m-1">
+                    <thead>
+                        <tr class="text-center align-middle bg-secondary box-shw text-light">
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">User Type</th>
+                            <th scope="col">Exp 1</th>
+                            <th scope="col">Exp 2</th>
+                            <th scope="col">Exp 3</th>
+                            <th scope="col">Exp 4</th>
+                            <th scope="col">Exp 5</th>
+                            <th scope="col">Exp 6</th>
+                            <th scope="col">Work Hours</th>
+                            <th scope="col">Actions</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr class="ps-3">
+                                <td>@user.FirstName</td>
+                                <td>@user.LastName</td>
+                                <td>@user.Email</td>
+                                <td>@user.UserType</td>
+                                <td>@user.Expertise01</td>
+                                <td>@user.Expertise02</td>
+                                <td>@user.Expertise03</td>
+                                <td>@user.Expertise04</td>
+                                <td>@user.Expertise05</td>
+                                <td>@user.Expertise06</td>
+                                <td class="text-center">@user.WorkHours</td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="/Admin/EditUser?email=@user.Email" class="btn btn-info btn-sm box-shw"><i class="bi bi-pencil-fill"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
-    </div> 
+    </div>
+
 </div>
