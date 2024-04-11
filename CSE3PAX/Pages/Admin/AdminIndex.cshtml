@@ -61,12 +61,14 @@
                                             <col style="width: 30%;">
                                             <col style="width: 30%;">
                                             <col style="width: 30%;">
+                                            <col style="width: 30%;">
                                         </colgroup>
                                         <thead>
                                             <tr class="bg-secondary box-shw text-light">
                                                 <th scope="col">First Name</th>
                                                 <th scope="col">Last Name</th>
-                                                <th scope="col" class="text-center">Work Hours</th>
+                                                <th scope="col" class="text-center">Work Hours pw</th>
+                                                <th scope="col" class="text-center">Work Load Percentage</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,6 +78,7 @@
                                                     <td class="text-center">@user.FirstName</td>
                                                     <td class="text-center">@user.LastName</td>
                                                     <td class="text-center">@user.WorkHours</td>
+                                                    <td class="text-center">@user.LoadCapacityPercentage%</td>
                                                 </tr>
                                             }
                                         </tbody>

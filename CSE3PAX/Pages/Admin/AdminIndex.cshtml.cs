@@ -50,7 +50,7 @@ namespace CSE3PAX.Pages.Admin
             public string Expertise06 { get; set; }
             public decimal? ConcurrentLoadCapacity { get; set; }
             public decimal? WorkHours { get; set; }
-            public decimal? LoadCapacityPercentage { get; set; }
+            public int LoadCapacityPercentage { get; set; }
         }
 
         // String to store full name (session)
@@ -74,7 +74,7 @@ namespace CSE3PAX.Pages.Admin
                 case "users":
                     OnGet();
                     LoadUsers();
-                    SortUsersByUserId();
+                    SortLecturerWorkloadByPercentage();
                     break;
                 case "hideUsers":
                     OnGet();
@@ -102,12 +102,19 @@ namespace CSE3PAX.Pages.Admin
 
                     // SQL query to select all users who are lecturers
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
-                         "l.Expertise01, l.Expertise02, l.Expertise03, " +
-                         "l.Expertise04, l.Expertise05, l.Expertise06, " +
-                         "l.ConcurrentLoadCapacity, u.isAdmin, u.isManager, u.isLecturer " +
-                         "FROM [Users] u " +
-                         "LEFT JOIN [Lecturers] l ON u.UserId = l.UserId " +
-                         "WHERE u.isLecturer = 1";
+                                 "l.Expertise01, l.Expertise02, l.Expertise03, " +
+                                 "l.Expertise04, l.Expertise05, l.Expertise06, " +
+                                 "l.ConcurrentLoadCapacity, u.isAdmin, u.isManager, u.isLecturer, " +
+                                 "MAX(si.Load) AS TotalLoad, " +
+                                 "CAST(ROUND(ISNULL(SUM(si.Load), 0) / NULLIF(l.ConcurrentLoadCapacity, 0) * 100, 0) AS INT) AS LoadCapacityPercentage " +
+                                 "FROM [Users] u " +
+                                 "LEFT JOIN [Lecturers] l ON u.UserId = l.UserId " +
+                                 "LEFT JOIN [SubjectInstance] si ON l.LecturerId = si.LecturerId " +
+                                 "WHERE u.isLecturer = 1 " +
+                                 "GROUP BY u.UserId, u.FirstName, u.LastName, u.Email, " +
+                                 "l.Expertise01, l.Expertise02, l.Expertise03, " +
+                                 "l.Expertise04, l.Expertise05, l.Expertise06, " +
+                                 "l.ConcurrentLoadCapacity, u.isAdmin, u.isManager, u.isLecturer";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -132,7 +139,8 @@ namespace CSE3PAX.Pages.Admin
                                     Expertise05 = reader.IsDBNull(8) ? null : reader.GetString(8),
                                     Expertise06 = reader.IsDBNull(9) ? null : reader.GetString(9),
                                     ConcurrentLoadCapacity = reader.IsDBNull(10) ? null : (decimal?)reader.GetDecimal(10),
-                                    WorkHours = (decimal?)ConvertToHoursPerWeek((decimal)(reader.IsDBNull(10) ? 6 : (decimal?)reader.GetDecimal(10)))
+                                    WorkHours = (decimal?)ConvertToHoursPerWeek((decimal)(reader.IsDBNull(10) ? 6 : (decimal?)reader.GetDecimal(10))),
+                                    LoadCapacityPercentage = Convert.ToInt32(reader["LoadCapacityPercentage"])
                                 };
 
                                 // Determine UserType based on isAdmin, isManager, and isLecturer
@@ -158,10 +166,10 @@ namespace CSE3PAX.Pages.Admin
         }
 
 
-        //Method to sort lecturers by UserID
-        private void SortUsersByUserId()
+        //Method to sort lecturers workloads
+        private void SortLecturerWorkloadByPercentage()
         {
-            Users = Users.OrderBy(user => user.UserId).ToList();
+            Users = Users.OrderBy(user => user.LoadCapacityPercentage).ToList();
         }
 
         // Convert workload to hours per week
