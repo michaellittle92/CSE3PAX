@@ -182,6 +182,56 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
+        public async Task<IActionResult> OnPostDeleteAsync()
+        {
+            System.Diagnostics.Debug.WriteLine($"Email: {Email}");
+            try
+            {
+                // SQL script with parameterized email
+                var sql = @"
+            DECLARE @Email VARCHAR(255);
+            DECLARE @UserID INT;
+            DECLARE @IsLecturer BIT;
+
+            SET @Email = @EmailParam; -- Use parameterized value here
+
+            -- Retrieve UserID and IsLecturer status based on the email
+            SELECT @UserID = UserID, @IsLecturer = IsLecturer FROM Users WHERE Email = @Email;
+
+            -- Check if the user is a lecturer
+            IF @IsLecturer = 1
+            BEGIN
+                -- Delete the lecturer-specific entry first to maintain referential integrity
+                DELETE FROM Lecturers WHERE UserID = @UserID;
+
+                -- Then delete the user from the Users table
+                DELETE FROM Users WHERE UserID = @UserID;
+            END
+            ELSE
+            BEGIN
+                -- If not a lecturer, delete the user directly
+                DELETE FROM Users WHERE UserID = @UserID;
+            END";
+
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    await connection.OpenAsync();
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Parameterize the email address to avoid SQL injection
+                        command.Parameters.AddWithValue("@EmailParam", Email);
+                        await command.ExecuteNonQueryAsync();
+                    }
+                }
+                return RedirectToPage("/Admin/StaffManagement");
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the error as needed
+                return Page();
+            }
+        }
+
         public async Task<IActionResult> OnPostResetPasswordAsync()
         {
             if (string.IsNullOrEmpty(ResetPasswordEmail))
