@@ -37,16 +37,8 @@
       "PackagePath": "staticwebassets\\js\\CreateUser.js"
     },
     {
-      "Id": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\adminIndex.js",
-      "PackagePath": "staticwebassets\\js\\adminIndex.js"
-    },
-    {
       "Id": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\layout.js",
       "PackagePath": "staticwebassets\\js\\layout.js"
-    },
-    {
-      "Id": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\manager.js",
-      "PackagePath": "staticwebassets\\js\\manager.js"
     },
     {
       "Id": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\password.js",

@@ -33,45 +33,45 @@
                 <!-- Email  -->
                 <div class="mb-3">
                     <label class="form-label" asp-for="Email">Email</label>
-                    <input class="form-control" asp-for="Email" />
+                    <input class="form-control" asp-for="Email"/>
                 </div>
 
                 <!-- First Name -->
                 <div class="mb-3">
                     <label class="form-label" asp-for="FirstName">First Name</label>
-                    <input class="form-control" asp-for="FirstName" />
+                    <input class="form-control" asp-for="FirstName" pattern="[a-zA-Z]+" title="First Name must only contain letters." />
                 </div>
 
                 <!-- Last Name -->
                 <div class="mb-3">
                     <label class="form-label" asp-for="LastName">Last Name</label>
-                    <input class="form-control" asp-for="LastName" />
+                    <input class="form-control" asp-for="LastName" pattern="[a-zA-Z]+" title="Last Name must only contain letters." />
                 </div>
 
                 @if(@Model.IsLecturer){
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise01">Expertise 01</label>
-                    <input class="form-control" asp-for="Expertise01" />
+                        <input class="form-control" asp-for="Expertise01" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise02">Expertise 02</label>
-                    <input class="form-control" asp-for="Expertise02" />
+                        <input class="form-control" asp-for="Expertise02" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise03">Expertise 03</label>
-                    <input class="form-control" asp-for="Expertise03" />
+                        <input class="form-control" asp-for="Expertise03" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise04">Expertise 04</label>
-                    <input class="form-control" asp-for="Expertise04" />
+                        <input class="form-control" asp-for="Expertise04" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise05">Expertise 05</label>
-                    <input class="form-control" asp-for="Expertise05" />
+                        <input class="form-control" asp-for="Expertise05" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 <div class="mb-3">
                     <label class="form-label" asp-for="Expertise06">Expertise 06</label>
-                    <input class="form-control" asp-for="Expertise06" />
+                        <input class="form-control" asp-for="Expertise06" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
                 }
           
@@ -95,9 +95,6 @@
             </form>
         </div>
 
-
-
-
         <!-- Reset Password Section -->
         <div class="container">
             <div class="row justify-content-center">
@@ -114,5 +111,6 @@
         </div>
     </div>
 </div>
+
 
 <script src="~/js/password.js"></script>

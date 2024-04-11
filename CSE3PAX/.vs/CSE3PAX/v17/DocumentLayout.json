@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\admin\\subjectmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\subjectmanagement.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|d:\\latrobeschedule\\cse3pax\\cse3pax\\pages\\admin\\adminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{05284868-491C-4A89-B61D-694F37F93572}|CSE3PAX.csproj|solutionrelative:pages\\admin\\adminindex.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SubjectManagement.cshtml",
-              "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\SubjectManagement.cshtml",
-              "RelativeDocumentMoniker": "Pages\\Admin\\SubjectManagement.cshtml",
-              "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\SubjectManagement.cshtml",
-              "RelativeToolTip": "Pages\\Admin\\SubjectManagement.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGEAAAArAAAA",
+              "Title": "AdminIndex.cshtml",
+              "DocumentMoniker": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\AdminIndex.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Admin\\AdminIndex.cshtml",
+              "ToolTip": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\Pages\\Admin\\AdminIndex.cshtml",
+              "RelativeToolTip": "Pages\\Admin\\AdminIndex.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-06T22:22:30.104Z",
+              "WhenOpened": "2024-04-11T01:11:31.413Z",
               "EditorCaption": ""
             }
           ]

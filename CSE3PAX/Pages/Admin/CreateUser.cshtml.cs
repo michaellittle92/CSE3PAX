@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection.PortableExecutable;
 using System.Text.RegularExpressions;
+using System.ComponentModel.DataAnnotations;
 
 namespace CSE3PAX.Pages.Admin
 {
@@ -84,7 +85,6 @@ namespace CSE3PAX.Pages.Admin
 
         public void OnGet()
         {
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
@@ -226,7 +226,6 @@ namespace CSE3PAX.Pages.Admin
 
                         // Set success message after user creation
                         SuccessMessage = "User created successfully.";
-
                     }
                     catch (Exception ex)
                     {
@@ -279,7 +278,7 @@ namespace CSE3PAX.Pages.Admin
                 Console.WriteLine(ex.Message);
             }
         }
-
+    
         private bool IsPasswordComplex(string password)
         {
             // Password must be at least 8 characters long and contain at least one uppercase letter,

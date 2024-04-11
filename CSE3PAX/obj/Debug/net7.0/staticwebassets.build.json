@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "6vzgwZnuB59nYOJNtIcJ5WBahRTh+IFBzC1TVRjkVVc=",
+  "Hash": "NVVAhtsl/puiOIX05zcSNE/cfzCV0TkgFng9DmCLA78=",
   "Source": "CSE3PAX",
   "BasePath": "_content/CSE3PAX",
   "Mode": "Default",
@@ -169,25 +169,6 @@
       "OriginalItemSpec": "wwwroot\\images\\login_imageold.png"
     },
     {
-      "Identity": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\adminIndex.js",
-      "SourceId": "CSE3PAX",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\",
-      "BasePath": "_content/CSE3PAX",
-      "RelativePath": "js/adminIndex.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\adminIndex.js"
-    },
-    {
       "Identity": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\CreateSubjectInstance.js",
       "SourceId": "CSE3PAX",
       "SourceType": "Discovered",
@@ -243,25 +224,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\layout.js"
-    },
-    {
-      "Identity": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\manager.js",
-      "SourceId": "CSE3PAX",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\",
-      "BasePath": "_content/CSE3PAX",
-      "RelativePath": "js/manager.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\manager.js"
     },
     {
       "Identity": "D:\\LatrobeSchedule\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\password.js",

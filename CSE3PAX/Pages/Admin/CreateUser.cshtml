@@ -28,12 +28,12 @@
                 <!-- First Name -->
                 <div class="mb-3">
                     <label for="firstName" class="form-label">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required class="form-control" />
+                    <input type="text" id="firstName" name="firstName" required class="form-control" pattern="[a-zA-Z]+" title="First Name must only contain letters." />
                 </div>
                 <!-- Last Name -->
                 <div class="mb-3">
                     <label for="lastName" class="form-label">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required class="form-control" />
+                    <input type="text" id="lastName" name="lastName" required class="form-control" pattern="[a-zA-Z]+" title="Last Name must only contain letters." />
                 </div>
                 <!-- Email -->
                 <div class="mb-3">
@@ -66,7 +66,7 @@
                 <div id="lecturerFieldsDiv" class="mt-3">
                     <div class="mb-3">
                         <label for="workHours" class="form-label">Work Hours:</label>
-                        <input type="text" id="workHours" name="workHours" class="form-control" />
+                        <input type="text" id="workHours" name="workHours" class="form-control" step="1" max="38" />
                     </div>
                     <div class="mb-3">
                         <label for="expertise01" class="form-label">Expertise 01:</label>

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using CSE3PAX.HelpClasses; // Adjust this namespace based on your actual namespace
+using CSE3PAX.HelpClasses;
 using System.Reflection.PortableExecutable;
 using System.Diagnostics;
 
