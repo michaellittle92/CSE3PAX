@@ -32,6 +32,8 @@ namespace CSE3PAX.Pages.Manager
         [BindProperty(SupportsGet = true)]
         public DateTime? EndDate { get; set; }
 
+        public DateTime? CalculatedEndDate { get; set; }
+
         [BindProperty]
         public string SelectedFirstName { get; set; }
 
@@ -97,6 +99,11 @@ namespace CSE3PAX.Pages.Manager
 
         private void LoadLecturers()
         {
+
+            // Calculate EndDate. 12 days after StartDate
+            EndDate = StartDate.Value.AddDays(7 * 12);
+            Console.WriteLine("End Date " + EndDate);
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -187,7 +194,7 @@ namespace CSE3PAX.Pages.Manager
             Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
             LoadSubjects(); // Reload subjects to ensure dropdown is populated
 
-            if (!string.IsNullOrWhiteSpace(SelectedSubject) && StartDate.HasValue && EndDate.HasValue)
+            if (!string.IsNullOrWhiteSpace(SelectedSubject) && StartDate.HasValue)
             {
                 LoadLecturers(); // Reload lecturers based on the selected criteria
             }
