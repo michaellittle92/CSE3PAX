@@ -192,8 +192,17 @@
                                                 <td class="col @(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
                                                 </td>
                                             }
+                                            <td>
+                                                <form method="post">
+                                                    <input type="hidden" name="instanceId" value="@instance.InstanceID" />
+                                                    <input type="hidden" name="lecturerId" value="@instance.LecturerID" />
+                                                    <input type="hidden" name="userID" value="@instance.UserID" />
+                                                    <button type="submit" asp-page-handler="Delete" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     }
+
                                 </tbody>
                             </table>
                         </div>

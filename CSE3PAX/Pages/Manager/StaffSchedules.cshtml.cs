@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace CSE3PAX.Pages.Manager
 {
@@ -36,6 +37,7 @@ namespace CSE3PAX.Pages.Manager
         // Properties to store selected lecturer's details
         public int SelectedUserId { get; set; }
         public int SelectedLecturerId { get; set; }
+        public int SelectedSubjectInstanceId { get; set; }
         public string SelectedEmail { get; set; }
         public string SelectedFirstName { get; set; }
         public string SelectedLastName { get; set; }
@@ -62,10 +64,13 @@ namespace CSE3PAX.Pages.Manager
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-        public void OnGet()
+        public void OnGet(int? selectedUserId)
         {
-            // Display a list of lecturers
             LoadLecturers();
+            if (selectedUserId.HasValue)
+            {
+                OnPost(selectedUserId.Value);
+            }
         }
 
         public IActionResult OnPost(int selectedUserId)
@@ -99,6 +104,7 @@ namespace CSE3PAX.Pages.Manager
         // Method to load all lectures
         private void LoadLecturers()
         {
+            Next12Months.Clear();
             // Retrieve the list of lecturers from the database
 
             try
@@ -221,7 +227,9 @@ namespace CSE3PAX.Pages.Manager
                                 // Add subject instance to the list
                                 SubjectInstances.Add(new SubjectInstance
                                 {
-                                    // Assuming these are the column names in your SubjectInstance table
+                                    UserID = userId,
+                                    LecturerID = reader.GetInt32(reader.GetOrdinal("LecturerID")),
+                                    InstanceID = reader.GetInt32(reader.GetOrdinal("SubjectInstanceID")),
                                     InstanceName = reader["SubjectInstanceCode"].ToString(),
                                     SubjectName = reader["SubjectInstanceName"].ToString(),
                                     // Correctly handle DateTime data types
@@ -250,6 +258,47 @@ namespace CSE3PAX.Pages.Manager
                 // Handle exception, such as logging or displaying an error message
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
+        }
+
+        public async Task<IActionResult> OnPostDeleteAsync(int instanceID, int lecturerID, int userID)
+        {
+            Debug.WriteLine("Deleting instance with ID: " + instanceID);
+            Debug.WriteLine("Lecturer ID: " + lecturerID);
+            Debug.WriteLine("User ID: " + userID);
+
+            //  delete logic.
+            try
+            {
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL delete statement to delete a subject instance
+                    string sql = "DELETE FROM [SubjectInstance] WHERE SubjectInstanceID = @InstanceID";
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Add parameter for InstanceID
+                        command.Parameters.AddWithValue("@InstanceID", instanceID);
+
+                        // Execute SQL query and get results
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception, such as logging or displaying an error message
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+
+            // Assuming deletion is successful, redirect back to the same page with the lecturerID
+
+            return RedirectToPage(new { selectedUserId = userID });
+
         }
     }
 }
