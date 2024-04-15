@@ -300,5 +300,16 @@ namespace CSE3PAX.Pages.Manager
             return RedirectToPage(new { selectedUserId = userID });
 
         }
+        public async Task<IActionResult> OnPostEditAsync(int instanceID, int lecturerID, int userID)
+        {
+            Debug.WriteLine("Editing instance with ID: " + instanceID);
+            Debug.WriteLine("Lecturer ID: " + lecturerID);
+            Debug.WriteLine("User ID: " + userID);
+
+          
+
+            return RedirectToPage("/Manager/CreateSubjectInstance",new { selectedSubjectInstnace = instanceID });
+
+        }
     }
 }

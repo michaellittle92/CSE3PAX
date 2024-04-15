@@ -18,10 +18,11 @@
 
             <form method="post" id="reloadForm">
                 
-                <!-- Subject Dropdown -->
-                <select asp-for="SelectedSubject" class="form-select" asp-items="@(new SelectList(Model.ListSubjects, "SubjectCode", "SubjectName"))">
+            <!-- Subject Dropdown -->
+                <select asp-for="SelectedSubject" class="form-select" asp-items="@ViewData["Subjects"] as SelectList">
                     <option value="">Select a Subject</option>
                 </select>
+
                 <div class="text-danger">
                     @if (string.IsNullOrWhiteSpace(Model.SelectedSubject))
                     {

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using CSE3PAX.HelpClasses;
 using System.Reflection.PortableExecutable;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CSE3PAX.Pages.Manager
 {
@@ -56,8 +57,10 @@ namespace CSE3PAX.Pages.Manager
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
 
 
-        public void OnGet()
+        public void OnGet(int? selectedSubjectInstnace)
         {
+
+
             // Check if TempData is not null, then set SuccessMessage
             if (TempData["SuccessMessage"] != null)
             {
@@ -70,6 +73,66 @@ namespace CSE3PAX.Pages.Manager
             {
                 LoadLecturers();
             }
+
+            if (selectedSubjectInstnace.HasValue)
+            {
+                Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstnace}");
+
+                LoadSubjectInstanceDetails(selectedSubjectInstnace.Value);
+
+            }
+        }
+
+        private void LoadSubjectInstanceDetails(int instanceId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var query = @"
+                SELECT 
+                    SubjectInstanceID, 
+                    SubjectInstanceName, 
+                    SubjectInstanceCode, 
+                    si.StartDate, 
+                    si.EndDate, 
+                    si.LecturerID, 
+                    Users.UserID, 
+                    Users.FirstName, 
+                    Users.LastName, 
+                    Users.Email,
+					Subjects.SubjectName
+                FROM 
+                    SubjectInstance AS si
+                INNER JOIN 
+                    Lecturers ON si.LecturerID = Lecturers.LecturerID
+                INNER JOIN 
+                    Users ON Lecturers.UserID = Users.UserID
+
+				INNER JOIN 
+					Subjects ON si.SubjectID = Subjects.SubjectID
+                WHERE 
+                    SubjectInstanceID = @instanceId";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@instanceId", instanceId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            SelectedSubject = reader["SubjectName"].ToString();
+                            StartDate = Convert.ToDateTime(reader["StartDate"]);
+                            EndDate = Convert.ToDateTime(reader["EndDate"]);
+                            SelectedFirstName = reader["FirstName"].ToString();
+                            SelectedLastName = reader["LastName"].ToString();
+                            SelectedEmail = reader["Email"].ToString();
+
+                            Debug.WriteLine($"SelectedSubject: {SelectedSubject}");
+                        }
+                    }
+                }
+            }
         }
 
         private void LoadSubjects()
@@ -77,11 +140,12 @@ namespace CSE3PAX.Pages.Manager
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT SubjectCode, SubjectName, SubjectClassification, YearLevel FROM Subjects"; 
+                var query = "SELECT SubjectCode, SubjectName, SubjectClassification, YearLevel FROM Subjects";
 
                 using (var command = new SqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {
+                    var subjects = new List<ListSubjects>();
                     while (reader.Read())
                     {
                         var subject = new ListSubjects
@@ -91,11 +155,14 @@ namespace CSE3PAX.Pages.Manager
                             SubjectClassification = reader["SubjectClassification"].ToString(),
                             YearLevel = reader["YearLevel"].ToString(),
                         };
-                        ListSubjects.Add(subject);
+                        subjects.Add(subject);
                     }
+                    ListSubjects = subjects;
+                    ViewData["Subjects"] = new SelectList(subjects, "SubjectCode", "SubjectName", SelectedSubject);
                 }
             }
         }
+
 
         private void LoadLecturers()
         {
