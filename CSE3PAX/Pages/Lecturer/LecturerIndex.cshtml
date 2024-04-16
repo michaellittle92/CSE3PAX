@@ -3,7 +3,6 @@
 @{
 }
 
-
 <!-- ---------- MAIN SECTION ---------- -->
 <main>
     <div class="container-fluid p-0">
@@ -29,23 +28,28 @@
         <hr class="underline">
         <h4 class="availability-status gry-txt">Schedule</h4>
 
+        <!-- Table Section -->
         <div class="mb-4">
             <table class="table table-bordered box-shw bdr" style="background-color: white;">
                 <thead class="text-center">
                     <tr class="align-middle lecturerBx box-shw">
                         <th class="col-lg-3">Subject Period</th>
                         <th class="col-lg-5">Subject Name</th>
+                        <!-- Loop through Next 12 Months -->
                         @foreach (var monthYear in Model.Next12Months)
                         {
                             <th class="col">
+                                <!-- Display Month and Year -->
                                 @monthYear
                             </th>
                         }
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through Subject Instances -->
                     @foreach (var instance in Model.SubjectInstances)
                     {
+                        <!-- Table Row for each Subject Instance -->
                         <tr class="text-center align-middle">
                             <td class="col">
                                 <b>Start Date:</b> @instance.FullStartDate <br />
@@ -56,8 +60,10 @@
                                 var startMonthIndex = Model.Next12Months.IndexOf(instance.StartDate);
                                 var endMonthIndex = Model.Next12Months.IndexOf(instance.EndDate);
                             }
+                            <!-- Loop through Next 12 Months -->
                             @for (int i = 0; i < Model.Next12Months.Count; i++)
                             {
+                                <!-- Column: Highlighted if within Start and End Month -->
                                 <td class="col @(i >= startMonthIndex && i <= endMonthIndex ? "cellHighlighter" : "")">
                                 </td>
                             }
@@ -67,6 +73,7 @@
             </table>
         </div>
 
+        <!-- Personal Information Section -->
         <div class="row">
             <div class="col">
                 <hr class="underline">
@@ -75,6 +82,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body box-shw">
+                                <!-- Full Name Section -->
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Full Name:</p>
@@ -84,6 +92,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Email Section -->
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Email:</p>
@@ -93,6 +102,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Work Hours Section -->
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Work Hours:</p>
@@ -102,6 +112,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Subject Instances Section -->
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Subject Instances:</p>
@@ -121,6 +132,7 @@
                                         <p class="mb-0">Subjects:</p>
                                     </div>
                                     <div class="col-sm-9">
+                                        <!-- Display Subjects -->
                                         @foreach (var subjectName in @Model.subjectNames)
                                         {
                                             <p class="text-muted mb-1"> - @subjectName</p>
@@ -128,6 +140,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- Subject Expertise Section -->
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <p class="mb-0">Subject Expertise:</p>

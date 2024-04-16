@@ -1,19 +1,25 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using CSE3PAX; 
-using Microsoft.AspNetCore.Authorization;
 using CSE3PAX.HelpClasses;
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
 
 namespace CSE3PAX.Pages.Lecturer
 {
-    //Checking for required Roles
+    // Ensuring required roles
     [RequireRoles("Lecturer")]
+
+    /*
+    This class, `LecturerIndexModel`, is a Razor Page Model responsible for handling the logic and data
+    retrieval for the lecturer's index page. It includes properties to store lecturer information, methods
+    to fetch lecturer details from the database, and to convert workload to hours per week. The class
+    also manages session data, retrieves data from the database, and populates lists for rendering on
+    the Razor Page. It incorporates authorisation checks for lecturer roles and uses dependency injection
+    to access application settings. Additionally, it defines methods to retrieve lecturer details and 
+    subject names associated with the lecturer from the database, handling exceptions appropriately.
+    */
 
     public class LecturerIndexModel : PageModel
     {
-        // String to store full name (session)
+        // Storing session-based information
         public string FullName { get; set; }
         public string Email { get; set; }
         public int UserID { get; set; }
@@ -32,37 +38,52 @@ namespace CSE3PAX.Pages.Lecturer
         public int InstanceCount = 0;
         public decimal? WorkHours { get; set; }
 
-        // Object to access application settings
+        // Accessing application settings
         private readonly IConfiguration _configuration;
 
-        // String to store DefaultConnection from configuration file
+        // Connection string from configuration file
         private readonly string _connectionString;
 
         public LecturerIndexModel(IConfiguration configuration)
         {
-            // Check if a valid configuration is provided
+            // Checking for valid configuration
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 
-            // Get connection string from configuration
+            // Getting connection string from configuration
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-        //Current Table row headers
+        // Table row headers for the next 12 months
         public List<string> Next12Months { get; set; } = new List<string>();
 
-        //SubjectInstance class in HelpClasses -> SubjectInstance.cs
+        // List to store SubjectInstances
         public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
         // Initialize a list to store SubjectNames
         public HashSet<string> subjectNames = new HashSet<string>();
 
-
+        /*
+        Method executed when the page is requested. It retrieves session data such as the user's full name 
+        and UserID. It then populates the Next12Months list with the names of the next 12 months in the format
+        "MMMM-yyyy". After retrieving the UserID from the session, it calls the GetLecturerDetails method 
+        to fetch lecturer-specific details from the database. If the UserID is not set, it handles the case 
+        where the user is not authenticated, possibly redirecting to a login page.
+    
+        The method attempts to execute a SQL query to retrieve subject instance details for subjects taught
+        by the lecturer identified by the UserID. It joins the SubjectInstance table with the Subjects table
+        based on the SubjectID, filtering by the LecturerID associated with the provided UserID.
+        */
         public void OnGet()
         {
 
             // Session data
             FullName = HttpContext.Session.GetString("FirstName") + " " + HttpContext.Session.GetString("LastName");
 
+            /*
+            This loop iterates over the next 12 months starting from the current month.
+            It calculates the date of each subsequent month and formats it to "MMMM-yyyy" (e.g., "April-2024").
+            The formatted dates are then added to the Next12Months list for further use.
+            */
             DateTime now = DateTime.Now;
             for (int i = 0; i < 12; i++)
             {
@@ -78,7 +99,6 @@ namespace CSE3PAX.Pages.Lecturer
 
             if (!userID.HasValue)
             {
-                // Handle case where userID is not set, perhaps redirect to login
                 return;
             }
 
@@ -87,8 +107,12 @@ namespace CSE3PAX.Pages.Lecturer
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
-
-                    // Corrected SQL command to use parameter directly in the WHERE clause
+                    /*
+                     SQL query to retrieve subject instance details including code, name, start date, and end date
+                     for subjects taught by the lecturer identified by the provided UserID. It joins the SubjectInstance
+                     table with the Subjects table based on the SubjectID, filtering by the LecturerID associated with
+                     the provided UserID.
+                     */
                     string sql = "SELECT SubjectInstanceCode, SubjectName, StartDate,EndDate FROM SubjectInstance LEFT JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID WHERE LecturerID = (SELECT LecturerID FROM Lecturers WHERE UserID = @UserID)\r\n";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -120,11 +144,21 @@ namespace CSE3PAX.Pages.Lecturer
             }
             catch (Exception ex)
             {
-                // Consider logging the exception
-                // Handle any errors that might have occurred during database access
             }
         }
 
+        /*
+        Method to retrieve lecturer details from the database based on the provided UserID. It establishes
+        a connection to the database using the provided connection string and executes a SQL query to 
+        retrieve details such as UserID, first name, last name, email, lecturer ID, expertise fields 
+        (Expertise01 to Expertise06), and concurrent load capacity from the Users and Lecturers tables.
+        The query filters the results based on the provided UserID and performs an inner join on the Users
+        and Lecturers tables based on the UserID.
+    
+        If the lecturer details are found, it saves them to the corresponding properties in the class.
+        Additionally, it retrieves the SubjectNames associated with the lecturer from the database and 
+        populates the subjectNames list.
+         */
         private void GetLecturerDetails()
         {
 
@@ -136,14 +170,19 @@ namespace CSE3PAX.Pages.Lecturer
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select the lecturer details for the given UserID
+                    /*
+                     SQL query to retrieve lecturer details including UserID, first name, last name, email, lecturer ID,
+                     and expertise fields (Expertise01 to Expertise06) along with concurrent load capacity from the Users
+                     and Lecturers tables. It performs an inner join on the Users and Lecturers tables based on the UserID.
+                     The query filters the results based on the provided UserID.
+                    */
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, l.LecturerID, " +
                                  "l.Expertise01, l.Expertise02, l.Expertise03, " +
                                  "l.Expertise04, l.Expertise05, l.Expertise06, " +
                                  "l.ConcurrentLoadCapacity " +
                                  "FROM [Users] u " +
                                  "INNER JOIN [Lecturers] l ON u.UserId = l.UserId " +
-                                 "WHERE u.UserId = @UserID";  // Filtering by UserID
+                                 "WHERE u.UserId = @UserID";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -177,7 +216,11 @@ namespace CSE3PAX.Pages.Lecturer
                         }
                     }
 
-                    // Retrieve the SubjectNames associated with the lecturer
+                    /*
+                    SQL query string used to retrieve the names of subjects associated with a lecturer identified by their UserID.
+                    It performs a LEFT JOIN operation between the SubjectInstance and Subjects tables based on the SubjectID.
+                    The query filters the results by the LecturerID associated with the provided UserID, obtained from the Lecturers table.
+                    */
                     string subjectNamesQuery = "SELECT SubjectName FROM SubjectInstance " +
                                                "LEFT JOIN Subjects ON SubjectInstance.SubjectID = Subjects.SubjectID " +
                                                "WHERE LecturerID = (SELECT LecturerID FROM Lecturers WHERE UserID = @UserID)";
@@ -203,7 +246,17 @@ namespace CSE3PAX.Pages.Lecturer
             }
         }
 
-        // Convert workload to hours per week
+        /*
+        Method to convert workload capacity to hours per week. It takes the loadCapacity as input, which
+        represents the workload capacity of the lecturer. If the loadCapacity is null, it returns null.
+    
+        It assumes a full-time load capacity of 6, which corresponds to 38 hours per week. The method 
+        calculates the fraction of the full-time workload represented by the provided loadCapacity. It then 
+        converts this fraction to hours per week by multiplying it by the full-time hours per week and 
+        rounding up to the nearest integer using Math.Ceiling.
+
+        Returns the calculated hours per week.
+        */
         private double? ConvertToHoursPerWeek(decimal? loadCapacity)
         {
             if (loadCapacity == null)
@@ -220,9 +273,7 @@ namespace CSE3PAX.Pages.Lecturer
 
             // Convert fraction of a full-time workload to hours per week and round up
             double hoursPerWeek = Math.Ceiling(loadFractionOfFullTime * fullTimeHoursPerWeek);
-
             return hoursPerWeek;
         }
-
     }
 }

@@ -1,12 +1,13 @@
 ﻿@page
 @model CSE3PAX.Pages.AddLecturerModel
 @{
-
 }
+
 <div class="row">
     <div class="col-lg-9 mx-auto p-3">
         <h3>Add a Lecturer</h3>
 
+        <!-- Display error message if there is one -->
         @if (Model.ErrorMessage.Length > 0)
         {
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -14,6 +15,8 @@
                 <button type ="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         }
+
+        <!-- Display success message if there is one -->
         else if (Model.SuccessMessage.Length > 0)
         {
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -23,6 +26,7 @@
             
         }
 
+        <!-- Form for adding a new lecturer -->
         <form method ="post">
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">First Name:</label>
@@ -56,6 +60,7 @@
                 </div>
             </div>
 
+            <!-- Select field for Expertise 01 -->
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label">Expertise 01:</label>
                 <div class="col-sm-8">
@@ -104,6 +109,7 @@
                 </div>
             </div>
 
+            <!-- Submit button -->
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

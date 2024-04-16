@@ -1,6 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+    - AttributeUsage: Specifies where the attribute can be applied, allowing it to be used on classes and methods.
+    - Constructor: Initializes the requiredRoles array with the roles specified when creating an instance of the attribute.
+    - OnPageHandlerExecuting: Method executed before the page handler method runs. It checks if the user has any of the required roles by examining session variables and redirects to the index page if not authorized.
+*/
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
 
 namespace CSE3PAX.HelpClasses
 {

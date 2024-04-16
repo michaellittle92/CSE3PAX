@@ -13,6 +13,7 @@ function handleLinkClick(link) {
     localStorage.setItem('activeLink', link.getAttribute('href'));
 }
 
+// Execute when the DOM content is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // Get the active link from local storage on page load
     const activeLink = localStorage.getItem('activeLink');

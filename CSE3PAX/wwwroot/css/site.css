@@ -1,4 +1,6 @@
 /*--------------------- Variables ---------------------*/
+
+/* Root variables for consistent color management */
 :root {
     --sitebackground: #F6F3F3; /* Snowflake - page colour background */
     --textColourGry: #706A6C; /* Bauhaus - dark grey text colour (link/admin heading)*/
@@ -7,29 +9,40 @@
     --lecturerBx: #48CFAE /* Lecturer welcome box */
 }
 
+/*--------------------- Global Settings ---------------------*/
+
+/* Base settings for the document */
 html {
     font-size: 14px;
     min-height: 100%;
     position: relative;
 }
 
+/* Responsive font size adjustment for larger screens */
 @media (min-width: 768px) {
     html {
         font-size: 16px;
     }
 }
 
+/*--------------------- Buttons and Form Elements ---------------------*/
+
+/* Focus styles for interactive elements */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
     box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-/* Body settings */
+/*--------------------- Body Styles ---------------------*/
+
+/* Base styles for the body */
 body {
     background-color: var(--sitebackground);
     margin-bottom: 60px;
 }
 
-/* Box shadow */
+/*--------------------- Utility Classes ---------------------*/
+
+/* Box shadow utility class */
 .box-shw {
     box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.33);
 }
@@ -60,6 +73,7 @@ body {
     text-decoration: underline;
 }
 
+/* Border radius utility class */
 .bd-radius {
     border-radius: 10px;
 }
@@ -68,6 +82,7 @@ body {
     color: var(--textColourGry);
 }
 
+/* Overflow and text ellipsis for notifications */
 .notification {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -75,21 +90,24 @@ body {
     width: 150px;
 }
 
+/* Styling for highlighted cells within tables */
 .table .cellHighlighter {
     background-color: #95ABC6;
 }
 
-/* Manager Staff Schedules page styling */
+/* Specific styles for the Manager Staff Schedules page */
 .staff-schedule-heading {
     color: #004AAD;
     text-align: center;
     margin-top: 20px;
 }
 
+/* Dropdown menu margin adjustment */
 .dropdown-menu {
     margin-top: 3px;
 }
 
+/* General margin for dropdowns */
 .dropdown {
     margin: 10px;
 }
@@ -99,11 +117,12 @@ body {
     background-color: var(--lecturerBx);
 }
 
+/* Adjusting layout for doughnut chart container */
 .doughnut-chart-container {
     float: left;
     width: 50%;
 }
-
+    /* Adjusting canvas width for doughnut chart */
     .doughnut-chart-container canvas {
         width: 100%;
     }
@@ -115,37 +134,21 @@ body {
     padding-right: 100px;
 }
 
+/*--------------------- Button Container Styles ---------------------*/
+
+    /* Styling for lecturer list items */
     .lecturer-list li {
         margin-bottom: 10px;
         font-size: 18px;
         color: #333;
     }
 
+/* Flex layout for button container */
 .button-container {
     display: flex;
     flex-wrap: wrap;
 }
-
+    /* Margin adjustment for button container */
     .button-container .mb-3 {
         margin-right: 10px; /* Adjust margin as needed */
-    }
-
-
-/* Settings page - light / dark themes */
-body.light {
-    background-color: var(sitebackground);
-    color: #333;
-}
-
-body.dark {
-    background-color: #333;
-    color: black;
-}
-
-    body.dark p {
-        color: white;
-    }
-
-    body.dark h5 {
-        color: orange;
     }

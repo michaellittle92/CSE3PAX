@@ -1,6 +1,11 @@
 ﻿@page
 @model CSE3PAX.Pages.Auth.LogoutModel
 @{
+    /*
+    Upon accessing this page, it clears the session data using HttpContext.Session.Clear(),
+    and then redirects the user to the root ("/") of the application.
+    */
+
     HttpContext.Session.Clear();
     Response.Redirect("/");
 }

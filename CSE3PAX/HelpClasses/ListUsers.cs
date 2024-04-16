@@ -1,4 +1,11 @@
-﻿namespace CSE3PAX.HelpClasses
+﻿/*
+    - Email: Represents the email address of the user.
+    - FirstName: Represents the first name of the user.
+    - LastName: Represents the last name of the user.
+    - Role: Represents the role or designation of the user.
+*/
+
+namespace CSE3PAX.HelpClasses
 {
     public class ListUsers
     {

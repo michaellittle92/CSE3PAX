@@ -1,4 +1,16 @@
-﻿namespace CSE3PAX.HelpClasses
+﻿/*
+    - SubjectInstanceID: Represents the unique identifier of the subject instance.
+    - SubjectInstanceName: Represents the name of the subject instance.
+    - SubjectInstanceCode: Represents the code of the subject instance.
+    - SubjectName: Represents the name of the subject associated with the instance.
+    - LecturerFirstName: Represents the first name of the lecturer associated with the instance.
+    - LecturerLastName: Represents the last name of the lecturer associated with the instance.
+    - LecturerEmail: Represents the email address of the lecturer associated with the instance.
+    - StartDate: Represents the start date of the subject instance.
+    - EndDate: Represents the end date of the subject instance.
+*/
+
+namespace CSE3PAX.HelpClasses
 {
     public class ListSubjectInstances
     {
