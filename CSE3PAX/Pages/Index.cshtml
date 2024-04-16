@@ -4,7 +4,7 @@
     Layout = "Shared/IndexLayout.cshtml";
 }
 
-
+<!-- Center the content vertically and horizontally -->
 <div class="d-flex align-items-center justify-content-center vh-100" >
     
     <div class="card" style="width: 700px; box-shadow: 8px 8px 5px 0px rgba(0,0,0,0.45);">
@@ -33,10 +33,9 @@
                     </div>
                 }
                                
+                <!-- Form submission with specific width -->
                 <form method="post" style="width: 95%;">
-                    
                     <div class="text-center" style="font-style:italic; font-size:10px;">
-                        <!--<h6 class="custom-h6 mb-3">Don't have an account. Request one <a href="#">here</a>.</h6>  -->
                     </div>
                    
                     <div class="mb-3">
@@ -54,61 +53,8 @@
                     <div class="row mb-2 m-auto" style="width: 98%;">
                         <button type="submit" class="btn btn-primary">Login</button>
                     </div>
-
-                    <!--  <a class="btn btn-link" href="Auth/ForgotPassword" role="button">Reset Password</a> -->
-
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-@* <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-            <a class="navbar-brand" asp-area="" asp-page="/Index">CSE3PAX</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/AddLecturer">Add a Lecturer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Auth/Logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
-</div>
-
-<footer class="border-top footer text-muted">
-    <div class="container">&copy; 2023 - CSE3PAX - <a asp-area="" asp-page="/Privacy">Privacy</a>
-    </div>
-</footer>
-
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/site.js" asp-append-version="true"></script>
-@await RenderSectionAsync("Scripts", required: false) *@
-

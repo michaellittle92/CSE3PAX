@@ -1,17 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using CSE3PAX; 
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.Filters;
 using System.Data.SqlClient;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
 
 namespace CSE3PAX.Pages
 {
-
     // Allow anonymous users to view page
     [AllowAnonymous]
 
@@ -59,11 +53,6 @@ namespace CSE3PAX.Pages
         }
 
         public void OnPost() { 
-
-            // Testing console writes
-            //Console.WriteLine($"Email: {Email}");
-           // Console.WriteLine($"Password: {Password}");
-
             // Check if ModelState is valid
             if (!ModelState.IsValid)
             {
