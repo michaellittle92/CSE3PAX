@@ -308,7 +308,7 @@ namespace CSE3PAX.Pages.Manager
 
           
 
-            return RedirectToPage("/Manager/CreateSubjectInstance",new { selectedSubjectInstnace = instanceID });
+            return RedirectToPage("/Manager/CreateSubjectInstance",new { selectedSubjectInstance = instanceID });
 
         }
     }

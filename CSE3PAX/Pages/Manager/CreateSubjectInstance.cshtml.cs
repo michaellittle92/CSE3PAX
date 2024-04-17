@@ -57,7 +57,7 @@ namespace CSE3PAX.Pages.Manager
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
 
 
-        public void OnGet(int? selectedSubjectInstnace)
+        public void OnGet(int? selectedSubjectInstance)
         {
 
 
@@ -74,11 +74,11 @@ namespace CSE3PAX.Pages.Manager
                 LoadLecturers();
             }
 
-            if (selectedSubjectInstnace.HasValue)
+            if (selectedSubjectInstance.HasValue)
             {
-                Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstnace}");
+                Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstance}");
 
-                LoadSubjectInstanceDetails(selectedSubjectInstnace.Value);
+                LoadSubjectInstanceDetails(selectedSubjectInstance.Value);
 
             }
         }
@@ -96,6 +96,7 @@ namespace CSE3PAX.Pages.Manager
                     si.StartDate, 
                     si.EndDate, 
                     si.LecturerID, 
+                    si.Load,
                     Users.UserID, 
                     Users.FirstName, 
                     Users.LastName, 
@@ -129,6 +130,10 @@ namespace CSE3PAX.Pages.Manager
                             SelectedEmail = reader["Email"].ToString();
 
                             Debug.WriteLine($"SelectedSubject: {SelectedSubject}");
+
+                            double instanceLoad = Convert.ToDouble(reader["Load"]);
+
+                            NumberOfStudents = CalculateStudentCount(instanceLoad);
                         }
                     }
                 }
@@ -415,5 +420,29 @@ namespace CSE3PAX.Pages.Manager
             }
             return instanceLoad;
         }
+
+        public int CalculateStudentCount(double targetLoad)
+        {
+            int studentCount = 100; // Base number of students
+            double instanceLoad = 1.0; // Base load for up to 100 students
+
+            if (targetLoad > instanceLoad)
+            {
+                while (instanceLoad < targetLoad)
+                {
+                    // Calculate load for next 20 students
+                    instanceLoad += 0.1;
+
+                    if (instanceLoad > targetLoad)
+                        break;
+
+                    // Increase student count by 20
+                    studentCount += 20;
+                }
+            }
+
+            return studentCount;
+        }
+
     }
 }
