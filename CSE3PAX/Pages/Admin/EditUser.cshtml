@@ -73,6 +73,11 @@
                     <label class="form-label" asp-for="Expertise06">Expertise 06</label>
                         <input class="form-control" asp-for="Expertise06" pattern="[a-zA-Z ]+" title="Expertise must only contain letters." />
                 </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for="WorkHours">Work Hours</label>
+                        <input class="form-control" asp-for="WorkHours" type="number" min="1" max="38" pattern="\d+" title="Please enter an integer between 1 and 38." />
+                    </div>
                 }
           
              <!-- Buttons Flex Container -->

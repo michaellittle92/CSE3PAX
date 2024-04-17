@@ -56,11 +56,14 @@ namespace CSE3PAX.Pages.Admin
         public string Expertise05 { get; set; }
         [BindProperty]
         public string Expertise06 { get; set; }
+        [BindProperty]
+        public double WorkHours { get; set; }
+
 
         [BindProperty]
         public string ResetPasswordEmail { get; set; }
 
-        public void OnGet()
+        public void OnGet(HoursAndLoadConversion hoursAndLoadConversion)
         {
             try
             {
@@ -87,7 +90,7 @@ namespace CSE3PAX.Pages.Admin
                                 reader.Close();
                                 if (IsLecturer) { 
                                 
-                                    string getExpertiseSQLQuery = "SELECT Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06 FROM Lecturers WHERE UserID = @UserID";
+                                    string getExpertiseSQLQuery = "SELECT ConcurrentLoadCapacity, Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06 FROM Lecturers WHERE UserID = @UserID";
                                     using (SqlCommand expertiseCommand = new SqlCommand(getExpertiseSQLQuery, connection))
                                     {
                                         expertiseCommand.Parameters.AddWithValue("@UserID", UserId);
@@ -102,7 +105,12 @@ namespace CSE3PAX.Pages.Admin
                                                 Expertise04 = expertiseReader["Expertise04"].ToString();
                                                 Expertise05 = expertiseReader["Expertise05"].ToString();
                                                 Expertise06 = expertiseReader["Expertise06"].ToString();
-                                                Debug.WriteLine(Expertise06);
+                                                double concurrentLoadCapacity = Convert.ToDouble(expertiseReader["ConcurrentLoadCapacity"]);
+                                                WorkHours = HoursAndLoadConversion.CalculateWorkHours(concurrentLoadCapacity);
+                                                
+
+
+                                                
                                                 expertiseReader.Close();
                                             }
                                         }
@@ -127,6 +135,9 @@ namespace CSE3PAX.Pages.Admin
             {
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
+                    double LoadCapacity = HoursAndLoadConversion.CalculateLoadCapacity(Convert.ToInt32(WorkHours));
+                    Debug.WriteLine( "Load Capactiy " + LoadCapacity);
+
                     connection.Open();
                     string updateUserDataSQLQuery = @"
             UPDATE Users 
@@ -149,11 +160,12 @@ namespace CSE3PAX.Pages.Admin
                         if (result >= 1 && IsLecturer)
                         {
                             string updateExpertiseSQLQuery = @"
-                    UPDATE Lecturers
-                    SET Expertise01 = @Expertise01, Expertise02 = @Expertise02, 
-                        Expertise03 = @Expertise03, Expertise04 = @Expertise04, 
-                        Expertise05 = @Expertise05, Expertise06 = @Expertise06
-                    WHERE UserId = @UserId";
+UPDATE Lecturers
+SET Expertise01 = @Expertise01, Expertise02 = @Expertise02, 
+    Expertise03 = @Expertise03, Expertise04 = @Expertise04, 
+    Expertise05 = @Expertise05, Expertise06 = @Expertise06,
+    ConcurrentLoadCapacity = @ConcurrentLoadCapacity
+WHERE UserId = @UserId";
 
                             using (SqlCommand expertiseCommand = new SqlCommand(updateExpertiseSQLQuery, connection))
                             {
@@ -163,11 +175,13 @@ namespace CSE3PAX.Pages.Admin
                                 expertiseCommand.Parameters.AddWithValue("@Expertise04", Expertise04 ?? string.Empty);
                                 expertiseCommand.Parameters.AddWithValue("@Expertise05", Expertise05 ?? string.Empty);
                                 expertiseCommand.Parameters.AddWithValue("@Expertise06", Expertise06 ?? string.Empty);
+                                expertiseCommand.Parameters.AddWithValue("@ConcurrentLoadCapacity", LoadCapacity);
                                 expertiseCommand.Parameters.AddWithValue("@UserId", UserId);
 
                                 expertiseCommand.ExecuteNonQuery();
-                            }
+
                         }
+                    }
                     }
                 }
             }
@@ -192,7 +206,7 @@ namespace CSE3PAX.Pages.Admin
             DECLARE @UserID INT;
             DECLARE @IsLecturer BIT;
 
-            SET @Email = @EmailParam; -- Use parameterized value here
+            SET @Email = @EmailParam; 
 
             -- Retrieve UserID and IsLecturer status based on the email
             SELECT @UserID = UserID, @IsLecturer = IsLecturer FROM Users WHERE Email = @Email;
