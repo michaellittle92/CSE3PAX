@@ -102,7 +102,6 @@ namespace CSE3PAX.Pages.Admin
                                                 Expertise04 = expertiseReader["Expertise04"].ToString();
                                                 Expertise05 = expertiseReader["Expertise05"].ToString();
                                                 Expertise06 = expertiseReader["Expertise06"].ToString();
-
                                                 Debug.WriteLine(Expertise06);
                                                 expertiseReader.Close();
                                             }
