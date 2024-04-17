@@ -5,9 +5,14 @@ using System.Data.SqlClient;
 
 namespace CSE3PAX.Pages.Admin
 {
-    //Checking for required Roles
+    // Checking for required Roles
     [RequireRoles("Admin")]
 
+    /*
+    The CreateSubjectModel class represents the backend logic for creating new subjects 
+    within the admin dashboard. It handles user authorisation, data retrieval, and database 
+    operations for inserting new subjects.
+    */
     public class CreateSubjectModel : PageModel
     {
 
@@ -15,6 +20,7 @@ namespace CSE3PAX.Pages.Admin
         public string SuccessMessage { get; set; }
         public string ErrorMessage { get; set; }
 
+        // Configuration object
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
@@ -28,22 +34,23 @@ namespace CSE3PAX.Pages.Admin
             // Get connection string from configuration
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
+
+        // Properties for subject information binding
         [BindProperty]
         public string SubjectCode { get; set; }
-
         [BindProperty]
         public string SubjectName { get; set; }
-
         [BindProperty]
         public string SubjectClassification { get; set; }
-
         [BindProperty]
         public string YearLevel { get; set; }
 
+        // Handler for HTTP GET requests
         public void OnGet()
         {
         }
 
+        // Handler for HTTP POST requests
         public void OnPost()
         {
             try
@@ -66,8 +73,9 @@ namespace CSE3PAX.Pages.Admin
                         }
                     }
 
-                    // If subject code is unique, proceed with insertion
+                    // SQL query to insert a new subject into the database
                     string insertSubjectSQLQuery = "INSERT INTO Subjects (SubjectCode, SubjectName, SubjectClassification, YearLevel) VALUES (@SubjectCode, @SubjectName, @SubjectClassification, @YearLevel)";
+
                     using (SqlCommand command = new SqlCommand(insertSubjectSQLQuery, connection))
                     {
                         command.Parameters.AddWithValue("@SubjectCode", SubjectCode);

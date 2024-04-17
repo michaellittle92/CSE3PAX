@@ -1,8 +1,10 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.EditSubjectModel
 @{
+    // Check if the SuccessMessage property in the model is not null or empty
     if (!string.IsNullOrEmpty(Model.SuccessMessage))
     {
+        // If SuccessMessage is not null or empty, display a success alert with the message
         <div class="alert alert-success" role="alert">
             @Model.SuccessMessage
         </div>
@@ -13,10 +15,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-
             <!-- Edit Subject Title -->
             <h1 class="my-5 admin-txt text-center"> <i class="bi bi-pencil-fill admin-txt pe-3"></i>Edit Subject</h1>
-
             <!-- Edit Subject Form -->
             <form method="post">
                 <div class="mb-3">
@@ -38,19 +38,14 @@
                     <label class="form-label" asp-for="YearLevel">Year Level</label>
                     <input class="form-control" asp-for="YearLevel" />
                 </div>
-            
-
-
             <!-- Buttons Flex Container -->
             <div class="d-flex flex-wrap justify-content-center mt-4">
 
                 <!-- Save Button -->
                 <button type="submit" class="btn btn-success mx-4 box-shw my-2" style="width:130px"><i class="bi bi-save2 me-2"></i>Save</button>
             </form>
-
             <!-- Cancel Button -->
             <a asp-page="/Admin/SubjectManagement" class="btn btn-outline-danger mx-4 box-shw my-2" style="width:130px; height: 38px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
-           
             <!-- Separate form for delete action -->
             <form method="post" asp-page-handler="Delete">
                 <input type="hidden" asp-for="SubjectCode" />

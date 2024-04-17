@@ -1,14 +1,18 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.CreateSubjectModel
 @{
+    // Check if the SuccessMessage property in the model is not null or empty
     if (!string.IsNullOrEmpty(Model.SuccessMessage))
     {
+        // If SuccessMessage is not null or empty, display a success alert with the message
         <div class="alert alert-success" role="alert">
             @Model.SuccessMessage
         </div>
     }
+    // Check if the ErrorMessage property in the model is not null or empty
     if (!string.IsNullOrEmpty(Model.ErrorMessage))
     {
+        // If ErrorMessage is not null or empty, display an error alert with the message
         <div class="alert alert-danger" role="alert">
             @Model.ErrorMessage
         </div>
@@ -18,13 +22,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-
             <!-- Create Subject Title -->
             <h1 class="my-5 admin-txt text-center"><i class="bi bi-book"></i> Create Subject</h1>
-            
             <!-- Create User Form -->
             <form method="post">
-                
                     <!-- Subject Code -->
                     <div class="mb-3">
                         <label class="form-label" asp-for="SubjectCode">Subject Code</label>
@@ -45,8 +46,6 @@
                         <label class="form-label" asp-for="YearLevel">Year Level</label>
                         <input class="form-control" asp-for="YearLevel" />
                     </div>
-                
-                   
                     <!-- Button container -->
                     <div class="d-flex justify-content-center p-3 flex-wrap">
                         <!-- Save / Cancel Buttons -->
@@ -60,5 +59,3 @@
 
 <!-- JS Scripts -->
 <script src="~/js/site.js"></script>
-
-

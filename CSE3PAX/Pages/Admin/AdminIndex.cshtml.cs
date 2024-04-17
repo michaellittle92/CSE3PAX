@@ -1,20 +1,20 @@
 using CSE3PAX.HelpClasses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using System.ComponentModel;
 using System.Data.SqlClient;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CSE3PAX.Pages.Admin
 {
     //Checking for required Roles
     [RequireRoles("Admin")]
 
-
+    /*
+    The AdminIndexModel class handles admin dashboard logic, including user authorization,
+    data retrieval, and workload management.
+    */
     public class AdminIndexModel : PageModel
     {
+        // Configuration object
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
@@ -34,9 +34,10 @@ namespace CSE3PAX.Pages.Admin
         public List<User> Users { get; set; } = new List<User>();
 
 
-        //User class to store User variable information
+        // User class to store User variable information
         public class User
         {
+            // User properties
             public int UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -56,15 +57,16 @@ namespace CSE3PAX.Pages.Admin
         // String to store full name (session)
         public string FullName { get; set; }
 
+        // Handler for HTTP GET requests
         public void OnGet()
         {
             // Session data
             FullName = HttpContext.Session.GetString("FirstName") + " " + HttpContext.Session.GetString("LastName");
         }
 
-
         /*
-        onPost checks each button pressed to generate report information
+        Handler for HTTP POST requests
+        Checks each button pressed to generate report information
         Switch case is used to call the method required.
         */
         public IActionResult OnPost(string buttonType)
@@ -83,6 +85,7 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
+        // Method to load users from the database
         private void LoadUsers()
         {
             // Console write for testing
@@ -100,7 +103,14 @@ namespace CSE3PAX.Pages.Admin
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all users who are lecturers
+                    /*
+                    This SQL query retrieves user and workload information:
+                    - Selects user details (UserId, FirstName, LastName, Email) and lecturer expertise.
+                    - Calculates workload metrics such as TotalLoad and LoadCapacityPercentage.
+                    - Joins tables [Users], [Lecturers], and [SubjectInstance] based on user and lecturer IDs.
+                    - Filters users who are lecturers (u.isLecturer = 1).
+                    - Groups results by user attributes for aggregation.
+                    */
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                                  "l.Expertise01, l.Expertise02, l.Expertise03, " +
                                  "l.Expertise04, l.Expertise05, l.Expertise06, " +
@@ -165,14 +175,25 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
-
-        //Method to sort lecturers workloads
+        /*
+        This method sorts the list of users based on their workload capacity percentage.
+        It utilizes LINQ's OrderBy method to sort the Users list in ascending order of LoadCapacityPercentage.
+        The sorted list is then converted back to a List<User> and assigned to the Users property.
+        */
         private void SortLecturerWorkloadByPercentage()
         {
             Users = Users.OrderBy(user => user.LoadCapacityPercentage).ToList();
         }
 
-        // Convert workload to hours per week
+        /*
+        This method converts a workload capacity value to hours per week.
+        It takes a nullable decimal parameter representing the workload capacity.
+        If the workload capacity is null, it returns null.
+        Otherwise, it calculates the workload as a fraction of a full-time workload (6),
+        then converts this fraction to hours per week based on a full-time workload of 38 hours.
+        The result is rounded up to the nearest whole number using Math.Ceiling.
+        Finally, the calculated hours per week value is returned.
+        */
         private double? ConvertToHoursPerWeek(decimal? loadCapacity)
         {
             if (loadCapacity == null)
@@ -192,6 +213,5 @@ namespace CSE3PAX.Pages.Admin
 
             return hoursPerWeek;
         }
-
     }
 }

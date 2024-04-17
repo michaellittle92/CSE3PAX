@@ -3,15 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection.PortableExecutable;
 using System.Text.RegularExpressions;
-using System.ComponentModel.DataAnnotations;
 
 namespace CSE3PAX.Pages.Admin
 {
     //Checking for required Roles
     [RequireRoles("Admin")]
 
+    /*
+    The CreateUserModel class represents the backend logic for creating new users 
+    within the admin dashboard. It handles user authorisation, data retrieval, and database 
+    operations for inserting new users.
+    */
     public class CreateUserModel : PageModel
     {
         // Alert message variable
@@ -24,7 +27,7 @@ namespace CSE3PAX.Pages.Admin
         // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
 
-
+        // Constructor to initialize class properties
         public CreateUserModel(IConfiguration configuration)
         {
             // Check if a valid configuration is provided
@@ -34,55 +37,41 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-
+        // Bind properties for user information
         [BindProperty]
         public string FirstName { get; set; }
-
         [BindProperty]
         public string LastName { get; set; }
-
         [BindProperty]
         public string Email { get; set; }
-
         [BindProperty]
         public string Password { get; set; }
-
         [BindProperty]
         public bool IsAdmin { get; set; }
-
         [BindProperty]
         public bool IsManager { get; set; }
-
         [BindProperty]
         public bool IsLecturer { get; set; }
-
         [BindProperty]
         public bool TestCheck { get; set; }
-
         [BindProperty]
         public string Expertise01 { get; set; }
-
         [BindProperty]
         public string Expertise02 { get; set; }
-
         [BindProperty]
         public string Expertise03 { get; set; }
-
         [BindProperty]
         public string Expertise04 { get; set; }
-
         [BindProperty]
         public string Expertise05 { get; set; }
-
         [BindProperty]
         public string Expertise06 { get; set; }
-
         [BindProperty]
         public int workHours { get; set; }
 
         public List<string> SubjectClassifications { get; set; } = new List<string>();
 
-
+        // Handles HTTP GET requests
         public void OnGet()
         {
             try
@@ -103,8 +92,8 @@ namespace CSE3PAX.Pages.Admin
                             // Loop through the results
                             while (reader.Read())
                             {
-
-                                string classification = reader.GetString(0); // Get the first column value in each row
+                                // Get the first column value in each row
+                                string classification = reader.GetString(0); 
                                 SubjectClassifications.Add(classification);
                             }
                         }
@@ -117,6 +106,7 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
+        // Handles HTTP POST requests, performs user creation
         public void OnPost()
         {
             try
@@ -162,7 +152,11 @@ namespace CSE3PAX.Pages.Admin
                             // Open connection
                             connection.Open();
 
-                            // Insert User Information into Users table
+                            /*
+                             SQL queries for inserting user information into the Users table,
+                             retrieving the UserID based on the provided email, and
+                             inserting lecturer information into the Lecturers table.
+                             */
                             string insertIntoUsersTable = "INSERT INTO [Users] (Email, Password, UserGuid, FirstName, LastName, IsAdmin, IsManager, IsLecturer, IsPasswordResetRequired) VALUES (@Email, @Password, @UserGuid, @FirstName, @LastName, @IsAdmin, @IsManager, @IsLecturer, @IsPasswordResetRequired)";
                             string getUserIDFromEmail = "SELECT UserID FROM [Users] WHERE Email = @Email";
                             string insertIntoLecturersTable = "INSERT INTO [Lecturers](UserID, Expertise01, Expertise02, Expertise03, Expertise04, Expertise05, Expertise06, ConcurrentLoadCapacity) VALUES (@UserID, @Expertise01, @Expertise02, @Expertise03, @Expertise04, @Expertise05, @Expertise06, @ConcurrentLoadCapacity)";
@@ -278,14 +272,26 @@ namespace CSE3PAX.Pages.Admin
                 Console.WriteLine(ex.Message);
             }
         }
-    
+
+        /*
+        The IsPasswordComplex method validates the complexity of a password by ensuring it meets the following criteria:
+        - At least 8 characters long
+        - Contains at least one uppercase letter
+        - Contains at least one lowercase letter
+        - Contains at least one digit
+        - Contains at least one special character
+        */
         private bool IsPasswordComplex(string password)
         {
-            // Password must be at least 8 characters long and contain at least one uppercase letter,
-            // one lowercase letter, one digit, and one special character.
             return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
         }
 
+        /*
+        The CalculateLoadCapacity method computes the load capacity of a lecturer based on the provided hours.
+        It calculates the load capacity as a fraction of a full-time workload (38 hours per week) and rounds
+        it to the nearest tenth place. It then returns the smaller value between the calculated load capacity 
+        and the maximum load capacity of 6.
+        */
         private double CalculateLoadCapacity(double hours)
         {
             double loadCapacity = (6.0 / 38.0) * hours;
@@ -297,6 +303,11 @@ namespace CSE3PAX.Pages.Admin
             return Math.Min(loadCapacity, 6);
         }
 
+        /*
+        The CheckIfUserExists method checks whether a user with the provided email exists in the database.
+        It executes a SQL query to count the number of users with the given email. If the count is greater than
+        zero, it indicates that the user exists, and the method returns true; otherwise, it returns false.
+        */
         private bool CheckIfUserExists(string email)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
