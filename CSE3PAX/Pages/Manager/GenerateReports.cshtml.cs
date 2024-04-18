@@ -30,6 +30,8 @@ namespace CSE3PAX.Pages.Manager
         // Lecturer class to store Lecturer variable information
         public class Lecturer
         {
+
+            // Lecturer variables
             public int UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -44,8 +46,11 @@ namespace CSE3PAX.Pages.Manager
             public decimal? WorkHours { get; set; }
         }
 
+        // Subject instance class to store subject instance information
         public class SubjectInstance 
         {
+
+            // Subject instance variables
             public int SubjectInstanceId { get; set; }
             public int SubjectId { get; set; }
             public string SubjectInstanceName { get; set; }
@@ -73,6 +78,7 @@ namespace CSE3PAX.Pages.Manager
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        // HTTP OnGet
         public void OnGet()
         {
         }
@@ -116,7 +122,12 @@ namespace CSE3PAX.Pages.Manager
             SubjectInstances.Clear();
         }
 
-        // Method to get lecturer information from db
+        /*
+        This method loads the list of lecturers from the database.
+        It retrieves lecturer information including their expertise and concurrent load capacity.
+        The method clears the existing list of lecturers before populating it with the new data.
+        If any exceptions occur during the database interaction, they are caught and logged.
+        */
         private void LoadLecturers()
         {
 
@@ -132,7 +143,7 @@ namespace CSE3PAX.Pages.Manager
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all users who are lecturers
+                    // SQL query to select user and lecturer information from the database
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                                  "l.Expertise01, l.Expertise02, l.Expertise03, " +
                                  "l.Expertise04, l.Expertise05, l.Expertise06, " +
@@ -180,10 +191,14 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
-        // Method to get subject instance information from the database
+        /*
+        Clears the existing list of subject instances and retrieves data from the
+        database to populate it. Establishes a connection, executes a SQL query to
+        select subject instances along with related info, and adds them to the list.
+        Sorts the list by subject code.
+        */
         private void LoadSubjectInstances()
         {
-
             try
             {
                 // Clear the existing list of subject instances
@@ -195,7 +210,10 @@ namespace CSE3PAX.Pages.Manager
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all subject instances
+                    /*
+                    SQL query to retrieve subject instances with detailed information including subject name, 
+                    start and end dates, lecturer details, and subject codes from the database.
+                    */
                     string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
                                     si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
                                     si.SubjectInstanceYear, s.SubjectCode, u.FirstName AS LecturerFirstName, u.LastName AS LecturerLastName
@@ -256,7 +274,10 @@ namespace CSE3PAX.Pages.Manager
             SubjectInstances = SubjectInstances.OrderBy(instance => instance.SubjectInstanceId).ToList();
         }
 
-        // Convert workload to hours per week
+        /*
+        Method to convert the load capacity to hours per week based on a full-time load capacity of 6, 
+        which corresponds to 38 hours per week.
+        */
         private double ConvertToHoursPerWeek(decimal loadCapacity)
         {
             // Assuming a full-time load capacity of 6 corresponds to 38 hours per week

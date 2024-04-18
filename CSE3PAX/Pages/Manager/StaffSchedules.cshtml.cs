@@ -27,6 +27,7 @@ namespace CSE3PAX.Pages.Manager
         //SubjectInstance class in HelpClasses -> SubjectInstance.cs
         public List<SubjectInstance> SubjectInstances { get; set; } = new List<SubjectInstance>();
 
+        // Lecturer class to store lecturer userid, first and last name
         public class Lecturer
         {
             public int UserId { get; set; }
@@ -64,6 +65,11 @@ namespace CSE3PAX.Pages.Manager
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        /*
+        Handles the HTTP GET request for the page.
+        Loads the list of lecturers.
+        If a selected user ID is provided, triggers the HTTP POST method with the selected user ID.
+        */
         public void OnGet(int? selectedUserId)
         {
             LoadLecturers();
@@ -73,17 +79,19 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Handles the HTTP POST request for the page.
+        Retrieves details of the selected lecturer using the provided selectedUserId.
+        Loads lecturers to populate the dropdown.
+        Returns the same page.
+        If an error occurs, logs the error message and returns a BadRequestResult.
+        */
         public IActionResult OnPost(int selectedUserId)
         {
-            // Receive the selected lecturer's UserID as a parameter and get their details
-
             try
             {
                 // Get details of the selected lecturer using the selectedUserId
                 FetchLecturerDetails(selectedUserId);
-
-                // Testing
-                Console.WriteLine($"UserID: {SelectedUserId}, Email: {SelectedEmail}, FirstName: {SelectedFirstName}, LastName: {SelectedLastName} Expertise01: {SelectedExpertise01}, ConcurrentLoadCapacity: {SelectedConcurrentLoadCapacity}");
 
                 // Load lecturers to populated dropdown
                 LoadLecturers();
@@ -101,11 +109,18 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
-        // Method to load all lectures
+        /*
+        Clears the Next12Months list.
+        Retrieves the list of lecturers from the database.
+        Establishes a connection to the database and executes a SQL query to select users who are lecturers.
+        Adds the retrieved lecturers to the Lecturers list.
+        Generates the list of the next 12 months and adds them to the Next12Months list.
+        If an error occurs during the process, logs the error message.
+        */
+
         private void LoadLecturers()
         {
             Next12Months.Clear();
-            // Retrieve the list of lecturers from the database
 
             try
             {
@@ -154,6 +169,13 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Fetches the details of the lecturer with the specified UserID from the database.
+        Establishes a connection to the database and executes a SQL query to retrieve the lecturer details.
+        Adds the lecturer's details to the respective properties.
+        Retrieves the subject instances associated with the lecturer and adds them to the SubjectInstances list.
+        If an error occurs during the process, logs the error message.
+        */
         private void FetchLecturerDetails(int userId)
         {
             // Get the details of the lecturer with the specified UserID
@@ -168,35 +190,40 @@ namespace CSE3PAX.Pages.Manager
                     // Open connection
                     connection.Open();
 
-                    // SQL select statement to get user details from the Users and Lecturers table
+                    /*
+                    Retrieves details of a lecturer and their associated subject instances from the database.
+                    Selects the lecturer's email, first name, last name, user ID, lecturer ID, expertise fields, concurrent load capacity, and subject instance details.
+                    Joins the Users table with the Lecturers table on the UserID column.
+                    Joins the Lecturers table with the SubjectInstance table on the LecturerID column.
+                    Filters the results based on the specified user ID.
+                    */
                     string sql = @"
-                    SELECT 
-                        u.Email, 
-                        u.FirstName, 
-                        u.LastName, 
-                        u.UserID, -- Add UserID to fetch it
-                        l.LecturerID, -- Add LecturerID to fetch it
-                        l.Expertise01, 
-                        l.Expertise02, 
-                        l.Expertise03, 
-                        l.Expertise04, 
-                        l.Expertise05, 
-                        l.Expertise06, 
-                        l.ConcurrentLoadCapacity,
-                        s.SubjectInstanceID, -- Corrected column name
-                        s.SubjectInstanceName,
-                        s.SubjectInstanceCode,
-                        s.StartDate,
-                        s.EndDate
-                    FROM 
-                        [Users] u
-                    LEFT JOIN 
-                        [Lecturers] l ON u.UserID = l.UserID
-                    LEFT JOIN 
-                        [SubjectInstance] s ON l.LecturerID = s.LecturerID
-                    WHERE 
-                        u.UserID = @UserId";
-
+                        SELECT 
+                            u.Email, 
+                            u.FirstName, 
+                            u.LastName, 
+                            u.UserID, -- Add UserID to fetch it
+                            l.LecturerID, -- Add LecturerID to fetch it
+                            l.Expertise01, 
+                            l.Expertise02, 
+                            l.Expertise03, 
+                            l.Expertise04, 
+                            l.Expertise05, 
+                            l.Expertise06, 
+                            l.ConcurrentLoadCapacity,
+                            s.SubjectInstanceID, -- Corrected column name
+                            s.SubjectInstanceName,
+                            s.SubjectInstanceCode,
+                            s.StartDate,
+                            s.EndDate
+                        FROM 
+                            [Users] u
+                        LEFT JOIN 
+                            [Lecturers] l ON u.UserID = l.UserID
+                        LEFT JOIN 
+                            [SubjectInstance] s ON l.LecturerID = s.LecturerID
+                        WHERE 
+                            u.UserID = @UserId";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -260,6 +287,13 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Handles the asynchronous POST request to delete a subject instance from the database.
+        Retrieves the instanceID, lecturerID, and userID from the request parameters.
+        Deletes the subject instance corresponding to the instanceID from the database.
+        If an error occurs during the deletion process, logs the error message.
+        Redirects back to the same page with the selectedUserID parameter after deletion.
+        */
         public async Task<IActionResult> OnPostDeleteAsync(int instanceID, int lecturerID, int userID)
         {
             Debug.WriteLine("Deleting instance with ID: " + instanceID);
@@ -291,25 +325,23 @@ namespace CSE3PAX.Pages.Manager
             }
             catch (Exception ex)
             {
-                // Handle exception, such as logging or displaying an error message
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
-
-            // Assuming deletion is successful, redirect back to the same page with the lecturerID
-
             return RedirectToPage(new { selectedUserId = userID });
-
         }
+
+        /*
+        Handles the asynchronous POST request to edit a subject instance.
+        Retrieves the instanceID, lecturerID, and userID from the request parameters.
+        Logs the instanceID, lecturerID, and userID for debugging purposes.
+        Redirects to the "CreateSubjectInstance" page with the selectedSubjectInstance parameter set to instanceID.
+        */
         public async Task<IActionResult> OnPostEditAsync(int instanceID, int lecturerID, int userID)
         {
             Debug.WriteLine("Editing instance with ID: " + instanceID);
             Debug.WriteLine("Lecturer ID: " + lecturerID);
             Debug.WriteLine("User ID: " + userID);
-
-          
-
             return RedirectToPage("/Manager/CreateSubjectInstance",new { selectedSubjectInstance = instanceID });
-
         }
     }
 }

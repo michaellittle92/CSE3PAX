@@ -17,6 +17,7 @@
         <h1 class="mb-3" style="color: #3163bc"><i class="bi bi-file-earmark-bar-graph-fill pe-3"></i> Generate Reports</h1>
         <p class="my-4">Looking to gain deeper insights? Generate your comprehensive reports for Lecturers, Subject instances, and subjects here</p>
         <form method="post">
+            <!-- Lecturers Section -->
             <div class="row" style="max-height: 900px; overflow-y: auto;">
                 <div class="col-lg-12">
                     <div class="card mb-4">
@@ -25,9 +26,11 @@
                                 <h4 class="my-3 listHeading">Lecturers</h4>
                             </div>
                             <div class="mb-3">
+                                <!-- Buttons to View/Hide Lecturers -->
                                 <button type="submit" name="buttonType" value="lecturers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Lecturers</button>
                                 <button type="submit" name="buttonType" value="hideLecturers" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Lecturers</button>
                             </div>
+                            <!-- Table to Display Lecturers -->
                             <div class="table-responsive">
                                 @if (Model.Lecturers.Any())
                                 {
@@ -47,9 +50,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- Iterate through Lecturers -->
                                             @foreach (var lecturer in Model.Lecturers)
                                             {
                                                 <tr>
+                                                    <!-- Display Lecturer Details -->
                                                     <td class="text-center">@lecturer.FirstName</td>
                                                     <td class="text-center">@lecturer.LastName</td>
                                                     <td class="text-center">@lecturer.Email</td>
@@ -70,6 +75,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Subject Instances Section -->
             <div class="row" style="max-height: 900px; overflow-y: auto;">
                 <div class="col-lg-12">
                     <div class="card mb-4">
@@ -78,14 +84,17 @@
                                 <h4 class="my-3 listHeading">Subject Instances</h4>
                             </div>
                             <div class="mb-3">
+                                <!-- Buttons to View/Hide Subject Instances -->
                                 <button type="submit" name="buttonType" value="subjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>View Instances</button>
                                 <button type="submit" name="buttonType" value="hideSubjectInstances" class="btn btn-dark box-shw"><i class="bi bi-eye mx-1 pe-1"></i>Hide Instances</button>
                             </div>
+                            <!-- Table to Display Subject Instances -->
                             <div class="table-responsive">
                                 @if (Model.SubjectInstances.Any())
                                 {
                                     <table class="table table-hover table-striped col-12 border-2 align-middle m-1">
                                         <thead>
+                                            <!-- Table Headers -->
                                             <tr class="text-center align-middle bg-secondary box-shw text-light">
                                                 <th scope="col">Instance Name</th>
                                                 <th scope="col">Instance Code</th>
@@ -95,9 +104,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <!-- Iterate through Subject Instances -->
                                             @foreach (var subjectInstance in Model.SubjectInstances)
                                             {
                                                 <tr>
+                                                    <!-- Display Subject Instance Details -->
                                                     <td class="text-center">@subjectInstance.SubjectInstanceName</td>
                                                     <td class="text-center">@subjectInstance.SubjectInstanceCode</td>
                                                     <td class="text-center">@subjectInstance.LecturerFirstName @subjectInstance.LecturerLastName</td>

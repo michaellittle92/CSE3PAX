@@ -1,11 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 using CSE3PAX.HelpClasses;
-using System.Reflection.PortableExecutable;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -22,34 +18,25 @@ namespace CSE3PAX.Pages.Manager
             _connectionString = _configuration.GetConnectionString("DefaultConnection");
         }
 
+        // Bind properties
         [BindProperty(SupportsGet = true)]
         public string SelectedSubject { get; set; }
-
         public string SuccessMessage { get; set; }
-
         [BindProperty(SupportsGet = true)]
         public DateTime? StartDate { get; set; }
-
         [BindProperty(SupportsGet = true)]
         public DateTime? EndDate { get; set; }
-
         public DateTime? CalculatedEndDate { get; set; }
-
         [BindProperty]
         public string SelectedFirstName { get; set; }
-
         [BindProperty]
         public string SelectedLastName { get; set; }
-
         [BindProperty]
         public string SelectedEmail { get; set; }
-
         [BindProperty]
         public int NumberOfStudents { get; set; }
-
         [BindProperty]
         public bool IsDevelopmentRequired { get; set; }
-
         [BindProperty]
         public string SelectedSubjectHidden { get; set; }
 
@@ -189,7 +176,6 @@ namespace CSE3PAX.Pages.Manager
         - Executes the query with parameters for the selected subject, StartDate, and EndDate.
         - Iterates through the query results and creates LecturerInfo objects to store lecturer details.
         */
-
         private void LoadLecturers()
         {
 
@@ -200,17 +186,27 @@ namespace CSE3PAX.Pages.Manager
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
+
+                /*
+                 * SQL query to calculate adjusted rating and load capacity percentage for lecturers based on selected criteria.
+                 * Calculates adjusted rating based on whether the lecturer has taught the selected subject before and expertise match.
+                 * Adjusted rating is determined by adding 5 to the rating if the lecturer has taught the subject, otherwise subtracting 2.
+                 * Expertise match adds 0 to the rating if the lecturer's expertise matches the subject's classification, otherwise subtracting 2.
+                 * Load capacity percentage is calculated based on the lecturer's concurrent load capacity and the sum of load for their instances.
+                 * Parameters:
+                 *     - @selectedSubject: The subject code for which the rating is calculated.
+                 *     - @endDate: End date for the selected period.
+                 *     - @startDate: Start date for the selected period.
+                 * Query joins Users, Lecturers, SubjectInstance, and Subjects tables to gather required data.
+                 * Filters lecturers who are also users and lecturers with instances falling within the selected period.
+                 * Groups the result by lecturer and orders by adjusted rating and load capacity percentage.
+                 */
                 var query = @"
                 DECLARE @rating INT = 5;
-               
 				DECLARE @SelectedSubjectClassifcation NVARCHAR(100);
-			
-
-				
 				SELECT @SelectedSubjectClassifcation = Subjects.SubjectClassification 
 				FROM Subjects 
 				WHERE Subjects.SubjectCode = @selectedSubject;
-
                   SELECT 
                     Users.Email, 
                     Users.FirstName, 
@@ -226,7 +222,6 @@ namespace CSE3PAX.Pages.Manager
                         ) THEN 0 ELSE -2 END 
                     +
                     CASE 
-
                         WHEN @SelectedSubjectClassifcation IN (Lecturers.Expertise01, Lecturers.Expertise02, Lecturers.Expertise03, Lecturers.Expertise04, Lecturers.Expertise05, Lecturers.Expertise06)
                         THEN 0 ELSE -2 END AS AdjustedRating,
                     CAST(
@@ -289,7 +284,6 @@ namespace CSE3PAX.Pages.Manager
         - Reloads lecturers based on the selected criteria if SelectedSubject and StartDate are not null or empty.
         - Returns the current page with the bound property values.
         */
-
         public IActionResult OnPost()
         {
             Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
@@ -299,7 +293,6 @@ namespace CSE3PAX.Pages.Manager
             {
                 LoadLecturers(); // Reload lecturers based on the selected criteria
             }
-
             return Page(); // Return the current page with the bound property values
         }
 
@@ -316,19 +309,11 @@ namespace CSE3PAX.Pages.Manager
         */
         public async Task<IActionResult> OnPostSubmitDataAsync()
         {
-            Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
-
-
             if (string.IsNullOrEmpty(SelectedEmail))
             {
-                // Handle the case where SelectedEmail is null or empty.
-                
                 Console.WriteLine("SelectedEmail is null or empty.");
                 return Page();
             }
-
-
-            Console.WriteLine("Submitted");
             bool developmentRequired = IsDevelopmentRequired;
             double load = CalculateInstanceLoad(NumberOfStudents);
 
@@ -341,31 +326,43 @@ namespace CSE3PAX.Pages.Manager
                     {
                         command.CommandType = System.Data.CommandType.Text;
 
+                        /*
+                         * SQL script to insert a new subject instance into the database.
+                         * Retrieves necessary data such as UserID, SubjectID, LecturerID, and generates instance name and code.
+                         * Parameters:
+                         *     - @UserEmailInput: Email of the user (lecturer) associated with the subject instance.
+                         *     - @SubjectCodeInput: Code of the subject for the instance.
+                         *     - @StartDateInput: Start date of the instance.
+                         *     - @EndDateInput: End date of the instance.
+                         *     - @Load: Load value for the instance.
+                         * Inserts a new row into the SubjectInstance table with the provided data.
+                         * Instance name and code are generated based on the year, month, and a random alphanumeric string.
+                         */
                         command.CommandText = @"
-                    DECLARE @UserID INT;
-                    DECLARE @LecturerID INT;
-                    DECLARE @SubjectID INT;
-                    DECLARE @SubjectName NVARCHAR(100);
-                    DECLARE @Year NVARCHAR(100);
-                    DECLARE @Month NVARCHAR(100);
-                    DECLARE @SubjectInstanceCode NVARCHAR(100);
-                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
-                    DECLARE @SubjectInstanceName NVARCHAR(200);
+                            DECLARE @UserID INT;
+                            DECLARE @LecturerID INT;
+                            DECLARE @SubjectID INT;
+                            DECLARE @SubjectName NVARCHAR(100);
+                            DECLARE @Year NVARCHAR(100);
+                            DECLARE @Month NVARCHAR(100);
+                            DECLARE @SubjectInstanceCode NVARCHAR(100);
+                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
+                            DECLARE @SubjectInstanceName NVARCHAR(200);
 
-                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                    SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                    SET @Month = DATENAME(MONTH, @EndDateInput);
+                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                            SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                            SET @Month = DATENAME(MONTH, @EndDateInput);
 
-                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
 
-                    SET @SubjectInstanceCode = @Year + '-' + @SubjectCodeInput;
-                    SET @SubjectInstanceName = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+                            SET @SubjectInstanceCode = @Year + '-' + @SubjectCodeInput;
+                            SET @SubjectInstanceName = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
 
-                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
+                            INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                            VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
 
                         command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail); 
                         command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
@@ -388,31 +385,44 @@ namespace CSE3PAX.Pages.Manager
                         {
                             command.CommandType = System.Data.CommandType.Text;
 
+                            /*
+                             * SQL script to insert a new subject instance into the database.
+                             * Retrieves necessary data such as UserID, SubjectID, LecturerID, and generates instance name and code.
+                             * Parameters:
+                             *     - @UserEmailInput: Email of the user (lecturer) associated with the subject instance.
+                             *     - @SubjectCodeInput: Code of the subject for the instance.
+                             *     - @StartDateInput: Start date of the instance.
+                             *     - @EndDateInput: End date of the instance.
+                             *     - @Load: Load value for the instance.
+                             * Inserts a new row into the SubjectInstance table with the provided data.
+                             * Instance name and code are generated based on the year, month, and a random alphanumeric string.
+                             * This version creates a development instance, appending '-Development' to the instance name.
+                             */
                             command.CommandText = @"
-                            DECLARE @UserID INT;
-                            DECLARE @LecturerID INT;
-                            DECLARE @SubjectID INT;
-                            DECLARE @SubjectName NVARCHAR(100);
-                            DECLARE @Year NVARCHAR(100);
-                            DECLARE @Month NVARCHAR(100);
-                            DECLARE @SubjectInstanceCode NVARCHAR(100);
-                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
-                            DECLARE @SubjectInstanceName NVARCHAR(200);
+                                DECLARE @UserID INT;
+                                DECLARE @LecturerID INT;
+                                DECLARE @SubjectID INT;
+                                DECLARE @SubjectName NVARCHAR(100);
+                                DECLARE @Year NVARCHAR(100);
+                                DECLARE @Month NVARCHAR(100);
+                                DECLARE @SubjectInstanceCode NVARCHAR(100);
+                                DECLARE @RandomAlphaNumeric NVARCHAR(4);
+                                DECLARE @SubjectInstanceName NVARCHAR(200);
 
-                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                            SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                            SET @Month = DATENAME(MONTH, @EndDateInput);
+                                SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
+                                SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                                SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                                SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                                SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                                SET @Month = DATENAME(MONTH, @EndDateInput);
 
-                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                                SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
 
-                            SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
-                            SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
+                                SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
+                                SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
 
-                            INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                            VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
+                                INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                                VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
 
                             command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
                             command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
@@ -426,21 +436,15 @@ namespace CSE3PAX.Pages.Manager
                         }
                     }
                 }
-
                 TempData["SuccessMessage"] = "Instance Created";
-
-                // Page redirect
                 return RedirectToPage("/Manager/CreateSubjectInstance");
-
             }
             catch (SqlException ex)
             {
-
                 Debug.WriteLine($"SQL Error: {ex.Message}");
-     
             }
             return Page();
-}
+        }
 
         /*
         Calculates the load for a subject instance based on the number of students.
@@ -450,7 +454,6 @@ namespace CSE3PAX.Pages.Manager
         - Updates the instanceLoad with the calculated loadIncrease.
         - Returns the calculated instanceLoad.
         */
-
         public double CalculateInstanceLoad(int studentCount)
         {
             double instanceLoad = 1; // Base load for up to 100 students
@@ -480,7 +483,6 @@ namespace CSE3PAX.Pages.Manager
         - Increases studentCount by 20 for each iteration.
         - Returns the calculated studentCount.
         */
-
         public int CalculateStudentCount(double targetLoad)
         {
             int studentCount = 100; // Base number of students
@@ -500,9 +502,7 @@ namespace CSE3PAX.Pages.Manager
                     studentCount += 20;
                 }
             }
-
             return studentCount;
         }
-
     }
 }

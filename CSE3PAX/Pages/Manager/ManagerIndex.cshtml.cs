@@ -1,11 +1,7 @@
 ﻿using CSE3PAX.HelpClasses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
-using System.ComponentModel;
 using System.Data.SqlClient;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace CSE3PAX.Pages.Manager
 {
@@ -33,10 +29,11 @@ namespace CSE3PAX.Pages.Manager
         // List to store User information
         public List<User> Users { get; set; } = new List<User>();
 
-
         //User class to store User variable information
         public class User
         {
+
+            // User variables
             public int UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -56,12 +53,12 @@ namespace CSE3PAX.Pages.Manager
         // String to store full name (session)
         public string FullName { get; set; }
 
+        // HTTP OnGet
         public void OnGet()
         {
-            // Session data
+            // Retrieve full name from the session data
             FullName = HttpContext.Session.GetString("FirstName") + " " + HttpContext.Session.GetString("LastName");
         }
-
 
         /*
         onPost checks each button pressed to generate report information
@@ -83,6 +80,9 @@ namespace CSE3PAX.Pages.Manager
             return Page();
         }
 
+        /*
+        Method to load users from the database, including lecturers' expertise, load capacity, and user type.
+        */
         private void LoadUsers()
         {
             // Console write for testing
@@ -100,7 +100,10 @@ namespace CSE3PAX.Pages.Manager
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all users who are lecturers
+                    /*
+                    SQL query to retrieve user data, including lecturers' expertise, load capacity, and user type,
+                    as well as total load and load capacity percentage.
+                    */
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                                  "l.Expertise01, l.Expertise02, l.Expertise03, " +
                                  "l.Expertise04, l.Expertise05, l.Expertise06, " +
@@ -165,14 +168,16 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
-
         //Method to sort lecturers workloads
         private void SortLecturerWorkloadByPercentage()
         {
             Users = Users.OrderBy(user => user.LoadCapacityPercentage).ToList();
         }
 
-        // Convert workload to hours per week
+        /*
+        Method to convert a load capacity value to hours per week.
+        Assumes a full-time load capacity of 6 corresponds to 38 hours per week.
+        */
         private double? ConvertToHoursPerWeek(decimal? loadCapacity)
         {
             if (loadCapacity == null)
@@ -192,6 +197,5 @@ namespace CSE3PAX.Pages.Manager
 
             return hoursPerWeek;
         }
-
     }
 }
