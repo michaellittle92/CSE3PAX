@@ -56,11 +56,15 @@ namespace CSE3PAX.Pages.Manager
         public List<CSE3PAX.HelpClasses.LecturerInfo> Lecturers { get; set; } = new List<CSE3PAX.HelpClasses.LecturerInfo>();
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
 
-
+        /*
+        Handles the HTTP GET request for the page.
+        - Checks if TempData contains a success message and sets SuccessMessage accordingly.
+        - Calls LoadSubjects method to populate the Subjects list.
+        - Calls LoadLecturers method if SelectedSubject, StartDate, and EndDate are not null or empty.
+        - Loads subject instance details if selectedSubjectInstance is provided.
+        */
         public void OnGet(int? selectedSubjectInstance)
         {
-
-
             // Check if TempData is not null, then set SuccessMessage
             if (TempData["SuccessMessage"] != null)
             {
@@ -77,12 +81,15 @@ namespace CSE3PAX.Pages.Manager
             if (selectedSubjectInstance.HasValue)
             {
                 Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstance}");
-
                 LoadSubjectInstanceDetails(selectedSubjectInstance.Value);
-
             }
         }
 
+        /*
+        Loads details of a specific subject instance from the database.
+        - Constructs a SQL query to retrieve subject instance details along with related lecturer and user information.
+        - Populates page properties with the retrieved data, such as SelectedSubject, StartDate, EndDate, SelectedFirstName, SelectedLastName, SelectedEmail, and NumberOfStudents.
+        */
         private void LoadSubjectInstanceDetails(int instanceId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -140,6 +147,13 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Loads subjects from the database and populates the ListSubjects property.
+        - Constructs a SQL query to select all subjects from the Subjects table.
+        - Iterates through the query results and creates ListSubjects objects.
+        - Sets the ListSubjects property to the generated list of subjects.
+        - Creates a SelectList object from the subjects list and sets it in the ViewData for use in the page.
+        */
         private void LoadSubjects()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -168,6 +182,13 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Loads lecturers related to the selected subject from the database.
+        - Calculates EndDate as 12 days after StartDate.
+        - Constructs a SQL query to retrieve lecturer information, adjust ratings, and calculate load capacity percentages.
+        - Executes the query with parameters for the selected subject, StartDate, and EndDate.
+        - Iterates through the query results and creates LecturerInfo objects to store lecturer details.
+        */
 
         private void LoadLecturers()
         {
@@ -261,6 +282,14 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        /*
+        Handles the HTTP POST request for the page.
+        - Outputs the value of SelectedSubjectHidden to the console for debugging purposes.
+        - Reloads subjects to ensure the dropdown is populated.
+        - Reloads lecturers based on the selected criteria if SelectedSubject and StartDate are not null or empty.
+        - Returns the current page with the bound property values.
+        */
+
         public IActionResult OnPost()
         {
             Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
@@ -274,6 +303,17 @@ namespace CSE3PAX.Pages.Manager
             return Page(); // Return the current page with the bound property values
         }
 
+        /*
+        Handles the asynchronous HTTP POST request for submitting subject instance data.
+        - Outputs the value of SelectedSubjectHidden to the console for debugging purposes.
+        - Checks if SelectedEmail is null or empty, and returns the current page if true.
+        - Sets up variables and parameters for SQL queries to insert subject instance data into the database.
+        - Executes SQL queries to insert subject instance data into the database.
+        - Sets TempData["SuccessMessage"] to indicate successful creation of the instance.
+        - Redirects the user to the page for creating a subject instance after successful creation.
+        - Handles SQL exceptions and outputs error messages to the debug console.
+        - Returns the current page if an exception occurs.
+        */
         public async Task<IActionResult> OnPostSubmitDataAsync()
         {
             Console.WriteLine($"SelectedSubjectHidden: {SelectedSubjectHidden}");
@@ -401,7 +441,15 @@ namespace CSE3PAX.Pages.Manager
             }
             return Page();
 }
-        
+
+        /*
+        Calculates the load for a subject instance based on the number of students.
+        - Initializes instanceLoad to 1, representing the base load for up to 100 students.
+        - If the studentCount exceeds 100, calculates the extraStudents beyond 100.
+        - Calculates the loadIncrease based on the extraStudents. Each set of 20 students over 100 increases the load by 0.1.
+        - Updates the instanceLoad with the calculated loadIncrease.
+        - Returns the calculated instanceLoad.
+        */
 
         public double CalculateInstanceLoad(int studentCount)
         {
@@ -420,6 +468,18 @@ namespace CSE3PAX.Pages.Manager
             }
             return instanceLoad;
         }
+
+        /*
+        Calculates the number of students required to achieve a target load for a subject instance.
+        - Initializes studentCount to 100, representing the base number of students.
+        - Initializes instanceLoad to 1.0, representing the base load for up to 100 students.
+        - Checks if the targetLoad exceeds the instanceLoad.
+        - If targetLoad is greater than instanceLoad, iterates until instanceLoad matches or exceeds targetLoad.
+        - Calculates the load for the next 20 students (0.1 increase per 20 students).
+        - If instanceLoad exceeds targetLoad, exits the loop.
+        - Increases studentCount by 20 for each iteration.
+        - Returns the calculated studentCount.
+        */
 
         public int CalculateStudentCount(double targetLoad)
         {

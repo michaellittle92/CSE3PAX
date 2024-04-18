@@ -2,6 +2,8 @@
 @model CSE3PAX.Pages.Admin.ReadSubjectModel
 @{
 }
+
+<!-- HTML Table -->
 <table>
     <thead>
        <tr>
@@ -14,15 +16,16 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var subject in Model.ListSubjects)
-        {
-            <tr>
-                <td>@subject.SubjectCode</td>
-                <td>@subject.SubjectName</td>
-                <td>@subject.SubjectClassification</td>
-                <td>@subject.YearLevel</td>
-                <td><a href="/Admin/EditSubject?SubjectCode=@subject.SubjectCode" class="btn btn-outline-primary btn-sm">Edit</a>
-            </tr>
-        }
+        <!-- Iterate over each subject in the model's list of subjects -->
+        @foreach (var subject in Model.ListSubjects)
+                {
+                    <tr>
+                        <td>@subject.SubjectCode</td>
+                        <td>@subject.SubjectName</td>
+                        <td>@subject.SubjectClassification</td>
+                        <td>@subject.YearLevel</td>
+                        <td><a href="/Admin/EditSubject?SubjectCode=@subject.SubjectCode" class="btn btn-outline-primary btn-sm">Edit</a>
+                    </tr>
+                }
     </tbody>
 </table>

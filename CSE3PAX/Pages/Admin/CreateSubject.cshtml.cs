@@ -94,6 +94,5 @@ namespace CSE3PAX.Pages.Admin
                 Console.WriteLine(ex.Message);
             }
         }
-
     }
 }

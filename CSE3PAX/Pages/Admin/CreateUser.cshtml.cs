@@ -69,6 +69,7 @@ namespace CSE3PAX.Pages.Admin
         [BindProperty]
         public int workHours { get; set; }
 
+        // List to store subject classifications
         public List<string> SubjectClassifications { get; set; } = new List<string>();
 
         // Handles HTTP GET requests
@@ -285,8 +286,6 @@ namespace CSE3PAX.Pages.Admin
         {
             return Regex.IsMatch(password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{8,}$");
         }
-
-
 
         /*
         The CheckIfUserExists method checks whether a user with the provided email exists in the database.

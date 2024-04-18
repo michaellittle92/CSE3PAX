@@ -1,6 +1,7 @@
 ﻿@page
 @model CSE3PAX.Pages.Manager.SITestingModel
 @{
+    // If Model.SuccessMessage is not null, display message
     if (!string.IsNullOrEmpty(Model.SuccessMessage))
     {
         <div class="alert alert-success" role="alert">
@@ -8,28 +9,22 @@
         </div>
     }
 }
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-
             <!-- Subject Instance Title -->
             <h1 class="my-5 admin-txt text-center"><i class="bi bi-book admin-text"></i> Create Instance</h1>
-
             <form method="post" id="reloadForm">
-                
-            <!-- Subject Dropdown -->
+                <!-- Subject Dropdown -->
                 <select asp-for="SelectedSubject" class="form-select" asp-items="@ViewData["Subjects"] as SelectList">
                     <option value="">Select a Subject</option>
                 </select>
-
                 <div class="text-danger">
                     @if (string.IsNullOrWhiteSpace(Model.SelectedSubject))
                     {
                         <span><i class="fas fa-exclamation-circle"></i> Please select a subject.</span>
                     }
                 </div>
-
                 <div class="row">
                     <!-- Start Date Picker -->
                     <div class="col-md-6 my-3">
@@ -42,23 +37,18 @@
                             }
                         </div>
                     </div>
-
                     <!-- End Date -->
                     <div class="col-md-6 my-3">
                         <label for="endDate">End Date:</label>
                         <input type="text" id="endDate" name="EndDate" class="form-control" readonly value="@Model.EndDate?.ToString("dd/MM/yyyy")">
                     </div>
-
                     <div class="text-muted">
                         Subjects will be covered over a period of 12 weeks.
                     </div>
                 </div>
-
-
                 <!-- Submission Button -->
                 <button type="submit" class="btn btn-outline-success box-shw mt-5 my-3">Select Lecturer</button>
             </form>
-
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered border-2 align-middle m-16 box-shw">
                     <thead class="bg-secondary text-light">
@@ -88,61 +78,48 @@
                     </tbody>
                 </table>
             </div>
-
-
             <form method="post">
-
                 <!-- First Name read only -->
                 <div class="mt-5">
                     <label for="selectedFirstName">First Name:</label>
                     <input type="text" id="selectedFirstName" class="form-control" value="@Model.SelectedFirstName" readonly>
                 </div>
-
                 <!-- Last Name read only -->
                 <div class="my-3">
                     <label for="selectedLastName">Last Name:</label>
                     <input type="text" id="selectedLastName" class="form-control" value="@Model.SelectedLastName" readonly>
                 </div>
-
                 <!-- Email read only -->
                 <div class="my-3">
                     <label for="selectedEmail">Email:</label>
                     <input type="text" id="selectedEmail" class="form-control" value="@Model.SelectedEmail" readonly>
                 </div>
-
                 <input type="hidden" name="SelectedEmail" value="@Model.SelectedEmail" />
                 <input type="hidden" name="SelectedSubjectHidden" value="@Model.SelectedSubject" />
                 <input type="hidden" name="StartDate" value="@Model.StartDate?.ToString("yyyy-MM-dd")" />
-
                 <input type="hidden" name="EndDate" value="@Model.EndDate?.ToString("yyyy-MM-dd")" />
-
                 <!-- Number of students -->
                 <div class="my-3">
                     <label for="numberOfStudents" class="me-5">Number of Students:</label>
                     <input type="number" id="numberOfStudents" name="NumberOfStudents" value="@Model.NumberOfStudents" min="1" max="100" />
                 </div>
-
-
                 <!-- Development required -->
                 <div class="my-3">
                     <label for="isDevelopmentRequired" class="me-2">Is Development Required?</label>
                     <input type="checkbox" id="isDevelopmentRequired" name="IsDevelopmentRequired" class="form-check-input larger-checkbox" checked="@Model.IsDevelopmentRequired" />
                 </div>
-
                 <div class="d-flex p-3 justify-content-center">
-
                     <div class="d-flex flex-wrap align-items-center">
-                         <!-- Submit button -->
+                        <!-- Submit button -->
                         <button type="submit" class="btn btn-primary mx-5 box-shw my-2" style="width:130px;" asp-page-handler="SubmitData"><i class="bi bi-save2 me-2"></i>Submit</button>
-
                         <a asp-page="/Manager/StaffSchedules" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
-                    </div>  
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<script src = "~/js/CreateSubjectInstance.js"></script>
+<!-- JavaScript -->
+<script src="~/js/CreateSubjectInstance.js"></script>
 <script src="~/js/CreateSubjectInstanceNotification.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>

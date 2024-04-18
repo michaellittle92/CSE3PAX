@@ -8,12 +8,13 @@ namespace CSE3PAX.Pages.Admin
 {
     public class ReadSubjectModel : PageModel
     {
-
+        // Readonly field to store IConfiguration
         private readonly IConfiguration _configuration;
 
         // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
 
+        // Constructor with IConfiguration parameter
         public ReadSubjectModel(IConfiguration configuration)
         {
             // Check if a valid configuration is provided
@@ -23,8 +24,10 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        // Store a list of subjects
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
 
+        // Method executed when the page is loaded via HTTP GET request
         public void OnGet()
         {
             try
@@ -32,11 +35,16 @@ namespace CSE3PAX.Pages.Admin
                 using (SqlConnection connection = new SqlConnection(_connectionString))
                 {
                     connection.Open();
+
+                    // SQL query to retrieve subjects
                     string sql = "SELECT SubjectCode, SubjectName, SubjectClassification, YearLevel FROM Subjects;";
+
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
+
+                            // Loop through each row in the result set
                             while (reader.Read())
                             {
                                 var subject = new ListSubjects
@@ -47,16 +55,11 @@ namespace CSE3PAX.Pages.Admin
                                     YearLevel = reader["YearLevel"].ToString(),
                                 };
                                 ListSubjects.Add(subject);
-                                //For testing
-                                //Console.WriteLine($"SubjectCode: {subject.SubjectCode}, SubjectName: {subject.SubjectName}, SubjectDescription: {subject.SubjectDescription}, SubjectYear: {subject.SubjectYear}");
-
                             }
                         }
                     }
                 }
             }
-
-
             catch (Exception ex) { }
         }
     }

@@ -40,15 +40,13 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        // Binding properties
         [BindProperty(SupportsGet = true)]
         public string SubjectCode { get; set; }
-
         [BindProperty]
         public string SubjectName { get; set; }
-
         [BindProperty]
         public string SubjectClassification { get; set; }
-
         [BindProperty]
         public string YearLevel { get; set; }
 

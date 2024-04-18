@@ -26,12 +26,14 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-
         // List to store User information
         public List<User> Users { get; set; } = new List<User>();
 
+        // User class to store and retrieve user information
         public class User
         {
+
+            // User variables
             public int UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -46,13 +48,6 @@ namespace CSE3PAX.Pages.Admin
             public decimal? ConcurrentLoadCapacity { get; set; }
             public decimal? WorkHours { get; set; }
         }
-
-
-        /*
-        Initialise IndexModel class
-        Configuration object (ConnectionStrings) located in appsettings.json
-        Exception thrown when DefaultConnect string is not found in file
-        */
 
         public void OnGet()
         {
@@ -74,7 +69,12 @@ namespace CSE3PAX.Pages.Admin
             return Page();
         }
 
-        // Load Users Methods
+        /*
+        Loads users from the database and populates the Users list.
+        The SQL query retrieves user and lecturer details using a LEFT JOIN between the Users and Lecturers tables.
+        Each user's information is extracted from the query results and added to the Users list.
+        UserType is determined based on isAdmin, isManager, and isLecturer fields.
+        */
         private void LoadUsers()
         {
             //console write for testing
@@ -92,7 +92,12 @@ namespace CSE3PAX.Pages.Admin
                     //Open connection
                     connection.Open();
 
-                    // SQL query to select all users who are lecturers
+                    /*
+                    Constructs a SQL query to retrieve user and lecturer details.
+                    SELECT statement fetches specific columns from the Users and Lecturers tables.
+                    LEFT JOIN is used to include all records from the Users table even if there's no corresponding record in the Lecturers table.
+                    The query links the two tables based on the UserId column to associate users with their respective lecturer details.
+                    */
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                          "l.Expertise01, l.Expertise02, l.Expertise03, " +
                          "l.Expertise04, l.Expertise05, l.Expertise06, " +
@@ -148,13 +153,19 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
-        //Method to sort lecturers by UserID
+        /*
+        Sorts the Users list by UserId in ascending order.
+        */
         private void SortUsersByUserId()
         {
             Users = Users.OrderBy(user => user.UserId).ToList();
         }
 
-        // Convert workload to hours per week
+        /*
+        Converts a decimal load capacity to hours per week based on a full-time workload.
+        If the load capacity is null, returns null.
+        Otherwise, calculates the equivalent hours per week based on a full-time workload of 38 hours.
+        */
         private double? ConvertToHoursPerWeek(decimal? loadCapacity)
         {
             if (loadCapacity == null)
@@ -174,6 +185,5 @@ namespace CSE3PAX.Pages.Admin
 
             return hoursPerWeek;
         }
-
     }
 }

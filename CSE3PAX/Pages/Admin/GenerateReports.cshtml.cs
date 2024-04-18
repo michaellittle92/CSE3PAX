@@ -27,6 +27,8 @@ namespace CSE3PAX.Pages.Admin
         // User class to store User variable information
         public class User
         {
+
+            // User variables
             public int UserId { get; set; }
             public string FirstName { get; set; }
             public string LastName { get; set; }
@@ -45,17 +47,18 @@ namespace CSE3PAX.Pages.Admin
         // Subject class to store Subject variable information
         public class Subject
         {
+            // Subject variables
             public int SubjectId { get; set; }
             public string SubjectCode { get; set; }
             public string SubjectName { get; set; }
             public string SubjectClassification { get; set; }
             public int YearLevel { get; set; }
-
         }
 
         // Subject instance class to store instance information
         public class SubjectInstance
         {
+            // Subject instance variables
             public int SubjectInstanceId { get; set; }
             public int SubjectId { get; set; }
             public string SubjectInstanceName { get; set; }
@@ -83,6 +86,7 @@ namespace CSE3PAX.Pages.Admin
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        // Handler for HTTP GET requests
         public void OnGet()
         {
         }
@@ -153,7 +157,7 @@ namespace CSE3PAX.Pages.Admin
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all users who are lecturers
+                    // This SQL query retrieves user information along with related lecturer details from the database.
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                          "l.Expertise01, l.Expertise02, l.Expertise03, " +
                          "l.Expertise04, l.Expertise05, l.Expertise06, " +
@@ -227,7 +231,7 @@ namespace CSE3PAX.Pages.Admin
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all subjects
+                    // This SQL query selects specific columns from the Subjects table.
                     string sql = "SELECT SubjectID, SubjectCode, SubjectName, SubjectClassification, YearLevel FROM Subjects";
 
                     // SQL command object with query and connection
@@ -281,7 +285,7 @@ namespace CSE3PAX.Pages.Admin
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select all subject instances
+                    // Retrieves detailed information about subject instances, including associated subjects and lecturers.
                     string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
                                     si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
                                     si.SubjectInstanceYear, s.SubjectCode, u.FirstName AS LecturerFirstName, u.LastName AS LecturerLastName

@@ -25,6 +25,8 @@ namespace CSE3PAX.Pages.Admin
         //Subject class to store Subject variable information
         public class Subject
         {
+
+            // Subject variables
             public int SubjectId { get; set; }
             public string SubjectCode { get; set; }
             public string SubjectName { get; set; }
@@ -58,7 +60,6 @@ namespace CSE3PAX.Pages.Admin
          Configuration object (ConnectionStrings) located in appsettings.json
          Exception thrown when DefaultConnect string is not found in file
          */
-
         public SubjectManagementModel(IConfiguration configuration)
         {
             //Check if a valid configuration is provided
@@ -67,6 +68,8 @@ namespace CSE3PAX.Pages.Admin
             // Get connection string from configuration
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
+
+        // HTTP OnGet
         public void OnGet()
         {
 
@@ -93,6 +96,12 @@ namespace CSE3PAX.Pages.Admin
             }
             return Page();
         }
+
+        /*
+        Loads subjects from the database and populates the Subjects list.
+        The SQL query selects all subjects from the Subjects table.
+        Each subject's information is extracted from the query results and added to the Subjects list.
+        */
         private void LoadSubjects()
         {
             // Console write for testing
@@ -146,12 +155,19 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
-        // Method to sort subjects by ID
+        /*
+        Sorts the Subjects list by SubjectId in ascending order.
+        */
         private void SortSubjectsById()
         {
             Subjects = Subjects.OrderBy(subject => subject.SubjectId).ToList();
         }
 
+        /*
+        Loads subject instances from the database and populates the SubjectInstances list.
+        The SQL query selects all subject instances, joining Subjects, Lecturers, and Users tables to retrieve related information.
+        Each subject instance's information is extracted from the query results and added to the SubjectInstances list.
+        */
         private void LoadSubjectInstances()
         {
 
@@ -171,7 +187,11 @@ namespace CSE3PAX.Pages.Admin
                     //Open Connection
                     connection.Open();
 
-                    // SQL query to select all subject instances
+                    /*
+                    Selects subject instance details along with related information from the Subjects, Lecturers, and Users tables.
+                    Joins the SubjectInstance table with Subjects, Lecturers, and Users tables based on their respective foreign keys.
+                    Aliases are used to distinguish between columns with the same name in different tables.
+                    */
                     string sql = @"SELECT si.SubjectInstanceId, si.SubjectId, s.SubjectName AS SubjectInstanceName, 
                                     si.SubjectInstanceCode, si.StartDate, si.EndDate, si.LecturerId, 
                                     si.SubjectInstanceYear, s.SubjectCode, u.FirstName AS LecturerFirstName, u.LastName AS LecturerLastName
@@ -179,8 +199,6 @@ namespace CSE3PAX.Pages.Admin
                                     JOIN [Subjects] s ON si.SubjectId = s.SubjectId
                                     JOIN [Lecturers] l ON si.LecturerId = l.LecturerId
                                     JOIN [Users] u ON l.UserId = u.UserId";
-
-
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -225,13 +243,12 @@ namespace CSE3PAX.Pages.Admin
             }
         }
 
-        //Method to sort subject instances by ID
+        /*
+        Sorts the SubjectInstances list by SubjectInstanceId in ascending order.
+        */
         private void SortSubjectInstancesById()
         {
             SubjectInstances = SubjectInstances.OrderBy(instance => instance.SubjectInstanceId).ToList();
         }
-
-
-
     }
 }
