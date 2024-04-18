@@ -8,17 +8,25 @@ namespace CSE3PAX.Pages.Shared
 {
     public class DashboardModel : PageModel
     {
+        // Variable to store user type
         public required string UserType { get; set; }
 
-        // Handler for the GET request
+        /*
+        Retrieves the user type from the session and redirects the user to their respective index page based on their role.
+        Checks if the user is an administrator, manager, or lecturer by retrieving boolean values from the session.
+        If the user is an administrator, redirects to the AdminIndex page.
+        If the user is a manager, redirects to the ManagerIndex page.
+        If the user is a lecturer, redirects to the LecturerIndex page.
+        If the user's role is not recognized or if there is no active session, redirects to the default Index page.
+        */
         public IActionResult OnGet()
         {
-            // Retrieve user type
+            // Variables to store user type based on user session information
             bool isAdministrator = HttpContext.Session.GetBoolean("isAdministrator");
             bool isManager = HttpContext.Session.GetBoolean("isManager");
             bool isLecturer = HttpContext.Session.GetBoolean("isLecturer");
 
-            // Determine user type
+            // Set index page based on user type
             if (isAdministrator)
             {
                 return RedirectToPage("/Admin/AdminIndex");

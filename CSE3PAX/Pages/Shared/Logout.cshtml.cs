@@ -9,10 +9,12 @@ namespace CSE3PAX.Pages.Shared
     // Logout model to handle logout functionality
     public class LogoutModel : PageModel
     {
-        // Handler for the GET request
+        /*
+        Clears the session data and signs out the user by removing their authentication cookie.
+        Redirects the user to the login page ("/Index").
+        */
         public async Task<IActionResult> OnGetAsync()
         {
-
             // Clear session data
             HttpContext.Session.Clear();
 

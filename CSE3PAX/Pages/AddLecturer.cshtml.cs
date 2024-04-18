@@ -6,21 +6,30 @@ namespace CSE3PAX.Pages
 {
     public class AddLecturerModel : PageModel
     {
+
+        // HTTP OnGet
         public void OnGet()
         {
         }
 
+        // Variables to store user information
         public string FirstName { get; set; } = "";
         public string LastName { get; set; } = "";
         public string Email { get; set; } = "";
         public string Password { get; set; } = "";
         public string ConcurrentLoadCapcity { get; set; } = "";
         public string ExpertiseFeild01 { get; set; } = "";
-
         public string SuccessMessage { get; set; } = "";
         public string ErrorMessage { get; set; } = "";
-        //public int IsLecturer = 1;
 
+        /*
+        Handles the POST request to add a new lecturer to the database.
+        Retrieves form data including FirstName, LastName, Email, Password, ConcurrentLoadCapacity, and ExpertiseField01.
+        Validates if all required fields are filled.
+        Inserts the lecturer information into the database table 'lecturers'.
+        If successful, displays a success message and clears the form fields.
+        If an error occurs during database insertion, displays an error message.
+        */
         public void OnPost() {
 
             FirstName = Request.Form["firstname"];
@@ -30,7 +39,7 @@ namespace CSE3PAX.Pages
             ConcurrentLoadCapcity = Request.Form["concurrentloadcapacity"];
             ExpertiseFeild01 = Request.Form["expertisefeild01"];
 
-
+            // Check if variables are empty
             if (FirstName.Length == 0 || LastName.Length == 0 || Email.Length == 0 || Password.Length == 0 ||
                 ConcurrentLoadCapcity.Length == 0 || ExpertiseFeild01.Length == 0) {
 
@@ -45,6 +54,13 @@ namespace CSE3PAX.Pages
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+
+                    /*
+                    SQL query to insert a new record into the 'lecturers' table in the database.
+                    It inserts values for FirstName, LastName, Email, Pass (Password), ConcurrentLoadCapacity, ExpertiseFeild01,
+                    and sets the isLecturer flag (assuming it's a boolean field).
+                    Parameters are used for safe and parameterized query execution.
+                    */
                     string sql = "INSERT INTO lecturers(FirstName ,LastName , Email, Pass, ConcurrentLoadCapacity, ExpertiseFeild01, isLecturer)" +
                         "VALUES (@firstname, @lastname, @email,@password, @concurrentloadcapacity, @expertisefeild01,)";
 
@@ -56,12 +72,8 @@ namespace CSE3PAX.Pages
                         command.Parameters.AddWithValue("@password", Password);
                         command.Parameters.AddWithValue("@concurrentloadcapacity", ConcurrentLoadCapcity);
                         command.Parameters.AddWithValue("@expertisefeild01", ExpertiseFeild01);
-                        //command.Parameters.AddWithValue(@"islecturer", IsLecturer);
-
                     }
-
                 }
-
             }
             catch (Exception ex)
             {
@@ -69,15 +81,12 @@ namespace CSE3PAX.Pages
                 return;
             }
             SuccessMessage = "Lecturer added to Database.";
-
             FirstName = "";
             LastName = "";
             Email = "";
             Password = "";
             ConcurrentLoadCapcity = "";
             ExpertiseFeild01 = "";
-
-
         }
     }
 }

@@ -38,18 +38,14 @@ namespace CSE3PAX.Pages
         [BindProperty]
         [Required(ErrorMessage = "Please enter your email address"), EmailAddress]
         public string Email { get; set; } = "";
-
         [BindProperty]
         [Required(ErrorMessage = "Please enter your password")]
         public string Password { get; set; } = "";
-
-
         public string errorMessage { get; set; } = "";
         public string successMessage { get; set; } = "";
 
         public void OnGet()
         {
-
         }
 
         public void OnPost() { 

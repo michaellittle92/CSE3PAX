@@ -13,6 +13,7 @@ namespace CSE3PAX.Pages.Shared
         // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
 
+        // Variables to store user information
         public string Email { get; set; }
         public int UserID { get; set; }
         public string FirstName { get; set; }
@@ -43,7 +44,10 @@ namespace CSE3PAX.Pages.Shared
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
-
+        /*
+        Retrieves user details and user type from the session data and determines the user's type.
+        Sets the user's profile image based on their type.
+        */
         public void OnGet()
         {
             Email = HttpContext.Session.GetString("Email");
@@ -80,11 +84,13 @@ namespace CSE3PAX.Pages.Shared
             }
         }
 
+        /*
+        Retrieves details of the lecturer associated with the current UserID from the database.
+        If the lecturer is found, updates the lecturer's expertise and load capacity fields.
+        Logs the retrieved information for debugging purposes.
+        */
         private void GetLecturerDetails()
         {
-
-            Console.WriteLine("Get lecturer details for userID " + UserID);
-
             // Retrieve the list of lecturers from the database
             try
             {
@@ -94,14 +100,20 @@ namespace CSE3PAX.Pages.Shared
                     // Open connection
                     connection.Open();
 
-                    // SQL query to select the lecturer details for the given UserID
+                    /*
+                    SQL query to select user details along with lecturer-specific information from the database
+                    for a specific UserID.
+                    Retrieves UserID, FirstName, LastName, Email, and lecturer expertise (Expertise01 to Expertise06)
+                    along with the ConcurrentLoadCapacity from the Users and Lecturers tables.
+                    Filters the results based on the provided UserID parameter.
+                    */
                     string sql = "SELECT u.UserId, u.FirstName, u.LastName, u.Email, " +
                                  "l.Expertise01, l.Expertise02, l.Expertise03, " +
                                  "l.Expertise04, l.Expertise05, l.Expertise06, " +
                                  "l.ConcurrentLoadCapacity " +
                                  "FROM [Users] u " +
                                  "INNER JOIN [Lecturers] l ON u.UserId = l.UserId " +
-                                 "WHERE u.UserId = @UserID";  // Filtering by UserID
+                                 "WHERE u.UserId = @UserID";
 
                     // SQL command object with query and connection
                     using (SqlCommand command = new SqlCommand(sql, connection))
@@ -130,14 +142,6 @@ namespace CSE3PAX.Pages.Shared
                                 // No lecturer found with the given UserID
                                 Console.WriteLine("No lecturer found with UserID: " + UserID);
                             }
-
-                            Console.WriteLine(Expertise01);
-                            Console.WriteLine(Expertise02);
-                            Console.WriteLine(Expertise03);
-                            Console.WriteLine(Expertise04);
-                            Console.WriteLine(Expertise05);
-                            Console.WriteLine(Expertise06);
-                            Console.WriteLine(ConcurrentLoadCapacity);
                         }
                     }
                 }
@@ -149,7 +153,13 @@ namespace CSE3PAX.Pages.Shared
             }
         }
 
-        // Convert workload to hours per week
+        /*
+        Converts the given load capacity, representing the workload of a lecturer, into hours per week.
+        If the load capacity is null, returns null.
+        Assumes a full-time load capacity of 6 corresponds to 38 hours per week.
+        Calculates the workload fraction of a full-time workload and then converts it to hours per week.
+        Rounds up the result to the nearest whole number.
+        */
         private double? ConvertToHoursPerWeek(decimal? loadCapacity)
         {
             if (loadCapacity == null)
@@ -169,6 +179,5 @@ namespace CSE3PAX.Pages.Shared
 
             return hoursPerWeek;
         }
-
     }
 }
