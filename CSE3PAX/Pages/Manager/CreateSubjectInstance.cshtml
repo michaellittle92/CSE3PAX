@@ -106,8 +106,10 @@
                 <!-- Development required -->
                 <div class="my-3">
                     <label for="isDevelopmentRequired" class="me-2">Is Development Required?</label>
-                    <input type="checkbox" id="isDevelopmentRequired" name="IsDevelopmentRequired" class="form-check-input larger-checkbox" checked="@Model.IsDevelopmentRequired" />
+                    <input type="hidden" id="checkboxState" name="CheckboxState" value="unchecked" />
+                    <input type="checkbox" id="myCheck" onclick="updateHiddenInput()">
                 </div>
+
                 <div class="d-flex p-3 justify-content-center">
                     <div class="d-flex flex-wrap align-items-center">
                         <!-- Submit button -->
@@ -123,3 +125,10 @@
 <script src="~/js/CreateSubjectInstance.js"></script>
 <script src="~/js/CreateSubjectInstanceNotification.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function updateHiddenInput() {
+        var checkbox = document.getElementById('myCheck');
+        var hiddenInput = document.getElementById('checkboxState');
+        hiddenInput.value = checkbox.checked ? "checked" : "unchecked";
+    }
+</script>

@@ -2,45 +2,52 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/* Navbar brand */
 a.navbar-brand[b-nw9te68nih] {
     white-space: normal;
     text-align: center;
     word-break: break-all;
 }
 
+/* a link styling */
 a[b-nw9te68nih] {
     color: #0077cc;
 }
 
+/* Primary button */
 .btn-primary[b-nw9te68nih] {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
 
+/* Navigation active links */
 .nav-pills .nav-link.active[b-nw9te68nih], .nav-pills .show > .nav-link[b-nw9te68nih] {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
 }
 
+/* Border styling */
 .border-top[b-nw9te68nih] {
     border-top: 1px solid #e5e5e5;
 }
 
-.border-bottom[b-nw9te68nih] {
-    border-bottom: 1px solid #e5e5e5;
-}
+    .border-bottom[b-nw9te68nih] {
+        border-bottom: 1px solid #e5e5e5;
+    }
 
-.box-shadow[b-nw9te68nih] {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
+    .box-shadow[b-nw9te68nih] {
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    }
 
+/* Button acceptance */
 button.accept-policy[b-nw9te68nih] {
     font-size: 1rem;
     line-height: inherit;
 }
 
+/* Footer positioning */
 .footer[b-nw9te68nih] {
     position: absolute;
     bottom: 0;
@@ -91,26 +98,30 @@ div .side-profile-container[b-nw9te68nih] {
     flex-grow: 1;
 }
 
+/* List styling */
 .list-group-item-action.active[b-nw9te68nih] {
     border-radius: 4px;
     background-color: #007bff;
     color: #fff;
 }
 
-.list-group-item-action[b-nw9te68nih] {
-    padding: 15px;
-}
+    .list-group-item-action[b-nw9te68nih] {
+        padding: 15px;
+    }
 
+/* User heading design */
 .user-heading[b-nw9te68nih] {
     color: #004AAD;
 }
 
+/* Positioning */
 .mb-0[b-nw9te68nih] {
     padding-right: 20px;
     padding-left: 20px;
     text-align: right;
 }
 
+/* Profile menu */
 #profileMenu[b-nw9te68nih] {
     position: absolute;
     top: 100%;

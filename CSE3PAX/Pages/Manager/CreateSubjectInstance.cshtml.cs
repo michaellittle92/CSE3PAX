@@ -36,7 +36,8 @@ namespace CSE3PAX.Pages.Manager
         [BindProperty]
         public int NumberOfStudents { get; set; }
         [BindProperty]
-        public bool IsDevelopmentRequired { get; set; }
+        public string CheckboxState { get; set; }
+
         [BindProperty]
         public string SelectedSubjectHidden { get; set; }
 
@@ -307,15 +308,26 @@ namespace CSE3PAX.Pages.Manager
         - Handles SQL exceptions and outputs error messages to the debug console.
         - Returns the current page if an exception occurs.
         */
+
         public async Task<IActionResult> OnPostSubmitDataAsync()
         {
+            bool developmentRequired;
+            double load = CalculateInstanceLoad(NumberOfStudents);
+
             if (string.IsNullOrEmpty(SelectedEmail))
             {
                 Console.WriteLine("SelectedEmail is null or empty.");
                 return Page();
             }
-            bool developmentRequired = IsDevelopmentRequired;
-            double load = CalculateInstanceLoad(NumberOfStudents);
+            if (CheckboxState == "checked")
+            {
+                developmentRequired = true;
+            }
+            else
+            {
+                developmentRequired = false;
+            }
+            
 
             try
             {
@@ -326,125 +338,59 @@ namespace CSE3PAX.Pages.Manager
                     {
                         command.CommandType = System.Data.CommandType.Text;
 
-                        /*
-                         * SQL script to insert a new subject instance into the database.
-                         * Retrieves necessary data such as UserID, SubjectID, LecturerID, and generates instance name and code.
-                         * Parameters:
-                         *     - @UserEmailInput: Email of the user (lecturer) associated with the subject instance.
-                         *     - @SubjectCodeInput: Code of the subject for the instance.
-                         *     - @StartDateInput: Start date of the instance.
-                         *     - @EndDateInput: End date of the instance.
-                         *     - @Load: Load value for the instance.
-                         * Inserts a new row into the SubjectInstance table with the provided data.
-                         * Instance name and code are generated based on the year, month, and a random alphanumeric string.
-                         */
-                        command.CommandText = @"
-                            DECLARE @UserID INT;
-                            DECLARE @LecturerID INT;
-                            DECLARE @SubjectID INT;
-                            DECLARE @SubjectName NVARCHAR(100);
-                            DECLARE @Year NVARCHAR(100);
-                            DECLARE @Month NVARCHAR(100);
-                            DECLARE @SubjectInstanceCode NVARCHAR(100);
-                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
-                            DECLARE @SubjectInstanceName NVARCHAR(200);
+                        // Common SQL for setting up IDs and names
+                        string prepCmdText = @"
+                    DECLARE @UserID INT;
+                    DECLARE @LecturerID INT;
+                    DECLARE @SubjectID INT;
+                    DECLARE @SubjectName NVARCHAR(100);
+                    DECLARE @Year NVARCHAR(100);
+                    DECLARE @Month NVARCHAR(100);
+                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
 
-                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                            SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                            SET @Month = DATENAME(MONTH, @EndDateInput);
+                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput;
+                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                    SET @Month = DATENAME(MONTH, @EndDateInput);
+                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                ";
+                        command.CommandText = prepCmdText + @"
+                    DECLARE @SubjectInstanceName NVARCHAR(200) = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+                    DECLARE @SubjectInstanceCode NVARCHAR(100) = @Year + '-' + @SubjectCodeInput;
 
-                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
 
-                            SET @SubjectInstanceCode = @Year + '-' + @SubjectCodeInput;
-                            SET @SubjectInstanceName = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+                    IF @DevelopmentRequired = 1
+                    BEGIN
+                        SET @SubjectInstanceName += '-Development';
+                        INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                        VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
+                    END
+                ";
 
-                            INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                            VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
-
-                        command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail); 
+                        command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
                         command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
                         command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
                         command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
-
-                        // Add the Load value as a parameter
                         command.Parameters.AddWithValue("@Load", load);
+                        command.Parameters.AddWithValue("@DevelopmentRequired", developmentRequired ? 1 : 0);
 
                         await command.ExecuteNonQueryAsync();
                     }
                 }
 
-                if (developmentRequired)
-                {
-                    using (SqlConnection connection = new SqlConnection(_connectionString))
-                    {
-                        await connection.OpenAsync();
-                        using (SqlCommand command = connection.CreateCommand())
-                        {
-                            command.CommandType = System.Data.CommandType.Text;
-
-                            /*
-                             * SQL script to insert a new subject instance into the database.
-                             * Retrieves necessary data such as UserID, SubjectID, LecturerID, and generates instance name and code.
-                             * Parameters:
-                             *     - @UserEmailInput: Email of the user (lecturer) associated with the subject instance.
-                             *     - @SubjectCodeInput: Code of the subject for the instance.
-                             *     - @StartDateInput: Start date of the instance.
-                             *     - @EndDateInput: End date of the instance.
-                             *     - @Load: Load value for the instance.
-                             * Inserts a new row into the SubjectInstance table with the provided data.
-                             * Instance name and code are generated based on the year, month, and a random alphanumeric string.
-                             * This version creates a development instance, appending '-Development' to the instance name.
-                             */
-                            command.CommandText = @"
-                                DECLARE @UserID INT;
-                                DECLARE @LecturerID INT;
-                                DECLARE @SubjectID INT;
-                                DECLARE @SubjectName NVARCHAR(100);
-                                DECLARE @Year NVARCHAR(100);
-                                DECLARE @Month NVARCHAR(100);
-                                DECLARE @SubjectInstanceCode NVARCHAR(100);
-                                DECLARE @RandomAlphaNumeric NVARCHAR(4);
-                                DECLARE @SubjectInstanceName NVARCHAR(200);
-
-                                SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput; 
-                                SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                                SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                                SELECT @SubjectName = SubjectName FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                                SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                                SET @Month = DATENAME(MONTH, @EndDateInput);
-
-                                SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
-
-                                SET @SubjectInstanceCode = @Year + '-' + @SubjectCode;
-                                SET @SubjectInstanceName = @Year + '-' + @SubjectCode + '-' + @Month + ' (' + @RandomAlphaNumeric + ')-Development';
-
-                                INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                                VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);";
-
-                            command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
-                            command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
-                            command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
-                            command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
-
-                            // Add the Load value as a parameter
-                            command.Parameters.AddWithValue("@Load", load);
-
-                            await command.ExecuteNonQueryAsync();
-                        }
-                    }
-                }
                 TempData["SuccessMessage"] = "Instance Created";
                 return RedirectToPage("/Manager/CreateSubjectInstance");
             }
             catch (SqlException ex)
             {
                 Debug.WriteLine($"SQL Error: {ex.Message}");
+                return Page();
             }
-            return Page();
         }
+
 
         /*
         Calculates the load for a subject instance based on the number of students.
