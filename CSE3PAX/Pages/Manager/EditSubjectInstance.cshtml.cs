@@ -41,6 +41,10 @@ namespace CSE3PAX.Pages.Manager
         public decimal Load { get; set; }
         [BindProperty]
         public int SubjectInstanceYear { get; set; }
+      
+        public Dictionary<int, string> SubjectNames { get; set; } = new Dictionary<int, string>();
+        [BindProperty]
+        public int SelectedSubjectId { get; set; }
 
 
 
@@ -49,6 +53,9 @@ namespace CSE3PAX.Pages.Manager
 
         public void OnGet()
         {
+            
+
+
             try
             {
                 Debug.WriteLine("Loaded instance with ID: " + SelectedSubjectInstance);
@@ -94,9 +101,30 @@ namespace CSE3PAX.Pages.Manager
             {
                 Debug.WriteLine("Error fetching subject instance data: " + ex.Message);
             }
+            PopulateSubjectDropdown();
         }
 
+        private void PopulateSubjectDropdown()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var query = "SELECT SubjectID, SubjectName FROM [schedulingDB].[dbo].[Subjects]";
+                using (var command = new SqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        SubjectNames.Clear();  // Clear previous entries to avoid duplications
+                        while (reader.Read())
+                        {
+                            SubjectNames.Add(reader.GetInt32(0), reader.GetString(1));
+                        }
+                    }
+                    SelectedSubjectId = SubjectId;
 
+                }
+            }
+        }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -105,23 +133,25 @@ namespace CSE3PAX.Pages.Manager
                 return Page();
             }
 
-            int lecturerId = -1; // Initialize with an invalid value to check later
+            int lecturerId = -1;
+            string newSubjectCode = "";
+            string newSubjectName = "";
+            int selectedYear = StartDate.Year;  
+            string selectedMonth = StartDate.ToString("MMMM");  
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 await connection.OpenAsync();
 
-                // First, fetch the LecturerID based on the Lecturer's email
-                var fetchLecturerIdSql = @"
-        SELECT l.LecturerID
-        FROM [schedulingDB].[dbo].[Users] AS u
-        JOIN [schedulingDB].[dbo].[Lecturers] AS l ON u.UserID = l.UserID
-        WHERE u.Email = @Email";
-
+                // Fetch the LecturerID based on the Lecturer's email
+                string fetchLecturerIdSql = @"
+SELECT l.LecturerID
+FROM [schedulingDB].[dbo].[Users] AS u
+JOIN [schedulingDB].[dbo].[Lecturers] AS l ON u.UserID = l.UserID
+WHERE u.Email = @Email";
                 using (var fetchCommand = new SqlCommand(fetchLecturerIdSql, connection))
                 {
-                    fetchCommand.Parameters.AddWithValue("@Email", LecturerEmail); 
-
+                    fetchCommand.Parameters.AddWithValue("@Email", LecturerEmail);
                     using (var reader = await fetchCommand.ExecuteReaderAsync())
                     {
                         if (reader.Read())
@@ -133,45 +163,61 @@ namespace CSE3PAX.Pages.Manager
 
                 if (lecturerId == -1)
                 {
-                    // Handle the case where the lecturer is not found
                     Debug.WriteLine("Lecturer not found with the provided email.");
-                    return Page(); 
+                    return Page();
                 }
 
-                // Then, update the SubjectInstance with the fetched LecturerID
-                var updateSql = @"
-        UPDATE SubjectInstance 
-        SET 
-            SubjectId = @SubjectId, 
-            SubjectInstanceName = @SubjectInstanceName, 
-            SubjectInstanceCode = @SubjectInstanceCode, 
-            LecturerId = @LecturerId, 
-            StartDate = @StartDate, 
-            EndDate = @EndDate, 
-            SubjectInstanceYear = @SubjectInstanceYear,
-            Load = @Load 
-        WHERE SubjectInstanceId = @SubjectInstanceId";
+                // Fetch the new Subject Code if SubjectId changed
+                if (SubjectId != SelectedSubjectId)
+                {
+                    string fetchSubjectCodeSql = "SELECT SubjectCode FROM Subjects WHERE SubjectID = @SubjectID";
+                    using (var codeCommand = new SqlCommand(fetchSubjectCodeSql, connection))
+                    {
+                        codeCommand.Parameters.AddWithValue("@SubjectID", SelectedSubjectId);
+                        using (var codeReader = codeCommand.ExecuteReader())
+                        {
+                            if (codeReader.Read())
+                            {
+                                newSubjectCode = codeReader.GetString(0);
+                                newSubjectName = $"{selectedYear}-{newSubjectCode}-{selectedMonth} ({Guid.NewGuid().ToString("N").Substring(0, 4).ToUpper()})";
+                                SubjectInstanceCode = $"{selectedYear}-{newSubjectCode}";
+                            }
+                        }
+                    }
+                }
 
+                // Update the SubjectInstance
+                string updateSql = @"
+UPDATE SubjectInstance 
+SET 
+    SubjectId = @SelectedSubjectId,
+    SubjectInstanceName = @NewSubjectInstanceName,
+    SubjectInstanceCode = @NewSubjectInstanceCode,
+    LecturerId = @LecturerId, 
+    StartDate = @StartDate, 
+    EndDate = @EndDate, 
+    SubjectInstanceYear = @SubjectInstanceYear,
+    Load = @Load 
+WHERE SubjectInstanceId = @SubjectInstanceId";
                 using (var updateCommand = new SqlCommand(updateSql, connection))
                 {
                     updateCommand.Parameters.AddWithValue("@SubjectInstanceId", SubjectInstanceId);
-                    updateCommand.Parameters.AddWithValue("@SubjectId", SubjectId);
-                    updateCommand.Parameters.AddWithValue("@SubjectInstanceName", SubjectInstanceName);
-                    updateCommand.Parameters.AddWithValue("@SubjectInstanceCode", SubjectInstanceCode);
-                    updateCommand.Parameters.AddWithValue("@LecturerId", lecturerId); // Use the fetched LecturerID
+                    updateCommand.Parameters.AddWithValue("@SelectedSubjectId", SelectedSubjectId);
+                    updateCommand.Parameters.AddWithValue("@NewSubjectInstanceName", newSubjectName);
+                    updateCommand.Parameters.AddWithValue("@NewSubjectInstanceCode", SubjectInstanceCode);
+                    updateCommand.Parameters.AddWithValue("@LecturerId", lecturerId);
                     updateCommand.Parameters.AddWithValue("@StartDate", StartDate);
                     updateCommand.Parameters.AddWithValue("@EndDate", EndDate);
-                    updateCommand.Parameters.AddWithValue("@SubjectInstanceYear", SubjectInstanceYear);
-                    updateCommand.Parameters.Add("@Load", SqlDbType.Decimal).Value = Load;
-                    updateCommand.Parameters["@Load"].Precision = 10;
-                    updateCommand.Parameters["@Load"].Scale = 1;
+                    updateCommand.Parameters.AddWithValue("@SubjectInstanceYear", selectedYear);
+                    updateCommand.Parameters.AddWithValue("@Load", Load);
 
                     await updateCommand.ExecuteNonQueryAsync();
                 }
             }
 
-            return RedirectToPage("/Manager/StaffSchedules"); // Adjust the redirection as needed
+            return RedirectToPage("/Manager/StaffSchedules");
         }
+
 
 
 

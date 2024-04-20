@@ -13,14 +13,18 @@
     <input asp-for="SubjectId" type="hidden" />
 
     <input asp-for="SubjectInstanceYear" type="hidden" />
+    <div class="form-group">
+        <label asp-for="SelectedSubjectId" class="control-label">Subject Name:</label>
+        <select asp-for="SelectedSubjectId" asp-items="@(new SelectList(Model.SubjectNames, "Key", "Value"))" class="form-control"></select>
+    </div>
 
     <div class="form-group">
         <label asp-for="SubjectInstanceName" class="control-label"></label>
-        <input asp-for="SubjectInstanceName" class="form-control" />
+        <input asp-for="SubjectInstanceName" class="form-control" readonly />
     </div>
     <div class="form-group">
         <label asp-for="SubjectInstanceCode" class="control-label"></label>
-        <input asp-for="SubjectInstanceCode" class="form-control" />
+        <input asp-for="SubjectInstanceCode" class="form-control" readonly />
     </div>
     <div class="form-group">
         <label asp-for="StartDate" class="control-label"></label>
@@ -33,11 +37,14 @@
     <div class="form-group">
         
         <label asp-for="LecturerEmail" class="control-label">Lecturer Email</label>
-        <input asp-for="LecturerEmail" class="form-control" />
+        <input asp-for="LecturerEmail" class="form-control" readonly/>
     </div>
     <div class="form-group">
         <label asp-for="Load" class="control-label"></label>
         <input asp-for="Load" class="form-control" type="number" step="0.01" />
     </div>
+
+  
+
     <button type="submit" class="btn btn-primary">Save Changes</button>
 </form>
