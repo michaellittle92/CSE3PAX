@@ -37,9 +37,15 @@ namespace CSE3PAX.Pages.Manager
         public int NumberOfStudents { get; set; }
         [BindProperty]
         public string CheckboxState { get; set; }
-
+       // [BindProperty]
+        //public string UpdateFlag { get; set; }
         [BindProperty]
         public string SelectedSubjectHidden { get; set; }
+        [BindProperty]
+        public int? SelectedSubjectInstanceId { get; set; }
+
+
+
 
         public List<CSE3PAX.HelpClasses.LecturerInfo> Lecturers { get; set; } = new List<CSE3PAX.HelpClasses.LecturerInfo>();
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
@@ -69,8 +75,20 @@ namespace CSE3PAX.Pages.Manager
             if (selectedSubjectInstance.HasValue)
             {
                 Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstance}");
+                //UpdateFlag = "Update";
+
+                Debug.WriteLine("Update");
+                //SelectedSubjectHidden = selectedSubjectInstance.Value.ToString();
+
+
                 LoadSubjectInstanceDetails(selectedSubjectInstance.Value);
             }
+          /*  else
+            {
+                UpdateFlag = "Create";
+                Debug.WriteLine("Create");
+            }
+          */
         }
 
         /*
@@ -309,7 +327,7 @@ namespace CSE3PAX.Pages.Manager
         - Returns the current page if an exception occurs.
         */
 
-        public async Task<IActionResult> OnPostSubmitDataAsync()
+        public async Task<IActionResult> OnPostSubmitDataAsync(int? selectedSubjectInstance)
         {
             bool developmentRequired;
             double load = CalculateInstanceLoad(NumberOfStudents);
@@ -338,8 +356,54 @@ namespace CSE3PAX.Pages.Manager
                     {
                         command.CommandType = System.Data.CommandType.Text;
 
-                        // Common SQL for setting up IDs and names
-                        string prepCmdText = @"
+                        if (selectedSubjectInstance.HasValue)
+                        {
+                            command.CommandText = @"
+                            DECLARE @UserID INT;
+                            DECLARE @LecturerID INT;
+                            DECLARE @SubjectID INT;
+                            DECLARE @Year NVARCHAR(100);
+                            DECLARE @Month NVARCHAR(100);
+                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
+
+                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput;
+                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                            SET @Month = DATENAME(MONTH, @EndDateInput);
+                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+
+                            DECLARE @SubjectInstanceName NVARCHAR(200) = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+                            DECLARE @SubjectInstanceCode NVARCHAR(100) = @Year + '-' + @SubjectCodeInput;
+
+                            -- Update command
+                            UPDATE SubjectInstance
+                            SET
+                                SubjectID = @SubjectID,
+                                SubjectInstanceName = @SubjectInstanceName,
+                                SubjectInstanceCode = @SubjectInstanceCode,
+                                LecturerID = @LecturerID,
+                                StartDate = @StartDateInput,
+                                EndDate = @EndDateInput,
+                                SubjectInstanceYear = @Year,
+                                Load = @Load
+                            WHERE
+                                SubjectInstanceID = @SubjectInstanceID;";
+
+                            command.Parameters.AddWithValue("@SubjectInstanceID", selectedSubjectInstance.Value);
+                            command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
+                            command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
+                            command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
+                            command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
+                            command.Parameters.AddWithValue("@Load", load);
+
+
+                            await command.ExecuteNonQueryAsync();
+                        }
+
+                        else
+                        {
+                            string prepCmdText = @"
                     DECLARE @UserID INT;
                     DECLARE @LecturerID INT;
                     DECLARE @SubjectID INT;
@@ -355,7 +419,7 @@ namespace CSE3PAX.Pages.Manager
                     SET @Month = DATENAME(MONTH, @EndDateInput);
                     SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
                 ";
-                        command.CommandText = prepCmdText + @"
+                            command.CommandText = prepCmdText + @"
                     DECLARE @SubjectInstanceName NVARCHAR(200) = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
                     DECLARE @SubjectInstanceCode NVARCHAR(100) = @Year + '-' + @SubjectCodeInput;
 
@@ -370,14 +434,17 @@ namespace CSE3PAX.Pages.Manager
                     END
                 ";
 
-                        command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
-                        command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
-                        command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
-                        command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
-                        command.Parameters.AddWithValue("@Load", load);
-                        command.Parameters.AddWithValue("@DevelopmentRequired", developmentRequired ? 1 : 0);
+                            command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
+                            command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);
+                            command.Parameters.AddWithValue("@StartDateInput", StartDate.HasValue ? StartDate.Value.ToString("yyyy-MM-dd") : null);
+                            command.Parameters.AddWithValue("@EndDateInput", EndDate.HasValue ? EndDate.Value.ToString("yyyy-MM-dd") : null);
+                            command.Parameters.AddWithValue("@Load", load);
+                            command.Parameters.AddWithValue("@DevelopmentRequired", developmentRequired ? 1 : 0);
 
-                        await command.ExecuteNonQueryAsync();
+                            await command.ExecuteNonQueryAsync();
+                        }
+
+                        
                     }
                 }
 

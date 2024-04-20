@@ -79,6 +79,10 @@
                 </table>
             </div>
             <form method="post">
+                <!--Hidden update flag
+                <input type="hidden" asp-for="UpdateFlag" />-->
+                <!--Hidden SubjectInstanceID if valid-->
+                <input type="hidden" asp-for="SelectedSubjectInstanceId" />
                 <!-- First Name read only -->
                 <div class="mt-5">
                     <label for="selectedFirstName">First Name:</label>

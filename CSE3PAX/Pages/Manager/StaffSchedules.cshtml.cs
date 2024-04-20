@@ -341,7 +341,7 @@ namespace CSE3PAX.Pages.Manager
             Debug.WriteLine("Editing instance with ID: " + instanceID);
             Debug.WriteLine("Lecturer ID: " + lecturerID);
             Debug.WriteLine("User ID: " + userID);
-            return RedirectToPage("/Manager/CreateSubjectInstance",new { selectedSubjectInstance = instanceID });
+            return RedirectToPage("/Manager/EditSubjectInstance",new { selectedSubjectInstance = instanceID });
         }
     }
 }
