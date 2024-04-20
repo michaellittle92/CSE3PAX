@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\js\\CreateUser.js"
     },
     {
+      "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\EditSubjectInstance.js",
+      "PackagePath": "staticwebassets\\js\\EditSubjectInstance.js"
+    },
+    {
       "Id": "C:\\Users\\Michael\\Desktop\\CSharp\\CSE3PAX\\CSE3PAX\\wwwroot\\js\\layout.js",
       "PackagePath": "staticwebassets\\js\\layout.js"
     },
