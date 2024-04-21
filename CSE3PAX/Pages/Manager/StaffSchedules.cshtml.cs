@@ -14,6 +14,7 @@ namespace CSE3PAX.Pages.Manager
     {
         // Object to access application settings
         private readonly IConfiguration _configuration;
+        public string SuccessMessage { get; set; }
 
         // String to store DefaultConnection from configuration file
         private readonly string _connectionString;
@@ -294,7 +295,7 @@ namespace CSE3PAX.Pages.Manager
         If an error occurs during the deletion process, logs the error message.
         Redirects back to the same page with the selectedUserID parameter after deletion.
         */
-        public async Task<IActionResult> OnPostDeleteAsync(int instanceID, int lecturerID, int userID)
+        public IActionResult OnPostDelete(int instanceID, int lecturerID, int userID)
         {
             Debug.WriteLine("Deleting instance with ID: " + instanceID);
             Debug.WriteLine("Lecturer ID: " + lecturerID);
@@ -322,12 +323,15 @@ namespace CSE3PAX.Pages.Manager
                         command.ExecuteNonQuery();
                     }
                 }
+                TempData["SuccessMessage"] = "Subject Instance deleted successfully!";
+                Console.WriteLine(SuccessMessage);
+                return RedirectToPage(new { selectedUserId = userID });
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred: " + ex.Message);
+                return Page();
             }
-            return RedirectToPage(new { selectedUserId = userID });
         }
 
         /*

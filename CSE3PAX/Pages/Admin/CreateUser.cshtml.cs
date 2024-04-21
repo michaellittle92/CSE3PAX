@@ -108,7 +108,7 @@ namespace CSE3PAX.Pages.Admin
         }
 
         // Handles HTTP POST requests, performs user creation
-        public void OnPost()
+        public IActionResult OnPost()
         {
             try
             {
@@ -117,7 +117,7 @@ namespace CSE3PAX.Pages.Admin
                 if (!Email.EndsWith("@latrobe.edu.au", StringComparison.OrdinalIgnoreCase))
                 {
                     ErrorMessage = "Email must be from @latrobe.edu.au domain.";
-                    return;
+                    return Page();
                 }
 
                 // Check if the user with the provided email already exists
@@ -127,14 +127,14 @@ namespace CSE3PAX.Pages.Admin
                 {
                     // Handle the case where the user already exists
                     ErrorMessage = "A user with the provided Email already exists!";
-                    return;
+                    return Page();
                 }
 
                 // Check password complexity
                 if (!IsPasswordComplex(Password))
                 {
                     ErrorMessage = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
-                    return;
+                    return Page();
                 }
 
                 // Proceed with user creation
@@ -220,11 +220,16 @@ namespace CSE3PAX.Pages.Admin
                         }
 
                         // Set success message after user creation
-                        SuccessMessage = "User created successfully.";
+                        TempData["SuccessMessage"] = "User created successfully.";
+
+                        // Redirect to the desired page after successful creation
+                        return RedirectToPage("/Admin/StaffManagement");
+
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"SQL Error: {ex.Message}");
+                        return Page();
                     }
                 }
                 else
@@ -259,18 +264,23 @@ namespace CSE3PAX.Pages.Admin
                         }
 
                         // Set success message after user creation
-                        SuccessMessage = "User created successfully.";
+                        TempData["SuccessMessage"] = "User created successfully.";
+
+                        // Redirect to the desired page after successful creation
+                        return RedirectToPage("/Admin/StaffManagement");
 
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine($"SQL Error: {ex.Message}");
+                        return Page();
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return Page();
             }
         }
 

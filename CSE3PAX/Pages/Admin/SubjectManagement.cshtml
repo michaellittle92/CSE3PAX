@@ -1,6 +1,23 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.SubjectManagementModel
 @{
+    // Check if there is a error message in TempData
+    if (TempData["DeleteMessage"] != null)
+    {
+        // If there is a success message in TempData, display a success alert with the message
+        <div class="alert alert-success" role="alert">
+            @TempData["DeleteMessage"]
+        </div>
+    }
+
+    // Check if there is a success message in TempData
+    if (TempData["SuccessMessage"] != null)
+    {
+        // If there is a success message in TempData, display a success alert with the message
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 }
 
 <head>

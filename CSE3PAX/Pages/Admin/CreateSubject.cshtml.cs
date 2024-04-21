@@ -51,7 +51,7 @@ namespace CSE3PAX.Pages.Admin
         }
 
         // Handler for HTTP POST requests
-        public void OnPost()
+        public IActionResult OnPost()
         {
             try
             {
@@ -69,7 +69,7 @@ namespace CSE3PAX.Pages.Admin
                         if (count > 0)
                         {
                             ErrorMessage = "A subject with the provided Subject Code already exists!";
-                            return; // Exit the method
+                            return Page(); // Exit the method
                         }
                     }
 
@@ -85,13 +85,21 @@ namespace CSE3PAX.Pages.Admin
                         command.ExecuteNonQuery();
 
                         // Set the success message
-                        SuccessMessage = "Subject created successfully.";
+                        //SuccessMessage = "Subject created successfully.";
+
+                        // Set success message after user creation
+                        TempData["SuccessMessage"] = "Subject created successfully.";
+
+                        // Redirect to the desired page after successful creation
+                        return RedirectToPage("/Admin/SubjectManagement");
+
                     }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return Page();
             }
         }
     }

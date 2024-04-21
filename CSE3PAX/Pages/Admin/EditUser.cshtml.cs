@@ -216,6 +216,14 @@ namespace CSE3PAX.Pages.Admin
                         }
                     }
                 }
+
+                // Set success message after user creation
+                TempData["SuccessMessage"] = "User edited successfully.";
+
+                // Redirect to the desired page after successful creation
+                return RedirectToPage("/Admin/StaffManagement");
+
+
             }
             catch (Exception ex)
             {
@@ -279,7 +287,13 @@ namespace CSE3PAX.Pages.Admin
                         await command.ExecuteNonQueryAsync();
                     }
                 }
+
+                // Set success message in TempData
+                TempData["SuccessMessage"] = "User deleted successfully.";
+
+                // Redirect to the desired page after successful deletion
                 return RedirectToPage("/Admin/StaffManagement");
+
             }
             catch (Exception ex)
             {

@@ -1,6 +1,12 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.StaffManagementModel
 @{
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 }
 
 <!-- Container -->

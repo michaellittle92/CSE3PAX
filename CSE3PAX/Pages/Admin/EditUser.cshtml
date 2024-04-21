@@ -1,8 +1,10 @@
 ﻿@page
 @model CSE3PAX.Pages.Admin.EditUserModel
 @{
+    // Check if the SuccessMessage property in the model is not null or empty
     if (!string.IsNullOrEmpty(Model.SuccessMessage))
     {
+        // If SuccessMessage is not null or empty, display a success alert with the message
         <div class="alert alert-success" role="alert">
             @Model.SuccessMessage
         </div>

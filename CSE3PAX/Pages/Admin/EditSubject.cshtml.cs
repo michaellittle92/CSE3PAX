@@ -17,6 +17,7 @@ namespace CSE3PAX.Pages.Admin
     {
         // Alert message variable
         public string SuccessMessage { get; set; }
+        public string DeleteMessage { get; set; }
 
         // Object to access application settings
         private readonly IConfiguration _configuration;
@@ -105,12 +106,12 @@ namespace CSE3PAX.Pages.Admin
 
                         command.ExecuteNonQuery();
 
-                        // Set the success message
-                        SuccessMessage = "Subject edited successfully.";
+                        // Set success message after user creation
+                        TempData["SuccessMessage"] = "Subject edited successfully.";
+
                         // Redirect
                         return RedirectToPage("/Admin/SubjectManagement");
                     }
-                    return Page();
                 }
             }
             catch (Exception ex) { 
@@ -147,6 +148,13 @@ namespace CSE3PAX.Pages.Admin
                         deleteSubjectCommand.Parameters.AddWithValue("@SubjectCode", SubjectCode);
                         deleteSubjectCommand.ExecuteNonQuery();
                     }
+
+                    // Set success message in TempData
+                    TempData["DeleteMessage"] = "Subject deleted successfully.";
+
+                    Console.WriteLine("Subject deleted");
+
+                    // Redirect to the desired page after successful deletion
                     return RedirectToPage("/Admin/SubjectManagement");
                 }
             }

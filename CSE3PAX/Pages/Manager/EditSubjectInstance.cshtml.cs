@@ -214,7 +214,10 @@ WHERE SubjectInstanceId = @SubjectInstanceId";
                     await updateCommand.ExecuteNonQueryAsync();
                 }
             }
+            // Set success message after subject instance edit
+            TempData["SuccessMessage"] = "Subject Instance edited successfully.";
 
+            // Redirect
             return RedirectToPage("/Manager/StaffSchedules");
         }
 

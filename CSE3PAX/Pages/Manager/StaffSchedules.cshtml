@@ -1,6 +1,21 @@
 ﻿@page
 @model CSE3PAX.Pages.Manager.StaffSchedulesModel
 @{
+    // Check if the SuccessMessage property in the model is not null or empty
+    if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        // If SuccessMessage is not null or empty, display a success alert with the message
+        <div class="alert alert-success" role="alert">
+            @Model.SuccessMessage
+        </div>
+    }
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 }
 
 <!DOCTYPE html>
@@ -196,7 +211,7 @@
                                                     <input type="hidden" name="instanceId" value="@instance.InstanceID" />
                                                     <input type="hidden" name="lecturerId" value="@instance.LecturerID" />
                                                     <input type="hidden" name="userID" value="@instance.UserID" />
-                                                    <button type="submit" asp-page-handler="Delete" class="btn btn-danger mb-2"><i class="bi bi-trash-fill"></i></button>
+                                                    <button type="submit" onclick="return confirm('Are you sure you want to delete?');" asp-page-handler="Delete" class="btn btn-danger mb-2"><i class="bi bi-trash-fill"></i></button>
                                                    <button type="submit" asp-page-handler="Edit" class="btn btn-info box-shw"><i class="bg-info bi-pencil-fill"></i></button>
                                                 </form>
                                             </td>
