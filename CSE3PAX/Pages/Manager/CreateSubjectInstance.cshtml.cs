@@ -37,7 +37,7 @@ namespace CSE3PAX.Pages.Manager
         public int NumberOfStudents { get; set; }
         [BindProperty]
         public string CheckboxState { get; set; }
-       // [BindProperty]
+        // [BindProperty]
         //public string UpdateFlag { get; set; }
         [BindProperty]
         public string SelectedSubjectHidden { get; set; }
@@ -330,6 +330,8 @@ namespace CSE3PAX.Pages.Manager
         public async Task<IActionResult> OnPostSubmitDataAsync(int? selectedSubjectInstance)
         {
             bool developmentRequired;
+            bool supportRequired;
+
             double load = CalculateInstanceLoad(NumberOfStudents);
 
             if (string.IsNullOrEmpty(SelectedEmail))
@@ -337,6 +339,7 @@ namespace CSE3PAX.Pages.Manager
                 Console.WriteLine("SelectedEmail is null or empty.");
                 return Page();
             }
+
             if (CheckboxState == "checked")
             {
                 developmentRequired = true;
@@ -345,7 +348,6 @@ namespace CSE3PAX.Pages.Manager
             {
                 developmentRequired = false;
             }
-            
 
             try
             {
@@ -458,6 +460,12 @@ namespace CSE3PAX.Pages.Manager
             }
         }
 
+        // Support lecturers
+        public void SupportLecturers()
+        {
+            Console.WriteLine("Support lecturers");
+            
+        }
 
         /*
         Calculates the load for a subject instance based on the number of students.

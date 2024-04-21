@@ -44,9 +44,18 @@
         <input asp-for="Load" class="form-control" type="number" step="0.01" />
     </div>
 
-  
+    <div>
+        <label asp-for="SelectedLecturerId" class="control-label">Support Lecturer:</label>
+        <select asp-for="SelectedLecturerId" class="form-select">
+            <option value="">Select a Lecturer</option>
+            @foreach (var lecturer in Model.Lecturers)
+            {
+                <option value="@lecturer.UserId">@($"{lecturer.FirstName} {lecturer.LastName}")</option>
+            }
+        </select>
+    </div>
 
-    <button type="submit" class="btn btn-primary">Save Changes</button>\
+    <button type="submit" class="btn btn-primary">Save Changes</button>
     <a asp-page="/Manager/StaffSchedules" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
 
 </form>

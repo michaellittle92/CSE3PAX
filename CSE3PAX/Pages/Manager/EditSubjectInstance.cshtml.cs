@@ -23,6 +23,22 @@ namespace CSE3PAX.Pages.Manager
             _connectionString = _configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("DefaultConnection not found in configuration.");
         }
 
+        // Properties to store user information
+        public List<Lecturer> Lecturers { get; set; }
+
+        // Lecturer class to store lecturer userid, first and last name
+        public class Lecturer
+        {
+            public int UserId { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
+
+        [BindProperty]
+        public int SelectedLecturerId { get; set; }
+        public string SelectedFirstName { get; set; }
+        public string SelectedLastName { get; set; }
+
         [BindProperty]
         public int SubjectInstanceId { get; set; }
         [BindProperty]
@@ -41,21 +57,17 @@ namespace CSE3PAX.Pages.Manager
         public decimal Load { get; set; }
         [BindProperty]
         public int SubjectInstanceYear { get; set; }
-      
+        public Dictionary<int, string> LecturerNames { get; set; } = new Dictionary<int, string>();
+
         public Dictionary<int, string> SubjectNames { get; set; } = new Dictionary<int, string>();
         [BindProperty]
         public int SelectedSubjectId { get; set; }
-
-
 
         [FromQuery(Name = "selectedSubjectInstance")]
         public int SelectedSubjectInstance { get; set; }
 
         public void OnGet()
         {
-            
-
-
             try
             {
                 Debug.WriteLine("Loaded instance with ID: " + SelectedSubjectInstance);
@@ -102,6 +114,7 @@ namespace CSE3PAX.Pages.Manager
                 Debug.WriteLine("Error fetching subject instance data: " + ex.Message);
             }
             PopulateSubjectDropdown();
+            PopulateLecturerDropdown();
         }
 
         private void PopulateSubjectDropdown()
@@ -121,8 +134,55 @@ namespace CSE3PAX.Pages.Manager
                         }
                     }
                     SelectedSubjectId = SubjectId;
-
                 }
+            }
+        }
+
+        /*
+         Populate support lecturer dropdown list
+         */
+        private void PopulateLecturerDropdown()
+        {
+            try
+            {
+                Lecturers = new List<Lecturer>();
+
+                // Establish connection to the database
+                using (SqlConnection connection = new SqlConnection(_connectionString))
+                {
+                    // Open connection
+                    connection.Open();
+
+                    // SQL query to select users who are lecturers
+                    string sql = "SELECT UserId, FirstName, LastName FROM [Users] WHERE isLecturer = 1";
+
+                    // SQL command object with query and connection
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        // Execute SQL query and get results
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            // Check if there are matching users in the database
+                            while (reader.Read())
+                            {
+                                // Create a new Lecturer object and add it to the list
+                                Lecturers.Add(new Lecturer
+                                {
+                                    UserId = reader.GetInt32(reader.GetOrdinal("UserId")),
+                                    FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                    LastName = reader.GetString(reader.GetOrdinal("LastName"))
+                                });
+                            }
+                            {
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle exception, such as logging or displaying an error message
+                Console.WriteLine("An error occurred: " + ex.Message);
             }
         }
 
@@ -132,6 +192,8 @@ namespace CSE3PAX.Pages.Manager
             {
                 return Page();
             }
+
+            Console.WriteLine(SelectedLecturerId);
 
             int lecturerId = -1;
             string newSubjectCode = "";
@@ -145,10 +207,10 @@ namespace CSE3PAX.Pages.Manager
 
                 // Fetch the LecturerID based on the Lecturer's email
                 string fetchLecturerIdSql = @"
-SELECT l.LecturerID
-FROM [schedulingDB].[dbo].[Users] AS u
-JOIN [schedulingDB].[dbo].[Lecturers] AS l ON u.UserID = l.UserID
-WHERE u.Email = @Email";
+                                            SELECT l.LecturerID
+                                            FROM [schedulingDB].[dbo].[Users] AS u
+                                            JOIN [schedulingDB].[dbo].[Lecturers] AS l ON u.UserID = l.UserID
+                                            WHERE u.Email = @Email";
                 using (var fetchCommand = new SqlCommand(fetchLecturerIdSql, connection))
                 {
                     fetchCommand.Parameters.AddWithValue("@Email", LecturerEmail);
@@ -188,17 +250,17 @@ WHERE u.Email = @Email";
 
                 // Update the SubjectInstance
                 string updateSql = @"
-UPDATE SubjectInstance 
-SET 
-    SubjectId = @SelectedSubjectId,
-    SubjectInstanceName = @NewSubjectInstanceName,
-    SubjectInstanceCode = @NewSubjectInstanceCode,
-    LecturerId = @LecturerId, 
-    StartDate = @StartDate, 
-    EndDate = @EndDate, 
-    SubjectInstanceYear = @SubjectInstanceYear,
-    Load = @Load 
-WHERE SubjectInstanceId = @SubjectInstanceId";
+                                    UPDATE SubjectInstance 
+                                    SET 
+                                        SubjectId = @SelectedSubjectId,
+                                        SubjectInstanceName = @NewSubjectInstanceName,
+                                        SubjectInstanceCode = @NewSubjectInstanceCode,
+                                        LecturerId = @LecturerId, 
+                                        StartDate = @StartDate, 
+                                        EndDate = @EndDate, 
+                                        SubjectInstanceYear = @SubjectInstanceYear,
+                                        Load = @Load 
+                                    WHERE SubjectInstanceId = @SubjectInstanceId";
                 using (var updateCommand = new SqlCommand(updateSql, connection))
                 {
                     updateCommand.Parameters.AddWithValue("@SubjectInstanceId", SubjectInstanceId);
@@ -220,10 +282,5 @@ WHERE SubjectInstanceId = @SubjectInstanceId";
             // Redirect
             return RedirectToPage("/Manager/StaffSchedules");
         }
-
-
-
-
-
     }
 }
