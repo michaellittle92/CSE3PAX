@@ -9,7 +9,7 @@ Industry Project 3a & 3b is an online cloud-based La Trobe lecturer scheduling s
 To run the project locally, follow these steps:
 
 1. Open Visual Studio.
-2. Go to `File` -> `Open project/solution` and browse to the `.sln` project file.
+2. Go to `File` -> `Open Project/Solution` and browse to the `CSE3PAX.sln` project file.
 3. Build and run the project using Visual Studio.
 4. The database is accessible through a cloud AWS RDS database.
 
