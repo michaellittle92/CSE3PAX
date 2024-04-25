@@ -31,6 +31,10 @@
       - Password: Password123!
     
     Once logged in, you can access the system and explore its functionalities.
+
+  ## Demo
+
+  - http://cse3pax-dev.eba-i8izpbrb.us-east-1.elasticbeanstalk.com/
   
   ## Credits
   
