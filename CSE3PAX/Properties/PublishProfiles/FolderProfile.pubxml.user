@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\Michael\Desktop\CSharp\CSE3PAX\CSE3PAX\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2024-04-21T09:42:25.5904514Z;True|2024-04-21T09:42:13.8140555+10:00;</History>
+    <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=sqlserver.cvcuwkquy0yk.ap-southeast-2.rds.amazonaws.com,1433%3bDatabase=schedulingDB%3bUser ID=admin%3bPassword=!LWrJ%25G%3frFd20ZwL8lhf!Xg%286%3fZ%24cuQx%3bEncrypt=False%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

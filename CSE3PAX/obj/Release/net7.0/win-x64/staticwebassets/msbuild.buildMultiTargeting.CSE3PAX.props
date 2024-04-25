@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CSE3PAX.props" />
+</Project>
