@@ -15,10 +15,10 @@ To run the project locally, follow these steps:
 
 ## Credits
 
-1. Alexx Verdichizzi
-2. Chareen Elton
-3. Laura Searle
-4. Michael Little
+- Alexx Verdichizzi
+- Chareen Elton
+- Laura Searle
+- Michael Little
 
 ## Dependencies
 
