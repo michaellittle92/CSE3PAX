@@ -66,6 +66,9 @@ namespace CSE3PAX.Pages.Manager
         [FromQuery(Name = "selectedSubjectInstance")]
         public int SelectedSubjectInstance { get; set; }
 
+        /*
+        This method retrieves data of a subject instance from the database based on the provided SubjectInstanceID. It constructs a SQL query with JOINs to fetch relevant information from multiple tables. If a subject instance is found, it populates class properties with the retrieved data. Debug messages are printed with the fetched data or an error message if no instance is found. After fetching data, it populates dropdowns for subjects and lecturers.
+        */
         public void OnGet()
         {
             try
@@ -117,6 +120,10 @@ namespace CSE3PAX.Pages.Manager
             PopulateLecturerDropdown();
         }
 
+        /*
+        This method populates a dropdown list with subjects by fetching SubjectID-SubjectName pairs from the Subjects table in the database. It clears previous entries to avoid duplications, then iterates through the retrieved data, adding each subject to the dropdown list. Finally, it sets the SelectedSubjectId property to the currently selected subject's ID.
+        */
+
         private void PopulateSubjectDropdown()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -139,8 +146,9 @@ namespace CSE3PAX.Pages.Manager
         }
 
         /*
-         Populate support lecturer dropdown list
-         */
+        This method populates a dropdown list with lecturers by fetching UserId, FirstName, and LastName from the Users table where isLecturer is set to 1. It initializes a new list to store Lecturer objects, establishes a connection to the database, executes the SQL query, and iterates through the results to create Lecturer objects and add them to the list. Any exceptions that occur during this process are caught and handled by logging or displaying an error message.
+        */
+
         private void PopulateLecturerDropdown()
         {
             try
@@ -185,6 +193,10 @@ namespace CSE3PAX.Pages.Manager
                 Console.WriteLine("An error occurred: " + ex.Message);
             }
         }
+
+        /*
+        This asynchronous method handles the form submission to update a subject instance. It first checks if the model state is valid; if not, it returns the current page. Then it initializes variables to store data needed for the update. It establishes a connection to the database and fetches the LecturerID based on the Lecturer's email. If the lecturer is not found, it logs a message and returns the current page. If the SubjectId is changed, it fetches the new SubjectCode and updates related fields. Finally, it executes an SQL update command to update the SubjectInstance table with the new values and redirects to the StaffSchedules page with a success message.
+        */
 
         public async Task<IActionResult> OnPostAsync()
         {

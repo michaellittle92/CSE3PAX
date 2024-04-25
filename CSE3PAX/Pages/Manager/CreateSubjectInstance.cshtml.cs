@@ -37,16 +37,10 @@ namespace CSE3PAX.Pages.Manager
         public int NumberOfStudents { get; set; }
         [BindProperty]
         public string CheckboxState { get; set; }
-        // [BindProperty]
-        //public string UpdateFlag { get; set; }
         [BindProperty]
         public string SelectedSubjectHidden { get; set; }
         [BindProperty]
         public int? SelectedSubjectInstanceId { get; set; }
-
-
-
-
         public List<CSE3PAX.HelpClasses.LecturerInfo> Lecturers { get; set; } = new List<CSE3PAX.HelpClasses.LecturerInfo>();
         public List<ListSubjects> ListSubjects { get; set; } = new List<ListSubjects>();
 
@@ -75,20 +69,9 @@ namespace CSE3PAX.Pages.Manager
             if (selectedSubjectInstance.HasValue)
             {
                 Debug.WriteLine($"SelectedSubjectInstance: {selectedSubjectInstance}");
-                //UpdateFlag = "Update";
-
                 Debug.WriteLine("Update");
-                //SelectedSubjectHidden = selectedSubjectInstance.Value.ToString();
-
-
                 LoadSubjectInstanceDetails(selectedSubjectInstance.Value);
             }
-          /*  else
-            {
-                UpdateFlag = "Create";
-                Debug.WriteLine("Create");
-            }
-          */
         }
 
         /*
@@ -330,7 +313,6 @@ namespace CSE3PAX.Pages.Manager
         public async Task<IActionResult> OnPostSubmitDataAsync(int? selectedSubjectInstance)
         {
             bool developmentRequired;
-            bool supportRequired;
 
             double load = CalculateInstanceLoad(NumberOfStudents);
 
@@ -360,6 +342,11 @@ namespace CSE3PAX.Pages.Manager
 
                         if (selectedSubjectInstance.HasValue)
                         {
+
+                            /*
+                            This SQL command updates a row in the SubjectInstance table with new values based on input parameters. It selects
+                            relevant IDs from other tables, generates a unique identifier, constructs instance names and codes, and updates the row with the new values.
+                            */
                             command.CommandText = @"
                             DECLARE @UserID INT;
                             DECLARE @LecturerID INT;
@@ -405,36 +392,40 @@ namespace CSE3PAX.Pages.Manager
 
                         else
                         {
+
+                            /*
+                            This SQL command prepares variables and selects necessary data from other tables based on input parameters. It then constructs instance names and codes, and inserts a new row into the SubjectInstance table with the gathered values. If development is required, it adds a '-Development' suffix to the instance name and inserts another row with the modified name.
+                            */
                             string prepCmdText = @"
-                    DECLARE @UserID INT;
-                    DECLARE @LecturerID INT;
-                    DECLARE @SubjectID INT;
-                    DECLARE @SubjectName NVARCHAR(100);
-                    DECLARE @Year NVARCHAR(100);
-                    DECLARE @Month NVARCHAR(100);
-                    DECLARE @RandomAlphaNumeric NVARCHAR(4);
+                            DECLARE @UserID INT;
+                            DECLARE @LecturerID INT;
+                            DECLARE @SubjectID INT;
+                            DECLARE @SubjectName NVARCHAR(100);
+                            DECLARE @Year NVARCHAR(100);
+                            DECLARE @Month NVARCHAR(100);
+                            DECLARE @RandomAlphaNumeric NVARCHAR(4);
 
-                    SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput;
-                    SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
-                    SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
-                    SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
-                    SET @Month = DATENAME(MONTH, @EndDateInput);
-                    SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
-                ";
-                            command.CommandText = prepCmdText + @"
-                    DECLARE @SubjectInstanceName NVARCHAR(200) = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
-                    DECLARE @SubjectInstanceCode NVARCHAR(100) = @Year + '-' + @SubjectCodeInput;
+                            SELECT @UserID = UserID FROM Users WHERE Email = @UserEmailInput;
+                            SELECT @SubjectID = SubjectID FROM Subjects WHERE SubjectCode = @SubjectCodeInput;
+                            SELECT @LecturerID = LecturerID FROM Lecturers WHERE UserID = @UserID;
+                            SET @Year = CAST(YEAR(@StartDateInput) AS NVARCHAR(4));
+                            SET @Month = DATENAME(MONTH, @EndDateInput);
+                            SELECT @RandomAlphaNumeric = UPPER(SUBSTRING(CONVERT(NVARCHAR(36), NEWID()), 1, 4));
+                        ";
+                                    command.CommandText = prepCmdText + @"
+                            DECLARE @SubjectInstanceName NVARCHAR(200) = @Year + '-' + @SubjectCodeInput + '-' + @Month + ' (' + @RandomAlphaNumeric + ')';
+                            DECLARE @SubjectInstanceCode NVARCHAR(100) = @Year + '-' + @SubjectCodeInput;
 
-                    INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                    VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
+                            INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                            VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
 
-                    IF @DevelopmentRequired = 1
-                    BEGIN
-                        SET @SubjectInstanceName += '-Development';
-                        INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
-                        VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
-                    END
-                ";
+                            IF @DevelopmentRequired = 1
+                            BEGIN
+                                SET @SubjectInstanceName += '-Development';
+                                INSERT INTO SubjectInstance (SubjectID, SubjectInstanceName, SubjectInstanceCode, LecturerID, StartDate, EndDate, SubjectInstanceYear, Load)
+                                VALUES (@SubjectID, @SubjectInstanceName, @SubjectInstanceCode, @LecturerID, @StartDateInput, @EndDateInput, @Year, @Load);
+                            END
+                        ";
 
                             command.Parameters.AddWithValue("@UserEmailInput", SelectedEmail);
                             command.Parameters.AddWithValue("@SubjectCodeInput", SelectedSubjectHidden);

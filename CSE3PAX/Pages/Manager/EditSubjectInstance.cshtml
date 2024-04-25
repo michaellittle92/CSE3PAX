@@ -4,58 +4,69 @@
 @{
     ViewData["Title"] = "Edit Subject Instance";
 }
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="container-fluid py-5">
+                <h1 class="my-5 admin-txt text-center"><i class="bi bi-book admin-text"></i> Edit Instance</h1>
+                <form method="post">
+                    <input asp-for="SubjectInstanceId" type="hidden" />
+                    <input asp-for="SubjectId" type="hidden" />
+                    <input asp-for="SubjectInstanceYear" type="hidden" />
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="SelectedSubjectId" class="control-label">Subject Name:</label>
+                        <select asp-for="SelectedSubjectId" asp-items="@(new SelectList(Model.SubjectNames, "Key", "Value"))" class="form-control"></select>
+                    </div>
 
-<h2>@ViewData["Title"]</h2>
-<!-- Visible Form -->
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="SubjectInstanceName" class="control-label"></label>
+                        <input asp-for="SubjectInstanceName" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="SubjectInstanceCode" class="control-label"></label>
+                        <input asp-for="SubjectInstanceCode" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="StartDate" class="control-label"></label>
+                        <input asp-for="StartDate" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="EndDate" class="control-label"></label>
+                        <input asp-for="EndDate" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="LecturerEmail" class="control-label">Lecturer Email</label>
+                        <input asp-for="LecturerEmail" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-2">
+                        <!-- Added mb-4 class for margin bottom -->
+                        <label asp-for="Load" class="control-label"></label>
+                        <input asp-for="Load" class="form-control" type="number" step="0.01" />
+                    </div>
 
-<form method="post">
-    <input asp-for="SubjectInstanceId" type="hidden" />
-    <input asp-for="SubjectId" type="hidden" />
+                    <!--
+                    <div>
+                        <label asp-for="SelectedLecturerId" class="control-label">Support Lecturer:</label>
+                        <select asp-for="SelectedLecturerId" class="form-select">
+                            <option value="">Select a Lecturer</option>
+                    @foreach (var lecturer in Model.Lecturers)
+                    {
+                                    <option value="@lecturer.UserId">@($"{lecturer.FirstName} {lecturer.LastName}")</option>
+                    }
+                        </select>
+                    </div>-->
 
-    <input asp-for="SubjectInstanceYear" type="hidden" />
-    <div class="form-group">
-        <label asp-for="SelectedSubjectId" class="control-label">Subject Name:</label>
-        <select asp-for="SelectedSubjectId" asp-items="@(new SelectList(Model.SubjectNames, "Key", "Value"))" class="form-control"></select>
-    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <a asp-page="/Manager/StaffSchedules" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
 
-    <div class="form-group">
-        <label asp-for="SubjectInstanceName" class="control-label"></label>
-        <input asp-for="SubjectInstanceName" class="form-control" readonly />
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="SubjectInstanceCode" class="control-label"></label>
-        <input asp-for="SubjectInstanceCode" class="form-control" readonly />
-    </div>
-    <div class="form-group">
-        <label asp-for="StartDate" class="control-label"></label>
-        <input asp-for="StartDate" class="form-control" type="date" />
-    </div>
-    <div class="form-group">
-        <label asp-for="EndDate" class="control-label"></label>
-        <input asp-for="EndDate" class="form-control" type="date" />
-    </div>
-    <div class="form-group">
-        
-        <label asp-for="LecturerEmail" class="control-label">Lecturer Email</label>
-        <input asp-for="LecturerEmail" class="form-control" readonly/>
-    </div>
-    <div class="form-group">
-        <label asp-for="Load" class="control-label"></label>
-        <input asp-for="Load" class="form-control" type="number" step="0.01" />
-    </div>
-
-    <div>
-        <label asp-for="SelectedLecturerId" class="control-label">Support Lecturer:</label>
-        <select asp-for="SelectedLecturerId" class="form-select">
-            <option value="">Select a Lecturer</option>
-            @foreach (var lecturer in Model.Lecturers)
-            {
-                <option value="@lecturer.UserId">@($"{lecturer.FirstName} {lecturer.LastName}")</option>
-            }
-        </select>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-    <a asp-page="/Manager/StaffSchedules" class="btn btn-outline-danger mx-5 box-shw my-2" style="width:130px;"><i class="bi bi-x-circle-fill me-3"></i>Cancel</a>
-
-</form>
+</div>
